@@ -12,13 +12,13 @@
 1. Update Waffle board with current in-progress task.
 1. If working on new feature, write tests, lots of tests.
 1. Make commits to your feature branch. Prefix each commit like so:
-  - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests
-  - (refactor) ...
-  - (cleanup) ...
-  - (test) ...
-  - (doc) ...
-1. When you've finished with your fix or feature, Rebase upstream changes into your branch. submit a pull request
+  - (feat) Added a new feature close #issueNumber
+  - (fix) Fixed inconsistent tests close #issueNumber
+  - (refactor) ... close #issueNumber
+  - (cleanup) ... close #issueNumber
+  - (test) ... close #issueNumber
+  - (doc) ... close #issueNumber
+1. When you've finished with your fix or feature, Rebase upstream changes into your branch. Submit a pull request
    directly to master. Include a description of your changes.
 1. Your pull request will be reviewed by another team member. The point of code
    reviews is to help keep the codebase clean and of high quality and, equally
