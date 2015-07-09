@@ -3,6 +3,3 @@ node_js:
 	- "0.12"
 notifications:
   slack: slayteam:ZeuMypPFNJSJxOsqN8Rvdeog
-install:
-	npm install
-	bower install
