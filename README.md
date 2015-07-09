@@ -2,6 +2,28 @@
 
 > Collaboration and analytics platform
 
+## Guidelines for usign waffle, making a commit and pull-request
+
+Fork to your github repo
+Clone to your local machine
+Set upstream master: "git remote add upstream https://github.com/paperMacheTortoise/bizGram.git"
+
+
+## Branch names
+feat/ fix/ refactor/ cleanup/ doc/
+
+## Commit msgs: start with () and close waffle issue accordingly
+(feat) (fix) (refactor) (cleanup) (test) (doc)
+
+## branching, commit, pull-request checklist
+1) Create a new branch: 'git checkout -b 'doc/readme "
+2) Review the waffle issues before making your commit: https://waffle.io/paperMacheTortoise/bizGram
+3) Commit with waffle issue number (if applicable): "(doc) update readme close #8"
+4) Make sure to rebase: "git pull --rebase upstream master"
+5) Push to your fork: "git push origin doc/readme"
+6) Make a pull request from your fork.
+7) Notify the team on slack. Please don't merge your own pull request, let another team member review the change and merge.
+
 ## Team
 
   - __Product Owner__: Austin Worachet, Danielle Blank
@@ -52,7 +74,7 @@ From within the root directory:
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/RealisticJackdaw/watchly/issues)
+View the project roadmap [here](https://github.com/paperMacheTortoise/bizGram/issues)
 
 
 ## Contributing
