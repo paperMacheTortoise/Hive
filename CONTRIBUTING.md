@@ -3,28 +3,30 @@
 ## General Workflow
 
 1. Fork the repo
-1. Cut a namespaced feature branch from master
-  - bug/...
+1. create a namespaced feature branch from master
   - feat/...
-  - test/...
-  - doc/...
+  - fix/...
   - refactor/...
+  - cleanup/...
+  - doc/...
+1. Update Waffle board with current in-progress task.
+1. If working on new feature, write tests, lots of tests.
 1. Make commits to your feature branch. Prefix each commit like so:
   - (feat) Added a new feature
-  - (fix) Fixed inconsistent tests [Fixes #0]
+  - (fix) Fixed inconsistent tests
   - (refactor) ...
   - (cleanup) ...
   - (test) ...
   - (doc) ...
-1. When you've finished with your fix or feature, Rebase upstream changes into your branch. submit a [pull request][]
+1. When you've finished with your fix or feature, Rebase upstream changes into your branch. submit a pull request
    directly to master. Include a description of your changes.
-1. Your pull request will be reviewed by another maintainer. The point of code
+1. Your pull request will be reviewed by another team member. The point of code
    reviews is to help keep the codebase clean and of high quality and, equally
    as important, to help you grow as a programmer. If your code reviewer
    requests you make a change you don't understand, ask them why.
 1. Fix any issues raised by your code reviwer, and push your fixes as a single
    new commit.
-1. Once the pull request has been reviewed, it will be merged by another member of the team. Do not merge your own commits.
+1. Once the pull request has been reviewed, reviewer will merge requests.
 
 ## Detailed Workflow
 
@@ -33,25 +35,25 @@
 Use github’s interface to make a fork of the repo, then add that repo as an upstream remote:
 
 ```
-git remote add upstream https://github.com/hackreactor-labs/<NAME_OF_REPO>.git
+git remote add upstream https://github.com/paperMacheTortoise/bizGram.git
 ```
 
-### Cut a namespaced feature branch from master
+### Create a namespaced feature branch from master
 
 Your branch should follow this naming convention:
-  - bug/...
-  - feat/...
-  - test/...
-  - doc/...
-  - refactor/...
+  -...
+  -...
+  -...
+  -...
 
 These commands will help you do this:
 
-``` bash
+```bash
 
 # Creates your branch and brings you there
 git checkout -b `your-branch-name`
 ```
+###If working on new feature, write tests, lots of tests.
 
 ### Make commits to your feature branch. 
 
