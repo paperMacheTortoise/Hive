@@ -2,7 +2,7 @@
   "name": "bizGram",
   "version": "0.0.0",
   "homepage": "https://github.com/paperMacheTortoise/bizGram",
-  "description": "Offering channel for organizations to communicate QuickBook Data visualizations",
+  "description": "Channel for organizations to communicate QuickBook Data visualizations",
   "main": "server/index.js",
   "license": "MIT",
   "ignore": [
