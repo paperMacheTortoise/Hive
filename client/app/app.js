@@ -1,5 +1,3 @@
-use strict;
-
 var app = angular.module('bizGramApp', ['ui.router']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -17,7 +15,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 
 	.state('userLogin', {
-		url: /:org/login'
-	})
+		url: '/:org/login'
+	});
 
 });
