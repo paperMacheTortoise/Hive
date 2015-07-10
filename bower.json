@@ -14,4 +14,7 @@
   "devDependencies": {
     "react": "facebook/react#0.13.3"
   },
+  "dependencies": {
+    "angular-ui-router": "~0.2.15"
+  }
 }
