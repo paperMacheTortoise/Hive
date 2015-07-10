@@ -1,8 +1,8 @@
 language: node_js
 node_js:
 	- "0.12"
-notifications:
-  slack: slayteam:ZeuMypPFNJSJxOsqN8Rvdeog
+# notifications:
+#   slack: slayteam:ZeuMypPFNJSJxOsqN8Rvdeog
 # before_install:
 # - export CHROME_BIN=chromium-browser
 # - export DISPLAY=:99.0
