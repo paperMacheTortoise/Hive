@@ -1,6 +1,4 @@
-use strict;
-
-var app = angular.module('bizGramApp', ['ui.router', 'MainCtrl']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -8,8 +6,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	.state('main', {
 		url: '/',
-		controller: 'mainController as main',
-		templateUrl: 'app/views/main.html',
+		templateUrl: 'app/main/main.html'
 	})
 
 	.state('main.room', {

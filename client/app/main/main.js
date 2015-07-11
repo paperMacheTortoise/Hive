@@ -1,6 +1,6 @@
-angular.module('MainCtrl' ['firebase'])
+angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users)){
+.controller('mainController', function (Rooms, Users) {
 
 	var vm = this;
 	vm.rooms;
@@ -23,4 +23,4 @@ angular.module('MainCtrl' ['firebase'])
 	};
 	vm.getUsers();
 
-]})
+});

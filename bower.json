@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/paperMacheTortoise/bizGram",
   "description": "Channel for organizations to communicate QuickBook Data visualizations",
-  "main": "server/index.js",
+  "main": "server/server.js",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -11,10 +11,8 @@
     "bower_components",
     "tests"
   ],
-  "devDependencies": {
-    "react": "facebook/react#0.13.3"
-  },
-  "dependencies": {
-    "angular-ui-router": "~0.2.15"
+ "dependencies": {
+   "angularfire": "~1.1.2",
+   "ui-router": "~0.2.15"
   }
 }
