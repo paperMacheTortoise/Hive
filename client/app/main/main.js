@@ -13,5 +13,4 @@ angular.module('mainCtrl', [])
 			});
 	};
 	vm.getUsers();
-
 });
