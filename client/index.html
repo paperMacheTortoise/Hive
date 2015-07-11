@@ -2,12 +2,15 @@
 <html lang='en'>
 <head>
 	<title>bizGram</title>
-
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="assets/css/styles.css">
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="bower_components/angularfire/dist/angularfire.min.js"></script>
+	<script type="text/javascript" src="bower_components/firebase/firebase.js"></script>
+	<script type="text/javascript" src="bower_components/ui-router/release/angular-ui-router.min.js"></script>
+
 
 	<!-- Angular JS Files -->
-	<script src="app/app.js"></script>
 </head>
 <body ng-app="bizGram">
 
@@ -17,6 +20,8 @@
 	 <!-- angular views: where all the angular views render -->
     <div ui-view></div>
 </div>
-
+<a ui-sref='Signup'>link</a>
+	<script type="text/javascript" src='app/auth/auth.js'></script>
+	<script type="text/javascript" src="app/app.js"></script>
 </body>
 </html>
