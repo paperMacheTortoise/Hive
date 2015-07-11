@@ -3,8 +3,8 @@ angular.module('mainCtrl', [])
 .controller('mainController', function (Rooms, Users) {
 
 	var vm = this;
-	vm.rooms;
-	vm.users;
+	vm.rooms=null;
+	vm.users=null;
 
 	vm.getRooms = function(){
 		Rooms.getRooms()
@@ -18,7 +18,7 @@ angular.module('mainCtrl', [])
 	vm.getUsers = function(){
 		Users.getUsers()
 			.then(function(users){
-				vm.users =  users;	
+				vm.users =  users;
 			});
 	};
 	vm.getUsers();
