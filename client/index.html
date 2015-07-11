@@ -2,12 +2,11 @@
 <html lang='en'>
 <head>
 	<title>bizGram</title>
-
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="assets/css/styles.css">
-
 	<!-- Angular Files -->
 	<script src="lib/angular/angular.min.js"></script>
+	<script src="lib/firebase/firebase.js"></script>
 	<script src="lib/angularfire/dist/angularfire.min.js"></script>
 	<script src="lib/ui-router/release/angular-ui-router.min.js"></script>
 
@@ -18,6 +17,8 @@
 
 </head>
 <body ng-app="bizGramApp">
+	<script type="text/javascript" src='app/auth/auth.js'></script>
+	<script type="text/javascript" src="app/app.js"></script>
 
 <h1>bizGram</h1>
 
@@ -25,6 +26,5 @@
 	 <!-- angular views: where all the angular views render -->
     <div ui-view></div>
 </div>
-
 </body>
 </html>

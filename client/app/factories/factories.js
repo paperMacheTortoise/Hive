@@ -17,7 +17,7 @@ angular.module('bizGramFactories', ['firebase'])
 
 		// Return the room names in an array;
 		return Object.keys(rooms);
-	}
+	};
 
 	return roomsFactory;
 }])
@@ -37,7 +37,7 @@ angular.module('bizGramFactories', ['firebase'])
 
 		// Return the usernames in an array
 		return usernames;
-	}
+	};
 
 	return userFactory;
-}])
+}]);
