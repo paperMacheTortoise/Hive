@@ -13,6 +13,7 @@
   ],
   "dependencies": {
     "angularfire": "~1.1.2",
-    "ui-router": "~0.2.15"
+    "ui-router": "~0.2.15",
+    "d3": "~3.5.6"
   }
 }
