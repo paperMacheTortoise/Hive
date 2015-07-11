@@ -1,15 +1,19 @@
 <div class="container" ng-controller="mainController as main">
-	<div class="rooms">
-		<h3>Rooms</h3>
-		<ul>
-			<li ng-repeat='room in main.rooms'> {{ room.name }}</li>
-		</ul>
-	</div>
+	<div class="row">
+		<div class="col-md-3">
+			<h3>Rooms</h3>
+				<ul class="nav nav-sidebar rooms">
+					<li ng-repeat='room in main.rooms'> {{ room.name }}</li>
+				</ul>
 
-	<div class="users">
-		<h3>Users</h3>
-		<ul>
-			<li ng-repeat='user in main.users'>{{ user.username }}</li>
-		</ul>
+			<h3>Users</h3>
+				<ul class="nav nav-sidebar users">
+					<li ng-repeat='user in main.users'>{{ user.username }}</li>
+				</ul>
+		</div>
+
+		<div class="col-md-9">
+			<h2>Room</h2>
+		</div>
 	</div>
 </div>
