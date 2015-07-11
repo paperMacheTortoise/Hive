@@ -1,0 +1,9 @@
+<div class = 'signin-div' ng-controller='SigninController as auth'>
+	<header><h3>Signin</h3></header>
+	<form name='signinForm' ng-submit='auth.signin()'>
+		<input name='email' type='email' ng-model='auth.email' required />
+		<input name='password' type='password' ng-model='auth.password' required />
+		<input type='submit'>
+	</form>	
+	<button ng-click='auth.checkLogin()'>Auth Status</button>
+</div>

@@ -20,6 +20,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/dm',
 		templateUrl: 'app/dm/directmessage.html'
 	})
+	.state('Signin',{
+		url: '/signin',
+		templateUrl: 'app/auth/signin.html',
+		controller:'SigninController'
+	})
 	.state('Signup',{
 		url: '/signup',
 		templateUrl:'app/auth/signup.html',
