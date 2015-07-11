@@ -20,15 +20,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/dm',
 		templateUrl: 'app/dm/directmessage.html'
 	})
-	.state('Signin',{
+	.state('signin',{
 		url: '/signin',
 		templateUrl: 'app/auth/signin.html',
 		controller:'SigninController'
 	})
-	.state('Signup',{
+	.state('signup',{
 		url: '/signup',
 		templateUrl:'app/auth/signup.html',
 		controller:'SignupController'
 	});
+
+});
+
+app.run(function ($rootScope, $window, $location, $state){
+
+	$rootScope.shouldShow = true;
+	// $rootScope.$on('$stateChangeStart', function (event, toState){
+
+	// });
 
 });
