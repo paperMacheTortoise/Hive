@@ -1,7 +1,7 @@
 angular.module('bizGramFactories', ['firebase'])
 
 .factory('Rooms', ['$firebaseArray', function ($firebaseArray){
-	
+
 	var roomsFactory = {};
 	var ref = new Firebase ('https://bizgramer.firebaseio.com/hr/messages');
 	var messages = $firebaseArray(ref);
@@ -20,10 +20,10 @@ angular.module('bizGramFactories', ['firebase'])
 	}
 
 	return roomsFactory;
-]})
+}])
 
 .factory('Users', ['$firebaseArray', function ($firebaseArray){
-	
+
 	var userFactory = {};
 	var ref = new Firebase ('https://bizgramer.firebaseio.com/hr/users');
 	var users = $firebaseArray(ref);
@@ -40,4 +40,4 @@ angular.module('bizGramFactories', ['firebase'])
 	}
 
 	return userFactory;
-]})
+}])

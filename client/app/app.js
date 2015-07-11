@@ -1,6 +1,8 @@
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
+
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 
