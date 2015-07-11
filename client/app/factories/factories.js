@@ -42,4 +42,4 @@ angular.module('bizGramFactories', ['firebase'])
 	return {
 		getUsers: getUsers
 	};
-}])
+}]);
