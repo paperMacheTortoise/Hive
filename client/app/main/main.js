@@ -6,3 +6,4 @@ angular.module('mainCtrl', [])
 	vm.rooms = Rooms.getRooms();
 	vm.users = Users.getUsers();
 });
+
