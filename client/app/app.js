@@ -1,4 +1,5 @@
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories']);
+
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -19,5 +20,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/dm',
 		templateUrl: 'app/dm/directmessage.html'
 	})
+	.state('Signup',{
+		url: '/signup',
+		templateUrl:'app/auth/signup.html',
+		controller:'SignupController'
+	});
 
 });

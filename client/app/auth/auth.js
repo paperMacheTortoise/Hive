@@ -23,4 +23,13 @@ angular.module('app.auth',['firebase'])
         console.log('Error:',error);
       });
     };
+    vm.checkLogin = function(){
+      var authData = vm.authObj.$getAuth();
+      if (authData) {
+        console.log(authData);
+      } else {
+        console.log("Logged out");
+      }
+      
+    };
   });
