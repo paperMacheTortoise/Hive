@@ -1,21 +1,21 @@
-var app = angular.module('bizGramApp', ['ui.router']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 
-	.state('landing', {
+	.state('main', {
 		url: '/',
-		templateUrl: 'app/views/landing.html',
-
+		templateUrl: 'app/main/main.html'
 	})
 
-	.state('orgSignUp', {
-		url: '/signup'
+	.state('main.room', {
+		url: '/room',
+		templateUrl: 'app/room/room.html'
 	})
-
-	.state('userLogin', {
-		url: '/:org/login'
-	});
+	.state('main.direct', {
+		url: '/dm',
+		templateUrl: 'app/dm/directmessage.html'
+	})
 
 });
