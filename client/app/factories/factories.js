@@ -3,20 +3,14 @@ angular.module('bizGramFactories', ['firebase'])
 .factory('Rooms', ['$firebaseArray', function ($firebaseArray){
 
 	var roomsFactory = {};
-	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/messages');
-	var messages = $firebaseArray(ref);
+	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms');
+	var rooms = $firebaseArray(ref);
 
 	// create a rooms object to store the room names. Loop through the messages,
 	// and return all the room names. Storing the rooms in an object will automatically
 	// remove any duplicate room names.
 	roomsFactory.getRooms = function(){
-		var rooms = {};
-		for(var key in messages){
-			rooms[messages[key].room] = null;
-		}
-
-		// Return the room names in an array;
-		return Object.keys(rooms);
+		return rooms;
 	};
 
 	return roomsFactory;
@@ -25,24 +19,12 @@ angular.module('bizGramFactories', ['firebase'])
 .factory('Users', ['$firebaseArray', '$firebaseObject', function ($firebaseArray, $firebaseObject){
 
 	var userFactory = {};
-	var ref = new Firebase('https://bizgramer.firebaseio.com/hr');
-	var userRef = ref.child('users');
-	console.log(ref);
-	// console.log(userRef);
-	var usersArr = $firebaseArray(userRef);
-	var usersObj = $firebaseObject(userRef);
+	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/users');
+	var users = $firebaseArray(ref);
 
 	// parse the usernames from the database
 	userFactory.getUsers = function(){
-		console.log(usersObj);
-		// debugger;
-		var usernames = [];
-		for(var key in usersArr){
-			usernames.push(usersArr[key].username);
-		}
-
-		// Return the usernames in an array
-		return usernames;
+		return users;
 	};
 
 	return userFactory;

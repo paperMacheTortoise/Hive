@@ -2,14 +2,14 @@
 	<div class="rooms">
 		<h3>Rooms</h3>
 		<ul>
-			<li ng-repeat='room in rooms'></li>
+			<li ng-repeat='room in main.rooms'> {{ room.name }}</li>
 		</ul>
 	</div>
 
 	<div class="users">
 		<h3>Users</h3>
 		<ul>
-			<li ng-repeat='user in users'></li>
+			<li ng-repeat='user in main.users'>{{ user.username }}</li>
 		</ul>
 	</div>
 </div>
