@@ -28,14 +28,14 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919},
 //var data = [4, 8, 15, 16, 23, 42];
 
 var x = d3.scale.linear()
-    .domain([0, 12000])
+    .domain([0, d3.max(data, function(d) { return d.Distance; })])
     .range([0, 420]);
 
 d3.select(".chart")
   .selectAll("div")
     .data(data)
   .enter().append("div")
-    .style("width", function(d) { return x(d.Radius/10) + "px"; })
+    .style("width", function(d) { return x(d.Radius) + "px"; })
     .text(function(d) { return d.DATE; })
-    .transition().duration(function(d){return d.Time}).style("background-color","red")
-    .style("width", function(d) { return x(d.Distance/10) + "px"; });
+    .transition().duration(function(d) {return d.Time}).style("background-color","red")
+    .style("width", function(d) { return x(d.Distance) + "px"; });
