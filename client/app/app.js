@@ -1,5 +1,5 @@
 
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth','app.profile']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -29,15 +29,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/signup',
 		templateUrl:'app/auth/signup.html',
 		controller:'SignupController'
+	})
+	.state('profile',{
+		url: '/profile',
+		templateUrl: 'app/profile/profile.html',
+		controller: 'ProfileController'
 	});
 
 });
 
-app.run(function ($rootScope, $window, $location, $state){
+app.run(function ($rootScope, $window, $location, $state, Auth){
 
 	$rootScope.shouldShow = true;
-	// $rootScope.$on('$stateChangeStart', function (event, toState){
-
-	// });
+	$rootScope.logout = function(){
+		Auth.signout();
+		$rootScope.shouldShow = true;
+	};
 
 });
