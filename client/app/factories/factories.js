@@ -48,6 +48,11 @@ angular.module('bizGramFactories', ['firebase'])
 
 	return roomsFactory;
 }])
+.factory('Upload',['$firebaseArray', function ($firebaseArray){
+	AWS.config.update({accessKeyId: 'AKIAIVEO6DBRV7OF7YDA', secretAccessKey: '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'});
+	AWS.config.region = 'us-west-1';
+	var s3 = new AWS.S3();
+}])
 
 .factory('Users', ['$firebaseArray', '$firebaseObject', function ($firebaseArray, $firebaseObject){
 
