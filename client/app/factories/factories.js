@@ -5,12 +5,22 @@ angular.module('bizGramFactories', ['firebase'])
 	var roomsFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms');
 	var rooms = $firebaseArray(ref);
+  var roomNames = [];
 
 	// create a rooms object to store the room names. Loop through the messages,
 	// and return all the room names. Storing the rooms in an object will automatically
 	// remove any duplicate room names.
+
+  rooms.$loaded()
+    .then(function() {
+      angular.forEach(rooms, function (room) {
+        roomNames.push(room.$id);
+      })
+      console.log(roomNames);
+    });
+
 	roomsFactory.getRooms = function(){
-		return rooms;
+		return roomNames;
 	};
 
 	return roomsFactory;
@@ -31,7 +41,7 @@ angular.module('bizGramFactories', ['firebase'])
 }])
 
 .factory('Auth',['$firebaseAuth',function($firebaseAuth){
-	
+
 	var authFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
 
