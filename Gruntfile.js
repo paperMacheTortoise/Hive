@@ -16,17 +16,13 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-karma');
-  
+ 
+
   grunt.registerTask('test', [
   	'jshint',
   	'karma'
   	]);
- 
-  grunt.registerTask('devmode', [
-  	'jshint',
-  	'karma:unit'
-  	]);
 
-  grunt.registerTask('default');
+  grunt.registerTask('default', 'test');
  
 };

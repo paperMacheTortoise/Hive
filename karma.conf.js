@@ -23,7 +23,7 @@ module.exports = function(config){
 		colors: true,
 		logLevel: 'INFO',
 		autowatch: false,
-		browsers: ['Chrome'],
+		browsers: ['PhantomJS'],
 		singleRun: true
 	});
 };
