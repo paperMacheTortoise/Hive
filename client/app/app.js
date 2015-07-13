@@ -1,7 +1,8 @@
-
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth','app.profile']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'app.profile']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
+
+	// need to dynamically create routes based on the rooms available
 
 	$urlRouterProvider.otherwise('/');
 
@@ -11,9 +12,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/',
 		templateUrl: 'app/main/main.html'
 	})
-
-	.state('main.room', {
-		url: '/room',
+	.state('main.general', {
+		url: '/general',
 		templateUrl: 'app/room/room.html'
 	})
 	.state('main.direct', {

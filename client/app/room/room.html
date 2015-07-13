@@ -1,15 +1,23 @@
 <!-- angular room ui template -->
-<div class="chatroom">
+<div class="chatroom" ng-controller="roomController as room">
   <header>Chatroom</header>
+
 <!-- displaying all messages for this room -->
   <div class="messages">
+    <header>General</header>
+    <ul>
+      <li ng-repeat="msg in room.allGeneralMsg">
+        <strong>{{ msg.username }}:</strong>
+        {{ msg.text }}
+      </li>
+    </ul>
   </div>
 
 
 <!-- input area -->
   <div class="submitText">
-    <input ng-model="username" type="text" id="usernameInput" placeholder="enter username" />
-    <input ng-model="roomname" type="text" id="roomnameInput" placeholder="enter roomname" />
-    <input ng-model="text" ng-keydown="addText($event)" type="text" id="textInput" placeholder="type a text">
+    <input ng-model="room.username" type="text" id="usernameInput" placeholder="enter username" />
+    <input ng-model="room.roomname" type="text" id="roomnameInput" placeholder="enter roomname" />
+    <input ng-model="room.text" ng-keydown="room.addMessage($event)" type="text" id="textInput" placeholder="type a text" />
   </div>
 </div>
