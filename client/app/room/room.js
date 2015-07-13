@@ -6,6 +6,9 @@ angular.module('roomCtrl', [])
 
   var vm = this;
 
+  var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general")
+  vm.allGeneralMsg = $firebaseArray(generalRef);
+
   this.addMessage = function (e) {
     if (e.keyCode === 13 && vm.text) {
       var userName = vm.username || 'anon';
@@ -20,7 +23,6 @@ angular.module('roomCtrl', [])
 
       vm.allMessages.$add({
         username: userName,
-        // room: roomName,
         text: vm.text
       });
 

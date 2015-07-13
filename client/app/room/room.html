@@ -4,11 +4,12 @@
 
 <!-- displaying all messages for this room -->
   <div class="messages">
+    <header>General</header>
     <ul>
-      <!-- <li ng-repeat=""> -->
-        <!-- <strong>{{ main.username }}</strong> -->
-        <!-- <strong>{{ main.room }}</strong> -->
-        <!-- <strong>{{ main.text }} </strong> -->
+      <li ng-repeat="msg in room.allGeneralMsg">
+        <strong>{{ msg.username }}:</strong>
+        {{ msg.text }}
+      </li>
     </ul>
   </div>
 
