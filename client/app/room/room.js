@@ -1,5 +1,4 @@
 // Angular controller for room.html
-console.log('room.js');
 angular.module('roomCtrl', [])
 
 .controller('roomController', ["$firebaseArray", function ($firebaseArray) {
@@ -10,7 +9,7 @@ angular.module('roomCtrl', [])
   vm.allGeneralMsg = $firebaseArray(generalRef);
 
   this.addMessage = function (e) {
-    if (e.keyCode === 13 && vm.text) {
+    if (e.keyCode === 13) {
       var userName = vm.username || 'anon';
       var roomName = vm.roomname || 'general';
       console.log(userName, roomName, vm.text);
