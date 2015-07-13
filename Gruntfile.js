@@ -7,12 +7,8 @@ module.exports = function(grunt) {
     },
 
     karma: {
-    	travis: {
-    		configFile: 'karma.conf.js'
-    	},
     	unit: {
     		configFile: 'karma.conf.js',
-    		browsers: ['Chrome']
     	}
     }
 
@@ -23,7 +19,7 @@ module.exports = function(grunt) {
   
   grunt.registerTask('test', [
   	'jshint',
-  	'karma:travis'
+  	'karma'
   	]);
  
   grunt.registerTask('devmode', [
