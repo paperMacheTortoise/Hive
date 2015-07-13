@@ -5,7 +5,7 @@ angular.module('roomCtrl', [])
 
   var vm = this;
 
-  var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general")
+  var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
   vm.allGeneralMsg = $firebaseArray(generalRef);
 
   this.addMessage = function (e) {
@@ -27,7 +27,7 @@ angular.module('roomCtrl', [])
 
       vm.text = '';
     }
-  }
+  };
 }]);
 
 
