@@ -1,0 +1,15 @@
+<!-- angular room ui template -->
+<div class="chatroom">
+  <header>Chatroom</header>
+<!-- displaying all messages for this room -->
+  <div class="messages">
+  </div>
+
+
+<!-- input area -->
+  <div class="submitText">
+    <input ng-model="username" type="text" id="usernameInput" placeholder="enter username" />
+    <input ng-model="roomname" type="text" id="roomnameInput" placeholder="enter roomname" />
+    <input ng-model="text" ng-keydown="addText($event)" type="text" id="textInput" placeholder="type a text">
+  </div>
+</div>
