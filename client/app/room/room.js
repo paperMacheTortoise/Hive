@@ -1,16 +1,10 @@
 // Angular controller for room.html
-angular.module('mainCtrl', [])
+angular.module('roomCtrl', [])
 
-.controller('mainController', function (Rooms, Users) {
+.controller('roomController', function () {
 
   var vm = this;
-  vm.rooms = Rooms.getRooms();
-  vm.users = Users.getUsers();
-  vm.roomName = "General";
 
-  vm.getRoom = function(index){
-    vm.roomName = vm.rooms[index].name;
-  };
 });
 
 
