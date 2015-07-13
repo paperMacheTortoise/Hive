@@ -4,7 +4,7 @@
 			<h3>Rooms</h3>
 				<ul class="nav nav-sidebar rooms">
 					<!-- <li ng-repeat='room in main.rooms track by $index' ng-click="main.getRoom($index)"> {{ room.name }}</li> -->
-					<li ng-repeat='room in main.rooms'> {{ room }}</li>
+					<li ui-sref=".{{ room }}" ng-repeat='room in main.rooms'> {{ room }}</li>
 				</ul>
 
 			<h3>Users</h3>
@@ -14,7 +14,10 @@
 		</div>
 
 		<div class="col-md-9">
-			<h2>{{ main.roomName }}</h2>
+			<div class="chatRoomView">
+				<div ui-view></div>
+			</div>
+			<!-- <h2>{{ main.roomName }}</h2> -->
 		</div>
 	</div>
 </div>

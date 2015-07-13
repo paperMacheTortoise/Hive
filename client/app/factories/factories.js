@@ -7,16 +7,15 @@ angular.module('bizGramFactories', ['firebase'])
 	var rooms = $firebaseArray(ref);
   var roomNames = [];
 
-	// create a rooms object to store the room names. Loop through the messages,
-	// and return all the room names. Storing the rooms in an object will automatically
-	// remove any duplicate room names.
+	// Create an array to store the room names.
+  // Loop through the rooms, and return all the room names.
 
+  //use .$loaded promise to popular roomNames array with async data from firebase
   rooms.$loaded()
     .then(function() {
       angular.forEach(rooms, function (room) {
         roomNames.push(room.$id);
-      })
-      console.log(roomNames);
+      });
     });
 
 	roomsFactory.getRooms = function(){
