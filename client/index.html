@@ -22,6 +22,7 @@
 	<script src="lib/ui-router/release/angular-ui-router.min.js"></script>
 
 	<!-- App JS Files -->
+	<script type="text/javascript" src='app/profile/profile.js'></script>
 	<script type="text/javascript" src='app/auth/auth.js'></script>
 	<script src="app/factories/factories.js"></script>
 	<script src="app/main/main.js"></script>
@@ -36,10 +37,11 @@
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<!-- Should show if user is logged out -->
-			<li><a ui-sref="signin" ng-show="shouldShow">Login</a></li>
+			<li><a ui-sref="signin" ng-show="shouldShow" ng-init='shouldShow=true'>Login</a></li>
 			<li><a ui-sref="signup" ng-show="shouldShow">SignUp</a></li>
 			<!-- Should show if users is logged in -->
-			<li><a ui-sref="signout" ng-hide="shouldShow">Logout</a></li>
+			<li><a ui-sref="profile" ng-hide="shouldShow">Profile</a></li>
+			<li><a ui-sref="signin" ng-hide="shouldShow" ng-click='shouldShow=true'>Logout</a></li>
 		</ul>
 	</div>
 </nav>

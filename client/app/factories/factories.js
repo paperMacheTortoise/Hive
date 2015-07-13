@@ -66,10 +66,14 @@ angular.module('bizGramFactories', ['firebase'])
     });
 
 	};
+	var signout = function(){
+		authObj.$unauth();
+	};
 	return {
     getAuth: getAuth,
     signin: signin,
-    signup: signup
+    signup: signup,
+    signout: signout
   };
 
 }]);

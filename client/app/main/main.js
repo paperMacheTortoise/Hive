@@ -1,7 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users) {
-
+.controller('mainController', function (Rooms, Users, $rootScope) {
 	var vm = this;
 	vm.rooms = Rooms.getRooms();
 	vm.users = Users.getUsers();
