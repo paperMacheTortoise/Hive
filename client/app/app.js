@@ -1,5 +1,4 @@
-
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth','app.profile']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'app.profile']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -12,7 +11,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/main/main.html'
 	})
 
-	.state('main.room', {
+	.state('room', {
 		url: '/room',
 		templateUrl: 'app/room/room.html'
 	})
