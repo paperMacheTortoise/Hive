@@ -37,6 +37,15 @@ angular.module('bizGramFactories', ['firebase'])
     return messages;
   };
 
+  roomsFactory.addMessage = function(username, text){
+    var roomRef = ref.child(roomName);
+    var messages = $firebaseArray(roomRef);
+    messages.$add({
+      username: username,
+      text: text
+    });
+  };
+
 	return roomsFactory;
 }])
 
