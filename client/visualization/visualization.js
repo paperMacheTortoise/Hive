@@ -11,31 +11,93 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919},
 {"DATE":"1985-10-1","Time":5000,"Radius":100377,"Distance":320287.5},
 {"DATE":"1985-11-1","Time":50,"Radius":119957,"Distance":308707.3}];
 
+// var x = d3.scale.linear()
+//     .domain([0, d3.max(data, function(d) { return d.Distance; })])
+//     .range([0, 420]);
 
-// var svg = d3.select("body");
-// console.log(svg);
+// d3.select(".chart")
+//   .selectAll("div")
+//     .data(data)
+//   .enter().append("div")
+//     .style("width", function(d) { return x(d.Radius) + "px"; })
+//     .text(function(d) { return d.DATE; })
+//     .transition().duration(function(d) {return d.Time}).style("background-color","red")
+//     .style("width", function(d) { return x(d.Distance) + "px"; });
+
+var margin = {top: 30, right: 30, bottom: 30, left: 50},
+    width = 960 - margin.left - margin.right,
+    height = 700 - margin.top - margin.bottom;
+
+var x = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .orient("left");
+
+var chart = d3.select(".chart")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+x.domain(data.map(function(d) { return d.DATE; }));
+  
+y.domain([0, d3.max(data, function(d) { return d.Distance; })]);
+
+  chart.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis);
+
+  chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+  chart.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Volume");
+
+  chart.selectAll(".bar")
+      .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.DATE); })
+      .attr("y", function(d) { return y(d.Distance); })
+      .attr("height", function(d) { return height - y(d.Distance); })
+      .attr("width", x.rangeBand())
+      .transition().duration(function(d) {return d.Time})
+      .attr("y", function(d) { return y(d.Radius); })
+      .attr("height", function(d) { return height - y(d.Radius); })
+      .style("fill", "red")
+      
+      d3.selectAll(".bar").on('mouseover', function (data) {
+        dynamicColor = this.style.fill;
+        d3.select(this)
+            .style('fill', '#3c763d')
+        	.transition().duration(3000)
+        	.attr("y", function(d) { return y(d.Distance); })
+      		.attr("height", function(d) { return height - y(d.Distance); })
+    	})
+ 	   .on('mouseout', function (data) {
+        d3.select(this)
+            .style('fill', dynamicColor)
+          	.transition().duration(2000)
+          	.attr("y", function(d) { return y(d.Radius); })
+        		.attr("height", function(d) { return height - y(d.Radius); })
+        });
 
 
-// var circles = svg.selectAll("div").data(data)
-//     .enter().append("div")
-//     .text(function(d){return d.DATE})
-//     .attr("fill","blue").attr("r", function(d) { return d.Radius/1000; })
-//     .transition().duration(function(d){return d.Time}).style("color","red");
-
-// // var circle = svg.selectAll("circle")
-// //     .data(data)
-
-//var data = [4, 8, 15, 16, 23, 42];
-
-var x = d3.scale.linear()
-    .domain([0, 12000])
-    .range([0, 420]);
-
-d3.select(".chart")
-  .selectAll("div")
-    .data(data)
-  .enter().append("div")
-    .style("width", function(d) { return x(d.Radius/10) + "px"; })
-    .text(function(d) { return d.DATE; })
-    .transition().duration(function(d){return d.Time}).style("background-color","red")
-    .style("width", function(d) { return x(d.Distance/10) + "px"; });
