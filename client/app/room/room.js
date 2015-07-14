@@ -1,7 +1,7 @@
 // Angular controller for room.html
 angular.module('roomCtrl', [])
 
-.controller('roomController', ["$firebaseArray", "Rooms", function ($firebaseArray, Rooms) {
+.controller('roomController', function (Rooms) {
 
   var vm = this;
   vm.roomname = Rooms.getCurrentName();
