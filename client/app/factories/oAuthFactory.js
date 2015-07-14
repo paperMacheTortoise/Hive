@@ -1,4 +1,4 @@
-angular.module('oAuthFactories', ['firebase', 'bizGramFactories']);
+angular.module('oAuthFactories', ['firebase', 'bizGramFactories'])
 
 .factory('oAuth',['$firebaseAuth',function($firebaseAuth, $firebaseArray, Users){
 
@@ -12,11 +12,11 @@ angular.module('oAuthFactories', ['firebase', 'bizGramFactories']);
     //put token on user entry
     var users = Users.getUsers();
     var index = users.$indexFor($id);
-    users[index].token;
-    users[index].tokenSecret;
-    users[index].realmId;
+    // users[index].token;
+    // users[index].tokenSecret;
+    // users[index].realmId;
     users.$save(index);
-  }
+  };
   return {
     getAuth: getAuth,
     oAuthIntuit: oAuthIntuit

@@ -31,7 +31,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		// 	vm.roomName = $stateParams.roomName;
 		// }
 		parent: 'main',
-
+	})
 	.state('oAuth', {
 		url: '/oAuth',
 		templateUrl: 'app/oAuth/oAuth.html'

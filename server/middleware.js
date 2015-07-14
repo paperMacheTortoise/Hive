@@ -19,14 +19,14 @@ module.exports = function(app, express) {
     saveUninitialized: true,
     resave: true,
     cookie: { maxAge: null }
-  }
+  };
   app.use(cookieParser());
   // app.use(cookieParser(keys.session.secret));
 
   app.use(session(sessionOpts));
 
   console.log(session);
-  console.log(session.Cookie)
+  console.log(session.Cookie);
 
   app.use(passport.initialize());
   app.use(passport.session());
@@ -36,4 +36,4 @@ module.exports = function(app, express) {
   require('./oAuth/oAuthRoutes.js')(authRouter);
 
 
-}
+};

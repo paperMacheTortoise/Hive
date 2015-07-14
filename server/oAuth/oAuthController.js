@@ -1,8 +1,8 @@
-var passport = require('passport')
-  , IntuitStrategy = require('passport-intuit-oauth').Strategy;
+var passport = require('passport');
+var IntuitStrategy = require('passport-intuit-oauth').Strategy;
 var keys = require('../../config.js');
 
-var INTUIT_CONSUMER_KEY = keys.INTUIT_CONSUMER_KEY
+var INTUIT_CONSUMER_KEY = keys.INTUIT_CONSUMER_KEY;
 var INTUIT_CONSUMER_SECRET = keys.INTUIT_CONSUMER_SECRET;
 var QuickBooks = require('../../node_modules/node-quickbooks/index.js');
 
@@ -80,6 +80,6 @@ module.exports = {
     console.log("req.session ", req.session);
     console.log("req.user ", req.user);
     console.log("req.session.passport.user", req.session.passport.user);
-    res.redirect('/login')
+    res.redirect('/login');
   }
-}
+};

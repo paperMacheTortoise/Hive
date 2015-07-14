@@ -4,12 +4,12 @@ var QuickBooks = require('../node_modules/node-quickbooks/index.js');
 
 module.exports = function(app, express) {
 
-  var QuickBooks = require('../node_modules/node-quickbooks/index.js')
+  var QuickBooks = require('../node_modules/node-quickbooks/index.js');
 
   app.get('/', function(req, res){
     console.log("index req.session ", req.session);
     console.log("index req.user ", req.user);
-    console.log("index req.session.passport.user", req.session.passport.user)
+    console.log("index req.session.passport.user", req.session.passport.user);
 
     res.render('index', { user: req.user });
   });
@@ -17,7 +17,7 @@ module.exports = function(app, express) {
   app.get('/login', function(req, res){
     console.log("login req.session ", req.session);
     console.log("login req.user ", req.user);
-    console.log("login req.session.passport.user", req.session.passport.user)
+    console.log("login req.session.passport.user", req.session.passport.user);
     res.render('login', { user: req.user });
   });
 
@@ -34,4 +34,4 @@ module.exports = function(app, express) {
     }
   );
 
-}
+};
