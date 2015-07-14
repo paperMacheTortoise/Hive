@@ -30,6 +30,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		// controller: function($stateParams) {
 		// 	vm.roomName = $stateParams.roomName;
 		// }
+		parent: 'main',
+		templateUrl: 'app/room/room.html'
 	})
 	.state('main.direct', {
 		url: '/dm',
