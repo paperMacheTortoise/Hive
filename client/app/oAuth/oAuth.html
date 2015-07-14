@@ -1,0 +1,13 @@
+<a href="/auth/intuit">Login with Intuit</a>
+  <script>
+    intuit.ipp.anywhere.setup({
+      grantUrl: 'http://localhost:3000/requestToken',
+      datasources: {
+        quickbooks : true,  // set to false if NOT using Quickbooks API
+        payments : false    // set to true if using Payments API
+      }
+    });
+  </script>
+<ipp:connectToIntuit></ipp:connectToIntuit>
+</body>
+</html>

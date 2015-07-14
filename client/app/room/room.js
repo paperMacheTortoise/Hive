@@ -1,7 +1,7 @@
 // Angular controller for room.html
 angular.module('roomCtrl', [])
 
-.controller('roomController', function (Rooms) {
+.controller('roomController', ["$firebaseArray", "Rooms", function ($firebaseArray, Rooms) {
 
   var vm = this;
   vm.roomname = Rooms.getCurrentName();
@@ -9,7 +9,7 @@ angular.module('roomCtrl', [])
   // var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
   // vm.allGeneralMsg = $firebaseArray(generalRef);
 
-  vm.addMessage = function (e) {
+  this.addMessage = function (e) {
     if (e.keyCode === 13) {
       var userName = vm.username || 'anon';
       var roomName = vm.roomname || 'general';
@@ -19,6 +19,6 @@ angular.module('roomCtrl', [])
       vm.text = '';
     }
   };
-});
+}]);
 
 
