@@ -1,4 +1,4 @@
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'app.profile']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'app.profile','app.upload']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -35,8 +35,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/profile',
 		templateUrl: 'app/profile/profile.html',
 		controller: 'ProfileController'
+	})
+	.state('upload',{
+		url: '/upload',
+		templateUrl: 'app/upload/upload.html',
 	});
-
 });
 
 app.run(function ($rootScope, $window, $location, $state, Auth){
