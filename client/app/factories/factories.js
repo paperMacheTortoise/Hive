@@ -29,7 +29,7 @@ angular.module('bizGramFactories', ['firebase'])
 
   roomsFactory.getCurrentName = function(){
     return roomName;
-  }
+  };
 
   roomsFactory.getRoomMessages = function() {
     var roomRef = ref.child(roomName);

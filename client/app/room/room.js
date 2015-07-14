@@ -19,6 +19,6 @@ angular.module('roomCtrl', [])
       vm.text = '';
     }
   };
-}]);
+});
 
 
