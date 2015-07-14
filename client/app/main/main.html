@@ -4,7 +4,7 @@
 			<h3>Rooms</h3>
 				<ul class="nav nav-sidebar rooms">
 					<!-- <li ng-repeat='room in main.rooms track by $index' ng-click="main.getRoom($index)"> {{ room.name }}</li> -->
-					<li ui-sref=".{{ room }}" ng-repeat='room in main.rooms'> {{ room }}</li>
+					<li ng-repeat='room in main.rooms'><a ng-href="#/room/{{room}}">{{ room }}</a></li>
 				</ul>
 
 			<h3>Users</h3>

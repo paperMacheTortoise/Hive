@@ -12,8 +12,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/',
 		templateUrl: 'app/main/main.html'
 	})
-	.state('main.general', {
-		url: '/general',
+	.state('main.room', {
+		url: 'room/:roomName',
+		parent: 'main',
 		templateUrl: 'app/room/room.html'
 	})
 	.state('main.direct', {
