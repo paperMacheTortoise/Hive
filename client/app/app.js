@@ -15,6 +15,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('main.room', {
 		url: 'room/:roomName',
 		parent: 'main',
+
+	.state('oAuth', {
+		url: '/oAuth',
+		templateUrl: 'app/oAuth/oAuth.html'
+	})
+	.state('main.general', {
+		url: '/general',
 		templateUrl: 'app/room/room.html'
 	})
 	.state('main.direct', {
