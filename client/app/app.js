@@ -26,7 +26,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 		templateUrl: 'app/room/room.html',
 		controller: 'roomController',
-		params: {roomName: 'value'}
+		params: {roomName: 'value'},
 		// controller: function($stateParams) {
 		// 	vm.roomName = $stateParams.roomName;
 		// }
