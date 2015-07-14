@@ -14,7 +14,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 	.state('main.room', {
 		url: 'room/:roomName',
-		parent: 'main',
+		parent: 'main'
+	})
 
 	.state('oAuth', {
 		url: '/oAuth',
@@ -22,7 +23,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 	.state('main.general', {
 		url: '/general',
-		templateUrl: 'app/room/room.html'
+
+		templateUrl: 'app/room/room.html',
+		controller: 'roomController',
+		params: {roomName: 'value'}
+		// controller: function($stateParams) {
+		// 	vm.roomName = $stateParams.roomName;
+		// }
 	})
 	.state('main.direct', {
 		url: '/dm',

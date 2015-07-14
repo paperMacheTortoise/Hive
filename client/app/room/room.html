@@ -3,7 +3,9 @@
 
 <!-- displaying all messages for this room -->
   <div class="messages">
-    <h2>{{ room.roomname }}</h2>
+
+    <header>{{ room.roomname }}</header>
+
     <ul>
       <li ng-repeat="msg in room.messages">
         <strong>{{ msg.username }}:</strong>
