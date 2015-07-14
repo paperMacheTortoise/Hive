@@ -1,12 +1,13 @@
 // Angular controller for room.html
 angular.module('roomCtrl', [])
 
-.controller('roomController', ["$firebaseArray", function ($firebaseArray) {
+.controller('roomController', ["$firebaseArray", "Rooms", function ($firebaseArray, Rooms) {
 
   var vm = this;
-
-  var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
-  vm.allGeneralMsg = $firebaseArray(generalRef);
+  vm.roomname = Rooms.getCurrentName();
+  vm.messages = Rooms.getRoomMessages();
+  // var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
+  // vm.allGeneralMsg = $firebaseArray(generalRef);
 
   this.addMessage = function (e) {
     if (e.keyCode === 13) {

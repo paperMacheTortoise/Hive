@@ -4,9 +4,9 @@
 
 <!-- displaying all messages for this room -->
   <div class="messages">
-    <header>General</header>
+    <header>{{ room.roomname }}</header>
     <ul>
-      <li ng-repeat="msg in room.allGeneralMsg">
+      <li ng-repeat="msg in room.messages">
         <strong>{{ msg.username }}:</strong>
         {{ msg.text }}
       </li>
@@ -21,3 +21,4 @@
     <input ng-model="room.text" ng-keydown="room.addMessage($event)" type="text" id="textInput" placeholder="type a text" />
   </div>
 </div>
+

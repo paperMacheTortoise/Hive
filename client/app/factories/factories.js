@@ -22,6 +22,21 @@ angular.module('bizGramFactories', ['firebase'])
 		return roomNames;
 	};
 
+  var roomName = '';
+  roomsFactory.setRoom = function (name){
+    roomName = name;
+  };
+
+  roomsFactory.getCurrentName = function(){
+    return roomName;
+  }
+
+  roomsFactory.getRoomMessages = function() {
+    var roomRef = ref.child(roomName);
+    var messages = $firebaseArray(roomRef);
+    return messages;
+  };
+
 	return roomsFactory;
 }])
 
