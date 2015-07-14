@@ -8,7 +8,8 @@ angular.module('app.auth',['firebase','bizGramFactories'])
         username: name,
         email: email,
         uid: uid,
-        pictureUrl: pictureUrl || null
+        pictureUrl: pictureUrl || null,
+        pictureCollection: null
       }).then(function(ref){
         var logInfo = vm.users.$getRecord(ref.key());
         $rootScope.logInfo = logInfo;

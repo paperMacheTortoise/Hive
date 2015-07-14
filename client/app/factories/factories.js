@@ -83,6 +83,11 @@ angular.module('bizGramFactories', ['firebase'])
 	userFactory.getUsers = function(){
 		return users;
 	};
+  userFactory.getUserPictures = function(key){
+    var pictureRef = new Firebase('https://bizgramer.firebaseio.com/hr/users/'+key+'/pictureCollection');
+    var pictures = $firebaseArray(pictureRef);
+    return pictures;
+  };
 
 	return userFactory;
 }])

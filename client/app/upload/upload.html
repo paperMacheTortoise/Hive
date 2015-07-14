@@ -1,4 +1,12 @@
-<form name='upload form' ng-controller='UploadController as upload' ng-submit='upload.change()'>
-	<input id='file' name='file' type='file' ng-model='upload.file' />
-	<input type='submit'>
-</form>
+<div class="modal-header">
+    <h3 class="modal-title">Upload an Image</h3>
+</div>
+<div class="modal-body" ng-controller='UploadController as upload'>
+    <form name='upload form'>
+		<input id='file' name='file' type='file' ng-model='upload.file' custom-on-change='change'/>
+		<input type='submit'/>
+	</form>
+</div>
+<div class="modal-footer" ng-controller='UploadController as upload'>
+    <button class="btn btn-primary" ui-sref="profile">OK</button>
+</div>
