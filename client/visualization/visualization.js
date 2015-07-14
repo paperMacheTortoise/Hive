@@ -11,19 +11,6 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919},
 {"DATE":"1985-10-1","Time":5000,"Radius":100377,"Distance":320287.5},
 {"DATE":"1985-11-1","Time":50,"Radius":119957,"Distance":308707.3}];
 
-// var x = d3.scale.linear()
-//     .domain([0, d3.max(data, function(d) { return d.Distance; })])
-//     .range([0, 420]);
-
-// d3.select(".chart")
-//   .selectAll("div")
-//     .data(data)
-//   .enter().append("div")
-//     .style("width", function(d) { return x(d.Radius) + "px"; })
-//     .text(function(d) { return d.DATE; })
-//     .transition().duration(function(d) {return d.Time}).style("background-color","red")
-//     .style("width", function(d) { return x(d.Distance) + "px"; });
-
 var margin = {top: 30, right: 30, bottom: 30, left: 50},
     width = 960 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
@@ -84,20 +71,18 @@ y.domain([0, d3.max(data, function(d) { return d.Distance; })]);
       .attr("height", function(d) { return height - y(d.Radius); })
       .style("fill", "red")
       
-      d3.selectAll(".bar").on('mouseover', function (data) {
+    d3.selectAll(".bar").on('mouseover', function (data) {
         dynamicColor = this.style.fill;
         d3.select(this)
             .style('fill', '#3c763d')
-        	.transition().duration(3000)
+        	.transition().duration(1000)
         	.attr("y", function(d) { return y(d.Distance); })
       		.attr("height", function(d) { return height - y(d.Distance); })
     	})
  	   .on('mouseout', function (data) {
         d3.select(this)
             .style('fill', dynamicColor)
-          	.transition().duration(2000)
+          	.transition().duration(3000)
           	.attr("y", function(d) { return y(d.Radius); })
         		.attr("height", function(d) { return height - y(d.Radius); })
         });
-
-
