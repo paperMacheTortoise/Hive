@@ -4,7 +4,7 @@ var keys = require('../../config.js');
 
 var INTUIT_CONSUMER_KEY = keys.INTUIT_CONSUMER_KEY;
 var INTUIT_CONSUMER_SECRET = keys.INTUIT_CONSUMER_SECRET;
-var QuickBooks = require('../../node_modules/node-quickbooks/index.js');
+var QuickBooks = require('node-quickbooks');
 
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to

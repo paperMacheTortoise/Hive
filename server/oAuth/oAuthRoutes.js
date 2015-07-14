@@ -1,18 +1,10 @@
 var oAuthController = require('./oAuthController.js');
 var passport = require('passport');
-var QuickBooks = require('../node_modules/node-quickbooks/index.js');
+var QuickBooks = require('node-quickbooks');
 
 module.exports = function(app, express) {
 
-  var QuickBooks = require('../node_modules/node-quickbooks/index.js');
-
-  app.get('/', function(req, res){
-    console.log("index req.session ", req.session);
-    console.log("index req.user ", req.user);
-    console.log("index req.session.passport.user", req.session.passport.user);
-
-    res.render('index', { user: req.user });
-  });
+  var QuickBooks = require('node-quickbooks');
 
   app.get('/login', function(req, res){
     console.log("login req.session ", req.session);
