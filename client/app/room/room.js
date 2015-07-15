@@ -4,10 +4,8 @@ angular.module('roomCtrl', [])
 .controller('roomController', function (Rooms) {
 
   var vm = this;
-  vm.roomname = '' || Rooms.getCurrentName();
-  vm.messages = [] || Rooms.getRoomMessages();
-  // var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
-  // vm.allGeneralMsg = $firebaseArray(generalRef);
+  vm.roomname = Rooms.getCurrentName();
+  vm.messages = Rooms.getRoomMessages();
 
   this.addMessage = function (e) {
     if (e.keyCode === 13) {
