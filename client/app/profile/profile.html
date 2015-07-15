@@ -1,5 +1,10 @@
 <div class='container' ng-controller='ProfileController as prof'>
 	<img ng-src='{{prof.pictureUrl}}'></img>
-	<h3>{{prof.username}}</h3>
-	<h3>{{prof.email}}</h3>
+	<h4>{{prof.username}}</h4>
+	<h4>{{prof.email}}</h4>
+	<button class="btn btn-default" ng-click="prof.open()">Upload Images</button>
+	<h3>Image Gallery</h3>
+	<ul class='list-group'>
+		<li class='list-group-item' ng-repeat='picture in prof.pictures'><img ng-src='{{picture.url}}'></img></li>
+	</ul>
 </div>

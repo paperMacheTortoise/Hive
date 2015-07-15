@@ -32,14 +32,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		// }
 		parent: 'main',
 	})
-	.state('oAuth', {
-		url: '/oAuth',
-		templateUrl: 'app/oAuth/oAuth.html'
-	})
-	.state('main.general', {
-		url: '/general',
-		templateUrl: 'app/room/room.html'
-	})
 	.state('main.direct', {
 		url: '/dm',
 		templateUrl: 'app/dm/directmessage.html'

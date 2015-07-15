@@ -1,23 +1,26 @@
-angular.module('app.upload',['bizGramFactories'])
-.controller('UploadController',function (Upload, Users, $rootScope){
+angular.module('app.upload',['bizGramFactories','ui.bootstrap','firebase'])
+.directive('customOnChange', function (Upload) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attrs) {
+      var onChangeHandler = scope.$eval(attrs.customOnChange);
+      element.bind('change', onChangeHandler);
+    }
+  };
+})
+.controller('UploadController',function ($scope, $state, Upload, Users, $rootScope, $firebaseArray){
 	this.file = null;
-	this.change= function(evt){
+	$scope.change= function(evt){
 		this.file = evt.target.files[0];
 		console.log(this.file);
 		Upload.putFile(this.file,this.file.name,function(imgUrl){
 			var users = Users.getUsers();
 			var key = $rootScope.logInfo.$id;
-			var i = users.$indexFor(key);
-			users[i].pictureUrl=imgUrl;
-			users.$save(i).then(function(){
-				console.log('saved');
-			});
+			var pictures = Users.getUserPictures(key);
+			pictures.$add({url:imgUrl});
 		});
-		// var reader = new FileReader();
-		// reader.onloadend = function () {
-		// console.log(reader.result);
-		// };
-		// reader.readAsBinaryString(this.file);
 	};
-	document.getElementById('file').addEventListener('change',this.change,false);
-});
+	this.ok = function () {
+		$state.go('profile');
+	};
+  }	);
