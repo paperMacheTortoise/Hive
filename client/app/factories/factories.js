@@ -29,22 +29,32 @@ angular.module('bizGramFactories', ['firebase'])
 
   roomsFactory.getCurrentName = function(){
     return roomName;
-
   };
 
-
   roomsFactory.getRoomMessages = function() {
-    var roomRef = ref.child(roomName);
-    var messages = $firebaseArray(roomRef);
+    // var roomRef = ref.child(roomName);
+    // var messages = $firebaseArray(roomRef);
+    var roomRef = roomName ? ref.child(roomName) : null;
+    var messages =  roomRef ? $firebaseArray(roomRef) : null;
     return messages;
   };
 
   roomsFactory.addMessage = function(username, text){
-    var roomRef = ref.child(roomName);
-    var messages = $firebaseArray(roomRef);
+    // var roomRef = ref.child(roomName);
+    // var messages = $firebaseArray(roomRef);
+    // messages.$add({
+      // username: username,
+      // text: text
+    // });
+    var roomRef = roomName ? ref.child(roomName) : null;
+    var messages = roomRef ? $firebaseArray(roomRef) : null;
     messages.$add({
       username: username,
       text: text
+    }).then(function(roomRef) {
+      var id = roomRef.key();
+      console.log('added a message with id ', id); // eg. -JuDu4oKDL_nl3hBPaOP
+      console.log('location in the array ', messages.$indexFor(id)); // eg. 3
     });
   };
 
