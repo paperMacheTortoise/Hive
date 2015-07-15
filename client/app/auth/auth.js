@@ -1,7 +1,9 @@
 angular.module('app.auth',['firebase','bizGramFactories'])
+
   .controller('SignupController', function($scope, $state, $firebaseAuth, Auth, Users, $rootScope){
     var vm = this;
     Auth.signout();
+
     vm.setupUser = function(name,email,uid,pictureUrl){
       vm.users = Users.getUsers();
       vm.users.$add({
@@ -17,10 +19,12 @@ angular.module('app.auth',['firebase','bizGramFactories'])
         console.log(logInfo);
       });
     };
+
     vm.email = null;
     vm.password = null;
     vm.orgCode = null;
     vm.name = null;
+
     vm.signup = function(){
       Auth.signup(vm.email,vm.password, function(data){
         vm.authData = data;
@@ -28,18 +32,20 @@ angular.module('app.auth',['firebase','bizGramFactories'])
         $state.go('main');
       },vm);
     };
+
     vm.checkLogin = function(){
       Auth.getAuth(function(data){
         vm.authData = data;
       });
     };
   })
+
   .controller('SigninController',function($scope,$state,$firebaseAuth, Auth, $rootScope, Users){
     var vm = this;
     Auth.signout();
-    
     vm.email = null;
     vm.password = null;
+
     vm.getSignIn = function(data){
       vm.users = Users.getUsers();
       console.log(data.uid);
@@ -54,6 +60,7 @@ angular.module('app.auth',['firebase','bizGramFactories'])
       $rootScope.shouldShow = false;
       console.log(logInfo);
     };
+
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){
         vm.authData = data;
@@ -62,6 +69,7 @@ angular.module('app.auth',['firebase','bizGramFactories'])
         $state.go('main');
       },vm);
     };
+    
     vm.checkLogin = function(){
       Auth.getAuth(function(data){
         vm.authData = data;

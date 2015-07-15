@@ -6,7 +6,7 @@
 
 					<!-- <li ng-repeat='room in main.rooms track by $index' ng-click="main.getRoom($index)"> {{ room.name }}</li> -->
 
-					<li ng-repeat='room in main.rooms track by $index' ng-click="main.getRoom($index)"><a ng-href="#/room/{{room}}">{{ room }}</a></li>
+					<li ng-repeat='room in main.rooms track by $index' ng-click="main.setRoom($index)"><a ng-href="#/room/{{room}}">{{ room }}</a></li>
 				</ul>
 
 			<h3>Users</h3>
