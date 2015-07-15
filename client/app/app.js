@@ -1,4 +1,4 @@
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'app.profile','app.upload']);
+var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'replyCtrl', 'app.profile', 'app.upload']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
@@ -14,23 +14,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 	.state('main.room', {
 		url: 'room/:roomName',
-		parent: 'main'
+		parent: 'main',
+		templateUrl: 'app/room/room.html'
 	})
-
 	.state('oAuth', {
 		url: '/oAuth',
 		templateUrl: 'app/oAuth/oAuth.html'
-	})
-	.state('main.general', {
-		url: '/general',
-
-		templateUrl: 'app/room/room.html',
-		controller: 'roomController',
-		params: {roomName: 'value'},
-		// controller: function($stateParams) {
-		// 	vm.roomName = $stateParams.roomName;
-		// }
-		parent: 'main',
 	})
 	.state('main.direct', {
 		url: '/dm',

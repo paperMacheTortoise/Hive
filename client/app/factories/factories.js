@@ -29,27 +29,68 @@ angular.module('bizGramFactories', ['firebase'])
 
   roomsFactory.getCurrentName = function(){
     return roomName;
-
   };
 
-
   roomsFactory.getRoomMessages = function() {
-    var roomRef = ref.child(roomName);
-    var messages = $firebaseArray(roomRef);
+    // var roomRef = ref.child(roomName);
+    // var messages = $firebaseArray(roomRef);
+    var roomRef = roomName ? ref.child(roomName) : null;
+    var messages =  roomRef ? $firebaseArray(roomRef) : null;
     return messages;
   };
 
   roomsFactory.addMessage = function(username, text){
-    var roomRef = ref.child(roomName);
-    var messages = $firebaseArray(roomRef);
+    // var roomRef = ref.child(roomName);
+    // var messages = $firebaseArray(roomRef);
+    // messages.$add({
+      // username: username,
+      // text: text
+    // });
+    var roomRef = roomName ? ref.child(roomName) : null;
+    var messages = roomRef ? $firebaseArray(roomRef) : null;
     messages.$add({
       username: username,
       text: text
+    }).then(function(roomRef) {
+      var id = roomRef.key();
+      console.log('added a message with id ', id); // eg. -JuDu4oKDL_nl3hBPaOP
+      console.log('location in the array ', messages.$indexFor(id)); // eg. 3
     });
   };
 
 	return roomsFactory;
 }])
+
+.factory('Replies', ['$firebaseArray', function ($firebaseArray) {
+
+  var repliesFactory = {};
+  var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms/');
+  var replies = $firebaseArray(ref);
+  var repliesArr = [];
+
+  repliesFactory.getReplies = function (index, roomname) {
+    var url = 'https://bizgramer.firebaseio.com/hr/rooms/' + roomname + '/' + index + '/replies';
+    var ref = new Firebase(url);
+    var replies = $firebaseArray(ref);
+    return replies;
+  };
+
+  // adding a reply to message object in firebase
+  repliesFactory.addReply = function (username, text, index, roomname) {
+    var url = 'https://bizgramer.firebaseio.com/hr/rooms/' + roomname + '/' + index + '/replies';
+    console.log('url ', url);
+    var ref = new Firebase(url);
+    var replies = $firebaseArray(ref);
+    replies.$add({
+      username: username,
+      text: text
+    });
+  };
+
+  return repliesFactory;
+}])
+
+
 .factory('Upload',['$firebaseArray', function ($firebaseArray){
   var uploadFactory={};
 	AWS.config.update({accessKeyId: 'AKIAIVEO6DBRV7OF7YDA', secretAccessKey: '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'});
