@@ -17,18 +17,18 @@ describe('roomController', function(){
 		};
 	}));
 
-	it('should have a roomname property on the scope', function(){
-		createController();
-		expect(scope.room.roomname).to.be.a('string');
-	});	
+	// it('should have a roomname property on the scope', function(){
+	// 	createController();
+	// 	expect(scope.room.roomname).to.be.a('string');
+	// });	
 
-	it('should have a messages property on the scope', function(){
-		createController();
-		expect(scope.room.messages).to.be.a('array');
-	});	
+	// it('should have a messages property on the scope', function(){
+	// 	createController();
+	// 	expect(scope.room.messages).to.be.a('array');
+	// });	
 
-	it('should have a addMessage function on the scope', function(){
-		createController();
-		expect(scope.room.addMessage).to.be.a('function');
-	});	
+	// it('should have a addMessage function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.room.addMessage).to.be.a('function');
+	// });	
 });
