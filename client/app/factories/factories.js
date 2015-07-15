@@ -60,6 +60,15 @@ angular.module('bizGramFactories', ['firebase'])
 
 	return roomsFactory;
 }])
+
+.factory('Replies', ['$firebaseArray', function ($firebaseArray) {
+
+  var repliesFactory = {};
+
+  return repliesFactory;
+}])
+
+
 .factory('Upload',['$firebaseArray', function ($firebaseArray){
   var uploadFactory={};
 	AWS.config.update({accessKeyId: 'AKIAIVEO6DBRV7OF7YDA', secretAccessKey: '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'});
