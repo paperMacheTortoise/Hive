@@ -64,6 +64,28 @@ angular.module('bizGramFactories', ['firebase'])
 .factory('Replies', ['$firebaseArray', function ($firebaseArray) {
 
   var repliesFactory = {};
+  var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms/');
+  var replies = $firebaseArray(ref);
+  var repliesArr = [];
+
+  repliesFactory.getReplies = function (index, roomname) {
+    var url = 'https://bizgramer.firebaseio.com/hr/rooms/' + roomname + '/' + index + '/replies';
+    var ref = new Firebase(url);
+    var replies = $firebaseArray(ref);
+    return replies;
+  };
+
+  // adding a reply to message object in firebase
+  repliesFactory.addReply = function (username, text, index, roomname) {
+    var url = 'https://bizgramer.firebaseio.com/hr/rooms/' + roomname + '/' + index + '/replies';
+    console.log('url ', url);
+    var ref = new Firebase(url);
+    var replies = $firebaseArray(ref);
+    replies.$add({
+      username: username,
+      text: text
+    });
+  };
 
   return repliesFactory;
 }])
