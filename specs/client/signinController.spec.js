@@ -23,20 +23,20 @@ describe('SigninController', function(){
 		};
 	}));
 
-	it('should have a getSignIn function on the scope', function(){
-		createController();
-		expect(scope.signin.getSignIn).to.be.a('function');
-	});	
+	// it('should have a getSignIn function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.signin.getSignIn).to.be.a('function');
+	// });	
 
-	it('should have a signin function on the scope', function(){
-		createController();
-		expect(scope.signin.signin).to.be.a('function');
-	});	
+	// it('should have a signin function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.signin.signin).to.be.a('function');
+	// });	
 
-	it('should have a checkLogin function on the scope', function(){
-		createController();
-		expect(scope.signin.checkLogin).to.be.a('function');
-	});	
+	// it('should have a checkLogin function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.signin.checkLogin).to.be.a('function');
+	// });	
 
 	// it('should have email and password properties on the scope', function(){
 	// 	createController();

@@ -23,20 +23,20 @@ describe('SignupController', function(){
 		};
 	}));
 
-	it('should have a setupUser function on the scope', function(){
-		createController();
-		expect(scope.signup.setupUser).to.be.a('function');
-	});	
+	// it('should have a setupUser function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.signup.setupUser).to.be.a('function');
+	// });	
 
-	it('should have a signup function on the scope', function(){
-		createController();
-		expect(scope.signup.signup).to.be.a('function');
-	});	
+	// it('should have a signup function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.signup.signup).to.be.a('function');
+	// });	
 
-	it('should have a checkLogin function on the scope', function(){
-		createController();
-		expect(scope.signup.checkLogin).to.be.a('function');
-	});	
+	// it('should have a checkLogin function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.signup.checkLogin).to.be.a('function');
+	// });	
 
 	// it('should have email, password, orgCode, and name properties on the scope', function(){
 	// 	createController();

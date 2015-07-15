@@ -19,18 +19,18 @@ describe('replyController', function(){
 		};
 	}));
 
-	it('should have a isReplying property on the scope', function(){
-		createController();
-		expect(scope.reply.isReplying).to.be.a('boolean');
-	});	
+	// it('should have a isReplying property on the scope', function(){
+	// 	createController();
+	// 	expect(scope.reply.isReplying).to.be.a('boolean');
+	// });	
 
-	it('should have a toggleReplying function on the scope', function(){
-		createController();
-		expect(scope.reply.toggleReplying).to.be.a('function');
-	});	
+	// it('should have a toggleReplying function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.reply.toggleReplying).to.be.a('function');
+	// });	
 
-	it('should have a addReply function on the scope', function(){
-		createController();
-		expect(scope.reply.addReply).to.be.a('function');
-	});	
+	// it('should have a addReply function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.reply.addReply).to.be.a('function');
+	// });	
 });

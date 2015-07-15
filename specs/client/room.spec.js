@@ -27,8 +27,8 @@ describe('roomController', function(){
 	// 	expect(scope.room.messages).to.be.a('array');
 	// });	
 
-	it('should have a addMessage function on the scope', function(){
-		createController();
-		expect(scope.room.addMessage).to.be.a('function');
-	});	
+	// it('should have a addMessage function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.room.addMessage).to.be.a('function');
+	// });	
 });
