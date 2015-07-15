@@ -17,6 +17,7 @@
     "d3": "~3.5.6",
     "bootstrap": "~3.3.5",
     "aws-sdk-js": "~2.1.38",
-    "angular-bootstrap": "~0.13.0"
+    "angular-bootstrap": "~0.13.0",
+    "angular-mocks": "~1.4.3"
   }
 }

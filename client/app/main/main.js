@@ -6,10 +6,8 @@ angular.module('mainCtrl', [])
 	vm.rooms = Rooms.getRooms();
 	vm.users = Users.getUsers();
 
-	vm.getRoom = function(index){
-		console.log('getRoom called');
-		vm.roomName = vm.rooms[index];
-		Rooms.setRoom(vm.roomName);
+	vm.setRoom = function(index){
+		Rooms.setRoom(vm.rooms[index]);
 	};
 });
 

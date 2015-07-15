@@ -7,6 +7,9 @@ module.exports = function(config){
 			'client/lib/angular/angular.min.js',
 			'client/lib/angularfire/dist/angularfire.min.js',
 			'client/lib/ui-router/release/angular-ui-router.min.js',
+			'client/lib/angular-mocks/angular-mocks.js',
+			'client/lib/angular-bootstrap/ui-bootstrap.js',
+			'client/lib/firebase/firebase.js',
 
 			// app code
 			'client/app/**/*.js',
