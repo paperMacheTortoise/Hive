@@ -5,7 +5,8 @@ var app = angular.module('bizGramApp', [
 	'authFactory',
 	'app.auth', 
 	'roomCtrl', 
-	'replyCtrl', 
+	'replyCtrl',
+	'directMessageCtrl', 
 	'app.profile', 
 	'app.upload']);
 
@@ -31,8 +32,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/oAuth/oAuth.html'
 	})
 	.state('main.direct', {
-		url: '/dm',
-		templateUrl: 'app/dm/directmessage.html'
+		url: 'dm/:user',
+		parent: 'main',
+		templateUrl: 'app/directmessage/directmessage.html'
 	})
 	.state('signin',{
 		url: '/signin',

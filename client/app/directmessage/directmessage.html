@@ -1,0 +1,15 @@
+<div class="directmessage" ng-controller="directMessageController as dm">
+
+<div class="message">
+	<header>Direct Message with {{dm.recipient}}</header>
+	<ul>
+		<li ng-repeat="msg in dm.messages">
+			<strong>{{ msg.username }}: </strong>
+			{{ msg.text }}
+		</li>
+	</ul>
+</div>
+
+<div class="submitText">
+	<input ng-model="dm.text" ng-keydown="dm.addMessage($event)" type="text" placeholder="type a text">
+</div>
