@@ -1,6 +1,6 @@
 angular.module('bizGramFactories', ['firebase'])
 
-.factory('Rooms', ['$firebaseArray', function ($firebaseArray){
+.factory('Rooms', ['$firebaseArray', '$firebaseObject', function ($firebaseArray, $firebaseObject){
 
 	var roomsFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms');
@@ -56,6 +56,13 @@ angular.module('bizGramFactories', ['firebase'])
       console.log('added a message with id ', id); // eg. -JuDu4oKDL_nl3hBPaOP
       console.log('location in the array ', messages.$indexFor(id)); // eg. 3
     });
+  };
+
+  roomsFactory.addRoom = function (roomname) {
+    var url = "https://bizgramer.firebaseio.com/hr/rooms/";
+    console.log(url);
+    var addRoomRef = new Firebase(url);
+    addRoomRef.child(roomname).set('this room is empty');
   };
 
 	return roomsFactory;
