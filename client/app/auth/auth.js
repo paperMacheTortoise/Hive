@@ -1,6 +1,6 @@
 angular.module('app.auth',['firebase','bizGramFactories'])
 
-  .controller('SignupController', function($scope, $state, $firebaseAuth, Auth, Users, $rootScope){
+  .controller('SignupController', function($state, $firebaseAuth, Auth, Users, $rootScope){
     var vm = this;
     Auth.signout();
 
