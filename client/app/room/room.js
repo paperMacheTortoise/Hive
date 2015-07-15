@@ -1,11 +1,11 @@
 // Angular controller for room.html
 angular.module('roomCtrl', [])
 
-.controller('roomController', ["$firebaseArray", "Rooms", function ($firebaseArray, Rooms) {
+.controller('roomController', function (Rooms) {
 
   var vm = this;
-  vm.roomname = Rooms.getCurrentName();
-  vm.messages = Rooms.getRoomMessages();
+  vm.roomname = '' || Rooms.getCurrentName();
+  vm.messages = [] || Rooms.getRoomMessages();
   // var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
   // vm.allGeneralMsg = $firebaseArray(generalRef);
 
@@ -19,6 +19,6 @@ angular.module('roomCtrl', [])
       vm.text = '';
     }
   };
-}]);
+});
 
 
