@@ -1,4 +1,13 @@
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'replyCtrl', 'app.profile', 'app.upload']);
+var app = angular.module('bizGramApp', [
+	'ui.router', 
+	'mainCtrl', 
+	'bizGramFactories',
+	'authFactory',
+	'app.auth', 
+	'roomCtrl', 
+	'replyCtrl', 
+	'app.profile', 
+	'app.upload']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 

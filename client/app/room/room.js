@@ -1,11 +1,12 @@
 // Angular controller for room.html
 angular.module('roomCtrl', [])
 
-.controller('roomController', function (Rooms) {
+.controller('roomController', function (Rooms, $rootScope) {
 
   var vm = this;
-  vm.roomname = '' || Rooms.getCurrentName();
-  vm.messages = [] || Rooms.getRoomMessages();
+  vm.roomname = Rooms.getCurrentName();
+  vm.messages = Rooms.getRoomMessages();
+  vm.username = $rootScope.logInfo.username;
   // var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
   // vm.allGeneralMsg = $firebaseArray(generalRef);
 
