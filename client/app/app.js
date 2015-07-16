@@ -1,4 +1,6 @@
 var app = angular.module('bizGramApp', [
+	'orgsignupCtrl',
+	'orgsignupFactory',
 	'authFactory',
 	'dmFactory',
 	'roomFactory',
@@ -6,14 +8,14 @@ var app = angular.module('bizGramApp', [
 	'replyFactory',
 	'uploadFactory',
 	'visualFactory',
-	'ui.router', 
+	'ui.router',
 	'mainCtrl',
 	'visualCtrl',
-	'authCtrl', 
+	'authCtrl',
 	'directMessageCtrl',
-	'roomCtrl', 
-	'replyCtrl', 
-	'profileCtrl', 
+	'roomCtrl',
+	'replyCtrl',
+	'profileCtrl',
 	'uploadCtrl']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -24,6 +26,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	$stateProvider
 
+	.state('orgsignup', {
+		url: '/orgsignup',
+		templateUrl: 'app/templates/orgsignup.html'
+	})
 	.state('main', {
 		url: '/',
 		templateUrl: 'app/templates/main.html',
@@ -101,5 +107,9 @@ app.run(function ($rootScope, $window, $location, $state){
 			$state.go('signin');
 		}
 	});
+	$rootScope.logout = function(){
+		Auth.signout();
+		$rootScope.shouldShow = true;
+	};
 
 });
