@@ -1,4 +1,6 @@
 var app = angular.module('bizGramApp', [
+	'orgsignupCtrl',
+	'orgsignupFactory',
 	'authFactory',
 	'dmFactory',
 	'roomFactory',

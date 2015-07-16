@@ -1,6 +1,7 @@
 angular.module('orgsignupCtrl', ['firebase'])
 
-  .controller('OrgsignupController', function () {
+  .controller('OrgsignupController', function (OrgSignup) {
+
     var vm = this;
 
     vm.signuporg = function (orgname) {
