@@ -4,7 +4,6 @@ angular.module('orgsignupCtrl', ['firebase'])
 
     var vm = this;
     vm.orgnames = OrgSignup.getOrgs();
-    console.log(vm.orgnames);
 
     vm.signupOrg = function () {
       if (vm.orgnames.indexOf(vm.nameOfOrgToAdd) === -1) {
