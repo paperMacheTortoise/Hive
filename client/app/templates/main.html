@@ -5,7 +5,7 @@
 			{{main.currentUser}}
 			<h3>Rooms</h3>
 				<ul class="nav nav-sidebar rooms">
-					<li ng-repeat='room in main.rooms track by $index' ng-click="main.setRoom($index)"><a ng-href="#/room/{{room}}">{{ room }}</a></li>
+					<li ng-repeat='room in main.rooms track by $index' ><a ui-sref="main.room({roomName:room})">{{ room }}</a></li>
 				</ul>
 				<input ng-model="main.nameOfRoomToAdd" type="text" placeholder="add room" ng-keydown="main.addRoom($event)" />
 

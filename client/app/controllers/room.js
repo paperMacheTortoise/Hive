@@ -1,10 +1,11 @@
 // Angular controller for room.html
 angular.module('roomCtrl', [])
 
-.controller('roomController', function (Rooms, $rootScope) {
-
+.controller('roomController', function (Rooms, $rootScope,$stateParams) {
+  console.log($stateParams);
   var vm = this;
-  vm.roomname = Rooms.getCurrentName();
+  vm.roomname = $stateParams.roomName;
+  Rooms.setRoom(vm.roomname);
   vm.messages = Rooms.getRoomMessages();
   vm.username = $rootScope.logInfo.username;
 
