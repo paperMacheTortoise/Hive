@@ -15,4 +15,5 @@ angular.module('orgsignupFactory', ['firebase'])
       console.log(orgNames);
     });
 
+    return orgsignupFactory;
 }]);
