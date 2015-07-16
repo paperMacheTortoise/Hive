@@ -141,7 +141,7 @@ angular.module('bizGramFactories', ['firebase'])
 
   userFactory.getUsername = function(){
     return username;
-  }
+  };
 
   userFactory.getUserPictures = function(key){
     var pictureRef = new Firebase('https://bizgramer.firebaseio.com/hr/users/'+key+'/pictureCollection');
