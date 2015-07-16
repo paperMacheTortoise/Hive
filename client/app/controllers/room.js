@@ -1,7 +1,7 @@
 // Angular controller for room.html
 angular.module('roomCtrl', [])
 
-.controller('roomController', function (Rooms, $rootScope,$stateParams) {
+.controller('roomController', function (Rooms, $rootScope, $stateParams) {
   console.log($stateParams);
   var vm = this;
   vm.roomname = $stateParams.roomName;

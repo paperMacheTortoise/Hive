@@ -3,7 +3,7 @@ angular.module('directMessageCtrl', [])
 .controller('directMessageController', function (DirectMessage, Users, $rootScope, $stateParams){
 
 	var vm = this;
-
+	vm.org = $stateParams.org;
 	vm.recipient = $stateParams.user;
 	Users.setUsername(vm.recipient);
 	vm.currentUser = $rootScope.logInfo.username;

@@ -1,9 +1,9 @@
 angular.module('visualCtrl', [])
 
-.controller('visualController', function (Visualization, $rootScope){
+.controller('visualController', function (Visualization, $rootScope, $stateParams){
 
 	var vm = this;
-
+	vm.org = $stateParams.org;
 	//chat functions
 	vm.username = $rootScope.logInfo.username;
 	vm.visualId = 'visual1';
