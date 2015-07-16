@@ -3,8 +3,8 @@ angular.module('directMessageCtrl', [])
 .controller('directMessageController', function (DirectMessage, Users, $rootScope, $stateParams){
 
 	var vm = this;
-
 	// Passes the user from the main view to the directmessage view.
+	vm.org = $stateParams.org;
 	vm.recipient = $stateParams.user;
 	// Tracks the user currently logged-in.
 	vm.currentUser = $rootScope.logInfo.username;

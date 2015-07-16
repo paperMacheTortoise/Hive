@@ -2,7 +2,6 @@
 angular.module('roomCtrl', [])
 
 .controller('roomController', function (Rooms, $rootScope,$stateParams) {
-  
   var vm = this;
   // Passes the roomName from the main view.
   vm.roomname = $stateParams.roomName;
