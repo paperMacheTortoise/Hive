@@ -38,7 +38,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('main.room', {
-		url: '/:org/room/:roomName',
+		url: '/room/:roomName',
 		parent: 'main',
 		templateUrl: 'app/templates/room.html'
 	})
@@ -96,7 +96,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	});
 });
 
-app.run(function ($rootScope, $window, $location, $state, $stateParams){
+app.run(function ($rootScope, $window, $location, $state){
 
 	$rootScope.shouldShow = true;
 	$rootScope.$on('$stateChangeStart', function (event, toState){

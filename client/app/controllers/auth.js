@@ -1,7 +1,8 @@
 angular.module('authCtrl',['firebase'])
 
-  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope){
+  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams){
     var vm = this;
+    vm.org = $stateParams.org;
     Auth.signout();
 
     vm.setupUser = function(name, email, uid, pictureUrl){
@@ -29,7 +30,7 @@ angular.module('authCtrl',['firebase'])
       Auth.signup(vm.email,vm.password, function(data){
         vm.authData = data;
         vm.setupUser(vm.name,vm.email,data.uid,data.password.profileImageURL);
-        $state.go('main');
+        $state.go('main', {org: vm.org});
       },vm);
     };
 
@@ -40,8 +41,9 @@ angular.module('authCtrl',['firebase'])
     };
   })
 
-  .controller('SigninController',function ($state,$firebaseAuth, Auth, $rootScope, Users){
+  .controller('SigninController',function ($state,$firebaseAuth, Auth, $rootScope, Users, $stateParams){
     var vm = this;
+    vm.org = $stateParams.org;
     Auth.signout();
     vm.email = null;
     vm.password = null;
@@ -66,10 +68,10 @@ angular.module('authCtrl',['firebase'])
         vm.authData = data;
         console.log(data);
         vm.getSignIn(data);
-        $state.go('main');
+        $state.go('main', {org: vm.org});
       },vm);
     };
-    
+
     vm.checkLogin = function(){
       Auth.getAuth(function(data){
         vm.authData = data;
