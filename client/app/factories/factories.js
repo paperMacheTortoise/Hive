@@ -141,7 +141,7 @@ angular.module('bizGramFactories', ['firebase'])
         if(user.username !== current){
           updatedUsers.push(user);
         }
-      })
+      });
     });
 		return updatedUsers;
 	};
