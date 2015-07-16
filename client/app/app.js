@@ -107,9 +107,4 @@ app.run(function ($rootScope, $window, $location, $state){
 			$state.go('signin');
 		}
 	});
-	$rootScope.logout = function(){
-		Auth.signout();
-		$rootScope.shouldShow = true;
-	};
-
 });
