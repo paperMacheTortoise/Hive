@@ -1,6 +1,6 @@
 angular.module('bizGramFactories', ['firebase'])
 
-.factory('Rooms', ['$firebaseArray', '$firebaseObject', function ($firebaseArray, $firebaseObject){
+.factory('Rooms', ['$firebaseArray', function ($firebaseArray){
 
 	var roomsFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms');
@@ -71,9 +71,9 @@ angular.module('bizGramFactories', ['firebase'])
 .factory('Replies', ['$firebaseArray', function ($firebaseArray) {
 
   var repliesFactory = {};
-  var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms/');
-  var replies = $firebaseArray(ref);
-  var repliesArr = [];
+  // var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms/');
+  // var replies = $firebaseArray(ref);
+  // var repliesArr = [];
 
   repliesFactory.getReplies = function (index, roomname) {
     var url = 'https://bizgramer.firebaseio.com/hr/rooms/' + roomname + '/' + index + '/replies';
@@ -98,7 +98,7 @@ angular.module('bizGramFactories', ['firebase'])
 }])
 
 
-.factory('Upload',['$firebaseArray', function ($firebaseArray){
+.factory('Upload', function (){
   var uploadFactory={};
 	AWS.config.update({accessKeyId: 'AKIAIVEO6DBRV7OF7YDA', secretAccessKey: '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'});
 	AWS.config.region = 'us-west-2';
@@ -119,9 +119,9 @@ angular.module('bizGramFactories', ['firebase'])
     });
   };
   return uploadFactory;
-}])
+})
 
-.factory('Users', ['$firebaseArray', '$firebaseObject', function ($firebaseArray, $firebaseObject, $rootScope){
+.factory('Users', ['$firebaseArray', function ($firebaseArray){
 
 	var userFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/users');

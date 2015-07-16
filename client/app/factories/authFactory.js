@@ -6,13 +6,13 @@ angular.module('authFactory', ['firebase'])
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
 
 	var authObj = $firebaseAuth(ref);
-	var getAuth= function(callback){
+	authFactory.getAuth= function(callback){
 		var authData = authObj.$getAuth();
 		console.log(authData);
 		callback(authData);
 	};
 
-  var signin = function(email,password,callback,vm){
+  authFactory.signin = function(email,password,callback){
     authObj.$authWithPassword({
         email: email,
         password: password
@@ -25,8 +25,8 @@ angular.module('authFactory', ['firebase'])
     });
   };
 
-	var signup = function(email,password, callback, vm){
-    var data = null;
+	authFactory.signup = function(email,password, callback, vm){
+    // var data = null;
     authObj.$createUser({
       email: email,
       password: password
@@ -38,13 +38,9 @@ angular.module('authFactory', ['firebase'])
     });
 	};
 
-	var signout = function(){
+	authFactory.signout = function(){
 		authObj.$unauth();
 	};
-	return {
-    getAuth: getAuth,
-    signin: signin,
-    signup: signup,
-    signout: signout
-  };
+
+	return authFactory;
 }]);

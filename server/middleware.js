@@ -4,7 +4,7 @@ var methodOverride = require('method-override');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-Parser');
-var keys = require('../config.js');
+// var keys = require('../config.js');
 
 module.exports = function(app, express) {
 

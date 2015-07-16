@@ -61,6 +61,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 app.run(function ($rootScope, $window, $location, $state, Auth){
 
 	$rootScope.shouldShow = true;
+	// $rootScope.$on('$stateChangeStart', function (event, toStart){
+		
+	// })
 	$rootScope.logout = function(){
 		Auth.signout();
 		$rootScope.shouldShow = true;
