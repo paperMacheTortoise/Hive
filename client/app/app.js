@@ -31,14 +31,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/templates/orgsignup.html'
 	})
 	.state('main', {
-		url: '/',
+		url: '/:org',
 		templateUrl: 'app/templates/main.html',
 		data: {
 			requireLogin: true // applies to all children.
 		}
 	})
 	.state('main.room', {
-		url: 'room/:roomName',
+		url: '/:org/room/:roomName',
 		parent: 'main',
 		templateUrl: 'app/templates/room.html'
 	})
@@ -47,24 +47,24 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/templates/oAuth.html'
 	})
 	.state('main.direct', {
-		url: 'dm/:user',
+		url: '/:org/dm/:user',
 		parent: 'main',
 		templateUrl: 'app/templates/directmessage.html'
 	})
 	.state('visual', {
-		url:'/visual/:visualId',
+		url:'/:org/visual/:visualId',
 		templateUrl: 'app/templates/visualization.html',
 		data: {
 			requireLogin: true
 		}
 	})
 	.state('signin',{
-		url: '/signin',
+		url: '/:org/signin',
 		templateUrl: 'app/templates/signin.html',
 		controller:'SigninController'
 	})
 	.state('signup',{
-		url: '/signup',
+		url: '/:org/signup',
 		templateUrl:'app/templates/signup.html',
 		controller:'SignupController'
 	})
@@ -80,7 +80,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('profile',{
-		url: '/profile',
+		url: '/:org/profile',
 		templateUrl: 'app/templates/profile.html',
 		controller: 'ProfileController',
 		data: {
@@ -88,7 +88,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('upload',{
-		url: '/upload',
+		url: '/:org/upload',
 		templateUrl: 'app/templates/upload.html',
 		data: {
 			requireLogin: true
@@ -96,7 +96,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	});
 });
 
-app.run(function ($rootScope, $window, $location, $state){
+app.run(function ($rootScope, $window, $location, $state, $stateParams){
 
 	$rootScope.shouldShow = true;
 	$rootScope.$on('$stateChangeStart', function (event, toState){
@@ -104,7 +104,7 @@ app.run(function ($rootScope, $window, $location, $state){
 		if(requireLogin && !$rootScope.logInfo){
 			event.preventDefault();
 			console.log('User must be logged in to access page');
-			$state.go('signin');
+			$state.go('signin', {org: $location.$$path.slice(1)});
 		}
 	});
 	$rootScope.logout = function(){
