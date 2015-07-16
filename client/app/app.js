@@ -39,7 +39,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('main.room', {
-		url: '/:org/room/:roomName',
+		url: '/room/:roomName',
 		parent: 'main',
 		templateUrl: 'app/templates/room.html'
 	})
@@ -98,7 +98,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	});
 });
 
-app.run(function ($rootScope, $window, $location, $state, $stateParams){
+app.run(function ($rootScope, $window, $location, $state){
 
 	// Value for ng-hide and ng-show on index. It displays the login and signup buttons when user is logged out.
 	// When user is logged in, displays profile and logout.
