@@ -5,8 +5,10 @@ var app = angular.module('bizGramApp', [
 	'userFactory',
 	'replyFactory',
 	'uploadFactory',
+	'visualFactory',
 	'ui.router', 
 	'mainCtrl',
+	'visualCtrl',
 	'authCtrl', 
 	'directMessageCtrl',
 	'roomCtrl', 
@@ -42,6 +44,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: 'dm/:user',
 		parent: 'main',
 		templateUrl: 'app/templates/directmessage.html'
+	})
+	.state('visual', {
+		url:'/visual/:visualId',
+		templateUrl: 'app/templates/visualization.html',
+		data: {
+			requireLogin: true
+		}
 	})
 	.state('signin',{
 		url: '/signin',
