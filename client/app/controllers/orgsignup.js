@@ -14,6 +14,6 @@ angular.module('orgsignupCtrl', ['firebase'])
       } else {
         console.log('org with this name already exists');
       }
-    }
+    };
 
   });
