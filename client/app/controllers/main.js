@@ -1,9 +1,10 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, $rootScope) {
+.controller('mainController', function (Rooms, Users, DirectMessage, $rootScope, $stateParams) {
 
 	var vm = this;
-  // Get ther current user
+
+  vm.org = $stateParams.org;
   vm.currentUser = $rootScope.logInfo.username;
   // Get the rooms from the roomFactory.
   vm.rooms = Rooms.getRooms();
