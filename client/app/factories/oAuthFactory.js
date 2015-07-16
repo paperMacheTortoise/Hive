@@ -1,13 +1,13 @@
-angular.module('oAuthFactories', ['firebase', 'bizGramFactories'])
+angular.module('oAuthFactories', ['firebase'])
 
-.factory('oAuth',['$firebaseAuth',function($firebaseAuth, $firebaseArray, Users){
+.factory('oAuth',['$firebaseAuth', 'Users', function ($firebaseAuth, $firebaseArray, Users){
 
-  var authFactory = {};
-  var ref = new Firebase('https://bizgramer.firebaseio.com/');
+  var oauthFactory = {};
+  // var ref = new Firebase('https://bizgramer.firebaseio.com/');
 
-  var authObj = $firebaseAuth(ref);
+  // var authObj = $firebaseAuth(ref);
 
-  var oAuthIntuit = function($id) {
+  oauthFactory.oAuthIntuit = function($id) {
     //get $id from $rootScope, look up user
     //put token on user entry
     var users = Users.getUsers();
@@ -17,9 +17,6 @@ angular.module('oAuthFactories', ['firebase', 'bizGramFactories'])
     // users[index].realmId;
     users.$save(index);
   };
-  return {
-    getAuth: getAuth,
-    oAuthIntuit: oAuthIntuit
-  };
+  return oauthFactory;
 
 }]);

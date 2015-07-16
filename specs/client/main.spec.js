@@ -19,9 +19,9 @@ describe('mainController', function(){
 		};
 	}));
 
-	it('should return a passing test', function(){
+	it('should pass a test', function(){
 		expect(true).to.equal(true);
-	});
+	})
 
 	// it('should have a currentUser property on the scope', function(){
 	// 	createController();

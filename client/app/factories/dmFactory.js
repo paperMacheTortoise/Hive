@@ -1,6 +1,6 @@
 angular.module('dmFactory', ['firebase'])
 
-.factory('DirectMessage', ['$firebaseArray', function ($firebaseArray, $rootScope){
+.factory('DirectMessage', ['$firebaseArray', function ($firebaseArray){
 	var dmFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/directmessages');
 

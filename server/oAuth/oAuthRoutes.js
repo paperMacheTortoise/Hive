@@ -1,10 +1,10 @@
-var oAuthController = require('./oAuthController.js');
+// var oAuthController = require('./oAuthController.js');
 var passport = require('passport');
-var QuickBooks = require('node-quickbooks');
+// var QuickBooks = require('node-quickbooks');
 
-module.exports = function(app, express) {
+module.exports = function(app) {
 
-  var QuickBooks = require('node-quickbooks');
+  // var QuickBooks = require('node-quickbooks');
 
   app.get('/login', function(req, res){
     console.log("login req.session ", req.session);
@@ -13,10 +13,10 @@ module.exports = function(app, express) {
     res.render('login', { user: req.user });
   });
 
-  app.get('/auth/intuit', passport.authenticate('intuit'),
-    function(req, res) {
+  // app.get('/auth/intuit', passport.authenticate('intuit'),
+  //   function(req, res) {
 
-  } );
+  // } );
 
   app.get('/auth/intuit/callback',
     passport.authenticate('intuit', { failureRedirect: '/login' }),
