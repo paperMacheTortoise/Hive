@@ -6,6 +6,7 @@ var app = angular.module('bizGramApp', [
 	'app.auth', 
 	'roomCtrl', 
 	'replyCtrl',
+	'dmFactory',
 	'directMessageCtrl', 
 	'app.profile', 
 	'app.upload']);
