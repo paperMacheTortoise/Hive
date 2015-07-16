@@ -1,4 +1,4 @@
-angular.module('app.upload',['bizGramFactories','ui.bootstrap','firebase'])
+angular.module('uploadCtrl',['ui.bootstrap', 'firebase'])
 
 .directive('customOnChange', function () {
   return {

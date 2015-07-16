@@ -1,15 +1,18 @@
 var app = angular.module('bizGramApp', [
-	'ui.router', 
-	'mainCtrl', 
-	'bizGramFactories',
 	'authFactory',
-	'app.auth', 
-	'roomCtrl', 
-	'replyCtrl',
 	'dmFactory',
-	'directMessageCtrl', 
-	'app.profile', 
-	'app.upload']);
+	'roomFactory',
+	'userFactory',
+	'replyFactory',
+	'uploadFactory',
+	'ui.router', 
+	'mainCtrl',
+	'authCtrl', 
+	'directMessageCtrl',
+	'roomCtrl', 
+	'replyCtrl', 
+	'profileCtrl', 
+	'uploadCtrl']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 

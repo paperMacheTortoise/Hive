@@ -1,10 +1,10 @@
-angular.module('app.auth',['firebase','bizGramFactories'])
+angular.module('authCtrl',['firebase'])
 
-  .controller('SignupController', function($state, $firebaseAuth, Auth, Users, $rootScope){
+  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope){
     var vm = this;
     Auth.signout();
 
-    vm.setupUser = function(name,email,uid,pictureUrl){
+    vm.setupUser = function(name, email, uid, pictureUrl){
       vm.users = Users.getUsers();
       vm.users.$add({
         username: name,

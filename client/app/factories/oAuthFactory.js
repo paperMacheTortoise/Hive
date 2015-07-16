@@ -1,6 +1,6 @@
-angular.module('oAuthFactories', ['firebase', 'bizGramFactories'])
+angular.module('oAuthFactories', ['firebase'])
 
-.factory('oAuth',['$firebaseAuth',function($firebaseAuth, $firebaseArray, Users){
+.factory('oAuth',['$firebaseAuth', 'Users', function ($firebaseAuth, $firebaseArray, Users){
 
   var oauthFactory = {};
   // var ref = new Firebase('https://bizgramer.firebaseio.com/');
