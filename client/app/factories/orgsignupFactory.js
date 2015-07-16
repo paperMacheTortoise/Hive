@@ -15,5 +15,13 @@ angular.module('orgsignupFactory', ['firebase'])
       console.log(orgNames);
     });
 
+    orgsignupFactory.getOrgs = function () {
+      return orgNames;
+    };
+
+    orgsignupFactory.signupOrg = function (orgname) {
+      ref.child(orgname).set('new organization');
+    };
+
     return orgsignupFactory;
 }]);
