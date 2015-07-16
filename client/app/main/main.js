@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, $rootScope) {
+.controller('mainController', function (Rooms, Users, DirectMessage, $rootScope, $location) {
 
 	var vm = this;
   vm.currentUser = $rootScope.logInfo.username;
@@ -25,7 +25,8 @@ angular.module('mainCtrl', [])
   };
 
   vm.setUsername = function(index){
-    Users.setUsername(vm.users[index].username);
+    var recipient = vm.users[index].username;
+    Users.setUsername(recipient);
   };
 
 });
