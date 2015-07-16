@@ -121,15 +121,29 @@ angular.module('bizGramFactories', ['firebase'])
   return uploadFactory;
 }])
 
-.factory('Users', ['$firebaseArray', '$firebaseObject', function ($firebaseArray, $firebaseObject){
+.factory('Users', ['$firebaseArray', '$firebaseObject', function ($firebaseArray, $firebaseObject, $rootScope){
 
 	var userFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/users');
-	var users = $firebaseArray(ref);
+  var users = $firebaseArray(ref);
+
 
 	// parse the usernames from the database
-	userFactory.getUsers = function(){
-		return users;
+  userFactory.getUsers = function(){
+    return users;
+  };
+
+	userFactory.getDisplayUsers = function(current){
+    var updatedUsers = [];
+    users.$loaded()
+    .then(function(){
+      angular.forEach(users, function (user){
+        if(user.username !== current){
+          updatedUsers.push(user);
+        }
+      })
+    });
+		return updatedUsers;
 	};
 
   // These methods allow the user to select a username from the main menu
