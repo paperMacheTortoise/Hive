@@ -20,9 +20,5 @@ angular.module('mainCtrl', [])
     }
   };
 
-  vm.setUsername = function(index){
-    Users.setUsername(vm.users[index].username);
-  };
-
 });
 
