@@ -23,9 +23,22 @@ angular.module('replyFactory', ['firebase'])
     });
   };
 
-  // repliesFactory.getVisualReplies = function (index, roomname) {
-  //   var ref = new Firebase('https://bizgramer.firebaseio.com/hr/visualizations/messages/');
-  // };
+  repliesFactory.getVisualReplies = function (index, visualId) {
+    var ref = new Firebase('https://bizgramer.firebaseio.com/hr/visualizations/' + visualId + '/messages/' + index);
+    var replyRef = ref.child('replies');
+    var replies = $firebaseArray(replyRef);
+    return replies;
+  };
+
+  repliesFactory.addVisualReply = function (username, text, index, visualId) {
+    var ref = new Firebase('https://bizgramer.firebaseio.com/hr/visualizations/' + visualId + '/messages/' + index);
+    var replyRef = ref.child('replies');
+    var replies = $firebaseArray(replyRef);
+    replies.$add({
+      username: username,
+      text: text
+    })
+  };
 
   return repliesFactory;
 }]);

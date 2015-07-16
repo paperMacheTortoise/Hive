@@ -14,7 +14,7 @@
 	<div class="row chatroom" ng-controller="visualController as visual">
 		<h1>Chat View</h1>
 		<ul>
-      <li ng-repeat="msg in visual.messages track by $index" ng-controller="replyController as reply">
+      <li ng-repeat="msg in visual.messages track by $index">
         <strong>{{ msg.username }}:</strong>
         {{ msg.text }}
 
@@ -24,10 +24,9 @@
         </ul>
 
         <!-- reply input box, shown when clicked 'reply' -->
-        <button ng-click="reply.toggleReplying()">reply</button>
-        <div class="replyBox" ng-if="reply.isReplying">
-          <!-- <input ng-model="reply.replyusername" type="text" id="replyUsernameInput" placeholder="enter username" /> -->
-          <input ng-model="reply.replytext" ng-keydown="reply.addReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
+        <button ng-click="visual.toggleReplying()">reply</button>
+        <div class="replyBox" ng-if="visual.isReplying">
+          <input ng-model="visual.replyText" ng-keydown="visual.addVisualReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
         </div>
       </li>
     </ul>
