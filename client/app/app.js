@@ -47,7 +47,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/templates/oAuth.html'
 	})
 	.state('main.direct', {
-		url: '/:org/dm/:user',
+		url: '/dm/:user',
 		parent: 'main',
 		templateUrl: 'app/templates/directmessage.html'
 	})
@@ -100,7 +100,11 @@ app.run(function ($rootScope, $window, $location, $state){
 
 	$rootScope.shouldShow = true;
 	$rootScope.$on('$stateChangeStart', function (event, toState){
-		var requireLogin = toState.data.requireLogin;
+		if (toState && toState.data && toState.data.requireLogin) {
+			var requireLogin = toState.data.requireLogin;
+		} else {
+			requireLogin = false;
+		}
 		if(requireLogin && !$rootScope.logInfo){
 			event.preventDefault();
 			console.log('User must be logged in to access page');
