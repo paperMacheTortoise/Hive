@@ -11,7 +11,7 @@
 
 			<h3>Users</h3>
 				<ul class="nav nav-sidebar users">
-					<li ng-repeat='user in main.users'>{{ user.username }}</li>
+					<li ng-repeat='user in main.users track by $index' ng-click="main.setUsername($index)"><a ng-href="#/dm/{{user.username}}">{{ user.username }}</a></li>
 				</ul>
 		</div>
 

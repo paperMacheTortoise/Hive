@@ -103,7 +103,7 @@ angular.module('bizGramFactories', ['firebase'])
 	AWS.config.update({accessKeyId: 'AKIAIVEO6DBRV7OF7YDA', secretAccessKey: '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'});
 	AWS.config.region = 'us-west-2';
 	var s3 = new AWS.S3({params:{Bucket:'bizgram'}});
-  uploadFactory.putFile = function(body, name,callback){
+  uploadFactory.putFile = function(body, name, callback){
     s3.upload({
       Body: body,
       Key: 'images/'+name,
@@ -131,6 +131,18 @@ angular.module('bizGramFactories', ['firebase'])
 	userFactory.getUsers = function(){
 		return users;
 	};
+
+  // These methods allow the user to select a username from the main menu
+  // and send that user a direct message
+  var username = '';
+  userFactory.setUsername = function(user){
+    username = user;
+  };
+
+  userFactory.getUsername = function(){
+    return username;
+  };
+
   userFactory.getUserPictures = function(key){
     var pictureRef = new Firebase('https://bizgramer.firebaseio.com/hr/users/'+key+'/pictureCollection');
     var pictures = $firebaseArray(pictureRef);

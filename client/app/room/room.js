@@ -7,8 +7,6 @@ angular.module('roomCtrl', [])
   vm.roomname = Rooms.getCurrentName();
   vm.messages = Rooms.getRoomMessages();
   vm.username = $rootScope.logInfo.username;
-  // var generalRef = new Firebase("https://bizgramer.firebaseio.com/hr/rooms/general");
-  // vm.allGeneralMsg = $firebaseArray(generalRef);
 
   this.addMessage = function (e) {
     if (e.keyCode === 13) {
