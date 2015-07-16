@@ -33,6 +33,7 @@
 	<script src="app/controllers/main.js"></script>
 	<script src="app/controllers/room.js"></script>
 	<script src="app/controllers/reply.js"></script>
+	<script src="app/controllers/visual.js"></script>
 	<script src="app/app.js"></script>
 	<!-- Factories -->
 	<script src="app/factories/replyFactory.js"></script>
@@ -41,6 +42,7 @@
 	<script src="app/factories/roomFactory.js"></script>
 	<script src="app/factories/userFactory.js"></script>
 	<script src="app/factories/uploadFactory.js"></script>
+	<script src="app/factories/visualFactory.js"></script>
 	
 </head>
 
@@ -56,7 +58,7 @@
 			<li><a ui-sref="signup" ng-show="shouldShow">SignUp</a></li>
 			<!-- Should show if users is logged in -->
 			<li><a ui-sref="profile" ng-hide="shouldShow">Profile</a></li>
-			<li><a ui-sref="signin" ng-hide="shouldShow" ng-click='shouldShow=true'>Logout</a></li>
+			<li><a ui-sref="logout" ng-hide="shouldShow" ng-click='shouldShow=true'>Logout</a></li>
 		</ul>
 	</div>
 </nav>

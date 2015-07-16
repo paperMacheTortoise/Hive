@@ -1,0 +1,39 @@
+<div class="container">
+	<div class="row visualization">
+		<h1>Visualization</h1>
+
+		<!-- Space for the visualization -->
+
+
+
+
+
+
+
+	</div>
+	<div class="row chatroom" ng-controller="visualController as visual">
+		<h1>Chat View</h1>
+		<ul>
+      <li ng-repeat="msg in visual.messages track by $index" ng-controller="replyController as reply">
+        <strong>{{ msg.username }}:</strong>
+        {{ msg.text }}
+
+        <!-- showing all replies for this message -->
+        <ul class="replies">
+          <li ng-repeat="reply in msg.replies">{{reply.username}} : {{reply.text}}</li>
+        </ul>
+
+        <!-- reply input box, shown when clicked 'reply' -->
+        <button ng-click="reply.toggleReplying()">reply</button>
+        <div class="replyBox" ng-if="reply.isReplying">
+          <!-- <input ng-model="reply.replyusername" type="text" id="replyUsernameInput" placeholder="enter username" /> -->
+          <input ng-model="reply.replytext" ng-keydown="reply.addReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
+        </div>
+      </li>
+    </ul>
+
+    <div class="submitText">
+	    <input ng-model="visual.text" ng-keydown="visual.addMessage($event)" type="text" id="textInput" placeholder="type a text">
+    </div>
+	</div>
+</div>

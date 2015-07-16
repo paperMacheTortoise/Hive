@@ -5,8 +5,10 @@ var app = angular.module('bizGramApp', [
 	'userFactory',
 	'replyFactory',
 	'uploadFactory',
+	'visualFactory',
 	'ui.router', 
 	'mainCtrl',
+	'visualCtrl',
 	'authCtrl', 
 	'directMessageCtrl',
 	'roomCtrl', 
@@ -24,7 +26,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	.state('main', {
 		url: '/',
-		templateUrl: 'app/templates/main.html'
+		templateUrl: 'app/templates/main.html',
+		data: {
+			requireLogin: true // applies to all children.
+		}
 	})
 	.state('main.room', {
 		url: 'room/:roomName',
@@ -40,6 +45,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		parent: 'main',
 		templateUrl: 'app/templates/directmessage.html'
 	})
+	.state('visual', {
+		url:'/visual/:visualId',
+		templateUrl: 'app/templates/visualization.html',
+		data: {
+			requireLogin: true
+		}
+	})
 	.state('signin',{
 		url: '/signin',
 		templateUrl: 'app/templates/signin.html',
@@ -50,26 +62,44 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl:'app/templates/signup.html',
 		controller:'SignupController'
 	})
+	.state('logout',{
+		url: '/logout',
+		controller: function(Auth, $location, $rootScope){
+			Auth.signout();
+			delete $rootScope.logInfo;
+			$location.path('/signin');
+		},
+		data: {
+			requireLogin: true
+		}
+	})
 	.state('profile',{
 		url: '/profile',
 		templateUrl: 'app/templates/profile.html',
-		controller: 'ProfileController'
+		controller: 'ProfileController',
+		data: {
+			requireLogin: true
+		}
 	})
 	.state('upload',{
 		url: '/upload',
 		templateUrl: 'app/templates/upload.html',
+		data: {
+			requireLogin: true
+		}
 	});
 });
 
-app.run(function ($rootScope, $window, $location, $state, Auth){
+app.run(function ($rootScope, $window, $location, $state){
 
 	$rootScope.shouldShow = true;
-	// $rootScope.$on('$stateChangeStart', function (event, toStart){
-		
-	// })
-	$rootScope.logout = function(){
-		Auth.signout();
-		$rootScope.shouldShow = true;
-	};
+	$rootScope.$on('$stateChangeStart', function (event, toState){
+		var requireLogin = toState.data.requireLogin;
+		if(requireLogin && !$rootScope.logInfo){
+			event.preventDefault();
+			console.log('User must be logged in to access page');
+			$state.go('signin');
+		}
+	});
 
 });

@@ -40,7 +40,7 @@ angular.module('authCtrl',['firebase'])
     };
   })
 
-  .controller('SigninController',function($scope,$state,$firebaseAuth, Auth, $rootScope, Users){
+  .controller('SigninController',function ($state,$firebaseAuth, Auth, $rootScope, Users){
     var vm = this;
     Auth.signout();
     vm.email = null;

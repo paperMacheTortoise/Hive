@@ -23,6 +23,10 @@ angular.module('replyFactory', ['firebase'])
     });
   };
 
+  // repliesFactory.getVisualReplies = function (index, roomname) {
+  //   var ref = new Firebase('https://bizgramer.firebaseio.com/hr/visualizations/messages/');
+  // };
+
   return repliesFactory;
 }]);
 
