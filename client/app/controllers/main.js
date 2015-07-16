@@ -7,10 +7,6 @@ angular.module('mainCtrl', [])
   vm.rooms = Rooms.getRooms();
   vm.users = Users.getDisplayUsers(vm.currentUser);
 
-	vm.setRoom = function(index){
-		Rooms.setRoom(vm.rooms[index]);
-	};
-
   vm.addRoom = function(e) {
     if (e.keyCode === 13) {
       var nameOfRoomToAdd = vm.nameOfRoomToAdd || 'new room';
