@@ -19,6 +19,10 @@ describe('mainController', function(){
 		};
 	}));
 
+	it('should pass a test', function(){
+		expect(true).to.equal(true);
+	})
+
 	// it('should have a currentUser property on the scope', function(){
 	// 	createController();
 	// 	expect(scope.main.currentUser).to.be.a('string');
