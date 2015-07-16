@@ -81,7 +81,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	});
 });
 
-app.run(function ($rootScope, $window, $location, $state, Auth){
+app.run(function ($rootScope, $window, $location, $state){
 
 	$rootScope.shouldShow = true;
 	$rootScope.$on('$stateChangeStart', function (event, toState){
@@ -91,6 +91,6 @@ app.run(function ($rootScope, $window, $location, $state, Auth){
 			console.log('User must be logged in to access page');
 			$state.go('signin');
 		}
-	})
+	});
 
 });
