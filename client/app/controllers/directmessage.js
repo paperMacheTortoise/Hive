@@ -1,9 +1,11 @@
 angular.module('directMessageCtrl', [])
 
-.controller('directMessageController', function (DirectMessage, Users, $rootScope){
+.controller('directMessageController', function (DirectMessage, Users, $rootScope, $stateParams){
 
 	var vm = this;
-	vm.recipient = Users.getUsername();
+
+	vm.recipient = $stateParams.user;
+	Users.setUsername(vm.recipient);
 	vm.currentUser = $rootScope.logInfo.username;
 	vm.messages = DirectMessage.getDirectMessages(vm.currentUser, vm.recipient);
 
