@@ -1,10 +1,11 @@
 // Angular controller for room.html
 angular.module('replyCtrl', [])
 
-.controller('replyController', function (Replies, Rooms) {
+.controller('replyController', function (Replies, Rooms, $rootScope) {
 
   var vm = this;
   vm.isReplying = false;
+  vm.replyusername = $rootScope.logInfo.username;
 
   // toggle to show the reply input box
   vm.toggleReplying = function() {

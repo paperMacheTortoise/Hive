@@ -1,54 +1,72 @@
-var app = angular.module('bizGramApp', ['ui.router', 'mainCtrl', 'bizGramFactories','app.auth', 'roomCtrl', 'replyCtrl', 'app.profile', 'app.upload']);
+var app = angular.module('bizGramApp', [
+	'authFactory',
+	'dmFactory',
+	'roomFactory',
+	'userFactory',
+	'replyFactory',
+	'uploadFactory',
+	'ui.router', 
+	'mainCtrl',
+	'authCtrl', 
+	'directMessageCtrl',
+	'roomCtrl', 
+	'replyCtrl', 
+	'profileCtrl', 
+	'uploadCtrl']);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
 	// need to dynamically create routes based on the rooms available
 
-	$urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/signin');
 
 	$stateProvider
 
 	.state('main', {
 		url: '/',
-		templateUrl: 'app/main/main.html'
+		templateUrl: 'app/templates/main.html'
 	})
 	.state('main.room', {
 		url: 'room/:roomName',
 		parent: 'main',
-		templateUrl: 'app/room/room.html'
+		templateUrl: 'app/templates/room.html'
 	})
 	.state('oAuth', {
 		url: '/oAuth',
-		templateUrl: 'app/oAuth/oAuth.html'
+		templateUrl: 'app/templates/oAuth.html'
 	})
 	.state('main.direct', {
-		url: '/dm',
-		templateUrl: 'app/dm/directmessage.html'
+		url: 'dm/:user',
+		parent: 'main',
+		templateUrl: 'app/templates/directmessage.html'
 	})
 	.state('signin',{
 		url: '/signin',
-		templateUrl: 'app/auth/signin.html',
+		templateUrl: 'app/templates/signin.html',
 		controller:'SigninController'
 	})
 	.state('signup',{
 		url: '/signup',
-		templateUrl:'app/auth/signup.html',
+		templateUrl:'app/templates/signup.html',
 		controller:'SignupController'
 	})
 	.state('profile',{
 		url: '/profile',
-		templateUrl: 'app/profile/profile.html',
+		templateUrl: 'app/templates/profile.html',
 		controller: 'ProfileController'
 	})
 	.state('upload',{
 		url: '/upload',
-		templateUrl: 'app/upload/upload.html',
+		templateUrl: 'app/templates/upload.html',
 	});
 });
 
 app.run(function ($rootScope, $window, $location, $state, Auth){
 
 	$rootScope.shouldShow = true;
+	// $rootScope.$on('$stateChangeStart', function (event, toStart){
+		
+	// })
 	$rootScope.logout = function(){
 		Auth.signout();
 		$rootScope.shouldShow = true;

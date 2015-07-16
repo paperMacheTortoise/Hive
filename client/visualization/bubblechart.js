@@ -1,15 +1,18 @@
 
-var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Year": 2008},
-{"DATE":"1985-2-1","Time":1000, "Radius":55809, "Distance":298124.4,"Year": 2008},
-{"DATE":"1985-3-1","Time":2000,"Radius":86364,"Distance":303912.8,"Year": 2008},
-{"DATE":"1985-4-1","Time":2700,"Radius":102045,"Distance":316665.7,"Year": 2008},
-{"DATE":"1985-5-1","Time":2800,"Radius":115637,"Distance":318817.3,"Year": 2009},
-{"DATE":"1985-6-1","Time":7000,"Radius":95645,"Distance":311279.5,"Year": 2009},
-{"DATE":"1985-7-1","Time":8000,"Radius":99286,"Distance":321709.3,"Year": 2009},
-{"DATE":"1985-8-1","Time":1000,"Radius":96547,"Distance":320373.3,"Year": 2010},
-{"DATE":"1985-9-1","Time":500,"Radius":94699,"Distance":301929.8,"Year": 2010},
-{"DATE":"1985-10-1","Time":5000,"Radius":100377,"Distance":320287.5,"Year": 2010},
-{"DATE":"1985-11-1","Time":50,"Radius":119957,"Distance":308707.3,"Year": 2010}];
+// var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Year": 2008},
+// {"DATE":"1985-2-1","Time":1000, "Radius":55809, "Distance":298124.4,"Year": 2008},
+// {"DATE":"1985-3-1","Time":2000,"Radius":86364,"Distance":303912.8,"Year": 2008},
+// {"DATE":"1985-4-1","Time":2700,"Radius":102045,"Distance":316665.7,"Year": 2008},
+// {"DATE":"1985-5-1","Time":2800,"Radius":115637,"Distance":318817.3,"Year": 2009},
+// {"DATE":"1985-6-1","Time":7000,"Radius":95645,"Distance":311279.5,"Year": 2009},
+// {"DATE":"1985-7-1","Time":8000,"Radius":99286,"Distance":321709.3,"Year": 2009},
+// {"DATE":"1986-7-1","Time":8000,"Radius":9286,"Distance":321709.3,"Year": 2009},
+// {"DATE":"1987-7-1","Time":8000,"Radius":9956,"Distance":321709.3,"Year": 2009},
+// {"DATE":"1988-7-1","Time":8000,"Radius":996,"Distance":321709.3,"Year": 2009},
+// {"DATE":"1985-8-1","Time":1000,"Radius":96547,"Distance":320373.3,"Year": 2010},
+// {"DATE":"1985-9-1","Time":500,"Radius":94699,"Distance":301929.8,"Year": 2010},
+// {"DATE":"1985-10-1","Time":5000,"Radius":100377,"Distance":320287.5,"Year": 2010},
+// {"DATE":"1985-11-1","Time":50,"Radius":119957,"Distance":308707.3,"Year": 2010}];
 
 (function() {
   var BubbleChart, root,
@@ -17,6 +20,7 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
 
   BubbleChart = (function() {
     function BubbleChart(data) {
+      this.toggle = 1;
       this.hide_details = __bind(this.hide_details, this);
       this.show_details = __bind(this.show_details, this);
       this.hide_years = __bind(this.hide_years, this);
@@ -38,15 +42,15 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
         y: this.height / 2
       };
       this.year_centers = {
-        "2008": {
+        "1 - 30 days past due": {
           x: this.width / 3,
           y: this.height / 2
         },
-        "2009": {
+        "31 - 60 days past due": {
           x: this.width / 2,
           y: this.height / 2
         },
-        "2010": {
+        "61 - 90 days past due": {
           x: 2 * this.width / 3,
           y: this.height / 2
         }
@@ -58,9 +62,9 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
       this.force = null;
       this.circles = null;
       max_amount = d3.max(this.data, function(d) {
-        return parseInt(d.Radius);
+        return parseInt(d.amount);
       });
-      this.fill_color = d3.scale.ordinal().domain(["low", "medium", "high"]).range(["#d84b2a", "#beccae", "#7aa25c"]);
+      this.fill_color = d3.scale.ordinal().domain(["1 - 30 days past due","31 - 60 days past due","61 - 90 days past due"]).range(["green", "blue", "red"]);
       this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
       this.create_nodes();
       this.create_vis();
@@ -71,11 +75,15 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
         return function(d) {
           var node;
           node = {
-            Date: d.DATE,
-            radius: _this.radius_scale(parseInt(d.Radius)),
-            value: d.Radius,
-            distance: d.Distance,
-            year: d.Year,
+            client: d.client,
+            client_id: d.client_id,
+            radius: _this.radius_scale(parseInt(d.amount)),
+            amount: +d.amount,
+            open_balance: d.open_balance,
+            days_past_due: d.days_past_due,
+            due_date: d.due_date,
+            invoice_num: d.invoice_num,
+            invoice_date: d.invoice_date,
             x: Math.random() * 900,
             y: Math.random() * 800
           };
@@ -83,7 +91,7 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
         };
       })(this));
       return this.nodes.sort(function(a, b) {
-        return b.value - a.value;
+        return b.amount - a.amount;
       });
     };
 
@@ -91,19 +99,19 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
       var that;
       this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
       this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
-        return d.Date;
+        return d.client;
       });
       that = this;
       this.circles.enter().append("circle").attr("r", 0).attr("fill", (function(_this) {
         return function(d) {
-          return _this.fill_color(d.group);
+          return _this.fill_color(d.days_past_due);
         };
       })(this)).attr("stroke-width", 2).attr("stroke", (function(_this) {
         return function(d) {
-          return d3.rgb(_this.fill_color(d.group)).darker();
+          return d3.rgb(_this.fill_color(d.days_past_due)).darker();
         };
-      })(this)).attr("Date", function(d) {
-        return "bubble_" + d.Date;
+      })(this)).attr("title", function(d) {
+        return "bubble_" + d.client_id;
       }).on("mouseover", function(d, i) {
         return that.show_details(d, i, this);
       }).on("mouseout", function(d, i) {
@@ -163,7 +171,7 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
       return (function(_this) {
         return function(d) {
           var target;
-          target = _this.year_centers[d.year];
+          target = _this.year_centers[d.days_past_due];
           d.x = d.x + (target.x - d.x) * (_this.damper + 0.02) * alpha * 1.1;
           return d.y = d.y + (target.y - d.y) * (_this.damper + 0.02) * alpha * 1.1;
         };
@@ -173,9 +181,9 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
     BubbleChart.prototype.display_years = function() {
       var years, years_data, years_x;
       years_x = {
-        "First": 160,
-        "Middle": this.width / 2,
-        "Last": this.width - 160
+        "Less Than 30 Days": 240,
+        "30 to 60 Days": this.width / 2 + 100,
+        "60 Days or Older": this.width - 160
       };
       years_data = d3.keys(years_x);
       years = this.vis.selectAll(".years").data(years_data);
@@ -196,16 +204,19 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
     BubbleChart.prototype.show_details = function(data, i, element) {
       var content;
       d3.select(element).attr("stroke", "black");
-      content = "<span class=\"name\">Title:</span><span class=\"value\"> " + data.Date + "</span><br/>";
-      content += "<span class=\"name\">Amount:</span><span class=\"value\"> $" + (addCommas(data.value)) + "</span><br/>";
-      content += "<span class=\"name\">Year:</span><span class=\"value\"> " + data.year + "</span>";
+      content = "<span class=\"name\">Client:</span><span class=\"value\"> " + data.client + "</span><br/>";
+      content += "<span class=\"name\">Client ID:</span><span class=\"value\"> " + data.client_id + "</span><br/>";
+      content += "<span class=\"name\">Amount:</span><span class=\"value\"> $" + (addCommas(data.amount)) + "</span><br/>";
+      content += "<span class=\"name\">Due Date:</span><span class=\"value\"> " + data.due_date + "</span><br/>";
+      content += "<span class=\"name\">Invoice Number:</span><span class=\"value\"> " + data.invoice_num + "</span><br/>";
+      content += "<span class=\"name\">Invoice Date:</span><span class=\"value\"> " + data.invoice_date + "</span><br/>";
       return this.tooltip.showTooltip(content, d3.event);
     };
 
     BubbleChart.prototype.hide_details = function(data, i, element) {
       d3.select(element).attr("stroke", (function(_this) {
         return function(d) {
-          return d3.rgb(_this.fill_color(d.group)).darker();
+          return d3.rgb(_this.fill_color(d.days_past_due)).darker();
         };
       })(this));
       return this.tooltip.hideTooltip();
@@ -244,7 +255,7 @@ var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Y
         }
       };
     })(this);
-    return render_vis(data);
+    return render_vis(testData);
   });
 
 }).call(this);

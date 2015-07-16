@@ -19,18 +19,23 @@ describe('mainController', function(){
 		};
 	}));
 
-	it('should have a rooms property on the scope', function(){
-		createController();
-		expect(scope.main.rooms).to.be.a('array');
-	});	
+	// it('should have a currentUser property on the scope', function(){
+	// 	createController();
+	// 	expect(scope.main.currentUser).to.be.a('string');
+	// });	
 
-	it('should have a users property on the scope', function(){
-		createController();
-		expect(scope.main.users).to.be.a('array');
-	});	
+	// it('should have a rooms property on the scope', function(){
+	// 	createController();
+	// 	expect(scope.main.rooms).to.be.a('array');
+	// });	
 
-	it('should have a setRoom function on the scope', function(){
-		createController();
-		expect(scope.main.setRoom).to.be.a('function');
-	});	
+	// it('should have a users property on the scope', function(){
+	// 	createController();
+	// 	expect(scope.main.users).to.be.a('array');
+	// });	
+
+	// it('should have a setRoom function on the scope', function(){
+	// 	createController();
+	// 	expect(scope.main.setRoom).to.be.a('function');
+	// });	
 });
