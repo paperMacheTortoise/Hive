@@ -24,7 +24,7 @@ angular.module('visualCtrl', [])
 		}
 	};
 
-<<<<<<< HEAD
+
 	// replies
 	vm.isReplying = false;
 	
@@ -38,21 +38,18 @@ angular.module('visualCtrl', [])
 			vm.replyText = '';
 		}
 	};
-=======
-  function CustomTooltip(tooltipId, width){
-    var tooltipId = tooltipId;
+
+  function customTooltip(tooltipId, width){
+ 
     $("body").append("<div class='tooltip' id='"+tooltipId+"'></div>");
     
     if(width){
       $("#"+tooltipId).css("width", width);
     }
     
-    hideTooltip();
-    
     function showTooltip(content, event){
       $("#"+tooltipId).html(content);
       $("#"+tooltipId).show();
-      console.log("should show");
       updatePosition(event);
     }
     
@@ -60,6 +57,8 @@ angular.module('visualCtrl', [])
       $("#"+tooltipId).hide();
     }
     
+    hideTooltip();
+
     function updatePosition(event){
       var ttid = "#"+tooltipId;
       var xOffset = 20;
@@ -86,7 +85,7 @@ angular.module('visualCtrl', [])
       showTooltip: showTooltip,
       hideTooltip: hideTooltip,
       updatePosition: updatePosition
-    }
+    };
   }
 
   function addCommas(nStr)
@@ -124,7 +123,7 @@ angular.module('visualCtrl', [])
       this.data = data;
       this.width = 940;
       this.height = 600;
-      this.tooltip = CustomTooltip("toolTipID", 240);
+      this.tooltip = customTooltip("toolTipID", 240);
       this.center = {
         x: this.width / 2,
         y: this.height / 2
@@ -275,7 +274,7 @@ angular.module('visualCtrl', [])
       };
       years_data = d3.keys(years_x);
       years = this.vis.selectAll(".years").data(years_data);
-      return years.enter().append("text").attr("class", "years").attr("x", (function(_this) {
+      return years.enter().append("text").attr("class", "years").attr("x", (function() {
         return function(d) {
           return years_x[d];
         };
@@ -324,17 +323,17 @@ angular.module('visualCtrl', [])
       chart.start();
       return vm.display_all();
     };
-    vm.display_all = (function(_this) {
+    vm.display_all = (function() {
       return function() {
         return chart.display_group_all();
       };
     })(this);
-    vm.display_year = (function(_this) {
+    vm.display_year = (function() {
       return function() {
         return chart.display_by_year();
       };
     })(this);
-    vm.toggle_view = (function(_this) {
+    vm.toggle_view = (function() {
       return function(view_type) {
         if (view_type === 'year') {
           return vm.display_year();
@@ -348,5 +347,4 @@ angular.module('visualCtrl', [])
 
 }).call(this);
 
->>>>>>> (feat) Integrated D3 visualization into angular
 });

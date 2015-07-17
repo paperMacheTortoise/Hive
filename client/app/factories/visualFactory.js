@@ -21,14 +21,13 @@ angular.module('visualFactory', ['firebase'])
 	};
 
 	visualFactory.customTooltip = function(tooltipId, width) {
-	  var tooltipId = tooltipId;
+		
 	  $("body").append("<div class='tooltip' id='"+tooltipId+"'></div>");
 	  
 	  if(width){
 	    $("#"+tooltipId).css("width", width);
 	  }
 	  
-	  hideTooltip();
 	  
 	  function showTooltip(content, event){
 	    $("#"+tooltipId).html(content);
@@ -41,6 +40,8 @@ angular.module('visualFactory', ['firebase'])
 	    $("#"+tooltipId).hide();
 	  }
 	  
+	  hideTooltip();
+
 	  function updatePosition(event){
 	    var ttid = "#"+tooltipId;
 	    var xOffset = 20;
@@ -67,8 +68,8 @@ angular.module('visualFactory', ['firebase'])
 	    showTooltip: showTooltip,
 	    hideTooltip: hideTooltip,
 	    updatePosition: updatePosition
-	  }
-	}
+	  };
+	};
 
 	visualFactory.addCommas = function(nStr)
 	{
@@ -81,7 +82,7 @@ angular.module('visualFactory', ['firebase'])
 	    x1 = x1.replace(rgx, '$1' + ',' + '$2');
 	  }
 	  return x1 + x2;
-	}
+	};
 	
 	return visualFactory;
 }]);
