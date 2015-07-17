@@ -104,8 +104,9 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 
 	$rootScope.shouldShow = true;
 	$rootScope.$on('$stateChangeStart', function (event, toState){
+		var requireLogin;
 		if (toState && toState.data && toState.data.requireLogin) {
-			var requireLogin = toState.data.requireLogin;
+			requireLogin = toState.data.requireLogin;
 		} else {
 			requireLogin = false;
 		}
