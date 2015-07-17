@@ -32,7 +32,7 @@ angular.module('authFactory', ['firebase'])
       password: password
     }).then(function(userData){
       console.log("User " + userData.uid + " created successfully!");
-      signin(email,password,callback,vm);
+      authFactory.signin(email,password,callback,vm);
     }).catch(function(error){
       console.log('Error:',error);
     });

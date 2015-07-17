@@ -109,7 +109,7 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 		} else {
 			requireLogin = false;
 		}
-		if(requireLogin && !$rootScope.logInfo){
+		if(requireLogin && !$rootScope.logInfo && toState.name!=='signup'){
 			event.preventDefault();
 			console.log('User must be logged in to access page');
 			// console.log($location.$$path.slice(1));

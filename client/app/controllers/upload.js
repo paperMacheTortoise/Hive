@@ -10,8 +10,9 @@ angular.module('uploadCtrl',['ui.bootstrap', 'firebase'])
   };
 })
 
-.controller('UploadController',function ($scope, $state, Upload, Users, $rootScope){
+.controller('UploadController',function ($scope, $state, Upload, Users, $rootScope, $stateParams){
 	this.file = null;
+	this.org = $stateParams.org;
 
 	$scope.change= function(evt){
 		this.file = evt.target.files[0];
@@ -19,7 +20,7 @@ angular.module('uploadCtrl',['ui.bootstrap', 'firebase'])
 		Upload.putFile(this.file,this.file.name,function(imgUrl){
 			// var users = Users.getUsers();
 			var key = $rootScope.logInfo.$id;
-			var pictures = Users.getUserPictures(key);
+			var pictures = Users.getUserPictures(key, this.org);
 			pictures.$add({url:imgUrl});
 		});
 	};

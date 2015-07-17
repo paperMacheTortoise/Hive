@@ -4,16 +4,16 @@ angular.module('replyFactory', ['firebase'])
 
   var repliesFactory = {};
 
-  repliesFactory.getReplies = function (index, roomname) {
-    var url = 'https://bizgramer.firebaseio.com/hr/rooms/' + roomname + '/' + index + '/replies';
+  repliesFactory.getReplies = function (index, roomname, org) {
+    var url = 'https://bizgramer.firebaseio.com/'+org+'/rooms/' + roomname + '/' + index + '/replies';
     var ref = new Firebase(url);
     var replies = $firebaseArray(ref);
     return replies;
   };
 
   // adding a reply to message object in firebase
-  repliesFactory.addReply = function (username, text, index, roomname) {
-    var url = 'https://bizgramer.firebaseio.com/hr/rooms/' + roomname + '/' + index + '/replies';
+  repliesFactory.addReply = function (username, text, index, roomname, org) {
+    var url = 'https://bizgramer.firebaseio.com/'+org+'/rooms/' + roomname + '/' + index + '/replies';
     console.log('url ', url);
     var ref = new Firebase(url);
     var replies = $firebaseArray(ref);
