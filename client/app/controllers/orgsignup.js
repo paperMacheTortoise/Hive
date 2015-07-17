@@ -21,7 +21,6 @@ angular.module('orgsignupCtrl', ['firebase'])
         vm.nameOfOrgToGo = '';
       } else {
         $state.go('signin', {org: vm.nameOfOrgToGo});
-        // $state.go('orgsignup');
       }
     };
 
