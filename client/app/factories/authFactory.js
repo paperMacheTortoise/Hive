@@ -17,6 +17,7 @@ angular.module('authFactory', ['firebase'])
         email: email,
         password: password
       }).then(function(authData){
+      // $rootScope.shouldShow = false;
       data = authData;
       console.log('logged in as '+authData.uid);
       callback(data);
@@ -39,7 +40,7 @@ angular.module('authFactory', ['firebase'])
 	};
 
 	authFactory.signout = function(){
-    $rootScope.logInfo = null;
+    // set the nav bar shouldShow
 		authObj.$unauth();
 	};
 
