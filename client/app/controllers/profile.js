@@ -3,7 +3,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap'])
 .controller('ProfileController',function ($scope, $state, $firebaseAuth, Auth, $rootScope, $modal, $log, Users, $stateParams){
   var vm = this;
   vm.org = $stateParams.org;
-  vm.pictures = Users.getUserPictures($rootScope.logInfo.$id);
+  vm.pictures = Users.getUserPictures($rootScope.logInfo.$id, vm.org);
   vm.userInfo = $rootScope.logInfo;
   vm.username = vm.userInfo.username;
   vm.email = vm.userInfo.email;
