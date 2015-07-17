@@ -14,6 +14,14 @@ angular.module('visualCtrl', [])
   // Gets the messages for the visualization.
 	vm.messages = Visualization.getMessages(vm.visualId, vm.org);
 
+  // Adds a message from the current user to the visualization chat.
+  vm.addMessage = function (e) {
+    if(e.keyCode === 13){
+      Visualization.addMessage(vm.username, vm.visualId, vm.text, vm.org);
+      vm.text = '';
+    }
+  };
+
   $('#view_selection a').click(function() {
         var view_type = $(this).attr('id');
         $('#view_selection a').removeClass('active');
@@ -22,94 +30,13 @@ angular.module('visualCtrl', [])
         return false;
       });
 
-	// Adds a message from the current user to the visualization chat.
-  vm.addMessage = function (e) {
-		if(e.keyCode === 13){
-			Visualization.addMessage(vm.username, vm.visualId, vm.text, vm.org);
-			vm.text = '';
-		}
-	};
 
-
-  function customTooltip(tooltipId, width){
-
-    $("body").append("<div class='tooltip' id='"+tooltipId+"'></div>");
-
-    if(width){
-      $("#"+tooltipId).css("width", width);
-    }
-
-    function showTooltip(content, event){
-      $("#"+tooltipId).html(content);
-      $("#"+tooltipId).show();
-      updatePosition(event);
-    }
-
-    function hideTooltip(){
-      $("#"+tooltipId).hide();
-    }
-
-    hideTooltip();
-
-    function updatePosition(event){
-      var ttid = "#"+tooltipId;
-      var xOffset = 20;
-      var yOffset = 10;
-
-       var ttw = $(ttid).width();
-       var tth = $(ttid).height();
-       var wscrY = $(window).scrollTop();
-       var wscrX = $(window).scrollLeft();
-       var curX = (document.all) ? event.clientX + wscrX : event.pageX;
-       var curY = (document.all) ? event.clientY + wscrY : event.pageY;
-       var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
-       if (ttleft < wscrX + xOffset){
-        ttleft = wscrX + xOffset;
-       }
-       var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
-       if (tttop < wscrY + yOffset){
-        tttop = curY + yOffset;
-       }
-       $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
-    }
-
-    return {
-      showTooltip: showTooltip,
-      hideTooltip: hideTooltip,
-      updatePosition: updatePosition
-    };
-  }
-
-  function addCommas(nStr)
-  {
-    nStr += '';
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    return x1 + x2;
-  }
 
 (function() {
-  var BubbleChart,
-    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
-
-  BubbleChart = (function() {
+  var __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
+  
+  var BubbleChart = (function() {
     function BubbleChart(data) {
-      this.hide_details = __bind(this.hide_details, this);
-      this.show_details = __bind(this.show_details, this);
-      this.hide_due_dates = __bind(this.hide_due_dates, this);
-      this.display_due_dates = __bind(this.display_due_dates, this);
-      this.move_towards_seperated = __bind(this.move_towards_seperated, this);
-      this.display_by_seperated = __bind(this.display_by_seperated, this);
-      this.move_towards_center = __bind(this.move_towards_center, this);
-      this.display_group_all = __bind(this.display_group_all, this);
-      this.start = __bind(this.start, this);
-      this.create_vis = __bind(this.create_vis, this);
-      this.create_nodes = __bind(this.create_nodes, this);
       var max_amount;
       this.data = data;
       this.width = 940;
@@ -311,36 +238,37 @@ angular.module('visualCtrl', [])
 
   })();
 
-  $(function() {
-    var chart, render_vis;
-    chart = null;
-    render_vis = function(data) {
-      chart = new BubbleChart(data);
-      chart.start();
-      return vm.display_all();
-    };
-    vm.display_all = (function() {
-      return function() {
-        return chart.display_group_all();
-      };
-    })(this);
-    vm.display_seperated = (function() {
-      return function() {
-        return chart.display_by_seperated();
-      };
-    })(this);
-    vm.toggle_view = (function() {
-      return function(view_type) {
-        if (view_type === 'seperate') {
-          return vm.display_seperated();
-        } else {
-          return vm.display_all();
-        }
-      };
-    })(this);
-    return render_vis(testData);
-  });
 
-}).call(this);
+  var chart = null;
+
+  var render_vis = function(data) {
+    chart = new BubbleChart(data);
+    chart.start();
+    return vm.display_all();
+  };
+
+  vm.display_all = (function() {
+    return function() {
+      return chart.display_group_all();
+    };
+  })(this);
+
+  vm.display_seperated = (function() {
+    return function() {
+      return chart.display_by_seperated();
+    };
+  })(this);
+
+  vm.toggle_view = (function() {
+    return function(view_type) {
+      if (view_type === 'seperate') {
+        return vm.display_seperated();
+      } else {
+        return vm.display_all();
+      }
+    };
+  })(this);
+  
+  render_vis(testData);
 
 });
