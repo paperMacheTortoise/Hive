@@ -125,11 +125,9 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 		}
 	});
 
+	// at each state chage, check if the user belongs to the organization it is navigating to
 	$rootScope.$on('$stateChangeSuccess', function (event) {
-		// console.dir($rootScope);
-		// console.dir($stateParams)
-		// console.dir($rootScope.logInfo.org);
-		// console.dir($stateParams.org);
+		// if the user doesnt belong to this organization, redirect to landing page
 		if ($rootScope.logInfo && $rootScope.logInfo.org !== $stateParams.org) {
 			event.preventDefault();
 			console.log('user doesnt belong to this org');
