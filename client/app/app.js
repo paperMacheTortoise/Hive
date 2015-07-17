@@ -8,11 +8,11 @@ var app = angular.module('bizGramApp', [
 	'replyFactory',
 	'uploadFactory',
 	'visualFactory',
-	'ui.router', 
+	'ui.router',
 	'mainCtrl',
 	'visualCtrl',
 	'visualReplyCtrl',
-	'authCtrl', 
+	'authCtrl',
 	'directMessageCtrl',
 	'roomCtrl',
 	'replyCtrl',
@@ -77,8 +77,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('logout',{
 		url: '/logout',
 		controller: function(Auth, $location, $rootScope){
-			Auth.signout(); 
-			delete $rootScope.logInfo; 
+			Auth.signout();
+			delete $rootScope.logInfo;
 			$location.path('/signin');
 		},
 		data: {
@@ -124,4 +124,19 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 			$state.go('signin', {org: $location.$$path.slice(1)});
 		}
 	});
+
+	$rootScope.$on('$stateChangeSuccess', function (event, toState) {
+		// console.dir($rootScope);
+		// console.dir($stateParams)
+		// console.dir($rootScope.logInfo.org);
+		// console.dir($stateParams.org);
+		if ($rootScope.logInfo && $rootScope.logInfo.org !== $stateParams.org) {
+			event.preventDefault();
+			console.log('user doesnt belong to this org')
+			console.log('redirect user to landing');
+			$state.go('landing')
+		}
+
+	});
+
 });
