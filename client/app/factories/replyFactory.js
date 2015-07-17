@@ -19,7 +19,8 @@ angular.module('replyFactory', ['firebase'])
     var replies = $firebaseArray(ref);
     replies.$add({
       username: username,
-      text: text
+      text: text,
+      createdAt: Firebase.ServerValue.TIMESTAMP
     });
   };
 
@@ -36,7 +37,8 @@ angular.module('replyFactory', ['firebase'])
     var replies = $firebaseArray(replyRef);
     replies.$add({
       username: username,
-      text: text
+      text: text,
+      createdAt: Firebase.ServerValue.TIMESTAMP
     });
   };
 
