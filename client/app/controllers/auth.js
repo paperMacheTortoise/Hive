@@ -3,22 +3,22 @@ angular.module('authCtrl',['firebase'])
   .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams){
     var vm = this;
     vm.org = $stateParams.org;
-    Auth.signout();
 
     vm.setupUser = function(name, email, uid, pictureUrl){
       vm.users = Users.getUsers(vm.org);
       vm.users.$add({
         username: name,
+        org: vm.org,
         email: email,
         uid: uid,
         pictureUrl: pictureUrl || null,
         pictureCollection: null
       }).then(function(ref){
         var logInfo = vm.users.$getRecord(ref.key());
-        console.log(logInfo);
+        // console.log(logInfo);
         $rootScope.logInfo = logInfo;
         $rootScope.shouldShow = false;
-        console.log(logInfo);
+        // console.log(logInfo);
       });
     };
 
@@ -45,20 +45,17 @@ angular.module('authCtrl',['firebase'])
   .controller('SigninController',function ($state,$firebaseAuth, Auth, $rootScope, Users, $stateParams){
     var vm = this;
     vm.org = $stateParams.org;
-    Auth.signout();
     vm.email = null;
     vm.password = null;
 
     vm.getSignIn = function(data){
       vm.users = Users.getUsers(vm.org);
-      console.log(vm.users);
+      // console.log(vm.users);
       vm.users.$loaded(function(){
 
       var key;
-      console.log(vm.users.length);
+      // console.log(vm.users.length);
       for (var i = 0; i < vm.users.length; i++) {
-        console.log(vm.users[i].uid);
-        console.log(data.uid);
         if(vm.users[i].uid===data.uid){
           key = vm.users.$keyAt(i);
         }
@@ -66,7 +63,7 @@ angular.module('authCtrl',['firebase'])
       var logInfo = vm.users.$getRecord(key);
       $rootScope.logInfo = logInfo;
       $rootScope.shouldShow = false;
-      console.log(logInfo);
+      // console.log(logInfo);
       $state.go('main', {org: vm.org});
     });
     };
@@ -74,7 +71,6 @@ angular.module('authCtrl',['firebase'])
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){
         vm.authData = data;
-        console.log(data);
         vm.getSignIn(data);
       },vm);
     };
