@@ -17,7 +17,7 @@ angular.module('authCtrl',['firebase'])
         var logInfo = vm.users.$getRecord(ref.key());
         // console.log(logInfo);
         $rootScope.logInfo = logInfo;
-        $rootScope.shouldShow = false;
+        // $rootScope.shouldShow = false;
         // console.log(logInfo);
       });
     };
@@ -62,7 +62,7 @@ angular.module('authCtrl',['firebase'])
       }
       var logInfo = vm.users.$getRecord(key);
       $rootScope.logInfo = logInfo;
-      $rootScope.shouldShow = false;
+      // $rootScope.shouldShow = false;
       // console.log(logInfo);
       $state.go('main', {org: vm.org});
     });
