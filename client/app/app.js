@@ -8,10 +8,10 @@ var app = angular.module('bizGramApp', [
 	'replyFactory',
 	'uploadFactory',
 	'visualFactory',
-	'ui.router',
+	'ui.router', 
 	'mainCtrl',
 	'visualCtrl',
-	'authCtrl',
+	'authCtrl', 
 	'directMessageCtrl',
 	'roomCtrl',
 	'replyCtrl',
@@ -107,9 +107,4 @@ app.run(function ($rootScope, $window, $location, $state){
 			$state.go('signin');
 		}
 	});
-	$rootScope.logout = function(){
-		Auth.signout();
-		$rootScope.shouldShow = true;
-	};
-
 });
