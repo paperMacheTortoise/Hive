@@ -93,9 +93,8 @@ angular.module('visualCtrl', [])
     return x1 + x2;
   }
 
-
 (function() {
-  var BubbleChart, root,
+  var BubbleChart,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   BubbleChart = (function() {
@@ -115,7 +114,7 @@ angular.module('visualCtrl', [])
       this.data = data;
       this.width = 940;
       this.height = 600;
-      this.tooltip = customTooltip("toolTipID", 240);
+      this.tooltip = new Visualization.customTooltip("toolTipID", 240);
       this.center = {
         x: this.width / 2,
         y: this.height / 2
@@ -258,26 +257,33 @@ angular.module('visualCtrl', [])
     };
 
     BubbleChart.prototype.display_years = function() {
-      var years, years_data, years_x;
-      years_x = {
+      var past_due_x = {
         "Less Than 30 Days": 240,
         "30 to 60 Days": this.width / 2 + 100,
         "60 Days or Older": this.width - 160
       };
-      years_data = d3.keys(years_x);
-      years = this.vis.selectAll(".years").data(years_data);
-      return years.enter().append("text").attr("class", "years").attr("x", (function() {
-        return function(d) {
-          return years_x[d];
-        };
-      })(this)).attr("y", 40).attr("text-anchor", "middle").text(function(d) {
-        return d;
-      });
+
+      var past_due_data = d3.keys(past_due_x);
+
+      var past_due = this.vis.selectAll(".past_due").data(past_due_data);
+      return past_due.enter()
+        .append("text")
+        .attr("class", "past_due")
+        .attr("x", (function() {
+            return function(d) {
+              return past_due_x[d];
+            };
+          })(this))
+        .attr("y", 40)
+        .attr("text-anchor", "middle")
+        .text(function(d) {
+            return d;
+          });
     };
 
     BubbleChart.prototype.hide_years = function() {
-      var years;
-      return years = this.vis.selectAll(".years").remove();
+      var past_due;
+      return past_due = this.vis.selectAll(".past_due").remove();
     };
 
     BubbleChart.prototype.show_details = function(data, i, element) {
@@ -285,7 +291,7 @@ angular.module('visualCtrl', [])
       d3.select(element).attr("stroke", "black");
       content = "<span class=\"name\">Client:</span><span class=\"value\"> " + data.client + "</span><br/>";
       content += "<span class=\"name\">Client ID:</span><span class=\"value\"> " + data.client_id + "</span><br/>";
-      content += "<span class=\"name\">Amount:</span><span class=\"value\"> $" + (addCommas(data.amount)) + "</span><br/>";
+      content += "<span class=\"name\">Amount:</span><span class=\"value\"> $" + (Visualization.addCommas(data.amount)) + "</span><br/>";
       content += "<span class=\"name\">Due Date:</span><span class=\"value\"> " + data.due_date + "</span><br/>";
       content += "<span class=\"name\">Invoice Number:</span><span class=\"value\"> " + data.invoice_num + "</span><br/>";
       content += "<span class=\"name\">Invoice Date:</span><span class=\"value\"> " + data.invoice_date + "</span><br/>";
@@ -304,8 +310,6 @@ angular.module('visualCtrl', [])
     return BubbleChart;
 
   })();
-
-  root = typeof exports !== "undefined" && exports !== null ? exports : this;
 
   $(function() {
     var chart, render_vis;
@@ -327,7 +331,7 @@ angular.module('visualCtrl', [])
     })(this);
     vm.toggle_view = (function() {
       return function(view_type) {
-        if (view_type === 'year') {
+        if (view_type === 'seperate') {
           return vm.display_year();
         } else {
           return vm.display_all();

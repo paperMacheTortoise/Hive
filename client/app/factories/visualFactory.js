@@ -32,9 +32,9 @@ angular.module('visualFactory', ['firebase'])
 	};
 
 	visualFactory.customTooltip = function(tooltipId, width) {
-
-	  $("body").append("<div class='tooltip' id='"+tooltipId+"'></div>");
-
+		
+	  $("#vis").append("<div class='tooltip' id='"+tooltipId+"'></div>");
+	  
 	  if(width){
 	    $("#"+tooltipId).css("width", width);
 	  }
