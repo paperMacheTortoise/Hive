@@ -5,6 +5,15 @@ angular.module('visualFactory', ['firebase'])
 	var visualFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/visualizations');
 
+	var visualId = '';
+	visualFactory.setName = function(name){
+		visualId = name;
+	}
+
+	visualFactory.getName = function(){
+		return visualId;
+	}
+
 	visualFactory.getMessages = function(name){
 		var messageRef = ref.child(name).child('messages');
 		messages = $firebaseArray(messageRef);

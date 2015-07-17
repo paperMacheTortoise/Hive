@@ -4,15 +4,17 @@ angular.module('replyCtrl', [])
 .controller('replyController', function (Replies, Rooms, $rootScope) {
 
   var vm = this;
+  // Value for toggling the reply option.
   vm.isReplying = false;
+  // Gets the current user's username.
   vm.replyusername = $rootScope.logInfo.username;
 
-  // toggle to show the reply input box
+  // Toggle to show the reply input box
   vm.toggleReplying = function() {
     this.isReplying = !(this.isReplying);
   };
 
-  // add reply to the current message
+  // Add reply to the current message
   vm.addReply = function (e, index) {
     if (e.keyCode === 13) {
       var roomName = Rooms.getCurrentName();
