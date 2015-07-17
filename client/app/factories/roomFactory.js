@@ -3,6 +3,7 @@ angular.module('roomFactory', ['firebase'])
 .factory('Rooms', ['$firebaseArray', function ($firebaseArray){
 
 	var roomsFactory = {};
+  // Make a ref to db for all rooms.
 	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms');
 	var rooms = $firebaseArray(ref);
   var roomNames = [];
@@ -18,27 +19,30 @@ angular.module('roomFactory', ['firebase'])
       });
     });
 
-	roomsFactory.getRooms = function(){
+	// Returns all the rooms available.
+  roomsFactory.getRooms = function(){
 		return roomNames;
 	};
 
+ // Sets the selected room user clicks from Main.
   var roomName = '';
   roomsFactory.setRoom = function (name){
     roomName = name;
   };
 
+  // Returns the current room.
   roomsFactory.getCurrentName = function(){
     return roomName;
   };
 
+  // Gets the messages for room.
   roomsFactory.getRoomMessages = function() {
-    // var roomRef = ref.child(roomName);
-    // var messages = $firebaseArray(roomRef);
     var roomRef = roomName ? ref.child(roomName) : null;
     var messages =  roomRef ? $firebaseArray(roomRef) : null;
     return messages;
   };
 
+  // Add message to room.
   roomsFactory.addMessage = function(username, text){
     var roomRef = roomName ? ref.child(roomName) : null;
     var messages = roomRef ? $firebaseArray(roomRef) : null;
