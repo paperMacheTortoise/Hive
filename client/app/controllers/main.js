@@ -1,14 +1,15 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, $rootScope) {
+.controller('mainController', function (Rooms, Users, DirectMessage, $rootScope, $stateParams) {
 
 	var vm = this;
-  // Get ther current user
+
+  vm.org = $stateParams.org;
   vm.currentUser = $rootScope.logInfo.username;
   // Get the rooms from the roomFactory.
-  vm.rooms = Rooms.getRooms();
+  vm.rooms = Rooms.getRooms(vm.org);
   // Get all users except for the current user from the userFactory.
-  vm.users = Users.getDisplayUsers(vm.currentUser);
+  vm.users = Users.getDisplayUsers(vm.currentUser, vm.org);
 
   // Send new room to the roomFactory.
   vm.addRoom = function(e) {
@@ -16,7 +17,7 @@ angular.module('mainCtrl', [])
       var nameOfRoomToAdd = vm.nameOfRoomToAdd || 'new room';
       if (vm.rooms.indexOf(nameOfRoomToAdd) === -1) {
         console.log('Adding room ', nameOfRoomToAdd);
-        Rooms.addRoom(nameOfRoomToAdd);
+        Rooms.addRoom(nameOfRoomToAdd, vm.org);
         vm.nameOfRoomToAdd = '';
       } else {
         console.log('this room already exists');

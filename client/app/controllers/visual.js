@@ -1,10 +1,12 @@
 angular.module('visualCtrl', [])
 
-.controller('visualController', function (Visualization, Replies, $rootScope){
+.controller('visualController', function (Visualization, $rootScope, $stateParams){
 
 	var vm = this;
 	// CHAT FUNCTIONS
   // Get ther current user;
+	vm.org = $stateParams.org;
+	//chat functions
 	vm.username = $rootScope.logInfo.username;
   // TO DO, set the visualization identifier
 	vm.visualId = 'visual1';

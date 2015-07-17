@@ -2,13 +2,13 @@
 angular.module('roomCtrl', [])
 
 .controller('roomController', function (Rooms, $rootScope,$stateParams) {
-  
   var vm = this;
   // Passes the roomName from the main view.
   vm.roomname = $stateParams.roomName;
-  Rooms.setRoom(vm.roomname); // CHECK IF NECESSARY
+  vm.org = $stateParams.org;
+  Rooms.setRoom(vm.roomname, vm.org); // CHECK IF NECESSARY
   // Gets the messages from the roomFactory.
-  vm.messages = Rooms.getRoomMessages();
+  vm.messages = Rooms.getRoomMessages(vm.org);
   // Gets the current user.
   vm.username = $rootScope.logInfo.username;
 
@@ -19,7 +19,7 @@ angular.module('roomCtrl', [])
       var roomName = vm.roomname || 'general';
       console.log(userName, roomName, vm.text);
 
-      Rooms.addMessage(userName, vm.text);
+      Rooms.addMessage(userName, vm.text, vm.org);
       vm.text = '';
     }
   };

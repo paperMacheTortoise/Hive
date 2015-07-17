@@ -1,0 +1,8 @@
+<div class="signup-div container" ng-controller="OrgsignupController as org">
+  <header><h1>Go to your organization or create a new one</h1></header>
+  <form name="orgRedirect" ng-submit="org.redirect()">
+    <input name="name" type="name" ng-model="org.nameOfOrgToGo" placeholder="Organization name" required />
+    <input type="submit">
+  </form>
+  <button><a ui-sref="orgsignup">Sign up for a new org</a></button>
+</div>

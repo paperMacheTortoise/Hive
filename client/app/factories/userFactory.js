@@ -3,21 +3,30 @@ angular.module('userFactory', ['firebase'])
 .factory('Users', ['$firebaseArray', function ($firebaseArray){
 
 	var userFactory = {};
-	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/users');
-  var users = $firebaseArray(ref);
+  var fire = function(org){
+
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/users');
+    var users = $firebaseArray(ref);
+    return {
+      ref:ref,
+      users:users
+    };
+  };
 
 	// parse the usernames from the database
-  userFactory.getUsers = function(){
-    return users;
+  userFactory.getUsers = function(org){
+    return fire(org).users;
   };
 
 	// display all the usernames in the main menu except for the current user,
   // so that the user cannot dm themselves
-  userFactory.getDisplayUsers = function(current){
+  userFactory.getDisplayUsers = function(current,org){
+    //firebase array object from fire()
+    var farray = fire(org);
     var updatedUsers = [];
-    users.$loaded()
+    farray.users.$loaded()
     .then(function(){
-      angular.forEach(users, function (user){
+      angular.forEach(farray.users, function (user){
         if(user.username !== current){
           updatedUsers.push(user);
         }
@@ -26,8 +35,8 @@ angular.module('userFactory', ['firebase'])
 		return updatedUsers;
 	};
 
-  userFactory.getUserPictures = function(key){
-    var pictureRef = new Firebase('https://bizgramer.firebaseio.com/hr/users/'+key+'/pictureCollection');
+  userFactory.getUserPictures = function(key,org){
+    var pictureRef = new Firebase('https://bizgramer.firebaseio.com/'+org+'/users/'+key+'/pictureCollection');
     var pictures = $firebaseArray(pictureRef);
     return pictures;
   };
