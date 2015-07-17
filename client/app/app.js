@@ -140,7 +140,7 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 			// console.log('redirect user to landing');
 			$state.go('landing');
 		}
-		console.log(toState.name);
+		console.log('going to state ', toState.name);
 		console.log($rootScope.logInfo);
 		if (toState.name === 'main' && !$rootScope.logInfo) {
 			$state.go('landing');
