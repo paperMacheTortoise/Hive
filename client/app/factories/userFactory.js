@@ -11,7 +11,7 @@ angular.module('userFactory', ['firebase'])
       ref:ref,
       users:users
     };
-  }
+  };
 
 	// parse the usernames from the database
   userFactory.getUsers = function(org){
