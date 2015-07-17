@@ -39,6 +39,5 @@ angular.module('visualCtrl', [])
     } else {
       chart.display_group_all();
     }
-
   });
 });
