@@ -15,10 +15,7 @@ angular.module('authCtrl',['firebase'])
         pictureCollection: null
       }).then(function(ref){
         var logInfo = vm.users.$getRecord(ref.key());
-        // console.log(logInfo);
         $rootScope.logInfo = logInfo;
-        // $rootScope.shouldShow = false;
-        // console.log(logInfo);
       });
     };
 
@@ -50,11 +47,9 @@ angular.module('authCtrl',['firebase'])
 
     vm.getSignIn = function(data){
       vm.users = Users.getUsers(vm.org);
-      // console.log(vm.users);
       vm.users.$loaded(function(){
 
       var key;
-      // console.log(vm.users.length);
       for (var i = 0; i < vm.users.length; i++) {
         if(vm.users[i].uid===data.uid){
           key = vm.users.$keyAt(i);
@@ -62,8 +57,6 @@ angular.module('authCtrl',['firebase'])
       }
       var logInfo = vm.users.$getRecord(key);
       $rootScope.logInfo = logInfo;
-      // $rootScope.shouldShow = false;
-      // console.log(logInfo);
       $state.go('main', {org: vm.org});
     });
     };
