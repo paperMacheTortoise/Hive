@@ -4,15 +4,18 @@ angular.module('visualFactory', ['firebase'])
 
 	var visualFactory = {};
 
+	// Sets the current visualization ID.
 	var visualId = '';
 	visualFactory.setName = function(name){
 		visualId = name;
 	};
 
+	// Returns the current visualization ID. 
 	visualFactory.getName = function(){
 		return visualId;
 	};
 
+	// Returns the messages from the db for the current visuatlization.
 	visualFactory.getMessages = function(name, org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
 		var messageRef = ref.child(name).child('messages');
@@ -20,6 +23,7 @@ angular.module('visualFactory', ['firebase'])
 		return messages;
 	};
 
+	// Adds a message to the db about the current visualization.
 	visualFactory.addMessage = function(user, name, text, org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
 		var messageRef = ref.child(name).child('messages');

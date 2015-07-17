@@ -3,6 +3,7 @@ angular.module('visualCtrl', [])
 .controller('visualController', function (Visualization, $rootScope, $stateParams){
 
 	var vm = this;
+
 	// CHAT FUNCTIONS
   // Get ther current user;
 	vm.org = $stateParams.org;

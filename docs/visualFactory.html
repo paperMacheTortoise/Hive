@@ -146,26 +146,78 @@
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'visualFactory'</span>, [<span class="hljs-string">'firebase'</span>])
 
 .factory(<span class="hljs-string">'Visualization'</span>, [<span class="hljs-string">'$firebaseArray'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$firebaseArray</span>)</span>{
-	
-	<span class="hljs-keyword">var</span> visualFactory = {};
 
-	<span class="hljs-keyword">var</span> visualId = <span class="hljs-string">''</span>;
+	<span class="hljs-keyword">var</span> visualFactory = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Sets the current visualization ID.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> visualId = <span class="hljs-string">''</span>;
 	visualFactory.setName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>)</span>{
 		visualId = name;
-	};
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Returns the current visualization ID. </p>
 
-	visualFactory.getName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	visualFactory.getName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
 		<span class="hljs-keyword">return</span> visualId;
-	};
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Returns the messages from the db for the current visuatlization.</p>
 
-	visualFactory.getMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, org</span>)</span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	visualFactory.getMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, org</span>)</span>{
 		<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/visualizations'</span>);
 		<span class="hljs-keyword">var</span> messageRef = ref.child(name).child(<span class="hljs-string">'messages'</span>);
 		messages = $firebaseArray(messageRef);
 		<span class="hljs-keyword">return</span> messages;
-	};
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Adds a message to the db about the current visualization.</p>
 
-	visualFactory.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user, name, text</span>)</span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	visualFactory.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user, name, text, org</span>)</span>{
 		<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/visualizations'</span>);
 		<span class="hljs-keyword">var</span> messageRef = ref.child(name).child(<span class="hljs-string">'messages'</span>);
 		messages = $firebaseArray(messageRef);
@@ -177,32 +229,32 @@
 	};
 
 	visualFactory.customTooltip = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">tooltipId, width</span>) </span>{
-		
+
 	  $(<span class="hljs-string">"body"</span>).append(<span class="hljs-string">"&lt;div class='tooltip' id='"</span>+tooltipId+<span class="hljs-string">"'&gt;&lt;/div&gt;"</span>);
-	  
+
 	  <span class="hljs-keyword">if</span>(width){
 	    $(<span class="hljs-string">"#"</span>+tooltipId).css(<span class="hljs-string">"width"</span>, width);
 	  }
-	  
-	  
+
+
 	  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showTooltip</span>(<span class="hljs-params">content, event</span>)</span>{
 	    $(<span class="hljs-string">"#"</span>+tooltipId).html(content);
 	    $(<span class="hljs-string">"#"</span>+tooltipId).show();
-	    
+
 	    updatePosition(event);
 	  }
-	  
+
 	  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hideTooltip</span>(<span class="hljs-params"></span>)</span>{
 	    $(<span class="hljs-string">"#"</span>+tooltipId).hide();
 	  }
-	  
+
 	  hideTooltip();
 
 	  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updatePosition</span>(<span class="hljs-params">event</span>)</span>{
 	    <span class="hljs-keyword">var</span> ttid = <span class="hljs-string">"#"</span>+tooltipId;
 	    <span class="hljs-keyword">var</span> xOffset = <span class="hljs-number">20</span>;
 	    <span class="hljs-keyword">var</span> yOffset = <span class="hljs-number">10</span>;
-	    
+
 	     <span class="hljs-keyword">var</span> ttw = $(ttid).width();
 	     <span class="hljs-keyword">var</span> tth = $(ttid).height();
 	     <span class="hljs-keyword">var</span> wscrY = $(<span class="hljs-built_in">window</span>).scrollTop();
@@ -212,14 +264,14 @@
 	     <span class="hljs-keyword">var</span> ttleft = ((curX - wscrX + xOffset*<span class="hljs-number">2</span> + ttw) &gt; $(<span class="hljs-built_in">window</span>).width()) ? curX - ttw - xOffset*<span class="hljs-number">2</span> : curX + xOffset;
 	     <span class="hljs-keyword">if</span> (ttleft &lt; wscrX + xOffset){
 	      ttleft = wscrX + xOffset;
-	     } 
+	     }
 	     <span class="hljs-keyword">var</span> tttop = ((curY - wscrY + yOffset*<span class="hljs-number">2</span> + tth) &gt; $(<span class="hljs-built_in">window</span>).height()) ? curY - tth - yOffset*<span class="hljs-number">2</span> : curY + yOffset;
 	     <span class="hljs-keyword">if</span> (tttop &lt; wscrY + yOffset){
 	      tttop = curY + yOffset;
-	     } 
+	     }
 	     $(ttid).css(<span class="hljs-string">'top'</span>, tttop + <span class="hljs-string">'px'</span>).css(<span class="hljs-string">'left'</span>, ttleft + <span class="hljs-string">'px'</span>);
 	  }
-	  
+
 	  <span class="hljs-keyword">return</span> {
 	    showTooltip: showTooltip,
 	    hideTooltip: hideTooltip,
@@ -239,7 +291,7 @@
 	  }
 	  <span class="hljs-keyword">return</span> x1 + x2;
 	};
-	
+
 	<span class="hljs-keyword">return</span> visualFactory;
 }]);</pre></div></div>
             

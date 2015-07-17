@@ -145,21 +145,103 @@
             
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'visualReplyCtrl'</span>, [])
 
-.controller(<span class="hljs-string">'visualReplyController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Visualization, Replies, $rootScope</span>)</span>{
-	
-	<span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;
-	vm.username = $rootScope.logInfo.username;
-	vm.visualId = Visualization.getName();
+.controller(<span class="hljs-string">'visualReplyController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Visualization, Replies, $rootScope, $stateParams</span>)</span>{
 
-	vm.isReplying = <span class="hljs-literal">false</span>;
-	
-	vm.toggleReplying = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+	<span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Retrieve the current organization.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.org = $stateParams.org;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Get the current user.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.username = $rootScope.logInfo.username;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Get the current visualization ID.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.visualId = Visualization.getName();</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>The value for toggling the reply option.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.isReplying = <span class="hljs-literal">false</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Toggle the reply option on click.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.toggleReplying = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
 		vm.isReplying = !vm.isReplying;
-	};
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Add the reply to the current message on the visualization.</p>
 
-	vm.addVisualReply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e, index</span>) </span>{
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.addVisualReply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e, index</span>) </span>{
 		<span class="hljs-keyword">if</span>(e.keyCode === <span class="hljs-number">13</span>) {
-			Replies.addVisualReply(vm.username, vm.replyText, index, vm.visualId);
+			Replies.addVisualReply(vm.username, vm.replyText, index, vm.visualId, vm.org);
 			vm.replyText = <span class="hljs-string">''</span>;
 		}
 	};

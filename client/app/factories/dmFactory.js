@@ -3,7 +3,8 @@ angular.module('dmFactory', ['firebase'])
 .factory('DirectMessage', ['$firebaseArray', function ($firebaseArray){
 	var dmFactory = {};
 
-	// adds the message to both users' info in database
+	// Adds the message to both users' info in database.
+	// This allows both users to have a history of the messages when they log in.
 	dmFactory.addMessage = function(user1, user2, text, org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/directmessages');
 		var user1ref = ref.child(user1).child(user2);
@@ -22,7 +23,7 @@ angular.module('dmFactory', ['firebase'])
 		});
 	};
 
-	// gets direct messages attached to current user
+	// Gets direct messages to user2 attached to the current user.
 	dmFactory.getDirectMessages = function(user1, user2, org){
     	var dmRef = new Firebase('https://bizgramer.firebaseio.com/'+org+'/directmessages/' + user1 + '/' + user2);
     	var directMessages = $firebaseArray(dmRef);
