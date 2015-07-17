@@ -22,13 +22,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	// need to dynamically create routes based on the rooms available
 
-	$urlRouterProvider.otherwise('/signin');
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 
 	.state('orgsignup', {
 		url: '/orgsignup',
 		templateUrl: 'app/templates/orgsignup.html'
+	})
+	.state('landing', {
+		url: '',
+		templateUrl: 'app/templates/landing.html'
 	})
 	.state('main', {
 		url: '/:org',
@@ -96,7 +100,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	});
 });
 
-app.run(function ($rootScope, $window, $location, $state){
+app.run(function ($rootScope, $window, $location, $state, $stateParams){
 
 	$rootScope.shouldShow = true;
 	$rootScope.$on('$stateChangeStart', function (event, toState){
@@ -108,6 +112,8 @@ app.run(function ($rootScope, $window, $location, $state){
 		if(requireLogin && !$rootScope.logInfo){
 			event.preventDefault();
 			console.log('User must be logged in to access page');
+			// console.log($location.$$path.slice(1));
+			console.dir($stateParams);
 			$state.go('signin', {org: $location.$$path.slice(1)});
 		}
 	});
