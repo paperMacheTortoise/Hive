@@ -136,8 +136,6 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 		}
 		if ($rootScope.logInfo && $rootScope.logInfo.org !== $stateParams.org) {
 			event.preventDefault();
-			// console.log('user doesnt belong to this org');
-			// console.log('redirect user to landing');
 			$state.go('landing');
 		}
 		console.log('going to state ', toState.name);
