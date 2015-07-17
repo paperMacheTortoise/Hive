@@ -44,7 +44,8 @@ angular.module('roomFactory', ['firebase'])
     var messages = roomRef ? $firebaseArray(roomRef) : null;
     messages.$add({
       username: username,
-      text: text
+      text: text,
+      createdAt: Firebase.ServerValue.TIMESTAMP
     }).then(function(roomRef) {
       var id = roomRef.key();
       console.log('added a message with id ', id); // eg. -JuDu4oKDL_nl3hBPaOP

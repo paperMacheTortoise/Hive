@@ -16,7 +16,8 @@ angular.module('visualFactory', ['firebase'])
 		messages = $firebaseArray(messageRef);
 		messages.$add({
 			username: user,
-			text: text
+			text: text,
+			createdAt: Firebase.ServerValue.TIMESTAMP
 		});
 	};
 
