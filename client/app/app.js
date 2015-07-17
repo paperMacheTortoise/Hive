@@ -125,18 +125,17 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 		}
 	});
 
-	$rootScope.$on('$stateChangeSuccess', function (event, toState) {
+	$rootScope.$on('$stateChangeSuccess', function (event) {
 		// console.dir($rootScope);
 		// console.dir($stateParams)
 		// console.dir($rootScope.logInfo.org);
 		// console.dir($stateParams.org);
 		if ($rootScope.logInfo && $rootScope.logInfo.org !== $stateParams.org) {
 			event.preventDefault();
-			console.log('user doesnt belong to this org')
+			console.log('user doesnt belong to this org');
 			console.log('redirect user to landing');
-			$state.go('landing')
+			$state.go('landing');
 		}
-
 	});
 
 });
