@@ -37,7 +37,7 @@ angular.module('replyFactory', ['firebase'])
     replies.$add({
       username: username,
       text: text
-    })
+    });
   };
 
   return repliesFactory;
