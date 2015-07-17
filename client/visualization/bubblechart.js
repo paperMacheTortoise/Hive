@@ -1,26 +1,10 @@
 
-// var data = [{"DATE":"1985-1-1", "Time":3000, "Radius":84217,"Distance":282919,"Year": 2008},
-// {"DATE":"1985-2-1","Time":1000, "Radius":55809, "Distance":298124.4,"Year": 2008},
-// {"DATE":"1985-3-1","Time":2000,"Radius":86364,"Distance":303912.8,"Year": 2008},
-// {"DATE":"1985-4-1","Time":2700,"Radius":102045,"Distance":316665.7,"Year": 2008},
-// {"DATE":"1985-5-1","Time":2800,"Radius":115637,"Distance":318817.3,"Year": 2009},
-// {"DATE":"1985-6-1","Time":7000,"Radius":95645,"Distance":311279.5,"Year": 2009},
-// {"DATE":"1985-7-1","Time":8000,"Radius":99286,"Distance":321709.3,"Year": 2009},
-// {"DATE":"1986-7-1","Time":8000,"Radius":9286,"Distance":321709.3,"Year": 2009},
-// {"DATE":"1987-7-1","Time":8000,"Radius":9956,"Distance":321709.3,"Year": 2009},
-// {"DATE":"1988-7-1","Time":8000,"Radius":996,"Distance":321709.3,"Year": 2009},
-// {"DATE":"1985-8-1","Time":1000,"Radius":96547,"Distance":320373.3,"Year": 2010},
-// {"DATE":"1985-9-1","Time":500,"Radius":94699,"Distance":301929.8,"Year": 2010},
-// {"DATE":"1985-10-1","Time":5000,"Radius":100377,"Distance":320287.5,"Year": 2010},
-// {"DATE":"1985-11-1","Time":50,"Radius":119957,"Distance":308707.3,"Year": 2010}];
-
 (function() {
   var BubbleChart, root,
     __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; };
 
   BubbleChart = (function() {
     function BubbleChart(data) {
-      this.toggle = 1;
       this.hide_details = __bind(this.hide_details, this);
       this.show_details = __bind(this.show_details, this);
       this.hide_years = __bind(this.hide_years, this);

@@ -1,16 +1,28 @@
+
+
 <div class="container">
-	<div class="row visualization">
-		<h1>Visualization</h1>
+  <div class="row visualization">
+    <header>
+    <h1>Accounts Receivables</h1>
+    </header>
+    <div id="main" role="main">
+      <div id="view_selection" class="btn-group">
+        <a href="#" id="all" class="btn active">All Accounts</a>
+        <a href="#" id="year" class="btn">Seperate by Due Dates</a>
+      </div>
+      <div id="vis"></div>
+      <svg class="chart"></svg>
+    </div>
+   
 
-		<!-- Space for the visualization -->
+    <!-- Space for the visualization -->
 
 
 
 
 
+  </div>
 
-
-	</div>
 	<div class="row chatroom" ng-controller="visualController as visual">
 		<h1>Chat View</h1>
 		<ul>

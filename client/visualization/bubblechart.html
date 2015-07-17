@@ -48,10 +48,8 @@ footer {
   -moz-border-radius:5px;
 	border-radius: 5px;
   border: 2px solid #000;
-	/* background: #222222; */
   background: #fff;
 	opacity: .9;
-	/* color: #eeeeee; */
   color: black;
 	padding: 10px;
 	width: 300px;
@@ -90,17 +88,17 @@ footer {
   <script src="bubblechart.js"></script>
   <script src="testData.js"></script>
   <script type="text/javascript">
+
     $(document).ready(function() {
-        $(document).ready(function() {
-          $('#view_selection a').click(function() {
-            var view_type = $(this).attr('id');
-            $('#view_selection a').removeClass('active');
-            $(this).toggleClass('active');
-            toggle_view(view_type);
-            return false;
-          });
-        });
+      $('#view_selection a').click(function() {
+        var view_type = $(this).attr('id');
+        $('#view_selection a').removeClass('active');
+        $(this).toggleClass('active');
+        toggle_view(view_type);
+        return false;
+      });
     });
+    
   </script>
 
   
