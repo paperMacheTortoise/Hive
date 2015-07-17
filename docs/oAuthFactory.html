@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>oAuthFactory.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="auth.html">
+                  auth.js
+                </a>
+              
+                
+                <a class="source" href="directmessage.html">
+                  directmessage.js
+                </a>
+              
+                
+                <a class="source" href="main.html">
+                  main.js
+                </a>
+              
+                
+                <a class="source" href="oAuth.html">
+                  oAuth.js
+                </a>
+              
+                
+                <a class="source" href="orgsignup.html">
+                  orgsignup.js
+                </a>
+              
+                
+                <a class="source" href="profile.html">
+                  profile.js
+                </a>
+              
+                
+                <a class="source" href="reply.html">
+                  reply.js
+                </a>
+              
+                
+                <a class="source" href="room.html">
+                  room.js
+                </a>
+              
+                
+                <a class="source" href="upload.html">
+                  upload.js
+                </a>
+              
+                
+                <a class="source" href="visual.html">
+                  visual.js
+                </a>
+              
+                
+                <a class="source" href="visualReply.html">
+                  visualReply.js
+                </a>
+              
+                
+                <a class="source" href="authFactory.html">
+                  authFactory.js
+                </a>
+              
+                
+                <a class="source" href="dmFactory.html">
+                  dmFactory.js
+                </a>
+              
+                
+                <a class="source" href="oAuthFactory.html">
+                  oAuthFactory.js
+                </a>
+              
+                
+                <a class="source" href="orgsignupFactory.html">
+                  orgsignupFactory.js
+                </a>
+              
+                
+                <a class="source" href="replyFactory.html">
+                  replyFactory.js
+                </a>
+              
+                
+                <a class="source" href="roomFactory.html">
+                  roomFactory.js
+                </a>
+              
+                
+                <a class="source" href="uploadFactory.html">
+                  uploadFactory.js
+                </a>
+              
+                
+                <a class="source" href="userFactory.html">
+                  userFactory.js
+                </a>
+              
+                
+                <a class="source" href="visualFactory.html">
+                  visualFactory.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>oAuthFactory.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'oAuthFactories'</span>, [<span class="hljs-string">'firebase'</span>])
+
+.factory(<span class="hljs-string">'oAuth'</span>,[<span class="hljs-string">'$firebaseAuth'</span>, <span class="hljs-string">'Users'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$firebaseAuth, $firebaseArray, Users</span>)</span>{
+
+  <span class="hljs-keyword">var</span> oauthFactory = {};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>var ref = new Firebase(‘<a href="https://bizgramer.firebaseio.com/">https://bizgramer.firebaseio.com/</a>‘);</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>var authObj = $firebaseAuth(ref);</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  oauthFactory.oAuthIntuit = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$id, org</span>) </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>get $id from $rootScope, look up user
+put token on user entry</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> users = Users.getUsers(org);
+    <span class="hljs-keyword">var</span> index = users.$indexFor($id);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>users[index].token;
+users[index].tokenSecret;
+users[index].realmId;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    users.$save(index);
+  };
+  <span class="hljs-keyword">return</span> oauthFactory;
+
+}]);</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

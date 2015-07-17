@@ -3,11 +3,11 @@ angular.module('roomFactory', ['firebase'])
 .factory('Rooms', ['$firebaseArray', function ($firebaseArray){
 
 	var roomsFactory = {};
+
   var getRef = function(org){
   	var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/rooms');
   	var rooms = $firebaseArray(ref);
     var roomNames = [];
-
   	// Create an array to store the room names.
     // Loop through the rooms, and return all the room names.
 
@@ -30,11 +30,13 @@ angular.module('roomFactory', ['firebase'])
 		return obj.roomNames;
 	};
 
+ // Sets the selected room user clicks from Main.
   var roomName = '';
   roomsFactory.setRoom = function (name){
     roomName = name;
   };
 
+  // Returns the current room.
   roomsFactory.getCurrentName = function(){
     return roomName;
   };

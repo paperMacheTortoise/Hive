@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>visual.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="auth.html">
+                  auth.js
+                </a>
+              
+                
+                <a class="source" href="directmessage.html">
+                  directmessage.js
+                </a>
+              
+                
+                <a class="source" href="main.html">
+                  main.js
+                </a>
+              
+                
+                <a class="source" href="oAuth.html">
+                  oAuth.js
+                </a>
+              
+                
+                <a class="source" href="orgsignup.html">
+                  orgsignup.js
+                </a>
+              
+                
+                <a class="source" href="profile.html">
+                  profile.js
+                </a>
+              
+                
+                <a class="source" href="reply.html">
+                  reply.js
+                </a>
+              
+                
+                <a class="source" href="room.html">
+                  room.js
+                </a>
+              
+                
+                <a class="source" href="upload.html">
+                  upload.js
+                </a>
+              
+                
+                <a class="source" href="visual.html">
+                  visual.js
+                </a>
+              
+                
+                <a class="source" href="visualReply.html">
+                  visualReply.js
+                </a>
+              
+                
+                <a class="source" href="authFactory.html">
+                  authFactory.js
+                </a>
+              
+                
+                <a class="source" href="dmFactory.html">
+                  dmFactory.js
+                </a>
+              
+                
+                <a class="source" href="oAuthFactory.html">
+                  oAuthFactory.js
+                </a>
+              
+                
+                <a class="source" href="orgsignupFactory.html">
+                  orgsignupFactory.js
+                </a>
+              
+                
+                <a class="source" href="replyFactory.html">
+                  replyFactory.js
+                </a>
+              
+                
+                <a class="source" href="roomFactory.html">
+                  roomFactory.js
+                </a>
+              
+                
+                <a class="source" href="uploadFactory.html">
+                  uploadFactory.js
+                </a>
+              
+                
+                <a class="source" href="userFactory.html">
+                  userFactory.js
+                </a>
+              
+                
+                <a class="source" href="visualFactory.html">
+                  visualFactory.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>visual.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'visualCtrl'</span>, [])
+
+.controller(<span class="hljs-string">'visualController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Visualization, $rootScope, $stateParams</span>)</span>{
+
+	<span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>CHAT FUNCTIONS
+Get ther current user;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.org = $stateParams.org;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>chat functions</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.username = $rootScope.logInfo.username;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>TO DO, set the visualization identifier</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.visualId = <span class="hljs-string">'visual1'</span>;
+  Visualization.setName(vm.visualId);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Gets the messages for the visualization.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.messages = Visualization.getMessages(vm.visualId);
+
+  $(<span class="hljs-string">'#view_selection a'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">var</span> view_type = $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">'id'</span>);
+        $(<span class="hljs-string">'#view_selection a'</span>).removeClass(<span class="hljs-string">'active'</span>);
+        $(<span class="hljs-keyword">this</span>).toggleClass(<span class="hljs-string">'active'</span>);
+        vm.toggle_view(view_type);
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+      });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Adds a message from the current user to the visualization chat.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  vm.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+		<span class="hljs-keyword">if</span>(e.keyCode === <span class="hljs-number">13</span>){
+			Visualization.addMessage(vm.username, vm.visualId, vm.text);
+			vm.text = <span class="hljs-string">''</span>;
+		}
+	};
+
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customTooltip</span>(<span class="hljs-params">tooltipId, width</span>)</span>{
+ 
+    $(<span class="hljs-string">"body"</span>).append(<span class="hljs-string">"&lt;div class='tooltip' id='"</span>+tooltipId+<span class="hljs-string">"'&gt;&lt;/div&gt;"</span>);
+    
+    <span class="hljs-keyword">if</span>(width){
+      $(<span class="hljs-string">"#"</span>+tooltipId).css(<span class="hljs-string">"width"</span>, width);
+    }
+    
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showTooltip</span>(<span class="hljs-params">content, event</span>)</span>{
+      $(<span class="hljs-string">"#"</span>+tooltipId).html(content);
+      $(<span class="hljs-string">"#"</span>+tooltipId).show();
+      updatePosition(event);
+    }
+    
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hideTooltip</span>(<span class="hljs-params"></span>)</span>{
+      $(<span class="hljs-string">"#"</span>+tooltipId).hide();
+    }
+    
+    hideTooltip();
+
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updatePosition</span>(<span class="hljs-params">event</span>)</span>{
+      <span class="hljs-keyword">var</span> ttid = <span class="hljs-string">"#"</span>+tooltipId;
+      <span class="hljs-keyword">var</span> xOffset = <span class="hljs-number">20</span>;
+      <span class="hljs-keyword">var</span> yOffset = <span class="hljs-number">10</span>;
+      
+       <span class="hljs-keyword">var</span> ttw = $(ttid).width();
+       <span class="hljs-keyword">var</span> tth = $(ttid).height();
+       <span class="hljs-keyword">var</span> wscrY = $(<span class="hljs-built_in">window</span>).scrollTop();
+       <span class="hljs-keyword">var</span> wscrX = $(<span class="hljs-built_in">window</span>).scrollLeft();
+       <span class="hljs-keyword">var</span> curX = (<span class="hljs-built_in">document</span>.all) ? event.clientX + wscrX : event.pageX;
+       <span class="hljs-keyword">var</span> curY = (<span class="hljs-built_in">document</span>.all) ? event.clientY + wscrY : event.pageY;
+       <span class="hljs-keyword">var</span> ttleft = ((curX - wscrX + xOffset*<span class="hljs-number">2</span> + ttw) &gt; $(<span class="hljs-built_in">window</span>).width()) ? curX - ttw - xOffset*<span class="hljs-number">2</span> : curX + xOffset;
+       <span class="hljs-keyword">if</span> (ttleft &lt; wscrX + xOffset){
+        ttleft = wscrX + xOffset;
+       } 
+       <span class="hljs-keyword">var</span> tttop = ((curY - wscrY + yOffset*<span class="hljs-number">2</span> + tth) &gt; $(<span class="hljs-built_in">window</span>).height()) ? curY - tth - yOffset*<span class="hljs-number">2</span> : curY + yOffset;
+       <span class="hljs-keyword">if</span> (tttop &lt; wscrY + yOffset){
+        tttop = curY + yOffset;
+       } 
+       $(ttid).css(<span class="hljs-string">'top'</span>, tttop + <span class="hljs-string">'px'</span>).css(<span class="hljs-string">'left'</span>, ttleft + <span class="hljs-string">'px'</span>);
+    }
+    
+    <span class="hljs-keyword">return</span> {
+      showTooltip: showTooltip,
+      hideTooltip: hideTooltip,
+      updatePosition: updatePosition
+    };
+  }
+
+  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">addCommas</span>(<span class="hljs-params">nStr</span>)
+  </span>{
+    nStr += <span class="hljs-string">''</span>;
+    x = nStr.split(<span class="hljs-string">'.'</span>);
+    x1 = x[<span class="hljs-number">0</span>];
+    x2 = x.length &gt; <span class="hljs-number">1</span> ? <span class="hljs-string">'.'</span> + x[<span class="hljs-number">1</span>] : <span class="hljs-string">''</span>;
+    <span class="hljs-keyword">var</span> rgx = <span class="hljs-regexp">/(\d+)(\d{3})/</span>;
+    <span class="hljs-keyword">while</span> (rgx.test(x1)) {
+      x1 = x1.replace(rgx, <span class="hljs-string">'$1'</span> + <span class="hljs-string">','</span> + <span class="hljs-string">'$2'</span>);
+    }
+    <span class="hljs-keyword">return</span> x1 + x2;
+  }
+
+
+(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">var</span> BubbleChart, root,
+    __bind = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">fn, me</span>)</span>{ <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{ <span class="hljs-keyword">return</span> fn.apply(me, <span class="hljs-built_in">arguments</span>); }; };
+
+  BubbleChart = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">BubbleChart</span>(<span class="hljs-params">data</span>) </span>{
+      <span class="hljs-keyword">this</span>.hide_details = __bind(<span class="hljs-keyword">this</span>.hide_details, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.show_details = __bind(<span class="hljs-keyword">this</span>.show_details, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.hide_years = __bind(<span class="hljs-keyword">this</span>.hide_years, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.display_years = __bind(<span class="hljs-keyword">this</span>.display_years, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.move_towards_year = __bind(<span class="hljs-keyword">this</span>.move_towards_year, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.display_by_year = __bind(<span class="hljs-keyword">this</span>.display_by_year, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.move_towards_center = __bind(<span class="hljs-keyword">this</span>.move_towards_center, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.display_group_all = __bind(<span class="hljs-keyword">this</span>.display_group_all, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.start = __bind(<span class="hljs-keyword">this</span>.start, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.create_vis = __bind(<span class="hljs-keyword">this</span>.create_vis, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">this</span>.create_nodes = __bind(<span class="hljs-keyword">this</span>.create_nodes, <span class="hljs-keyword">this</span>);
+      <span class="hljs-keyword">var</span> max_amount;
+      <span class="hljs-keyword">this</span>.data = data;
+      <span class="hljs-keyword">this</span>.width = <span class="hljs-number">940</span>;
+      <span class="hljs-keyword">this</span>.height = <span class="hljs-number">600</span>;
+      <span class="hljs-keyword">this</span>.tooltip = customTooltip(<span class="hljs-string">"toolTipID"</span>, <span class="hljs-number">240</span>);
+      <span class="hljs-keyword">this</span>.center = {
+        x: <span class="hljs-keyword">this</span>.width / <span class="hljs-number">2</span>,
+        y: <span class="hljs-keyword">this</span>.height / <span class="hljs-number">2</span>
+      };
+      <span class="hljs-keyword">this</span>.year_centers = {
+        <span class="hljs-string">"1 - 30 days past due"</span>: {
+          x: <span class="hljs-keyword">this</span>.width / <span class="hljs-number">3</span>,
+          y: <span class="hljs-keyword">this</span>.height / <span class="hljs-number">2</span>
+        },
+        <span class="hljs-string">"31 - 60 days past due"</span>: {
+          x: <span class="hljs-keyword">this</span>.width / <span class="hljs-number">2</span>,
+          y: <span class="hljs-keyword">this</span>.height / <span class="hljs-number">2</span>
+        },
+        <span class="hljs-string">"61 - 90 days past due"</span>: {
+          x: <span class="hljs-number">2</span> * <span class="hljs-keyword">this</span>.width / <span class="hljs-number">3</span>,
+          y: <span class="hljs-keyword">this</span>.height / <span class="hljs-number">2</span>
+        }
+      };
+      <span class="hljs-keyword">this</span>.layout_gravity = -<span class="hljs-number">0.01</span>;
+      <span class="hljs-keyword">this</span>.damper = <span class="hljs-number">0.1</span>;
+      <span class="hljs-keyword">this</span>.vis = <span class="hljs-literal">null</span>;
+      <span class="hljs-keyword">this</span>.nodes = [];
+      <span class="hljs-keyword">this</span>.force = <span class="hljs-literal">null</span>;
+      <span class="hljs-keyword">this</span>.circles = <span class="hljs-literal">null</span>;
+      max_amount = d3.max(<span class="hljs-keyword">this</span>.data, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">parseInt</span>(d.amount);
+      });
+      <span class="hljs-keyword">this</span>.fill_color = d3.scale.ordinal().domain([<span class="hljs-string">"1 - 30 days past due"</span>,<span class="hljs-string">"31 - 60 days past due"</span>,<span class="hljs-string">"61 - 90 days past due"</span>]).range([<span class="hljs-string">"green"</span>, <span class="hljs-string">"blue"</span>, <span class="hljs-string">"red"</span>]);
+      <span class="hljs-keyword">this</span>.radius_scale = d3.scale.pow().exponent(<span class="hljs-number">0.5</span>).domain([<span class="hljs-number">0</span>, max_amount]).range([<span class="hljs-number">2</span>, <span class="hljs-number">85</span>]);
+      <span class="hljs-keyword">this</span>.create_nodes();
+      <span class="hljs-keyword">this</span>.create_vis();
+    }
+
+    BubbleChart.prototype.create_nodes = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">this</span>.data.forEach((<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          <span class="hljs-keyword">var</span> node;
+          node = {
+            client: d.client,
+            client_id: d.client_id,
+            radius: _this.radius_scale(<span class="hljs-built_in">parseInt</span>(d.amount)),
+            amount: +d.amount,
+            open_balance: d.open_balance,
+            days_past_due: d.days_past_due,
+            due_date: d.due_date,
+            invoice_num: d.invoice_num,
+            invoice_date: d.invoice_date,
+            x: <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">900</span>,
+            y: <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">800</span>
+          };
+          <span class="hljs-keyword">return</span> _this.nodes.push(node);
+        };
+      })(<span class="hljs-keyword">this</span>));
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.nodes.sort(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">a, b</span>) </span>{
+        <span class="hljs-keyword">return</span> b.amount - a.amount;
+      });
+    };
+
+    BubbleChart.prototype.create_vis = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> that;
+      <span class="hljs-keyword">this</span>.vis = d3.select(<span class="hljs-string">"#vis"</span>).append(<span class="hljs-string">"svg"</span>).attr(<span class="hljs-string">"width"</span>, <span class="hljs-keyword">this</span>.width).attr(<span class="hljs-string">"height"</span>, <span class="hljs-keyword">this</span>.height).attr(<span class="hljs-string">"id"</span>, <span class="hljs-string">"svg_vis"</span>);
+      <span class="hljs-keyword">this</span>.circles = <span class="hljs-keyword">this</span>.vis.selectAll(<span class="hljs-string">"circle"</span>).data(<span class="hljs-keyword">this</span>.nodes, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+        <span class="hljs-keyword">return</span> d.client;
+      });
+      that = <span class="hljs-keyword">this</span>;
+      <span class="hljs-keyword">this</span>.circles.enter().append(<span class="hljs-string">"circle"</span>).attr(<span class="hljs-string">"r"</span>, <span class="hljs-number">0</span>).attr(<span class="hljs-string">"fill"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          <span class="hljs-keyword">return</span> _this.fill_color(d.days_past_due);
+        };
+      })(<span class="hljs-keyword">this</span>)).attr(<span class="hljs-string">"stroke-width"</span>, <span class="hljs-number">2</span>).attr(<span class="hljs-string">"stroke"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          <span class="hljs-keyword">return</span> d3.rgb(_this.fill_color(d.days_past_due)).darker();
+        };
+      })(<span class="hljs-keyword">this</span>)).attr(<span class="hljs-string">"title"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"bubble_"</span> + d.client_id;
+      }).on(<span class="hljs-string">"mouseover"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d, i</span>) </span>{
+        <span class="hljs-keyword">return</span> that.show_details(d, i, <span class="hljs-keyword">this</span>);
+      }).on(<span class="hljs-string">"mouseout"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d, i</span>) </span>{
+        <span class="hljs-keyword">return</span> that.hide_details(d, i, <span class="hljs-keyword">this</span>);
+      });
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.circles.transition().duration(<span class="hljs-number">2000</span>).attr(<span class="hljs-string">"r"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+        <span class="hljs-keyword">return</span> d.radius;
+      });
+    };
+
+    BubbleChart.prototype.charge = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+      <span class="hljs-keyword">return</span> -<span class="hljs-built_in">Math</span>.pow(d.radius, <span class="hljs-number">2.0</span>) / <span class="hljs-number">8</span>;
+    };
+
+    BubbleChart.prototype.start = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.force = d3.layout.force().nodes(<span class="hljs-keyword">this</span>.nodes).size([<span class="hljs-keyword">this</span>.width, <span class="hljs-keyword">this</span>.height]);
+    };
+
+    BubbleChart.prototype.display_group_all = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">this</span>.force.gravity(<span class="hljs-keyword">this</span>.layout_gravity).charge(<span class="hljs-keyword">this</span>.charge).friction(<span class="hljs-number">0.9</span>).on(<span class="hljs-string">"tick"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+          <span class="hljs-keyword">return</span> _this.circles.each(_this.move_towards_center(e.alpha)).attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+            <span class="hljs-keyword">return</span> d.x;
+          }).attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+            <span class="hljs-keyword">return</span> d.y;
+          });
+        };
+      })(<span class="hljs-keyword">this</span>));
+      <span class="hljs-keyword">this</span>.force.start();
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.hide_years();
+    };
+
+    BubbleChart.prototype.move_towards_center = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">alpha</span>) </span>{
+      <span class="hljs-keyword">return</span> (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          d.x = d.x + (_this.center.x - d.x) * (_this.damper + <span class="hljs-number">0.02</span>) * alpha;
+          <span class="hljs-keyword">return</span> d.y = d.y + (_this.center.y - d.y) * (_this.damper + <span class="hljs-number">0.02</span>) * alpha;
+        };
+      })(<span class="hljs-keyword">this</span>);
+    };
+
+    BubbleChart.prototype.display_by_year = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">this</span>.force.gravity(<span class="hljs-keyword">this</span>.layout_gravity).charge(<span class="hljs-keyword">this</span>.charge).friction(<span class="hljs-number">0.9</span>).on(<span class="hljs-string">"tick"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+          <span class="hljs-keyword">return</span> _this.circles.each(_this.move_towards_year(e.alpha)).attr(<span class="hljs-string">"cx"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+            <span class="hljs-keyword">return</span> d.x;
+          }).attr(<span class="hljs-string">"cy"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+            <span class="hljs-keyword">return</span> d.y;
+          });
+        };
+      })(<span class="hljs-keyword">this</span>));
+      <span class="hljs-keyword">this</span>.force.start();
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.display_years();
+    };
+
+    BubbleChart.prototype.move_towards_year = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">alpha</span>) </span>{
+      <span class="hljs-keyword">return</span> (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          <span class="hljs-keyword">var</span> target;
+          target = _this.year_centers[d.days_past_due];
+          d.x = d.x + (target.x - d.x) * (_this.damper + <span class="hljs-number">0.02</span>) * alpha * <span class="hljs-number">1.1</span>;
+          <span class="hljs-keyword">return</span> d.y = d.y + (target.y - d.y) * (_this.damper + <span class="hljs-number">0.02</span>) * alpha * <span class="hljs-number">1.1</span>;
+        };
+      })(<span class="hljs-keyword">this</span>);
+    };
+
+    BubbleChart.prototype.display_years = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> years, years_data, years_x;
+      years_x = {
+        <span class="hljs-string">"Less Than 30 Days"</span>: <span class="hljs-number">240</span>,
+        <span class="hljs-string">"30 to 60 Days"</span>: <span class="hljs-keyword">this</span>.width / <span class="hljs-number">2</span> + <span class="hljs-number">100</span>,
+        <span class="hljs-string">"60 Days or Older"</span>: <span class="hljs-keyword">this</span>.width - <span class="hljs-number">160</span>
+      };
+      years_data = d3.keys(years_x);
+      years = <span class="hljs-keyword">this</span>.vis.selectAll(<span class="hljs-string">".years"</span>).data(years_data);
+      <span class="hljs-keyword">return</span> years.enter().append(<span class="hljs-string">"text"</span>).attr(<span class="hljs-string">"class"</span>, <span class="hljs-string">"years"</span>).attr(<span class="hljs-string">"x"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          <span class="hljs-keyword">return</span> years_x[d];
+        };
+      })(<span class="hljs-keyword">this</span>)).attr(<span class="hljs-string">"y"</span>, <span class="hljs-number">40</span>).attr(<span class="hljs-string">"text-anchor"</span>, <span class="hljs-string">"middle"</span>).text(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+        <span class="hljs-keyword">return</span> d;
+      });
+    };
+
+    BubbleChart.prototype.hide_years = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">var</span> years;
+      <span class="hljs-keyword">return</span> years = <span class="hljs-keyword">this</span>.vis.selectAll(<span class="hljs-string">".years"</span>).remove();
+    };
+
+    BubbleChart.prototype.show_details = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, i, element</span>) </span>{
+      <span class="hljs-keyword">var</span> content;
+      d3.select(element).attr(<span class="hljs-string">"stroke"</span>, <span class="hljs-string">"black"</span>);
+      content = <span class="hljs-string">"&lt;span class=\"name\"&gt;Client:&lt;/span&gt;&lt;span class=\"value\"&gt; "</span> + data.client + <span class="hljs-string">"&lt;/span&gt;&lt;br/&gt;"</span>;
+      content += <span class="hljs-string">"&lt;span class=\"name\"&gt;Client ID:&lt;/span&gt;&lt;span class=\"value\"&gt; "</span> + data.client_id + <span class="hljs-string">"&lt;/span&gt;&lt;br/&gt;"</span>;
+      content += <span class="hljs-string">"&lt;span class=\"name\"&gt;Amount:&lt;/span&gt;&lt;span class=\"value\"&gt; $"</span> + (addCommas(data.amount)) + <span class="hljs-string">"&lt;/span&gt;&lt;br/&gt;"</span>;
+      content += <span class="hljs-string">"&lt;span class=\"name\"&gt;Due Date:&lt;/span&gt;&lt;span class=\"value\"&gt; "</span> + data.due_date + <span class="hljs-string">"&lt;/span&gt;&lt;br/&gt;"</span>;
+      content += <span class="hljs-string">"&lt;span class=\"name\"&gt;Invoice Number:&lt;/span&gt;&lt;span class=\"value\"&gt; "</span> + data.invoice_num + <span class="hljs-string">"&lt;/span&gt;&lt;br/&gt;"</span>;
+      content += <span class="hljs-string">"&lt;span class=\"name\"&gt;Invoice Date:&lt;/span&gt;&lt;span class=\"value\"&gt; "</span> + data.invoice_date + <span class="hljs-string">"&lt;/span&gt;&lt;br/&gt;"</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tooltip.showTooltip(content, d3.event);
+    };
+
+    BubbleChart.prototype.hide_details = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data, i, element</span>) </span>{
+      d3.select(element).attr(<span class="hljs-string">"stroke"</span>, (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">_this</span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">d</span>) </span>{
+          <span class="hljs-keyword">return</span> d3.rgb(_this.fill_color(d.days_past_due)).darker();
+        };
+      })(<span class="hljs-keyword">this</span>));
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tooltip.hideTooltip();
+    };
+
+    <span class="hljs-keyword">return</span> BubbleChart;
+
+  })();
+
+  root = <span class="hljs-keyword">typeof</span> exports !== <span class="hljs-string">"undefined"</span> &amp;&amp; exports !== <span class="hljs-literal">null</span> ? exports : <span class="hljs-keyword">this</span>;
+
+  $(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">var</span> chart, render_vis;
+    chart = <span class="hljs-literal">null</span>;
+    render_vis = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>{
+      chart = <span class="hljs-keyword">new</span> BubbleChart(data);
+      chart.start();
+      <span class="hljs-keyword">return</span> vm.display_all();
+    };
+    vm.display_all = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> chart.display_group_all();
+      };
+    })(<span class="hljs-keyword">this</span>);
+    vm.display_year = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> chart.display_by_year();
+      };
+    })(<span class="hljs-keyword">this</span>);
+    vm.toggle_view = (<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">view_type</span>) </span>{
+        <span class="hljs-keyword">if</span> (view_type === <span class="hljs-string">'year'</span>) {
+          <span class="hljs-keyword">return</span> vm.display_year();
+        } <span class="hljs-keyword">else</span> {
+          <span class="hljs-keyword">return</span> vm.display_all();
+        }
+      };
+    })(<span class="hljs-keyword">this</span>);
+    <span class="hljs-keyword">return</span> render_vis(testData);
+  });
+
+}).call(<span class="hljs-keyword">this</span>);
+
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

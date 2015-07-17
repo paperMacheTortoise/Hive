@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>room.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page_wrapper">
+            <div id="jump_page">
+              
+                
+                <a class="source" href="auth.html">
+                  auth.js
+                </a>
+              
+                
+                <a class="source" href="directmessage.html">
+                  directmessage.js
+                </a>
+              
+                
+                <a class="source" href="main.html">
+                  main.js
+                </a>
+              
+                
+                <a class="source" href="oAuth.html">
+                  oAuth.js
+                </a>
+              
+                
+                <a class="source" href="orgsignup.html">
+                  orgsignup.js
+                </a>
+              
+                
+                <a class="source" href="profile.html">
+                  profile.js
+                </a>
+              
+                
+                <a class="source" href="reply.html">
+                  reply.js
+                </a>
+              
+                
+                <a class="source" href="room.html">
+                  room.js
+                </a>
+              
+                
+                <a class="source" href="upload.html">
+                  upload.js
+                </a>
+              
+                
+                <a class="source" href="visual.html">
+                  visual.js
+                </a>
+              
+                
+                <a class="source" href="visualReply.html">
+                  visualReply.js
+                </a>
+              
+                
+                <a class="source" href="authFactory.html">
+                  authFactory.js
+                </a>
+              
+                
+                <a class="source" href="dmFactory.html">
+                  dmFactory.js
+                </a>
+              
+                
+                <a class="source" href="oAuthFactory.html">
+                  oAuthFactory.js
+                </a>
+              
+                
+                <a class="source" href="orgsignupFactory.html">
+                  orgsignupFactory.js
+                </a>
+              
+                
+                <a class="source" href="replyFactory.html">
+                  replyFactory.js
+                </a>
+              
+                
+                <a class="source" href="roomFactory.html">
+                  roomFactory.js
+                </a>
+              
+                
+                <a class="source" href="uploadFactory.html">
+                  uploadFactory.js
+                </a>
+              
+                
+                <a class="source" href="userFactory.html">
+                  userFactory.js
+                </a>
+              
+                
+                <a class="source" href="visualFactory.html">
+                  visualFactory.js
+                </a>
+              
+            </div>
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>room.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>Angular controller for room.html</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'roomCtrl'</span>, [])
+
+.controller(<span class="hljs-string">'roomController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Rooms, $rootScope,$stateParams</span>) </span>{
+  <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Passes the roomName from the main view.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  vm.roomname = $stateParams.roomName;
+  vm.org = $stateParams.org;
+  Rooms.setRoom(vm.roomname, vm.org); <span class="hljs-comment">// CHECK IF NECESSARY</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Gets the messages from the roomFactory.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  vm.messages = Rooms.getRoomMessages(vm.org);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Gets the current user.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  vm.username = $rootScope.logInfo.username;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Adds a message to the room and sends to the roomFactory.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">this</span>.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
+    <span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">13</span>) {
+      <span class="hljs-keyword">var</span> userName = vm.username || <span class="hljs-string">'anon'</span>;
+      <span class="hljs-keyword">var</span> roomName = vm.roomname || <span class="hljs-string">'general'</span>;
+      <span class="hljs-built_in">console</span>.log(userName, roomName, vm.text);
+
+      Rooms.addMessage(userName, vm.text, vm.org);
+      vm.text = <span class="hljs-string">''</span>;
+    }
+  };
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
