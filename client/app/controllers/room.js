@@ -4,9 +4,10 @@ angular.module('roomCtrl', [])
 .controller('roomController', function (Rooms, $rootScope, $stateParams) {
   console.log($stateParams);
   var vm = this;
+  vm.org = $stateParams.org;
   vm.roomname = $stateParams.roomName;
-  Rooms.setRoom(vm.roomname);
-  vm.messages = Rooms.getRoomMessages();
+  Rooms.setRoom(vm.roomname, vm.org);
+  vm.messages = Rooms.getRoomMessages(vm.org);
   vm.username = $rootScope.logInfo.username;
 
   this.addMessage = function (e) {
@@ -15,7 +16,7 @@ angular.module('roomCtrl', [])
       var roomName = vm.roomname || 'general';
       console.log(userName, roomName, vm.text);
 
-      Rooms.addMessage(userName, vm.text);
+      Rooms.addMessage(userName, vm.text, vm.org);
       vm.text = '';
     }
   };

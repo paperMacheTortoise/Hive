@@ -3,23 +3,31 @@ angular.module('roomFactory', ['firebase'])
 .factory('Rooms', ['$firebaseArray', function ($firebaseArray){
 
 	var roomsFactory = {};
-	var ref = new Firebase('https://bizgramer.firebaseio.com/hr/rooms');
-	var rooms = $firebaseArray(ref);
-  var roomNames = [];
+  var getRef = function(org){
+  	var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/rooms');
+  	var rooms = $firebaseArray(ref);
+    var roomNames = [];
 
-	// Create an array to store the room names.
-  // Loop through the rooms, and return all the room names.
+  	// Create an array to store the room names.
+    // Loop through the rooms, and return all the room names.
 
-  //use .$loaded promise to popular roomNames array with async data from firebase
-  rooms.$loaded()
-    .then(function() {
-      angular.forEach(rooms, function (room) {
-        roomNames.push(room.$id);
+    //use .$loaded promise to popular roomNames array with async data from firebase
+    rooms.$loaded()
+      .then(function() {
+        angular.forEach(rooms, function (room) {
+          roomNames.push(room.$id);
+        });
       });
-    });
+    return {
+      ref: ref,
+      rooms: rooms,
+      roomNames: roomNames
+    };
+  };
 
-	roomsFactory.getRooms = function(){
-		return roomNames;
+	roomsFactory.getRooms = function(org){
+    var obj =getRef(org);
+		return obj.roomNames;
 	};
 
   var roomName = '';
@@ -31,16 +39,18 @@ angular.module('roomFactory', ['firebase'])
     return roomName;
   };
 
-  roomsFactory.getRoomMessages = function() {
+  roomsFactory.getRoomMessages = function(org) {
     // var roomRef = ref.child(roomName);
     // var messages = $firebaseArray(roomRef);
-    var roomRef = roomName ? ref.child(roomName) : null;
+    var obj = getRef(org);
+    var roomRef = roomName ? obj.ref.child(roomName) : null;
     var messages =  roomRef ? $firebaseArray(roomRef) : null;
     return messages;
   };
 
-  roomsFactory.addMessage = function(username, text){
-    var roomRef = roomName ? ref.child(roomName) : null;
+  roomsFactory.addMessage = function(username, text, org){
+    var obj = getRef(org);
+    var roomRef = roomName ? obj.ref.child(roomName) : null;
     var messages = roomRef ? $firebaseArray(roomRef) : null;
     messages.$add({
       username: username,
@@ -52,8 +62,8 @@ angular.module('roomFactory', ['firebase'])
     });
   };
 
-  roomsFactory.addRoom = function (roomname) {
-    var url = "https://bizgramer.firebaseio.com/hr/rooms/";
+  roomsFactory.addRoom = function (roomname, org) {
+    var url = "https://bizgramer.firebaseio.com/"+org+"/rooms/";
     console.log(url);
     var addRoomRef = new Firebase(url);
     addRoomRef.child(roomname).set('this room is empty');

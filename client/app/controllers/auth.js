@@ -6,7 +6,7 @@ angular.module('authCtrl',['firebase'])
     Auth.signout();
 
     vm.setupUser = function(name, email, uid, pictureUrl){
-      vm.users = Users.getUsers();
+      vm.users = Users.getUsers(vm.org);
       vm.users.$add({
         username: name,
         email: email,
@@ -15,6 +15,7 @@ angular.module('authCtrl',['firebase'])
         pictureCollection: null
       }).then(function(ref){
         var logInfo = vm.users.$getRecord(ref.key());
+        console.log(logInfo);
         $rootScope.logInfo = logInfo;
         $rootScope.shouldShow = false;
         console.log(logInfo);
@@ -49,10 +50,15 @@ angular.module('authCtrl',['firebase'])
     vm.password = null;
 
     vm.getSignIn = function(data){
-      vm.users = Users.getUsers();
-      console.log(data.uid);
+      vm.users = Users.getUsers(vm.org);
+      console.log(vm.users);
+      vm.users.$loaded(function(){
+
       var key;
+      console.log(vm.users.length);
       for (var i = 0; i < vm.users.length; i++) {
+        console.log(vm.users[i].uid);
+        console.log(data.uid);
         if(vm.users[i].uid===data.uid){
           key = vm.users.$keyAt(i);
         }
@@ -61,6 +67,8 @@ angular.module('authCtrl',['firebase'])
       $rootScope.logInfo = logInfo;
       $rootScope.shouldShow = false;
       console.log(logInfo);
+      $state.go('main', {org: vm.org});
+    });
     };
 
     vm.signin = function(){
@@ -68,7 +76,6 @@ angular.module('authCtrl',['firebase'])
         vm.authData = data;
         console.log(data);
         vm.getSignIn(data);
-        $state.go('main', {org: vm.org});
       },vm);
     };
 
