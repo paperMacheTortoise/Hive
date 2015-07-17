@@ -8,11 +8,11 @@ angular.module('visualFactory', ['firebase'])
 	var visualId = '';
 	visualFactory.setName = function(name){
 		visualId = name;
-	}
+	};
 
 	visualFactory.getName = function(){
 		return visualId;
-	}
+	};
 
 	visualFactory.getMessages = function(name){
 		var messageRef = ref.child(name).child('messages');
