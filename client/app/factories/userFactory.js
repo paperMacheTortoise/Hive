@@ -11,7 +11,8 @@ angular.module('userFactory', ['firebase'])
     return users;
   };
 
-	// display all the usernames in the main menu except for the current user
+	// display all the usernames in the main menu except for the current user,
+  // so that the user cannot dm themselves
   userFactory.getDisplayUsers = function(current){
     var updatedUsers = [];
     users.$loaded()
@@ -31,6 +32,7 @@ angular.module('userFactory', ['firebase'])
     return pictures;
   };
 
+  // CHECK IF NECESSARY
   // These methods allow the user to select a username from the main menu
   // and send that user a direct message
   var username = '';

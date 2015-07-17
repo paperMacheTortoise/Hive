@@ -11,6 +11,7 @@ var app = angular.module('bizGramApp', [
 	'ui.router', 
 	'mainCtrl',
 	'visualCtrl',
+	'visualReplyCtrl',
 	'authCtrl', 
 	'directMessageCtrl',
 	'roomCtrl',
@@ -68,11 +69,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl:'app/templates/signup.html',
 		controller:'SignupController'
 	})
+	// Unathenticates the user and deletes the user information from the $rootScope on logout.
 	.state('logout',{
 		url: '/logout',
 		controller: function(Auth, $location, $rootScope){
-			Auth.signout();
-			delete $rootScope.logInfo;
+			Auth.signout(); 
+			delete $rootScope.logInfo; 
 			$location.path('/signin');
 		},
 		data: {
@@ -98,7 +100,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 app.run(function ($rootScope, $window, $location, $state){
 
+	// Value for ng-hide and ng-show on index. It displays the login and signup buttons when user is logged out.
+	// When user is logged in, displays profile and logout.
 	$rootScope.shouldShow = true;
+
+	// Checks that the user has been authenticated on each page. If not, the user is redirected to the signin page.
 	$rootScope.$on('$stateChangeStart', function (event, toState){
 		var requireLogin = toState.data.requireLogin;
 		if(requireLogin && !$rootScope.logInfo){
