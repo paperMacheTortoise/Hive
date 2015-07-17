@@ -25,8 +25,9 @@ angular.module('roomFactory', ['firebase'])
     };
   };
 
-	roomsFactory.getRooms = function(org){
-    var obj =getRef(org);
+	// Returns the list of rooms available.
+  roomsFactory.getRooms = function(org){
+    var obj = getRef(org);
 		return obj.roomNames;
 	};
 
@@ -36,20 +37,20 @@ angular.module('roomFactory', ['firebase'])
     roomName = name;
   };
 
-  // Returns the current room.
+  // Returns the current room to the controller.
   roomsFactory.getCurrentName = function(){
     return roomName;
   };
 
+  // Returns the messages for the current room from the db.
   roomsFactory.getRoomMessages = function(org) {
-    // var roomRef = ref.child(roomName);
-    // var messages = $firebaseArray(roomRef);
     var obj = getRef(org);
     var roomRef = roomName ? obj.ref.child(roomName) : null;
     var messages =  roomRef ? $firebaseArray(roomRef) : null;
     return messages;
   };
 
+  // Adds a message in the room to the db.
   roomsFactory.addMessage = function(username, text, org){
     var obj = getRef(org);
     var roomRef = roomName ? obj.ref.child(roomName) : null;
@@ -65,6 +66,7 @@ angular.module('roomFactory', ['firebase'])
     });
   };
 
+  // Adds a new room to the db.
   roomsFactory.addRoom = function (roomname, org) {
     var url = "https://bizgramer.firebaseio.com/"+org+"/rooms/";
     console.log(url);

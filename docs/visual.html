@@ -209,7 +209,7 @@ Get ther current user;</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	vm.messages = Visualization.getMessages(vm.visualId);
+            <div class="content"><div class='highlight'><pre>	vm.messages = Visualization.getMessages(vm.visualId, vm.org);
 
   $(<span class="hljs-string">'#view_selection a'</span>).click(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
         <span class="hljs-keyword">var</span> view_type = $(<span class="hljs-keyword">this</span>).attr(<span class="hljs-string">'id'</span>);
@@ -234,37 +234,49 @@ Get ther current user;</p>
             
             <div class="content"><div class='highlight'><pre>  vm.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e</span>) </span>{
 		<span class="hljs-keyword">if</span>(e.keyCode === <span class="hljs-number">13</span>){
-			Visualization.addMessage(vm.username, vm.visualId, vm.text);
+			Visualization.addMessage(vm.username, vm.visualId, vm.text, vm.org);
 			vm.text = <span class="hljs-string">''</span>;
 		}
-	};
+	};</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>VISUALIZATIONS</p>
 
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customTooltip</span>(<span class="hljs-params">tooltipId, width</span>)</span>{
 
-  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">customTooltip</span>(<span class="hljs-params">tooltipId, width</span>)</span>{
- 
     $(<span class="hljs-string">"body"</span>).append(<span class="hljs-string">"&lt;div class='tooltip' id='"</span>+tooltipId+<span class="hljs-string">"'&gt;&lt;/div&gt;"</span>);
-    
+
     <span class="hljs-keyword">if</span>(width){
       $(<span class="hljs-string">"#"</span>+tooltipId).css(<span class="hljs-string">"width"</span>, width);
     }
-    
+
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showTooltip</span>(<span class="hljs-params">content, event</span>)</span>{
       $(<span class="hljs-string">"#"</span>+tooltipId).html(content);
       $(<span class="hljs-string">"#"</span>+tooltipId).show();
       updatePosition(event);
     }
-    
+
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hideTooltip</span>(<span class="hljs-params"></span>)</span>{
       $(<span class="hljs-string">"#"</span>+tooltipId).hide();
     }
-    
+
     hideTooltip();
 
     <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">updatePosition</span>(<span class="hljs-params">event</span>)</span>{
       <span class="hljs-keyword">var</span> ttid = <span class="hljs-string">"#"</span>+tooltipId;
       <span class="hljs-keyword">var</span> xOffset = <span class="hljs-number">20</span>;
       <span class="hljs-keyword">var</span> yOffset = <span class="hljs-number">10</span>;
-      
+
        <span class="hljs-keyword">var</span> ttw = $(ttid).width();
        <span class="hljs-keyword">var</span> tth = $(ttid).height();
        <span class="hljs-keyword">var</span> wscrY = $(<span class="hljs-built_in">window</span>).scrollTop();
@@ -274,14 +286,14 @@ Get ther current user;</p>
        <span class="hljs-keyword">var</span> ttleft = ((curX - wscrX + xOffset*<span class="hljs-number">2</span> + ttw) &gt; $(<span class="hljs-built_in">window</span>).width()) ? curX - ttw - xOffset*<span class="hljs-number">2</span> : curX + xOffset;
        <span class="hljs-keyword">if</span> (ttleft &lt; wscrX + xOffset){
         ttleft = wscrX + xOffset;
-       } 
+       }
        <span class="hljs-keyword">var</span> tttop = ((curY - wscrY + yOffset*<span class="hljs-number">2</span> + tth) &gt; $(<span class="hljs-built_in">window</span>).height()) ? curY - tth - yOffset*<span class="hljs-number">2</span> : curY + yOffset;
        <span class="hljs-keyword">if</span> (tttop &lt; wscrY + yOffset){
         tttop = curY + yOffset;
-       } 
+       }
        $(ttid).css(<span class="hljs-string">'top'</span>, tttop + <span class="hljs-string">'px'</span>).css(<span class="hljs-string">'left'</span>, ttleft + <span class="hljs-string">'px'</span>);
     }
-    
+
     <span class="hljs-keyword">return</span> {
       showTooltip: showTooltip,
       hideTooltip: hideTooltip,

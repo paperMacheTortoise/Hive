@@ -147,14 +147,7 @@
 
 .factory(<span class="hljs-string">'Replies'</span>, [<span class="hljs-string">'$firebaseArray'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$firebaseArray</span>) </span>{
 
-  <span class="hljs-keyword">var</span> repliesFactory = {};
-
-  repliesFactory.getReplies = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">index, roomname, org</span>) </span>{
-    <span class="hljs-keyword">var</span> url = <span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/rooms/'</span> + roomname + <span class="hljs-string">'/'</span> + index + <span class="hljs-string">'/replies'</span>;
-    <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(url);
-    <span class="hljs-keyword">var</span> replies = $firebaseArray(ref);
-    <span class="hljs-keyword">return</span> replies;
-  };</pre></div></div>
+  <span class="hljs-keyword">var</span> repliesFactory = {};</pre></div></div>
             
         </li>
         
@@ -165,7 +158,27 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>adding a reply to message object in firebase</p>
+              <p>Gets the replies for the current message from the db.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  repliesFactory.getReplies = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">index, roomname, org</span>) </span>{
+    <span class="hljs-keyword">var</span> url = <span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/rooms/'</span> + roomname + <span class="hljs-string">'/'</span> + index + <span class="hljs-string">'/replies'</span>;
+    <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(url);
+    <span class="hljs-keyword">var</span> replies = $firebaseArray(ref);
+    <span class="hljs-keyword">return</span> replies;
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Adds the reply message to replies of the current message in the db. </p>
 
             </div>
             
@@ -179,17 +192,43 @@
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
     });
-  };
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Gets the reply messages for the current message from the db.</p>
 
-  repliesFactory.getVisualReplies = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">index, visualId</span>) </span>{
-    <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/visualizations/'</span> + visualId + <span class="hljs-string">'/messages/'</span> + index);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  repliesFactory.getVisualReplies = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">index, visualId, org</span>) </span>{
+    <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/visualizations/'</span> + visualId + <span class="hljs-string">'/messages/'</span> + index);
     <span class="hljs-keyword">var</span> replyRef = ref.child(<span class="hljs-string">'replies'</span>);
     <span class="hljs-keyword">var</span> replies = $firebaseArray(replyRef);
     <span class="hljs-keyword">return</span> replies;
-  };
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Adds a reply to the current message in the db.</p>
 
-  repliesFactory.addVisualReply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">username, text, index, visualId</span>) </span>{
-    <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/visualizations/'</span> + visualId + <span class="hljs-string">'/messages/'</span> + index);
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  repliesFactory.addVisualReply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">username, text, index, visualId, org</span>) </span>{
+    <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/visualizations/'</span> + visualId + <span class="hljs-string">'/messages/'</span> + index);
     <span class="hljs-keyword">var</span> replyRef = ref.child(<span class="hljs-string">'replies'</span>);
     <span class="hljs-keyword">var</span> replies = $firebaseArray(replyRef);
     replies.$add({
