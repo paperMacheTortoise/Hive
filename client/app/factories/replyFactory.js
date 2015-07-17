@@ -24,15 +24,15 @@ angular.module('replyFactory', ['firebase'])
     });
   };
 
-  repliesFactory.getVisualReplies = function (index, visualId) {
-    var ref = new Firebase('https://bizgramer.firebaseio.com/hr/visualizations/' + visualId + '/messages/' + index);
+  repliesFactory.getVisualReplies = function (index, visualId, org) {
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations/' + visualId + '/messages/' + index);
     var replyRef = ref.child('replies');
     var replies = $firebaseArray(replyRef);
     return replies;
   };
 
-  repliesFactory.addVisualReply = function (username, text, index, visualId) {
-    var ref = new Firebase('https://bizgramer.firebaseio.com/hr/visualizations/' + visualId + '/messages/' + index);
+  repliesFactory.addVisualReply = function (username, text, index, visualId, org) {
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations/' + visualId + '/messages/' + index);
     var replyRef = ref.child('replies');
     var replies = $firebaseArray(replyRef);
     replies.$add({

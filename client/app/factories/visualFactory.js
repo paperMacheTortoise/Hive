@@ -1,7 +1,7 @@
 angular.module('visualFactory', ['firebase'])
 
 .factory('Visualization', ['$firebaseArray', function ($firebaseArray){
-	
+
 	var visualFactory = {};
 
 	var visualId = '';
@@ -20,7 +20,7 @@ angular.module('visualFactory', ['firebase'])
 		return messages;
 	};
 
-	visualFactory.addMessage = function(user, name, text){
+	visualFactory.addMessage = function(user, name, text, org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
 		var messageRef = ref.child(name).child('messages');
 		messages = $firebaseArray(messageRef);
@@ -32,32 +32,32 @@ angular.module('visualFactory', ['firebase'])
 	};
 
 	visualFactory.customTooltip = function(tooltipId, width) {
-		
+
 	  $("body").append("<div class='tooltip' id='"+tooltipId+"'></div>");
-	  
+
 	  if(width){
 	    $("#"+tooltipId).css("width", width);
 	  }
-	  
-	  
+
+
 	  function showTooltip(content, event){
 	    $("#"+tooltipId).html(content);
 	    $("#"+tooltipId).show();
-	    
+
 	    updatePosition(event);
 	  }
-	  
+
 	  function hideTooltip(){
 	    $("#"+tooltipId).hide();
 	  }
-	  
+
 	  hideTooltip();
 
 	  function updatePosition(event){
 	    var ttid = "#"+tooltipId;
 	    var xOffset = 20;
 	    var yOffset = 10;
-	    
+
 	     var ttw = $(ttid).width();
 	     var tth = $(ttid).height();
 	     var wscrY = $(window).scrollTop();
@@ -67,14 +67,14 @@ angular.module('visualFactory', ['firebase'])
 	     var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
 	     if (ttleft < wscrX + xOffset){
 	      ttleft = wscrX + xOffset;
-	     } 
+	     }
 	     var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
 	     if (tttop < wscrY + yOffset){
 	      tttop = curY + yOffset;
-	     } 
+	     }
 	     $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
 	  }
-	  
+
 	  return {
 	    showTooltip: showTooltip,
 	    hideTooltip: hideTooltip,
@@ -94,6 +94,6 @@ angular.module('visualFactory', ['firebase'])
 	  }
 	  return x1 + x2;
 	};
-	
+
 	return visualFactory;
 }]);
