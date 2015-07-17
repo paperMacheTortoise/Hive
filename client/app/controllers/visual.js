@@ -101,10 +101,10 @@ angular.module('visualCtrl', [])
     function BubbleChart(data) {
       this.hide_details = __bind(this.hide_details, this);
       this.show_details = __bind(this.show_details, this);
-      this.hide_years = __bind(this.hide_years, this);
-      this.display_years = __bind(this.display_years, this);
-      this.move_towards_year = __bind(this.move_towards_year, this);
-      this.display_by_year = __bind(this.display_by_year, this);
+      this.hide_due_dates = __bind(this.hide_due_dates, this);
+      this.display_due_dates = __bind(this.display_due_dates, this);
+      this.move_towards_seperated = __bind(this.move_towards_seperated, this);
+      this.display_by_seperated = __bind(this.display_by_seperated, this);
       this.move_towards_center = __bind(this.move_towards_center, this);
       this.display_group_all = __bind(this.display_group_all, this);
       this.start = __bind(this.start, this);
@@ -119,7 +119,7 @@ angular.module('visualCtrl', [])
         x: this.width / 2,
         y: this.height / 2
       };
-      this.year_centers = {
+      this.due_date_centers = {
         "1 - 30 days past due": {
           x: this.width / 3,
           y: this.height / 2
@@ -219,7 +219,7 @@ angular.module('visualCtrl', [])
         };
       })(this));
       this.force.start();
-      return this.hide_years();
+      return this.hide_due_dates();
     };
 
     BubbleChart.prototype.move_towards_center = function(alpha) {
@@ -231,10 +231,10 @@ angular.module('visualCtrl', [])
       })(this);
     };
 
-    BubbleChart.prototype.display_by_year = function() {
+    BubbleChart.prototype.display_by_seperated = function() {
       this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", (function(_this) {
         return function(e) {
-          return _this.circles.each(_this.move_towards_year(e.alpha)).attr("cx", function(d) {
+          return _this.circles.each(_this.move_towards_seperated(e.alpha)).attr("cx", function(d) {
             return d.x;
           }).attr("cy", function(d) {
             return d.y;
@@ -242,21 +242,21 @@ angular.module('visualCtrl', [])
         };
       })(this));
       this.force.start();
-      return this.display_years();
+      return this.display_seperated();
     };
 
-    BubbleChart.prototype.move_towards_year = function(alpha) {
+    BubbleChart.prototype.move_towards_seperated = function(alpha) {
       return (function(_this) {
         return function(d) {
           var target;
-          target = _this.year_centers[d.days_past_due];
+          target = _this.due_date_centers[d.days_past_due];
           d.x = d.x + (target.x - d.x) * (_this.damper + 0.02) * alpha * 1.1;
           return d.y = d.y + (target.y - d.y) * (_this.damper + 0.02) * alpha * 1.1;
         };
       })(this);
     };
 
-    BubbleChart.prototype.display_years = function() {
+    BubbleChart.prototype.display_seperated = function() {
       var past_due_x = {
         "Less Than 30 Days": 240,
         "30 to 60 Days": this.width / 2 + 100,
@@ -281,7 +281,7 @@ angular.module('visualCtrl', [])
           });
     };
 
-    BubbleChart.prototype.hide_years = function() {
+    BubbleChart.prototype.hide_due_dates = function() {
       var past_due;
       return past_due = this.vis.selectAll(".past_due").remove();
     };
@@ -324,15 +324,15 @@ angular.module('visualCtrl', [])
         return chart.display_group_all();
       };
     })(this);
-    vm.display_year = (function() {
+    vm.display_seperated = (function() {
       return function() {
-        return chart.display_by_year();
+        return chart.display_by_seperated();
       };
     })(this);
     vm.toggle_view = (function() {
       return function(view_type) {
         if (view_type === 'seperate') {
-          return vm.display_year();
+          return vm.display_seperated();
         } else {
           return vm.display_all();
         }
