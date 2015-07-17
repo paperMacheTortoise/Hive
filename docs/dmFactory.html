@@ -146,8 +146,7 @@
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'dmFactory'</span>, [<span class="hljs-string">'firebase'</span>])
 
 .factory(<span class="hljs-string">'DirectMessage'</span>, [<span class="hljs-string">'$firebaseArray'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$firebaseArray</span>)</span>{
-	<span class="hljs-keyword">var</span> dmFactory = {};
-	<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/directmessages'</span>);</pre></div></div>
+	<span class="hljs-keyword">var</span> dmFactory = {};</pre></div></div>
             
         </li>
         
@@ -162,7 +161,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	dmFactory.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user1, user2, text</span>)</span>{
+            <div class="content"><div class='highlight'><pre>	dmFactory.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user1, user2, text, org</span>)</span>{
+		<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/directmessages'</span>);
 		<span class="hljs-keyword">var</span> user1ref = ref.child(user1).child(user2);
 		<span class="hljs-keyword">var</span> user2ref = ref.child(user2).child(user1);
 		<span class="hljs-keyword">var</span> user1Messages = $firebaseArray(user1ref);
@@ -192,8 +192,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	dmFactory.getDirectMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user1, user2</span>)</span>{
-    	<span class="hljs-keyword">var</span> dmRef = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/directmessages/'</span> + user1 + <span class="hljs-string">'/'</span> + user2);
+            <div class="content"><div class='highlight'><pre>	dmFactory.getDirectMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user1, user2, org</span>)</span>{
+    	<span class="hljs-keyword">var</span> dmRef = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/directmessages/'</span> + user1 + <span class="hljs-string">'/'</span> + user2);
     	<span class="hljs-keyword">var</span> directMessages = $firebaseArray(dmRef);
     	<span class="hljs-built_in">console</span>.log(directMessages);
     	<span class="hljs-keyword">return</span> directMessages;

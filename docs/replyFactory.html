@@ -149,8 +149,8 @@
 
   <span class="hljs-keyword">var</span> repliesFactory = {};
 
-  repliesFactory.getReplies = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">index, roomname</span>) </span>{
-    <span class="hljs-keyword">var</span> url = <span class="hljs-string">'https://bizgramer.firebaseio.com/hr/rooms/'</span> + roomname + <span class="hljs-string">'/'</span> + index + <span class="hljs-string">'/replies'</span>;
+  repliesFactory.getReplies = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">index, roomname, org</span>) </span>{
+    <span class="hljs-keyword">var</span> url = <span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/rooms/'</span> + roomname + <span class="hljs-string">'/'</span> + index + <span class="hljs-string">'/replies'</span>;
     <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(url);
     <span class="hljs-keyword">var</span> replies = $firebaseArray(ref);
     <span class="hljs-keyword">return</span> replies;
@@ -169,8 +169,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  repliesFactory.addReply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">username, text, index, roomname</span>) </span>{
-    <span class="hljs-keyword">var</span> url = <span class="hljs-string">'https://bizgramer.firebaseio.com/hr/rooms/'</span> + roomname + <span class="hljs-string">'/'</span> + index + <span class="hljs-string">'/replies'</span>;
+            <div class="content"><div class='highlight'><pre>  repliesFactory.addReply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">username, text, index, roomname, org</span>) </span>{
+    <span class="hljs-keyword">var</span> url = <span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/rooms/'</span> + roomname + <span class="hljs-string">'/'</span> + index + <span class="hljs-string">'/replies'</span>;
     <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'url '</span>, url);
     <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(url);
     <span class="hljs-keyword">var</span> replies = $firebaseArray(ref);

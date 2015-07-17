@@ -148,7 +148,6 @@
 .factory(<span class="hljs-string">'Visualization'</span>, [<span class="hljs-string">'$firebaseArray'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$firebaseArray</span>)</span>{
 	
 	<span class="hljs-keyword">var</span> visualFactory = {};
-	<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/visualizations'</span>);
 
 	<span class="hljs-keyword">var</span> visualId = <span class="hljs-string">''</span>;
 	visualFactory.setName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>)</span>{
@@ -159,13 +158,15 @@
 		<span class="hljs-keyword">return</span> visualId;
 	};
 
-	visualFactory.getMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name</span>)</span>{
+	visualFactory.getMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, org</span>)</span>{
+		<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/visualizations'</span>);
 		<span class="hljs-keyword">var</span> messageRef = ref.child(name).child(<span class="hljs-string">'messages'</span>);
 		messages = $firebaseArray(messageRef);
 		<span class="hljs-keyword">return</span> messages;
 	};
 
 	visualFactory.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">user, name, text</span>)</span>{
+		<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/visualizations'</span>);
 		<span class="hljs-keyword">var</span> messageRef = ref.child(name).child(<span class="hljs-string">'messages'</span>);
 		messages = $firebaseArray(messageRef);
 		messages.$add({

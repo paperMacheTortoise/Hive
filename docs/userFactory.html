@@ -148,8 +148,15 @@
 .factory(<span class="hljs-string">'Users'</span>, [<span class="hljs-string">'$firebaseArray'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$firebaseArray</span>)</span>{
 
 	<span class="hljs-keyword">var</span> userFactory = {};
-	<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/users'</span>);
-  <span class="hljs-keyword">var</span> users = $firebaseArray(ref);</pre></div></div>
+  <span class="hljs-keyword">var</span> fire = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">org</span>)</span>{
+
+    <span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/users'</span>);
+    <span class="hljs-keyword">var</span> users = $firebaseArray(ref);
+    <span class="hljs-keyword">return</span> {
+      ref:ref,
+      users:users
+    };
+  };</pre></div></div>
             
         </li>
         
@@ -164,8 +171,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  userFactory.getUsers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-    <span class="hljs-keyword">return</span> users;
+            <div class="content"><div class='highlight'><pre>  userFactory.getUsers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">org</span>)</span>{
+    <span class="hljs-keyword">return</span> fire(org).users;
   };</pre></div></div>
             
         </li>
@@ -182,24 +189,7 @@ so that the user cannot dm themselves</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  userFactory.getDisplayUsers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">current</span>)</span>{
-    <span class="hljs-keyword">var</span> updatedUsers = [];
-    users.$loaded()
-    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-      angular.forEach(users, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">user</span>)</span>{
-        <span class="hljs-keyword">if</span>(user.username !== current){
-          updatedUsers.push(user);
-        }
-      });
-    });
-		<span class="hljs-keyword">return</span> updatedUsers;
-	};
-
-  userFactory.getUserPictures = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key</span>)</span>{
-    <span class="hljs-keyword">var</span> pictureRef = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/users/'</span>+key+<span class="hljs-string">'/pictureCollection'</span>);
-    <span class="hljs-keyword">var</span> pictures = $firebaseArray(pictureRef);
-    <span class="hljs-keyword">return</span> pictures;
-  };</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  userFactory.getDisplayUsers = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">current,org</span>)</span>{</pre></div></div>
             
         </li>
         
@@ -209,6 +199,38 @@ so that the user cannot dm themselves</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>firebase array object from fire()</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> farray = fire(org);
+    <span class="hljs-keyword">var</span> updatedUsers = [];
+    farray.users.$loaded()
+    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      angular.forEach(farray.users, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">user</span>)</span>{
+        <span class="hljs-keyword">if</span>(user.username !== current){
+          updatedUsers.push(user);
+        }
+      });
+    });
+		<span class="hljs-keyword">return</span> updatedUsers;
+	};
+
+  userFactory.getUserPictures = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">key,org</span>)</span>{
+    <span class="hljs-keyword">var</span> pictureRef = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/users/'</span>+key+<span class="hljs-string">'/pictureCollection'</span>);
+    <span class="hljs-keyword">var</span> pictures = $firebaseArray(pictureRef);
+    <span class="hljs-keyword">return</span> pictures;
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>CHECK IF NECESSARY
 These methods allow the user to select a username from the main menu

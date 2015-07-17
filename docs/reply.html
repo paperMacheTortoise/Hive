@@ -146,9 +146,10 @@
             
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'replyCtrl'</span>, [])
 
-.controller(<span class="hljs-string">'replyController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Replies, Rooms, $rootScope</span>) </span>{
+.controller(<span class="hljs-string">'replyController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Replies, Rooms, $rootScope, $stateParams</span>) </span>{
 
-  <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;</pre></div></div>
+  <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;
+  vm.org = $stateParams.org;</pre></div></div>
             
         </li>
         
@@ -212,10 +213,10 @@
             
             <div class="content"><div class='highlight'><pre>  vm.addReply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">e, index</span>) </span>{
     <span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">13</span>) {
-      <span class="hljs-keyword">var</span> roomName = Rooms.getCurrentName();
+      <span class="hljs-keyword">var</span> roomName = Rooms.getCurrentName(vm.org);
       <span class="hljs-keyword">var</span> userName = vm.replyusername || <span class="hljs-string">'anon'</span>;
       <span class="hljs-built_in">console</span>.log(userName, vm.replytext, index, roomName);
-      Replies.addReply(userName, vm.replytext, index, roomName);
+      Replies.addReply(userName, vm.replytext, index, roomName, vm.org);
       vm.replytext = <span class="hljs-string">''</span>;
     }
   };

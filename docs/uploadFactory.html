@@ -147,24 +147,6 @@
 
 .factory(<span class="hljs-string">'Upload'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>)</span>{
   <span class="hljs-keyword">var</span> uploadFactory={};
-	AWS.config.update({accessKeyId: <span class="hljs-string">'AKIAIVEO6DBRV7OF7YDA'</span>, secretAccessKey: <span class="hljs-string">'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'</span>});
-	AWS.config.region = <span class="hljs-string">'us-west-2'</span>;
-	<span class="hljs-keyword">var</span> s3 = <span class="hljs-keyword">new</span> AWS.S3({params:{Bucket:<span class="hljs-string">'bizgram'</span>}});
-  uploadFactory.putFile = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">body, name, callback</span>)</span>{
-    s3.upload({
-      Body: body,
-      Key: <span class="hljs-string">'images/'</span>+name,
-      ACL: <span class="hljs-string">"public-read-write"</span>
-    },<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err,data</span>)</span>{
-      <span class="hljs-keyword">if</span>(err){
-        <span class="hljs-built_in">console</span>.log(err);
-      }
-      <span class="hljs-keyword">else</span>{
-        <span class="hljs-built_in">console</span>.log(data);
-        callback(<span class="hljs-string">'https://drgvq3mghnaxi.cloudfront.net/images/'</span>+name);
-      }
-    });
-  };
   <span class="hljs-keyword">return</span> uploadFactory;
 });</pre></div></div>
             

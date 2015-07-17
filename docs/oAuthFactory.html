@@ -175,8 +175,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>
-  oauthFactory.oAuthIntuit = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$id</span>) </span>{</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  oauthFactory.oAuthIntuit = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$id, org</span>) </span>{</pre></div></div>
             
         </li>
         
@@ -192,7 +191,7 @@ put token on user entry</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> users = Users.getUsers();
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> users = Users.getUsers(org);
     <span class="hljs-keyword">var</span> index = users.$indexFor($id);</pre></div></div>
             
         </li>

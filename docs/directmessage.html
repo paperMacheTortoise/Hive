@@ -162,7 +162,8 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	vm.recipient = $stateParams.user;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>	vm.org = $stateParams.org;
+	vm.recipient = $stateParams.user;</pre></div></div>
             
         </li>
         
@@ -192,7 +193,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	vm.messages = DirectMessage.getDirectMessages(vm.currentUser, vm.recipient);
+            <div class="content"><div class='highlight'><pre>	vm.messages = DirectMessage.getDirectMessages(vm.currentUser, vm.recipient, vm.org);
 	Users.setUsername(vm.recipient); <span class="hljs-comment">// CHECK IF NECESSARY</span></pre></div></div>
             
         </li>
@@ -211,7 +212,7 @@
             <div class="content"><div class='highlight'><pre>	vm.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>)</span>{
 		<span class="hljs-keyword">if</span> (e.keyCode === <span class="hljs-number">13</span>) {
 			<span class="hljs-built_in">console</span>.log(vm.currentUser, vm.recipient, vm.text);
-			DirectMessage.addMessage(vm.currentUser, vm.recipient, vm.text);
+			DirectMessage.addMessage(vm.currentUser, vm.recipient, vm.text, vm.org);
 			vm.text = <span class="hljs-string">''</span>;
 		}
 	};

@@ -147,7 +147,12 @@
 
 .factory(<span class="hljs-string">'Rooms'</span>, [<span class="hljs-string">'$firebaseArray'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$firebaseArray</span>)</span>{
 
-	<span class="hljs-keyword">var</span> roomsFactory = {};</pre></div></div>
+	<span class="hljs-keyword">var</span> roomsFactory = {};
+
+  <span class="hljs-keyword">var</span> getRef = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">org</span>)</span>{
+  	<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/'</span>+org+<span class="hljs-string">'/rooms'</span>);
+  	<span class="hljs-keyword">var</span> rooms = $firebaseArray(ref);
+    <span class="hljs-keyword">var</span> roomNames = [];</pre></div></div>
             
         </li>
         
@@ -158,13 +163,10 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Make a ref to db for all rooms.</p>
+              <p>Create an array to store the room names.
+Loop through the rooms, and return all the room names.</p>
 
             </div>
-            
-            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">'https://bizgramer.firebaseio.com/hr/rooms'</span>);
-	<span class="hljs-keyword">var</span> rooms = $firebaseArray(ref);
-  <span class="hljs-keyword">var</span> roomNames = [];</pre></div></div>
             
         </li>
         
@@ -175,10 +177,27 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Create an array to store the room names.
-Loop through the rooms, and return all the room names.</p>
+              <p>use .$loaded promise to popular roomNames array with async data from firebase</p>
 
             </div>
+            
+            <div class="content"><div class='highlight'><pre>    rooms.$loaded()
+      .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        angular.forEach(rooms, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">room</span>) </span>{
+          roomNames.push(room.$id);
+        });
+      });
+    <span class="hljs-keyword">return</span> {
+      ref: ref,
+      rooms: rooms,
+      roomNames: roomNames
+    };
+  };
+
+	roomsFactory.getRooms = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">org</span>)</span>{
+    <span class="hljs-keyword">var</span> obj =getRef(org);
+		<span class="hljs-keyword">return</span> obj.roomNames;
+	};</pre></div></div>
             
         </li>
         
@@ -188,43 +207,6 @@ Loop through the rooms, and return all the room names.</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
-              </div>
-              <p>use .$loaded promise to popular roomNames array with async data from firebase</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  rooms.$loaded()
-    .then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-      angular.forEach(rooms, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">room</span>) </span>{
-        roomNames.push(room.$id);
-      });
-    });</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
-              <p>Returns all the rooms available.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  roomsFactory.getRooms = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
-		<span class="hljs-keyword">return</span> roomNames;
-	};</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-6">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Sets the selected room user clicks from Main.</p>
 
@@ -238,11 +220,11 @@ Loop through the rooms, and return all the room names.</p>
         </li>
         
         
-        <li id="section-7">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-7">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Returns the current room.</p>
 
@@ -250,42 +232,33 @@ Loop through the rooms, and return all the room names.</p>
             
             <div class="content"><div class='highlight'><pre>  roomsFactory.getCurrentName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
     <span class="hljs-keyword">return</span> roomName;
-  };</pre></div></div>
+  };
+
+  roomsFactory.getRoomMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">org</span>) </span>{</pre></div></div>
             
         </li>
         
         
-        <li id="section-8">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-8">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
-              <p>Gets the messages for room.</p>
+              <p>var roomRef = ref.child(roomName);
+var messages = $firebaseArray(roomRef);</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  roomsFactory.getRoomMessages = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">var</span> roomRef = roomName ? ref.child(roomName) : <span class="hljs-literal">null</span>;
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-keyword">var</span> obj = getRef(org);
+    <span class="hljs-keyword">var</span> roomRef = roomName ? obj.ref.child(roomName) : <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">var</span> messages =  roomRef ? $firebaseArray(roomRef) : <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">return</span> messages;
-  };</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-9">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-9">&#182;</a>
-              </div>
-              <p>Add message to room.</p>
+  };
 
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  roomsFactory.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">username, text</span>)</span>{
-    <span class="hljs-keyword">var</span> roomRef = roomName ? ref.child(roomName) : <span class="hljs-literal">null</span>;
+  roomsFactory.addMessage = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">username, text, org</span>)</span>{
+    <span class="hljs-keyword">var</span> obj = getRef(org);
+    <span class="hljs-keyword">var</span> roomRef = roomName ? obj.ref.child(roomName) : <span class="hljs-literal">null</span>;
     <span class="hljs-keyword">var</span> messages = roomRef ? $firebaseArray(roomRef) : <span class="hljs-literal">null</span>;
     messages.$add({
       username: username,
@@ -298,8 +271,8 @@ Loop through the rooms, and return all the room names.</p>
     });
   };
 
-  roomsFactory.addRoom = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">roomname</span>) </span>{
-    <span class="hljs-keyword">var</span> url = <span class="hljs-string">"https://bizgramer.firebaseio.com/hr/rooms/"</span>;
+  roomsFactory.addRoom = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">roomname, org</span>) </span>{
+    <span class="hljs-keyword">var</span> url = <span class="hljs-string">"https://bizgramer.firebaseio.com/"</span>+org+<span class="hljs-string">"/rooms/"</span>;
     <span class="hljs-built_in">console</span>.log(url);
     <span class="hljs-keyword">var</span> addRoomRef = <span class="hljs-keyword">new</span> Firebase(url);
     addRoomRef.child(roomname).set(<span class="hljs-string">'this room is empty'</span>);

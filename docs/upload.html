@@ -155,8 +155,9 @@
   };
 })
 
-.controller(<span class="hljs-string">'UploadController'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope, $state, Upload, Users, $rootScope</span>)</span>{
+.controller(<span class="hljs-string">'UploadController'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope, $state, Upload, Users, $rootScope, $stateParams</span>)</span>{
 	<span class="hljs-keyword">this</span>.file = <span class="hljs-literal">null</span>;
+	<span class="hljs-keyword">this</span>.org = $stateParams.org;
 
 	$scope.change= <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">evt</span>)</span>{
 		<span class="hljs-keyword">this</span>.file = evt.target.files[<span class="hljs-number">0</span>];
@@ -177,7 +178,7 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">var</span> key = $rootScope.logInfo.$id;
-			<span class="hljs-keyword">var</span> pictures = Users.getUserPictures(key);
+			<span class="hljs-keyword">var</span> pictures = Users.getUserPictures(key, <span class="hljs-keyword">this</span>.org);
 			pictures.$add({url:imgUrl});
 		});
 	};

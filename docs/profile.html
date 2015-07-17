@@ -145,10 +145,10 @@
             
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'profileCtrl'</span>,[<span class="hljs-string">'firebase'</span>,<span class="hljs-string">'ui.bootstrap'</span>])
 
-.controller(<span class="hljs-string">'ProfileController'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope, $state, $firebaseAuth, Auth, $rootScope, $modal, $log, Users</span>)</span>{
+.controller(<span class="hljs-string">'ProfileController'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope, $state, $firebaseAuth, Auth, $rootScope, $modal, $log, Users, $stateParams</span>)</span>{
   <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;
-
-  vm.pictures = Users.getUserPictures($rootScope.logInfo.$id);
+  vm.org = $stateParams.org;
+  vm.pictures = Users.getUserPictures($rootScope.logInfo.$id, vm.org);
   vm.userInfo = $rootScope.logInfo;
   vm.username = vm.userInfo.username;
   vm.email = vm.userInfo.email;

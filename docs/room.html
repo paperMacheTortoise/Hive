@@ -147,7 +147,6 @@
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'roomCtrl'</span>, [])
 
 .controller(<span class="hljs-string">'roomController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Rooms, $rootScope,$stateParams</span>) </span>{
-  
   <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;</pre></div></div>
             
         </li>
@@ -164,7 +163,8 @@
             </div>
             
             <div class="content"><div class='highlight'><pre>  vm.roomname = $stateParams.roomName;
-  Rooms.setRoom(vm.roomname); <span class="hljs-comment">// CHECK IF NECESSARY</span></pre></div></div>
+  vm.org = $stateParams.org;
+  Rooms.setRoom(vm.roomname, vm.org); <span class="hljs-comment">// CHECK IF NECESSARY</span></pre></div></div>
             
         </li>
         
@@ -179,7 +179,7 @@
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  vm.messages = Rooms.getRoomMessages();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  vm.messages = Rooms.getRoomMessages(vm.org);</pre></div></div>
             
         </li>
         
@@ -215,7 +215,7 @@
       <span class="hljs-keyword">var</span> roomName = vm.roomname || <span class="hljs-string">'general'</span>;
       <span class="hljs-built_in">console</span>.log(userName, roomName, vm.text);
 
-      Rooms.addMessage(userName, vm.text);
+      Rooms.addMessage(userName, vm.text, vm.org);
       vm.text = <span class="hljs-string">''</span>;
     }
   };

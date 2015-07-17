@@ -145,7 +145,7 @@
             
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'visualCtrl'</span>, [])
 
-.controller(<span class="hljs-string">'visualController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Visualization, Replies, $rootScope</span>)</span>{
+.controller(<span class="hljs-string">'visualController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Visualization, $rootScope, $stateParams</span>)</span>{
 
 	<span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;</pre></div></div>
             
@@ -163,7 +163,7 @@ Get ther current user;</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>	vm.username = $rootScope.logInfo.username;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>	vm.org = $stateParams.org;</pre></div></div>
             
         </li>
         
@@ -173,6 +173,21 @@ Get ther current user;</p>
               
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>chat functions</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	vm.username = $rootScope.logInfo.username;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
               <p>TO DO, set the visualization identifier</p>
 
@@ -184,11 +199,11 @@ Get ther current user;</p>
         </li>
         
         
-        <li id="section-4">
+        <li id="section-5">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-4">&#182;</a>
+                <a class="pilcrow" href="#section-5">&#182;</a>
               </div>
               <p>Gets the messages for the visualization.</p>
 
@@ -207,11 +222,11 @@ Get ther current user;</p>
         </li>
         
         
-        <li id="section-5">
+        <li id="section-6">
             <div class="annotation">
               
               <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
+                <a class="pilcrow" href="#section-6">&#182;</a>
               </div>
               <p>Adds a message from the current user to the visualization chat.</p>
 

@@ -145,12 +145,13 @@
             
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'authCtrl'</span>,[<span class="hljs-string">'firebase'</span>])
 
-  .controller(<span class="hljs-string">'SignupController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$state, $firebaseAuth, Auth, Users, $rootScope</span>)</span>{
+  .controller(<span class="hljs-string">'SignupController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$state, $firebaseAuth, Auth, Users, $rootScope, $stateParams</span>)</span>{
     <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;
+    vm.org = $stateParams.org;
     Auth.signout();
 
     vm.setupUser = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">name, email, uid, pictureUrl</span>)</span>{
-      vm.users = Users.getUsers();
+      vm.users = Users.getUsers(vm.org);
       vm.users.$add({
         username: name,
         email: email,
@@ -159,6 +160,7 @@
         pictureCollection: <span class="hljs-literal">null</span>
       }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">ref</span>)</span>{
         <span class="hljs-keyword">var</span> logInfo = vm.users.$getRecord(ref.key());
+        <span class="hljs-built_in">console</span>.log(logInfo);
         $rootScope.logInfo = logInfo;
         $rootScope.shouldShow = <span class="hljs-literal">false</span>;
         <span class="hljs-built_in">console</span>.log(logInfo);
@@ -174,7 +176,7 @@
       Auth.signup(vm.email,vm.password, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
         vm.authData = data;
         vm.setupUser(vm.name,vm.email,data.uid,data.password.profileImageURL);
-        $state.go(<span class="hljs-string">'main'</span>);
+        $state.go(<span class="hljs-string">'main'</span>, {org: vm.org});
       },vm);
     };
 
@@ -185,17 +187,23 @@
     };
   })
 
-  .controller(<span class="hljs-string">'SigninController'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$state,$firebaseAuth, Auth, $rootScope, Users</span>)</span>{
+  .controller(<span class="hljs-string">'SigninController'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$state,$firebaseAuth, Auth, $rootScope, Users, $stateParams</span>)</span>{
     <span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;
+    vm.org = $stateParams.org;
     Auth.signout();
     vm.email = <span class="hljs-literal">null</span>;
     vm.password = <span class="hljs-literal">null</span>;
 
     vm.getSignIn = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
-      vm.users = Users.getUsers();
-      <span class="hljs-built_in">console</span>.log(data.uid);
+      vm.users = Users.getUsers(vm.org);
+      <span class="hljs-built_in">console</span>.log(vm.users);
+      vm.users.$loaded(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+
       <span class="hljs-keyword">var</span> key;
+      <span class="hljs-built_in">console</span>.log(vm.users.length);
       <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; vm.users.length; i++) {
+        <span class="hljs-built_in">console</span>.log(vm.users[i].uid);
+        <span class="hljs-built_in">console</span>.log(data.uid);
         <span class="hljs-keyword">if</span>(vm.users[i].uid===data.uid){
           key = vm.users.$keyAt(i);
         }
@@ -204,6 +212,8 @@
       $rootScope.logInfo = logInfo;
       $rootScope.shouldShow = <span class="hljs-literal">false</span>;
       <span class="hljs-built_in">console</span>.log(logInfo);
+      $state.go(<span class="hljs-string">'main'</span>, {org: vm.org});
+    });
     };
 
     vm.signin = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
@@ -211,10 +221,9 @@
         vm.authData = data;
         <span class="hljs-built_in">console</span>.log(data);
         vm.getSignIn(data);
-        $state.go(<span class="hljs-string">'main'</span>);
       },vm);
     };
-    
+
     vm.checkLogin = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
       Auth.getAuth(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>)</span>{
         vm.authData = data;

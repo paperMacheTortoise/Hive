@@ -145,9 +145,12 @@
             
             <div class="content"><div class='highlight'><pre>angular.module(<span class="hljs-string">'mainCtrl'</span>, [])
 
-.controller(<span class="hljs-string">'mainController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Rooms, Users, DirectMessage, $rootScope</span>) </span>{
+.controller(<span class="hljs-string">'mainController'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Rooms, Users, DirectMessage, $rootScope, $stateParams</span>) </span>{
 
-	<span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;</pre></div></div>
+	<span class="hljs-keyword">var</span> vm = <span class="hljs-keyword">this</span>;
+
+  vm.org = $stateParams.org;
+  vm.currentUser = $rootScope.logInfo.username;</pre></div></div>
             
         </li>
         
@@ -158,11 +161,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-2">&#182;</a>
               </div>
-              <p>Get ther current user</p>
+              <p>Get the rooms from the roomFactory.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  vm.currentUser = $rootScope.logInfo.username;</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  vm.rooms = Rooms.getRooms(vm.org);</pre></div></div>
             
         </li>
         
@@ -173,11 +176,11 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-3">&#182;</a>
               </div>
-              <p>Get the rooms from the roomFactory.</p>
+              <p>Get all users except for the current user from the userFactory.</p>
 
             </div>
             
-            <div class="content"><div class='highlight'><pre>  vm.rooms = Rooms.getRooms();</pre></div></div>
+            <div class="content"><div class='highlight'><pre>  vm.users = Users.getDisplayUsers(vm.currentUser, vm.org);</pre></div></div>
             
         </li>
         
@@ -188,21 +191,6 @@
               <div class="pilwrap ">
                 <a class="pilcrow" href="#section-4">&#182;</a>
               </div>
-              <p>Get all users except for the current user from the userFactory.</p>
-
-            </div>
-            
-            <div class="content"><div class='highlight'><pre>  vm.users = Users.getDisplayUsers(vm.currentUser);</pre></div></div>
-            
-        </li>
-        
-        
-        <li id="section-5">
-            <div class="annotation">
-              
-              <div class="pilwrap ">
-                <a class="pilcrow" href="#section-5">&#182;</a>
-              </div>
               <p>Send new room to the roomFactory.</p>
 
             </div>
@@ -212,7 +200,7 @@
       <span class="hljs-keyword">var</span> nameOfRoomToAdd = vm.nameOfRoomToAdd || <span class="hljs-string">'new room'</span>;
       <span class="hljs-keyword">if</span> (vm.rooms.indexOf(nameOfRoomToAdd) === -<span class="hljs-number">1</span>) {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Adding room '</span>, nameOfRoomToAdd);
-        Rooms.addRoom(nameOfRoomToAdd);
+        Rooms.addRoom(nameOfRoomToAdd, vm.org);
         vm.nameOfRoomToAdd = <span class="hljs-string">''</span>;
       } <span class="hljs-keyword">else</span> {
         <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'this room already exists'</span>);
