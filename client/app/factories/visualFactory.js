@@ -32,28 +32,19 @@ angular.module('visualFactory', ['firebase'])
 	};
 
 	visualFactory.customTooltip = function(tooltipId, width) {
-		
-	  $("#vis").append("<div class='tooltip' id='"+tooltipId+"'></div>");
-	  
-	  if(width){
-	    $("#"+tooltipId).css("width", width);
-	  }
 
-
-	  function showTooltip(content, event){
+	  var showTooltip = function(content, event) {
 	    $("#"+tooltipId).html(content);
 	    $("#"+tooltipId).show();
 
 	    updatePosition(event);
 	  }
-
-	  function hideTooltip(){
+	  
+	  var hideTooltip = function() {
 	    $("#"+tooltipId).hide();
 	  }
 
-	  hideTooltip();
-
-	  function updatePosition(event){
+	  var updatePosition = function(event) {
 	    var ttid = "#"+tooltipId;
 	    var xOffset = 20;
 	    var yOffset = 10;
@@ -74,6 +65,14 @@ angular.module('visualFactory', ['firebase'])
 	     }
 	     $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
 	  }
+	  
+	  $("#vis").append("<div class='tooltip' id='"+tooltipId+"'></div>");
+	  
+	  if(width){
+	    $("#"+tooltipId).css("width", width);
+	  }
+	  
+	  hideTooltip();
 
 	  return {
 	    showTooltip: showTooltip,
