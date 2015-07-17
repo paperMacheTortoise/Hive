@@ -15,6 +15,14 @@ angular.module('visualCtrl', [])
   // Gets the messages for the visualization.
 	vm.messages = Visualization.getMessages(vm.visualId, vm.org);
 
+  // Adds a message from the current user to the visualization chat.
+  vm.addMessage = function (e) {
+    if(e.keyCode === 13){
+      Visualization.addMessage(vm.username, vm.visualId, vm.text, vm.org);
+      vm.text = '';
+    }
+  };
+
   //Instantiates a bubblechart with data.
   var chart = new Visualization.BubbleChart(testData);
   chart.start();
@@ -33,13 +41,4 @@ angular.module('visualCtrl', [])
     }
 
   });
-
-  // Adds a message from the current user to the visualization chat.
-  vm.addMessage = function (e) {
-    if(e.keyCode === 13){
-      Visualization.addMessage(vm.username, vm.visualId, vm.text, vm.org);
-      vm.text = '';
-    }
-  };
-
 });
