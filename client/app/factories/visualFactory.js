@@ -43,8 +43,8 @@ angular.module('visualFactory', ['firebase'])
 			.then(function(){
 				angular.forEach(visuals, function(visual){
 					visualNames.push(visual.$id);
-				})
-			})
+				});
+			});
 		return visualNames;
 	};
 
