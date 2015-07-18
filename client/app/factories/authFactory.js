@@ -1,6 +1,6 @@
 angular.module('authFactory', ['firebase'])
 
-.factory('Auth', ['$firebaseAuth', function ($firebaseAuth, $rootScope){
+.factory('Auth', ['$firebaseAuth', function ($firebaseAuth){
 
 	var authFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
@@ -26,7 +26,6 @@ angular.module('authFactory', ['firebase'])
   };
 
 	authFactory.signup = function(email,password, callback, vm){
-    // var data = null;
     authObj.$createUser({
       email: email,
       password: password
@@ -39,7 +38,6 @@ angular.module('authFactory', ['firebase'])
 	};
 
 	authFactory.signout = function(){
-    $rootScope.logInfo = null;
 		authObj.$unauth();
 	};
 

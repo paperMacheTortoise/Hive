@@ -20,11 +20,7 @@ angular.module('orgsignupCtrl', ['firebase'])
         console.log('go sign up for new org');
         vm.nameOfOrgToGo = '';
       } else {
-        console.log('org with this name already exists');
-        console.log('redirecting');
-        console.log(vm.nameOfOrgToGo);
         $state.go('signin', {org: vm.nameOfOrgToGo});
-        // $state.go('orgsignup');
       }
     };
 

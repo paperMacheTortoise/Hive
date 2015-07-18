@@ -31,6 +31,7 @@
 	<script src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere-1.3.1.js"></script>
 
 	<!-- Controllers -->
+	<script src='app/controllers/index.js'></script>
 	<script src='app/controllers/orgsignup.js'></script>
 	<script src='app/controllers/upload.js'></script>
 	<script src='app/controllers/profile.js'></script>
@@ -54,18 +55,18 @@
 </head>
 
 <body ng-app="bizGramApp">
-<nav class="navbar navbar-default navbar-static-top">
+<nav class="navbar navbar-default navbar-static-top" ng-controller="IndexController as index">
 	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" href="#/">bizGram</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<!-- Should show if user is logged out -->
-			<li><a ui-sref="signin({org: main.org})" ng-show="shouldShow" ng-init='shouldShow=true'>Login</a></li>
-			<li><a ui-sref="signup({org: main.org})" ng-show="shouldShow">SignUp</a></li>
+			<li><a ui-sref="signin({org: index.org})" ng-show="shouldShow">Login</a></li>
+			<li><a ui-sref="signup({org: index.org})" ng-show="shouldShow">SignUp</a></li>
 			<!-- Should show if users is logged in -->
-			<li><a ui-sref="profile({org: main.org})" ng-hide="shouldShow">Profile</a></li>
-			<li><a ui-sref="logout" ng-hide="shouldShow" ng-click='shouldShow=true'>Logout</a></li>
+			<li><a ui-sref="profile({org: index.org})" ng-hide="shouldShow">Profile</a></li>
+			<li><a ui-sref="logout" ng-hide="shouldShow" ng-click="index.signout()">Logout</a></li>
 		</ul>
 	</div>
 </nav>
