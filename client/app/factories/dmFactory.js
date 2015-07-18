@@ -27,7 +27,6 @@ angular.module('dmFactory', ['firebase'])
 	dmFactory.getDirectMessages = function(user1, user2, org){
     	var dmRef = new Firebase('https://bizgramer.firebaseio.com/'+org+'/directmessages/' + user1 + '/' + user2);
     	var directMessages = $firebaseArray(dmRef);
-    	console.log(directMessages);
     	return directMessages;
 	};
 

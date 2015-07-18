@@ -21,7 +21,14 @@ module.exports = function(config){
 		exclude: [
 			'karma.conf.js'
 		],
-		reporter: ['progress'],
+		reporter: ['mocha'],
+		plugins: [
+			'karma-chai',
+			'karma-mocha',
+			'karma-mocha-reporter',
+			'karma-phantomjs-launcher',
+			'karma-sinon'
+		],
 		port: 9876,
 		colors: true,
 		logLevel: 'INFO',
