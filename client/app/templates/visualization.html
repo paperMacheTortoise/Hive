@@ -21,11 +21,11 @@
 		<ul>
       <li ng-repeat="msg in visual.messages track by $index"ng-controller="visualReplyController as rep">
         <strong>{{ msg.username }}:</strong>
-        {{ msg.text }}
+        {{ msg.text }} <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
 
         <!-- showing all replies for this message -->
         <ul class="replies">
-          <li ng-repeat="reply in msg.replies">{{reply.username}} : {{reply.text}}</li>
+          <li ng-repeat="reply in msg.replies">{{reply.username}} : {{reply.text}} <span am-time-ago="reply.createdAt">{{ reply.createdAt }}</span></li>
         </ul>
 
         <!-- reply input box, shown when clicked 'reply' -->
