@@ -57,12 +57,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		parent: 'main',
 		templateUrl: 'app/templates/directmessage.html'
 	})
-	.state('visual', {
-		url:'/:org/visual/:visualId',
-		templateUrl: 'app/templates/visualization.html',
-		data: {
-			requireLogin: true
-		}
+	.state('main.visual', {
+		url:'/visual/:visualId',
+		parent: 'main',
+		templateUrl: 'app/templates/visualization.html'
 	})
 	.state('signin',{
 		url: '/:org/signin',

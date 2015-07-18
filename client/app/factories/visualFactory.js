@@ -35,6 +35,12 @@ angular.module('visualFactory', ['firebase'])
 		});
 	};
 
+	visualFactory.getVisualNames = function(org){
+		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
+		var visuals = $firebaseArray(ref);
+		return visuals;
+	};
+
 	// Returns data array of account information
 	visualFactory.getVisualData = function(org, account){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/'+account+'/');

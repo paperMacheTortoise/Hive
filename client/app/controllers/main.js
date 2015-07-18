@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, $rootScope, $stateParams) {
+.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams) {
 
 	var vm = this;
 
@@ -10,6 +10,8 @@ angular.module('mainCtrl', [])
   vm.rooms = Rooms.getRooms(vm.org);
   // Get all users except for the current user from the userFactory.
   vm.users = Users.getDisplayUsers(vm.currentUser, vm.org);
+  // Get all visuals from the visualFactory.
+  vm.visuals = Visualization.getVisualNames(vm.org);
 
   // Send new room to the roomFactory.
   vm.addRoom = function(e) {
@@ -24,6 +26,5 @@ angular.module('mainCtrl', [])
       }
     }
   };
-
 });
 

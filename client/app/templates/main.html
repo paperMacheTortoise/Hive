@@ -13,6 +13,11 @@
 				<ul class="nav nav-sidebar users">
 					<li ng-repeat='user in main.users track by $index'><a ui-sref="main.direct({org: main.org, user: user.username})">{{ user.username }}</a></li>
 				</ul>
+
+			<h3>Reports</h3>
+				<ul class="nav nav-sidebar visualizations">
+					<li ng-repeat="visual in main.visuals track by $index"><a ui-sref="main.visual({org: main.org, visualId: visual.visualId})">{{ visual.visualId }}</a></li>
+				</ul>
 		</div>
 
 		<div class="col-sm-4 col-md-4">
