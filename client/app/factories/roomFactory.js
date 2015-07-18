@@ -47,15 +47,6 @@ angular.module('roomFactory', ['firebase'])
     var obj = getRef(org);
     var roomRef = roomName ? obj.ref.child(roomName) : null;
     var messages =  roomRef ? $firebaseArray(roomRef) : null;
-    // messages.$loaded()
-    //   .then(function(){
-    //     angular.forEach(function (message){
-    //       var date = moment(message.createdAt, "YYYYMMDD").fromNow();
-    //       console.log(date);
-    //       message.createdAt = date;
-    //     });
-    //   });
-
       return messages;
   };
 

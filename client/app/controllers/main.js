@@ -26,10 +26,5 @@ angular.module('mainCtrl', [])
       }
     }
   };
-
-  vm.navigateToVisual = function(index){
-    var visual = vm.visuals[index];
-    $location.path('/' + vm.org + '/visual/' + visual);
-  };
 });
 
