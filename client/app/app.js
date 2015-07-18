@@ -9,7 +9,6 @@ var app = angular.module('bizGramApp', [
 	'replyFactory',
 	'uploadFactory',
 	'visualFactory',
-	'ui.router',
 	'mainCtrl',
 	'visualCtrl',
 	'visualReplyCtrl',
@@ -18,7 +17,10 @@ var app = angular.module('bizGramApp', [
 	'roomCtrl',
 	'replyCtrl',
 	'profileCtrl',
-	'uploadCtrl']);
+	'uploadCtrl',
+	'ui.router',
+	'angularMoment'
+	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
 
