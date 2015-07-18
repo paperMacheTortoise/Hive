@@ -35,6 +35,12 @@ angular.module('visualFactory', ['firebase'])
 		});
 	};
 
+	visualFactory.getVisualData = function(org, account, callback){
+		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/'+account+'/');
+		data_array = $firebaseArray(ref);
+		return data_array;
+	};
+
 	var CustomTooltip = function(tooltipId, width) {
 
 	  var showTooltip = function(content, event) {
@@ -118,7 +124,7 @@ angular.module('visualFactory', ['firebase'])
 	      x: this.width / 2,
 	      y: this.height / 2
 	    },
-	    "61 - 90 days past due": {
+	    "61 or more days past due": {
 	      x: 2 * this.width / 3,
 	      y: this.height / 2
 	    }
@@ -132,7 +138,7 @@ angular.module('visualFactory', ['firebase'])
 	  max_amount = d3.max(this.data, function(d) {
 	    return parseInt(d.amount);
 	  });
-	  this.fill_color = d3.scale.ordinal().domain(["1 - 30 days past due","31 - 60 days past due","61 - 90 days past due"]).range(["green", "blue", "red"]);
+	  this.fill_color = d3.scale.ordinal().domain(["1 - 30 days past due","31 - 60 days past due","61 or more days past due"]).range(["green", "blue", "red"]);
 	  this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
 	  this.create_nodes();
 	  this.create_vis();
