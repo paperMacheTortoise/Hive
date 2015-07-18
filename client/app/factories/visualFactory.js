@@ -35,12 +35,15 @@ angular.module('visualFactory', ['firebase'])
 		});
 	};
 
-	visualFactory.getVisualData = function(org, account, callback){
+	// Returns data array of account information
+	visualFactory.getVisualData = function(org, account){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/'+account+'/');
 		data_array = $firebaseArray(ref);
 		return data_array;
 	};
 
+	//Function used by the bubble chart to produce and display the tooltip to display
+	//account data when user scrolls over the chart bubbles.
 	var CustomTooltip = function(tooltipId, width) {
 
 	  var showTooltip = function(content, event) {
@@ -91,6 +94,7 @@ angular.module('visualFactory', ['firebase'])
 	  };
 	};
 
+	//Function used to add commas in the account data display of amounts.
 	var addCommas = function(nStr) {
 	  nStr += '';
 	  x = nStr.split('.');
@@ -105,6 +109,7 @@ angular.module('visualFactory', ['firebase'])
 	  return x1 + x2;
 	};
 
+	//Class definition for the bubble chart.
 	visualFactory.BubbleChart = function(data) {
 	  var max_amount;
 	  this.data = data;
@@ -144,6 +149,7 @@ angular.module('visualFactory', ['firebase'])
 	  this.create_vis();
 	};
 
+	//BubbleChart function to create nodes from data.
 	visualFactory.BubbleChart.prototype.create_nodes = function() {
 	  this.data.forEach((function(_this) {
 	    return function(d) {
@@ -169,6 +175,8 @@ angular.module('visualFactory', ['firebase'])
 	  });
 	};
 
+	//BubbleChart function to create D3 visualization of each created node.  It
+	//also gives it the scroll over functions of displaying tooltips.
 	visualFactory.BubbleChart.prototype.create_vis = function() {
 	  var that;
 	  this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
@@ -196,14 +204,17 @@ angular.module('visualFactory', ['firebase'])
 	  });
 	};
 
+	//BubbleChart function to set "charge" which determines bubble motion.
 	visualFactory.BubbleChart.prototype.charge = function(d) {
 	  return -Math.pow(d.radius, 2.0) / 8;
 	};
 
+	//BubbleChart function that instantiates the force of the nodes.
 	visualFactory.BubbleChart.prototype.start = function() {
 	  return this.force = d3.layout.force().nodes(this.nodes).size([this.width, this.height]);
 	};
 
+	//BubbleChart function that displays all the groups and move them to the center.
 	visualFactory.BubbleChart.prototype.display_group_all = function() {
 	  this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", (function(_this) {
 	    return function(e) {
@@ -218,6 +229,7 @@ angular.module('visualFactory', ['firebase'])
 	  return this.hide_due_dates();
 	};
 
+	//BubbleChart function that moves the nodes to the center.
 	visualFactory.BubbleChart.prototype.move_towards_center = function(alpha) {
 	  return (function(_this) {
 	    return function(d) {
@@ -227,6 +239,7 @@ angular.module('visualFactory', ['firebase'])
 	  })(this);
 	};
 
+	//BubbleChart function that sets up the display and moves bubbles to seperate centers.
 	visualFactory.BubbleChart.prototype.display_by_seperated = function() {
 	  this.force.gravity(this.layout_gravity).charge(this.charge).friction(0.9).on("tick", (function(_this) {
 	    return function(e) {
@@ -242,6 +255,7 @@ angular.module('visualFactory', ['firebase'])
 	  return this.display_seperated();
 	};
 
+	//BubbleChart function that moves bubbles to seperated centers.
 	visualFactory.BubbleChart.prototype.move_towards_seperated = function(alpha) {
 	  return (function(_this) {
 	    return function(d) {
@@ -253,6 +267,7 @@ angular.module('visualFactory', ['firebase'])
 	  })(this);
 	};
 
+	//BubbleChart function that shows the titles in the seperated node display
 	visualFactory.BubbleChart.prototype.display_seperated = function() {
 	  var past_due_x = {
 	    "Less Than 30 Days": 240,
@@ -278,11 +293,13 @@ angular.module('visualFactory', ['firebase'])
 	      });
 	};
 
+	//BubbleChart function that removes the seperated bubble titles
 	visualFactory.BubbleChart.prototype.hide_due_dates = function() {
 	  var past_due;
 	  return past_due = this.vis.selectAll(".past_due").remove();
 	};
 
+	//BubbleChart function that displays the tooltip and highlights the bubble when mouseover.
 	visualFactory.BubbleChart.prototype.show_details = function(data, i, element) {
 	  var content;
 	  d3.select(element).attr("stroke", "black");
@@ -295,6 +312,7 @@ angular.module('visualFactory', ['firebase'])
 	  return this.tooltip.showTooltip(content, d3.event);
 	};
 
+	//BubbleChart function that removes tooltip and bubble highlight when mouse leaves the bubble.
 	visualFactory.BubbleChart.prototype.hide_details = function(data, i, element) {
 	  d3.select(element).attr("stroke", (function(_this) {
 	    return function(d) {
