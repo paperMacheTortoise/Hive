@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, $location) {
+.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams) {
 
 	var vm = this;
 
