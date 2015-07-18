@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, $location) {
+.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams) {
 
 	var vm = this;
 
@@ -25,11 +25,6 @@ angular.module('mainCtrl', [])
         console.log('this room already exists');
       }
     }
-  };
-
-  vm.navigateToVisual = function(index){
-    var visual = vm.visuals[index];
-    $location.path('/' + vm.org + '/visual/' + visual);
   };
 });
 
