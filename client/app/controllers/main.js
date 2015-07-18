@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams) {
+.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, $location) {
 
 	var vm = this;
 
@@ -26,5 +26,10 @@ angular.module('mainCtrl', [])
       }
     }
   };
+
+  vm.navigateToVisual = function(index){
+    var visual = vm.visuals[index];
+    $location.path('/' + vm.org + '/visual/' + visual);
+  }
 });
 

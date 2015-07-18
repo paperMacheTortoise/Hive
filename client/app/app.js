@@ -57,9 +57,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		parent: 'main',
 		templateUrl: 'app/templates/directmessage.html'
 	})
-	.state('main.visual', {
-		url:'/visual/:visualId',
-		parent: 'main',
+	.state('visual', {
+		url:'/:org/visual/:visualId',
 		templateUrl: 'app/templates/visualization.html'
 	})
 	.state('signin',{

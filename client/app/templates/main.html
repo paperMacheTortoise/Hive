@@ -3,20 +3,19 @@
 		<div class="col-sm-3 col-md-3">
 			<h4>Logged in as:</h4>
 			{{main.currentUser}}
-			<h3>Rooms</h3>
+			<h4>Reports</h4>
+				<ul class="nav nav-sidebar visualizations">
+					<li ng-repeat="visual in main.visuals track by $index"><a ng-click="main.navigateToVisual($index)">{{ visual }}</a></li>
+				</ul>
+			<h4>Rooms</h4>
 				<ul class="nav nav-sidebar rooms">
 					<li ng-repeat='room in main.rooms track by $index' ><a ui-sref="main.room({org: main.org, roomName: room})">{{ room }}</a></li>
 				</ul>
 				<input ng-model="main.nameOfRoomToAdd" type="text" placeholder="add room" ng-keydown="main.addRoom($event)" />
 
-			<h3>Users</h3>
+			<h4>Users</h4>
 				<ul class="nav nav-sidebar users">
 					<li ng-repeat='user in main.users track by $index'><a ui-sref="main.direct({org: main.org, user: user.username})">{{ user.username }}</a></li>
-				</ul>
-
-			<h3>Reports</h3>
-				<ul class="nav nav-sidebar visualizations">
-					<li ng-repeat="visual in main.visuals track by $index"><a ui-sref="main.visual({org: main.org, visualId: visual.visualId})">{{ visual.visualId }}</a></li>
 				</ul>
 		</div>
 
