@@ -6829,3 +6829,17 @@ footer {
 .tooltip .name {
   font-weight: bold;
 }
+div.main-menu {
+  border: 1px solid;
+  height: 644px;
+}
+.chatRoomView {
+  border: 1px solid;
+  height: 644px;
+  background-color: #ebe3e0;
+}
+.submitText {
+  position: absolute;
+  top: 608px;
+  left: 0px;
+}
