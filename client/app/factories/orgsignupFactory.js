@@ -31,7 +31,9 @@ angular.module('orgsignupFactory', ['firebase'])
         // NOTE: Can't use << here because javascript will convert to int and lose the upper bits.
         now = Math.floor(now / 64);
       }
-      if (now !== 0) throw new Error('We should have converted the entire timestamp.');
+      if (now !== 0) {
+        throw new Error('We should have converted the entire timestamp.');
+      }
 
       var id = timeStampChars.join('');
 
@@ -49,7 +51,9 @@ angular.module('orgsignupFactory', ['firebase'])
       for (i = 0; i < 12; i++) {
         id += PUSH_CHARS.charAt(lastRandChars[i]);
       }
-      if(id.length != 20) throw new Error('Length should be 20.');
+      if(id.length !== 20) {
+        throw new Error('Length should be 20.');
+      }
 
       return id;
     };

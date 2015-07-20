@@ -26,7 +26,7 @@ angular.module('authFactory', ['firebase'])
   };
 
   authFactory.signup = function(email, password, orgId, orgName, callback, vm){
-    var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgName)
+    var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgName);
     var orgArr = $firebaseArray(orgRef);
     orgArr.$loaded()
       .then(function() {
