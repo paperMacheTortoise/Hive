@@ -6789,6 +6789,9 @@ a:active {
 .navbar .navbar-brand:focus {
   background-color: #72577c;
 }
+button a {
+  color: #FFFFFF;
+}
 #vis {
   width: 940px;
   height: 600px;

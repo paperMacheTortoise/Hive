@@ -1,11 +1,23 @@
-<div class='signup-div container' ng-controller='SignupController as auth'>
-	<header><h3>Signup</h3></header>
-	<form name='signupForm' ng-submit='auth.signup()'>
-		<input name='name' type='name' ng-model='auth.name' placeholder='Name' required />
-		<input name='email' type='email' ng-model='auth.email' placeholder='Email' required />
-		<input name='password' type='password' ng-model='auth.password' placeholder='Password' required />
-		<input name='code' type='text' ng-model='auth.orgCode' placeholder='Code' required />
-		<input type='submit'>
-	</form>	
-	<button ng-click='auth.checkLogin()'>Auth Status</button>
+<div class='signup-div container text-center' ng-controller='SignupController as auth'>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<header><h3>Signup</h3></header>
+			<form name='signupForm' ng-submit='auth.signup()'>
+				<div class="form-group">
+					<input class="form-control" name='name' type='name' ng-model='auth.name' placeholder='Name' required />
+				</div>
+				<div class="form-group">
+					<input class="form-control" name='email' type='email' ng-model='auth.email' placeholder='Email' required />
+				</div>
+				<div class="form-group">
+					<input class="form-control" name='password' type='password' ng-model='auth.password' placeholder='Password' required />
+				</div>
+				<div class="form-group">
+					<input class="form-control" name='code' type='text' ng-model='auth.orgCode' placeholder='Code' required />
+				</div>
+				<button class="btn btn-info" ng-click='auth.checkLogin()'>Auth Status</button>
+				<button class="btn btn-success" type='submit'>Submit</button>
+			</form>	
+		</div>
+	</div>
 </div>
