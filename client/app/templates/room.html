@@ -2,34 +2,34 @@
 <div class="chatroom" ng-controller="roomController as room">
 
 <!-- displaying all messages for this room -->
-  <div class="messages">
-    <header>{{ room.roomname }}</header>
-    <ul>
-      <li ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
-        <strong>{{ msg.username }}:</strong>
-        {{ msg.text }} <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
+  <div class="chatMessages">
+      <ul>
+        <li ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
+          <strong>{{ msg.username }}:</strong>
+          {{ msg.text }} <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
 
-        <!-- showing all replies for this message -->
-        <ul class="replies">
-          <li ng-repeat="reply in msg.replies">{{reply.username}} : {{reply.text}} <span am-time-ago="reply.createdAt">{{ reply.createdAt }}</span></li>
-        </ul>
+          <!-- showing all replies for this message -->
+          <ul class="replies">
+            <li ng-repeat="reply in msg.replies">{{reply.username}} : {{reply.text}} <span am-time-ago="reply.createdAt">{{ reply.createdAt }}</span></li>
+          </ul>
 
-        <!-- reply input box, shown when clicked 'reply' -->
-        <button ng-click="reply.toggleReplying()">reply</button>
-        <div class="replyBox" ng-if="reply.isReplying">
-          <!-- <input ng-model="reply.replyusername" type="text" id="replyUsernameInput" placeholder="enter username" /> -->
-          <input ng-model="reply.replytext" ng-keydown="reply.addReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
-        </div>
-      </li>
-    </ul>
+          <!-- reply input box, shown when clicked 'reply' -->
+          <button ng-click="reply.toggleReplying()">reply</button>
+          <div class="replyBox" ng-if="reply.isReplying">
+            <!-- <input ng-model="reply.replyusername" type="text" id="replyUsernameInput" placeholder="enter username" /> -->
+            <input ng-model="reply.replytext" ng-keydown="reply.addReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 
 
 <!-- input area -->
-  <div>
+  <div class="textBox">
   <!--   <input ng-model="room.username" type="text" id="usernameInput" placeholder="enter username" /> -->
     <!-- <input ng-model="room.roomname" type="text" id="roomnameInput" placeholder="enter roomname" /> -->
-    <input class="form-control submitText" ng-model="room.text" ng-keydown="room.addMessage($event)" type="text" id="textInput" placeholder="add a message" />
+      <input class="form-control submitText" ng-model="room.text" ng-keydown="room.addMessage($event)" type="text" id="textInput" placeholder="add a message" />
   </div>
 </div>
 

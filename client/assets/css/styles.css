@@ -6765,7 +6765,7 @@ button.close {
   }
 }
 body {
-  background-color: #696d7c;
+  background-color: #999ca8;
   color: #FFFFFF;
 }
 h1 {
@@ -6787,7 +6787,7 @@ a:active {
 .navbar .navbar-brand:hover,
 .navbar .container li a:focus,
 .navbar .navbar-brand:focus {
-  background-color: #72577c;
+  background-color: #595c69;
 }
 button a {
   color: #FFFFFF;
@@ -6830,16 +6830,35 @@ footer {
   font-weight: bold;
 }
 div.main-menu {
+  overflow: scroll;
+  background-color: #4d505b;
   border: 1px solid;
-  height: 644px;
+  height: 550px;
+  padding-left: 30px;
 }
 .chatRoomView {
+  color: black;
   border: 1px solid;
-  height: 644px;
-  background-color: #ebe3e0;
+  height: 550px;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+.chatMessages {
+  position: absolute;
+  bottom: 6%;
+  top: 0%;
+  width: 100%;
+  overflow: scroll;
 }
 .submitText {
+  position: static;
+}
+.textBox {
   position: absolute;
-  top: 608px;
-  left: 0px;
+  background-color: #16a79d;
+  width: 100%;
+  height: 12%;
+  padding: 16px;
+  top: 88%;
+  left: 0%;
 }

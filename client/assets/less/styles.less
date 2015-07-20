@@ -8,7 +8,7 @@
 @cream: #EBE3E0;
 
 body {
-  background-color: lighten(@darkpurple, 12%);
+  background-color: lighten(@darkpurple, 30%);
   color: #FFFFFF;
 }
 
@@ -24,7 +24,7 @@ a, a:visited, a:active {
   .container li a, .navbar-brand {
     color: #FFFFFF;
     &:hover, &:focus {
-      background-color: darken(@purple, 5%);
+      background-color: lighten(@darkpurple, 5%);
     }
   }
 }
@@ -77,21 +77,48 @@ footer {
   font-weight:bold;
 }
 
+// Main Styles
+.main {
+
+}
+
 // main menu styles
 div.main-menu {
+  overflow: scroll;
+  background-color: @darkpurple;
   border: 1px solid;
-  height: 644px;
+  height: 550px;
+  padding-left: 30px;
 }
 
 // chatroom styles
+
 .chatRoomView {
+  color: black;
   border: 1px solid;
-  height: 644px;
-  background-color: @cream; 
+  height: 550px;
+  background-color: #ffffff;
+  border-color: #cccccc; 
+}
+
+.chatMessages {
+  position: absolute;
+  bottom: 6%;
+  top: 0%;
+  width: 100%;
+  overflow: scroll;
 }
 
 .submitText {
+  position: static;
+}
+
+.textBox {
   position: absolute;
-  top: 608px;
-  left: 0px
+  background-color: @teal;
+  width: 100%;
+  height: 12%;
+  padding: 16px;
+  top: 88%;
+  left: 0%;
 }
