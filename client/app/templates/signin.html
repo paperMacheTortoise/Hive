@@ -1,9 +1,17 @@
-<div class='signin-div container' ng-controller='SigninController as auth'>
-	<header><h3>Signin</h3></header>
-	<form name='signinForm' ng-submit='auth.signin()'>
-		<input name='email' type='email' ng-model='auth.email' placeholder='Email' required />
-		<input name='password' type='password' ng-model='auth.password' placeholder='Password' required />
-		<input type='submit'>
-	</form>	
-	<button ng-click='auth.checkLogin()'>Auth Status</button>
+<div class='signin-div container text-center' ng-controller='SigninController as auth'>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+		<header><h3>Signin</h3></header>
+		<form name='signinForm' ng-submit='auth.signin()'>
+			<div class="form-group">
+			<input class="form-control" name='email' type='email' ng-model='auth.email' placeholder='Email' required>
+			</div>
+			<div class="form-group">
+			<input class="form-control" name='password' type='password' ng-model='auth.password' placeholder='Password' required>
+			</div>
+		</form>	
+		<button class="btn btn-success" type="submit">Submit</button>
+		<button class="btn btn-info" ng-click='auth.checkLogin()'>Auth Status</button>
+		</div>
+	</div>
 </div>

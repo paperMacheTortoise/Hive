@@ -3,9 +3,10 @@ node_js:
   - "0.12.7"
 # notifications:
 #   slack: slayteam:ZeuMypPFNJSJxOsqN8Rvdeog
-before_script:
+before_install:
   - "npm install -g grunt-cli"
   - "npm install -g bower"
+  install:
   - "npm install"
   - "bower install"
 

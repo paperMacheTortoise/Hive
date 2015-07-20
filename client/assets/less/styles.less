@@ -1,8 +1,31 @@
+@import "../../lib/bootstrap/less/bootstrap.less";
+
+@darkpurple: #4D505B; // primary
+@pink: #CF4858; // success
+@teal: #16A79D; //info
+@purple: #80628B; //warning
+@orange: #F4AC42; //danger
+
+body {
+  background-color: lighten(@darkpurple, 12%);
+  color: #FFFFFF;
+}
+
 h1 {
-	text-align: center;
+	text-align: left;
 }
 a, a:visited, a:active {
   color: #444;
+}
+
+.navbar {
+  background-color: @darkpurple;
+  .container li a, .navbar-brand {
+    color: #FFFFFF;
+    &:hover, &:focus {
+      background-color: darken(@purple, 5%);
+    }
+  }
 }
 
 #vis {
