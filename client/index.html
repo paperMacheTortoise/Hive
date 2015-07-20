@@ -54,7 +54,8 @@
 </head>
 
 <body ng-app="bizGramApp">
-<nav class="navbar navbar-default navbar-static-top" ng-controller="IndexController as index">
+<div >
+<nav class="row navbar navbar-default navbar-static-top" ng-controller="IndexController as index">
 	<div class="container">
 		<div class="navbar-header">
 			<a class="navbar-brand" ng-click="index.logo()">bizGram</a>
@@ -70,7 +71,8 @@
 	</div>
 </nav>
 	 <!-- angular views: where all the angular views render -->
-	<div ui-view></div>
+	<div ui-view class="row"></div>
+</div>
 
 
 	<!-- Bootstrap -->

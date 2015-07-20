@@ -1,15 +1,16 @@
 <div class="directmessage" ng-controller="directMessageController as dm">
 
 <div class="message">
-	<header>Direct Message with {{dm.recipient}}</header>
-	<ul>
-		<li ng-repeat="msg in dm.messages">
-			<strong>{{ msg.username }}: </strong>
-			{{ msg.text }} <span am-time-ago="msg.createdAt"> {{ msg.createdAt }}</span>
+	<header><h3>{{dm.recipient}}</h3></header>
+	<ul class="list-group">
+		<li class="list-group-item" ng-repeat="msg in dm.messages">
+			<span class="username">{{ msg.username }}: </span>
+			<span class="time" am-time-ago="msg.createdAt"> {{ msg.createdAt }}</span>
+			<div> {{ msg.text }} </div>
 		</li>
 	</ul>
 </div>
 
-<div>
+<div class="textBox">
 	<input class="form-control submitText" ng-model="dm.text" ng-keydown="dm.addMessage($event)" type="text" placeholder="add a message">
 </div>
