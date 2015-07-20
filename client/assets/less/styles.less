@@ -5,10 +5,9 @@
 @teal: #16A79D; //info
 @purple: #80628B; //warning
 @orange: #F4AC42; //danger
-@cream: #EBE3E0;
 
 body {
-  background-color: lighten(@darkpurple, 30%);
+  background-color: lighten(@darkpurple, 12%);
   color: #FFFFFF;
 }
 
@@ -24,14 +23,9 @@ a, a:visited, a:active {
   .container li a, .navbar-brand {
     color: #FFFFFF;
     &:hover, &:focus {
-      background-color: lighten(@darkpurple, 5%);
-      color: #FFFFFF;
+      background-color: darken(@purple, 5%);
     }
   }
-}
-
-button a{
-  color: #FFFFFF;
 }
 
 #vis {
@@ -77,131 +71,3 @@ footer {
 .tooltip .name {
   font-weight:bold;
 }
-
-// Chatroom styles
-.chatRoomView {
-  color: black;
-  background-color: white;
-  border: 1px solid @darkpurple;
-  height: 650px;
-}
-
-ol {
-  list-style-type: none;
-}
-
-.username {
-  font-weight: bold;
-}
-
-.time {
-  color: gray;
-}
-
-// Main Styles
-.userImg {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-}
-
-.main-menu li a {
-  padding: 0;
-}
-
-// Chatroom Styles
-
-.chats {
-  display: block;
-}
-
-.chats .cmmnt, ol .cmmnt, ol ol .cmmnt {
-  display: block;
-  position: relative;
-  padding-left: 20px;
-}
-
-.profileImg {
-  position: absolute;
-  top: 8px;
-  left: 0;
-  float: left;
-  margin-right: 20px;
-  border: 1px solid;
-  height: 50px;
-  width: 50px;
-}
-
-// Main Styles
-.userImg {
-  width: 50px;
-  height: 50px;
-  border: 1px solid;
-}
-
-.main-menu a {
-  padding: 0;
-}
-
-// Chatroom Styles
-
-.chats {
-  display: block;
-}
-
-.chats .cmmnt, ol .cmmnt, ol ol .cmmnt {
-  display: block;
-  position: relative;
-  padding-left: 30px;
-}
-
-.profileImg {
-  position: absolute;
-  top: 8px;
-  left: 0;
-  float: left;
-  margin-right: 20px;
-  border: 1px solid;
-  height: 50px;
-  width: 50px;
-}
-
-.chats .cmmnt .cmmntBox {
-  padding: 0 30px;
-  padding-bottom: 10px; 
-  padding-top: 8px;
-}
-
-.chats .cmmnt .replies {
-  margin-bottom: 0px;
-}
-
-.chatMessages {
-  position: absolute;
-  bottom: 7%;
-  top: 0%;
-  width: 100%;
-  overflow: scroll;
-}
-
-.submitText {
-  position: static;
-}
-
-.textBox {
-  position: absolute;
-  background-color: @teal;
-  width: 100%;
-  height: 10%;
-  padding: 16px;
-  top: 90%;
-  left: 0%;
-}
-
-// visualChatroom Styles
-// .visualChatroom {
-//   color: black;
-//   background-color: white;
-//   border: 1px solid @darkpurple;
-//   height: 650px;
-// }
