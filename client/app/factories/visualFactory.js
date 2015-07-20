@@ -164,8 +164,7 @@ angular.module('visualFactory', ['firebase'])
 
 	//BubbleChart function to create nodes from data.
 	visualFactory.BubbleChart.prototype.create_nodes = function() {
-	  this.data.forEach((function(_this) {
-	    return function(d) {
+	  this.data.forEach(function(d) {
 	      var node;
 	      node = {
 	        client: d.client,
@@ -181,8 +180,7 @@ angular.module('visualFactory', ['firebase'])
 	        y: Math.random() * 800
 	      };
 	      return _this.nodes.push(node);
-	    };
-	  })(this));
+	  });
 	  return this.nodes.sort(function(a, b) {
 	    return b.amount - a.amount;
 	  });
