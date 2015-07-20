@@ -1,6 +1,6 @@
 angular.module('authFactory', ['firebase'])
 
-.factory('Auth', ['$firebaseAuth', '$firebaseArray', function ($firebaseAuth, $firebaseArray){
+.factory('Auth', ['$firebaseAuth', '$firebaseArray', '$state', function ($firebaseAuth, $firebaseArray, $state){
 
 	var authFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
@@ -51,6 +51,7 @@ angular.module('authFactory', ['firebase'])
 
 	authFactory.signout = function(){
 		authObj.$unauth();
+    $state.go('landing');
 	};
 
 	return authFactory;
