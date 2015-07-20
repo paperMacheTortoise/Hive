@@ -3,14 +3,18 @@
 
 <!-- displaying all messages for this room -->
   <div class="chatMessages">
+      <header><h3>{{ room.roomname }}</h3></header>
       <ul>
         <li ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
-          <strong>{{ msg.username }}:</strong>
-          {{ msg.text }} <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
+          <span class="username">{{ msg.username }}</span>
+          <span class="time" am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
+          <div>
+          {{ msg.text }}
+          </div>
 
           <!-- showing all replies for this message -->
           <ul class="replies">
-            <li ng-repeat="reply in msg.replies">{{reply.username}} : {{reply.text}} <span am-time-ago="reply.createdAt">{{ reply.createdAt }}</span></li>
+            <li ng-repeat="reply in msg.replies"><span class="username">{{reply.username}}</span> <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span><div>{{reply.text}}</div></li>
           </ul>
 
           <!-- reply input box, shown when clicked 'reply' -->
