@@ -3,11 +3,10 @@ node_js:
   - "0.12.7"
 # notifications:
 #   slack: slayteam:ZeuMypPFNJSJxOsqN8Rvdeog
-before_script:
-  - "npm install -g grunt-cli"
-  - "npm install -g bower"
-  - "npm install"
-  - "bower install"
+before_install: npm install -g grunt-cli bower
+install:
+  - npm install
+  - bower install
 
 # before_install:
 # - export CHROME_BIN=chromium-browser

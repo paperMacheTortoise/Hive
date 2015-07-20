@@ -26,10 +26,10 @@
 
 
 <!-- input area -->
-  <div class="submitText">
+  <div>
   <!--   <input ng-model="room.username" type="text" id="usernameInput" placeholder="enter username" /> -->
     <!-- <input ng-model="room.roomname" type="text" id="roomnameInput" placeholder="enter roomname" /> -->
-    <input ng-model="room.text" ng-keydown="room.addMessage($event)" type="text" id="textInput" placeholder="type a text" />
+    <input class="form-control submitText" ng-model="room.text" ng-keydown="room.addMessage($event)" type="text" id="textInput" placeholder="add a message" />
   </div>
 </div>
 

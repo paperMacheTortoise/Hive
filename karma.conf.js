@@ -22,16 +22,16 @@ module.exports = function(config){
 			'karma.conf.js'
 		],
 		reporter: ['mocha'],
-		plugins: [
-			'karma-chai',
-			'karma-mocha',
-			'karma-mocha-reporter',
-			'karma-phantomjs-launcher',
-			'karma-sinon'
-		],
+		// plugins: [
+		// 	'karma-chai',
+		// 	'karma-mocha',
+		// 	'karma-mocha-reporter',
+		// 	'karma-phantomjs-launcher',
+		// 	'karma-sinon'
+		// ],
 		port: 9876,
 		colors: true,
-		logLevel: 'INFO',
+		logLevel: config.LOG_INFO,
 		autowatch: false,
 		browsers: ['PhantomJS'],
 		singleRun: true

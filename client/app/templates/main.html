@@ -1,6 +1,6 @@
 <div class="container" ng-controller="mainController as main">
 	<div class="row">
-		<div class="col-sm-3 col-md-3">
+		<div class="col-sm-3 col-md-3 main-menu text-center">
 			<h4>Logged in as:</h4>
 			{{main.currentUser}}
 			<h4>Reports</h4>
@@ -19,10 +19,8 @@
 				</ul>
 		</div>
 
-		<div class="col-sm-4 col-md-4">
-			<div class="chatRoomView">
+		<div class="col-sm-9 col-md-9 chatRoomView">
 				<div ui-view></div>
-			</div>
 		</div>
 	</div>
 </div>
