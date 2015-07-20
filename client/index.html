@@ -57,7 +57,7 @@
 <nav class="navbar navbar-default navbar-static-top" ng-controller="IndexController as index">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" ui-sref="main({org: index.org})">bizGram</a>
+			<a class="navbar-brand" ng-click="index.logo()">bizGram</a>
 		</div>
 		<ul class="nav navbar-nav navbar-right">
 			<!-- Should show if user is logged out -->
@@ -65,7 +65,7 @@
 			<li><a ui-sref="signup({org: index.org})" ng-show="shouldShow">SignUp</a></li>
 			<!-- Should show if users is logged in -->
 			<li><a ui-sref="profile({org: index.org})" ng-hide="shouldShow">Profile</a></li>
-			<li><a ui-sref="logout" ng-hide="shouldShow" ng-click="index.signout()">Logout</a></li>
+			<li><a ui-sref="logout" ng-hide="shouldShow" ng-click="index.logout()">Logout</a></li>
 		</ul>
 	</div>
 </nav>

@@ -113,24 +113,31 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 
 	// Checks that the user has been authenticated on each page. If not, the user is redirected to the signin page.
 	$rootScope.$on('$stateChangeStart', function (event, toState){
-		var requireLogin;
-		if (toState && toState.data && toState.data.requireLogin) {
-			requireLogin = toState.data.requireLogin;
-		} else {
-			requireLogin = false;
-		}
-		if(requireLogin && !$rootScope.logInfo && toState.name!=='signup'){
-			event.preventDefault();
-			console.log('User must be logged in to access page');
-			// console.log($location.$$path.slice(1));
-			console.dir($stateParams);
-			$state.go('signin', {org: $location.$$path.slice(1)});
+		// landing page doesn't require logging in
+		if (toState.name === 'landing') {
+			var requireLogin;
+			if (toState && toState.data && toState.data.requireLogin) {
+				requireLogin = toState.data.requireLogin;
+			} else {
+				requireLogin = false;
+			}
+			if(requireLogin && !$rootScope.logInfo && toState.name!=='signup'){
+				event.preventDefault();
+				console.log('User must be logged in to access page');
+				// console.log($location.$$path.slice(1));
+				console.dir($stateParams);
+				$state.go('signin', {org: $location.$$path.slice(1)});
+			}
 		}
 	});
 
 	// at each state chage, check if the user belongs to the organization it is navigating to
-	$rootScope.$on('$stateChangeSuccess', function (event, toState) {
+	$rootScope.$on('$stateChangeSuccess', function (event, toState, $stateParams) {
 		// if the user doesnt belong to this organization, redirect to landing page
+		console.log($stateParams);
+		if ($stateParams.org === '') {
+			$state.go('landing');
+		}
 		if ($rootScope.logInfo) {
 			$rootScope.shouldShow = false;
 		} else {
