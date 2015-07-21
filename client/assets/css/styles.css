@@ -6765,7 +6765,7 @@ button.close {
   }
 }
 body {
-  background-color: #696d7c;
+  background-color: #999ca8;
   color: #FFFFFF;
 }
 h1 {
@@ -6787,7 +6787,11 @@ a:active {
 .navbar .navbar-brand:hover,
 .navbar .container li a:focus,
 .navbar .navbar-brand:focus {
-  background-color: #72577c;
+  background-color: #595c69;
+  color: #FFFFFF;
+}
+button a {
+  color: #FFFFFF;
 }
 #vis {
   width: 940px;
@@ -6825,4 +6829,102 @@ footer {
 }
 .tooltip .name {
   font-weight: bold;
+}
+.chatRoomView {
+  color: black;
+  background-color: white;
+  border: 1px solid #4d505b;
+  height: 650px;
+}
+ol {
+  list-style-type: none;
+}
+.username {
+  font-weight: bold;
+}
+.time {
+  color: gray;
+}
+.userImg {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+}
+.main-menu li a {
+  padding: 0;
+}
+.chats {
+  display: block;
+}
+.chats .cmmnt,
+ol .cmmnt,
+ol ol .cmmnt {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+}
+.profileImg {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  float: left;
+  margin-right: 20px;
+  border: 1px solid;
+  height: 50px;
+  width: 50px;
+}
+.userImg {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+}
+.main-menu a {
+  padding: 0;
+}
+.chats {
+  display: block;
+}
+.chats .cmmnt,
+ol .cmmnt,
+ol ol .cmmnt {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+}
+.profileImg {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  float: left;
+  margin-right: 20px;
+  border: 1px solid;
+  height: 50px;
+  width: 50px;
+}
+.chats .cmmnt .cmmntBox {
+  padding: 0 30px;
+  padding-bottom: 10px;
+  padding-top: 8px;
+}
+.chats .cmmnt .replies {
+  margin-bottom: 0px;
+}
+.chatMessages {
+  position: absolute;
+  bottom: 7%;
+  top: 0%;
+  width: 100%;
+  overflow: scroll;
+}
+.submitText {
+  position: static;
+}
+.textBox {
+  position: absolute;
+  background-color: #16a79d;
+  width: 100%;
+  height: 10%;
+  padding: 16px;
+  top: 90%;
+  left: 0%;
 }
