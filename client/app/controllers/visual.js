@@ -24,9 +24,9 @@ angular.module('visualCtrl', [])
 
   //Instantiates a bubblechart with data.
   var chart = null;
-  var visual_data = Visualization.getVisualData(vm.org, "Recievable");
+  var visual_data = Visualization.getVisualData(vm.org, "Receivables");
   chart = visual_data.$loaded(function(){
-    var chart = new Visualization.BubbleChart(visual_data[visual_data.length - 1].data);
+    var chart = new Visualization.BubbleChart(visual_data);
     chart.start();
     chart.display_group_all();
 

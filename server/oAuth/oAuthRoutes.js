@@ -62,7 +62,7 @@ module.exports = function(app) {
           }
         }
 
-        myFirebaseRef.set(
+        myFirebaseRef.update(
           {
             Receivables: myObjectArray
           }
@@ -106,7 +106,7 @@ app.get('/payable', oAuthController.ensureAuthenticated, function(req, res) {
 
        }
 
-      myFirebaseRef.set(
+      myFirebaseRef.update(
         {
           Payables: myObjectArray
         }
