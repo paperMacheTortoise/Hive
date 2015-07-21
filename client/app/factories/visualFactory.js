@@ -156,7 +156,7 @@ angular.module('visualFactory', ['firebase'])
 	  max_amount = d3.max(this.data, function(d) {
 	    return parseInt(d.amount);
 	  });
-	  this.fill_color = d3.scale.ordinal().domain(["1 - 30 days past due","31 - 60 days past due","61 or more days past due"]).range(["green", "blue", "red"]);
+	  this.fill_color = d3.scale.ordinal().domain(["1 - 30 days past due","31 - 60 days past due","61 or more days past due"]).range(["#16A79D", "#F4AC42", "#80628B"]);
 	  this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
 	  this.create_nodes();
 	  this.create_vis();
@@ -164,7 +164,8 @@ angular.module('visualFactory', ['firebase'])
 
 	//BubbleChart function to create nodes from data.
 	visualFactory.BubbleChart.prototype.create_nodes = function() {
-	  this.data.forEach(function(d) {
+	  this.data.forEach((function(_this) {
+	    return function(d) {
 	      var node;
 	      node = {
 	        client: d.client,
@@ -180,7 +181,8 @@ angular.module('visualFactory', ['firebase'])
 	        y: Math.random() * 800
 	      };
 	      return _this.nodes.push(node);
-	  });
+	    };
+	  })(this));
 	  return this.nodes.sort(function(a, b) {
 	    return b.amount - a.amount;
 	  });

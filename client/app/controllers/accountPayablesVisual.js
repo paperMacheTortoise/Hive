@@ -26,7 +26,7 @@ angular.module('accountPayablesVisualCtrl', [])
   var chart = null;
   var visual_data = Visualization.getVisualData(vm.org, "Payables");
   chart = visual_data.$loaded(function(){
-    var chart = new Visualization.BubbleChart(visual_data[visual_data);
+    var chart = new Visualization.BubbleChart(visual_data);
     chart.start();
     chart.display_group_all();
 
