@@ -6788,6 +6788,7 @@ a:active {
 .navbar .container li a:focus,
 .navbar .navbar-brand:focus {
   background-color: #595c69;
+  color: #FFFFFF;
 }
 button a {
   color: #FFFFFF;
@@ -6849,7 +6850,7 @@ ol {
   height: 50px;
   border: 1px solid;
 }
-.main-menu a {
+.main-menu li a {
   padding: 0;
 }
 .chats {
@@ -6860,7 +6861,7 @@ ol .cmmnt,
 ol ol .cmmnt {
   display: block;
   position: relative;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 .profileImg {
   position: absolute;
@@ -6878,11 +6879,11 @@ ol ol .cmmnt {
   padding-top: 8px;
 }
 .chats .cmmnt .replies {
-  margin-bottom: 7px;
+  margin-bottom: 0px;
 }
 .chatMessages {
   position: absolute;
-  bottom: 6%;
+  bottom: 7%;
   top: 0%;
   width: 100%;
   overflow: scroll;
