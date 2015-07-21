@@ -5,11 +5,11 @@ angular.module('mainCtrl', [])
 	var vm = this;
 
   vm.org = $stateParams.org;
-  vm.currentUser = $rootScope.logInfo.username;
+  vm.currentUser = $rootScope.logInfo;
   // Get the rooms from the roomFactory.
   vm.rooms = Rooms.getRooms(vm.org);
   // Get all users except for the current user from the userFactory.
-  vm.users = Users.getDisplayUsers(vm.currentUser, vm.org);
+  vm.users = Users.getDisplayUsers(vm.currentUser.username, vm.org);
   // Get all visuals from the visualFactory.
   vm.visuals = Visualization.getVisualNames(vm.org);
 
