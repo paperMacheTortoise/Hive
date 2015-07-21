@@ -9,7 +9,7 @@ angular.module('roomCtrl', [])
   Rooms.setRoom(vm.roomname, vm.org); // CHECK IF NECESSARY
   // Gets the messages from the roomFactory.
   vm.messages = Rooms.getRoomMessages(vm.org);
-  console.log(vm.messages);
+  // console.log(vm.messages);
   // Gets the current user.
   vm.username = $rootScope.logInfo.username;
 
