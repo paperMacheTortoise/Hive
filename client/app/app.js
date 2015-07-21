@@ -11,7 +11,8 @@ var app = angular.module('bizGramApp', [
 	'uploadFactory',
 	'visualFactory',
 	'mainCtrl',
-	'visualCtrl',
+	'aRVisualCtrl',
+	'aPVisualCtrl',
 	'visualReplyCtrl',
 	'authCtrl',
 	'directMessageCtrl',
@@ -67,9 +68,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('visual', {
 		url:'/:org/visual/:visualId',
 		templateUrl: 'app/templates/visualization.html',
-		data: {
-			requireLogin: true
-		}
+		// data: {
+		// 	requireLogin: true
+		// }
 	})
 	.state('signin',{
 		url: '/:org/signin',

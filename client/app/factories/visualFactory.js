@@ -1,6 +1,6 @@
 angular.module('visualFactory', ['firebase'])
 
-.factory('Visualization', ['$firebaseArray', function ($firebaseArray){
+.factory('Visualization', ['$firebaseArray', function ($firebaseArray) {
 
 	var visualFactory = {};
 
@@ -107,25 +107,8 @@ angular.module('visualFactory', ['firebase'])
 	  };
 	};
 
-	//Function used to add commas in the account data display of amounts.
-	var addCommas = function(nStr) {
-	  nStr += '';
-	  x = nStr.split('.');
-	  x1 = x[0];
-	  x2 = x.length > 1 ? '.' + x[1] : '';
-	  var rgx = /(\d+)(\d{3})/;
-
-	  while (rgx.test(x1)) {
-	    x1 = x1.replace(rgx, '$1' + ',' + '$2');
-	  }
-
-	  return x1 + x2;
-	};
-
 	//Class definition for the bubble chart.
-	visualFactory.BubbleChart = function(data) {
-	  var max_amount;
-	  this.data = data;
+	visualFactory.BubbleChart = function() {
 	  this.width = 940;
 	  this.height = 600;
 	  this.tooltip = new CustomTooltip("toolTipID", 240);
@@ -133,89 +116,16 @@ angular.module('visualFactory', ['firebase'])
 	    x: this.width / 2,
 	    y: this.height / 2
 	  };
-	  this.due_date_centers = {
-	    "1 - 30 days past due": {
-	      x: this.width / 3,
-	      y: this.height / 2
-	    },
-	    "31 - 60 days past due": {
-	      x: this.width / 2,
-	      y: this.height / 2
-	    },
-	    "61 or more days past due": {
-	      x: 2 * this.width / 3,
-	      y: this.height / 2
-	    }
-	  };
 	  this.layout_gravity = -0.01;
 	  this.damper = 0.1;
 	  this.vis = null;
 	  this.nodes = [];
 	  this.force = null;
 	  this.circles = null;
-	  max_amount = d3.max(this.data, function(d) {
-	    return parseInt(d.amount);
-	  });
-	  this.fill_color = d3.scale.ordinal().domain(["1 - 30 days past due","31 - 60 days past due","61 or more days past due"]).range(["#16A79D", "#F4AC42", "#80628B"]);
-	  this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
-	  this.create_nodes();
-	  this.create_vis();
+
 	};
 
-	//BubbleChart function to create nodes from data.
-	visualFactory.BubbleChart.prototype.create_nodes = function() {
-	  this.data.forEach((function(_this) {
-	    return function(d) {
-	      var node;
-	      node = {
-	        client: d.client,
-	        client_id: d.client_id,
-	        radius: _this.radius_scale(parseInt(d.amount)),
-	        amount: +d.amount,
-	        open_balance: d.open_balance,
-	        days_past_due: d.days_past_due,
-	        due_date: d.due_date,
-	        invoice_num: d.invoice_num,
-	        invoice_date: d.invoice_date,
-	        x: Math.random() * 900,
-	        y: Math.random() * 800
-	      };
-	      return _this.nodes.push(node);
-	    };
-	  })(this));
-	  return this.nodes.sort(function(a, b) {
-	    return b.amount - a.amount;
-	  });
-	};
 
-	//BubbleChart function to create D3 visualization of each created node.  It
-	//also gives it the scroll over functions of displaying tooltips.
-	visualFactory.BubbleChart.prototype.create_vis = function() {
-	  var that;
-	  this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
-	  this.circles = this.vis.selectAll("circle").data(this.nodes, function(d) {
-	    return d.client;
-	  });
-	  that = this;
-	  this.circles.enter().append("circle").attr("r", 0).attr("fill", (function(_this) {
-	    return function(d) {
-	      return _this.fill_color(d.days_past_due);
-	    };
-	  })(this)).attr("stroke-width", 2).attr("stroke", (function(_this) {
-	    return function(d) {
-	      return d3.rgb(_this.fill_color(d.days_past_due)).darker();
-	    };
-	  })(this)).attr("title", function(d) {
-	    return "bubble_" + d.client_id;
-	  }).on("mouseover", function(d, i) {
-	    return that.show_details(d, i, this);
-	  }).on("mouseout", function(d, i) {
-	    return that.hide_details(d, i, this);
-	  });
-	  return this.circles.transition().duration(2000).attr("r", function(d) {
-	    return d.radius;
-	  });
-	};
 
 	//BubbleChart function to set "charge" which determines bubble motion.
 	visualFactory.BubbleChart.prototype.charge = function(d) {
@@ -312,18 +222,6 @@ angular.module('visualFactory', ['firebase'])
 	  return past_due = this.vis.selectAll(".past_due").remove();
 	};
 
-	//BubbleChart function that displays the tooltip and highlights the bubble when mouseover.
-	visualFactory.BubbleChart.prototype.show_details = function(data, i, element) {
-	  var content;
-	  d3.select(element).attr("stroke", "black");
-	  content = "<span class=\"name\">Client:</span><span class=\"value\"> " + data.client + "</span><br/>";
-	  content += "<span class=\"name\">Client ID:</span><span class=\"value\"> " + data.client_id + "</span><br/>";
-	  content += "<span class=\"name\">Amount:</span><span class=\"value\"> $" + (addCommas(data.amount)) + "</span><br/>";
-	  content += "<span class=\"name\">Due Date:</span><span class=\"value\"> " + data.due_date + "</span><br/>";
-	  content += "<span class=\"name\">Invoice Number:</span><span class=\"value\"> " + data.invoice_num + "</span><br/>";
-	  content += "<span class=\"name\">Invoice Date:</span><span class=\"value\"> " + data.invoice_date + "</span><br/>";
-	  return this.tooltip.showTooltip(content, d3.event);
-	};
 
 	//BubbleChart function that removes tooltip and bubble highlight when mouse leaves the bubble.
 	visualFactory.BubbleChart.prototype.hide_details = function(data, i, element) {
@@ -333,6 +231,21 @@ angular.module('visualFactory', ['firebase'])
 	    };
 	  })(this));
 	  return this.tooltip.hideTooltip();
+	};
+
+	//Function used to add commas in the account data display of amounts.
+	visualFactory.BubbleChart.prototype.addCommas = function(nStr) {
+	  nStr += '';
+	  x = nStr.split('.');
+	  x1 = x[0];
+	  x2 = x.length > 1 ? '.' + x[1] : '';
+	  var rgx = /(\d+)(\d{3})/;
+
+	  while (rgx.test(x1)) {
+	    x1 = x1.replace(rgx, '$1' + ',' + '$2');
+	  }
+
+	  return x1 + x2;
 	};
 
 	return visualFactory;

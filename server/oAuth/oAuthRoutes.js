@@ -3,12 +3,9 @@ var passport = require('passport');
 var QuickBooks = require('../../node_modules/node-quickbooks/index.js');
 var Firebase = require("firebase");
 var myFirebaseRef = new Firebase("https://bizgramer.firebaseio.com/hr/BizData");
-// var AccountsRef = myFirebaseRef.child("Accounts");
-// var ProfitLossRef = myFirebaseRef.child("ProfitLoss");
 
 module.exports = function(app) {
 
-  // var QuickBooks = require('node-quickbooks');
 
   app.get('/login', function(req, res){
     console.log("login req.session ", req.session);
@@ -16,11 +13,6 @@ module.exports = function(app) {
     console.log("login req.session.passport.user", req.session.passport.user);
     res.render('login', { user: req.user });
   });
-
-  // app.get('/auth/intuit', passport.authenticate('intuit'),
-  //   function(req, res) {
-
-  // } );
 
   app.get('/auth/intuit/callback',
     passport.authenticate('intuit', { failureRedirect: '/login' }),
@@ -71,8 +63,6 @@ module.exports = function(app) {
 
 app.get('/payable', oAuthController.ensureAuthenticated, function(req) {
    var qbo = req.user.qbo;
- //  var date = new Date();
-  // var currentDate = dateFunc(date);
 
    var myObjectArray = [];
 
