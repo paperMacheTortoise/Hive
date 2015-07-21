@@ -1,22 +1,23 @@
-<div class="main" ng-controller="mainController as main">
+<div class="container" ng-controller="mainController as main">
 	<div class="row">
-		<div class="col-sm-3 col-md-3 main-menu">
-			<h4>Logged in as:</h4>
-			{{main.currentUser}}
-			<h4>Reports</h4>
+		<div class="col-sm-3 col-md-3 main-menu">			
+			<h5>Reports</h5>
 				<ul class="nav nav-sidebar visualizations">
 					<li ng-repeat="visual in main.visuals track by $index"><a ui-sref="visual({org: main.org, visualId: visual})">{{ visual }}</a></li>
 				</ul>
-			<h4>Rooms</h4>
+				<br>
+			<h5>Rooms</h5>
 				<ul class="nav nav-sidebar rooms">
 					<li ng-repeat='room in main.rooms track by $index' ><a ui-sref="main.room({org: main.org, roomName: room})">{{ room }}</a></li>
 				</ul>
 				<input ng-model="main.nameOfRoomToAdd" type="text" placeholder="add room" ng-keydown="main.addRoom($event)" />
-
-			<h4>Users</h4>
+				<br>
+			<h5>Users</h5>
 				<ul class="nav nav-sidebar users">
 					<li ng-repeat='user in main.users track by $index'><a ui-sref="main.direct({org: main.org, user: user.username})">{{ user.username }}</a></li>
 				</ul>
+				<br>
+				<img class="userImg text-center" src="{{main.currentUser.pictureUrl}}"></img>
 		</div>
 
 		<div class="col-sm-9 col-md-9 chatRoomView">

@@ -3,30 +3,44 @@
 
 <!-- displaying all messages for this room -->
   <div class="chatMessages">
-      <header><h3>{{ room.roomname }}</h3></header>
-      <ul>
-        <li ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
-          <span class="username">{{ msg.username }}</span>
-          <span class="time" am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
-          <div>
-          {{ msg.text }}
+    <header><h3>{{ room.roomname }}</h3></header>
+    <ol class="chats">
+      <li class="cmmnt" ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
+        <div class="profileImg"></div>
+        <div class="cmmntBox">
+          <div class="username">{{ msg.username }}</div>
+          <div class="message">{{ msg.text }}</div>
+          <div class="time">
+            <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot; 
+            <a ng-click="reply.toggleReplying()">Reply</a>
           </div>
+        </div>
 
-          <!-- showing all replies for this message -->
-          <ul class="replies">
-            <li ng-repeat="reply in msg.replies"><span class="username">{{reply.username}}</span> <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span><div>{{reply.text}}</div></li>
-          </ul>
+        <!-- showing all replies for this message -->
+        <ol class="replies">
+          <li class="cmmnt" ng-repeat="reply in msg.replies">
+            <div class="profileImg"></div>
+            <div class="cmmntBox">
+              <div class="username">{{reply.username}}</div> 
+              <div class="message">{{reply.text}}</div>
+              <div class="time">
+                <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot; 
+                <a ng-click="reply.toggleReplying()">Reply</a>
+              </div>
+            </div>
+          </li>
+        </ol>
 
-          <!-- reply input box, shown when clicked 'reply' -->
-          <button ng-click="reply.toggleReplying()">reply</button>
-          <div class="replyBox" ng-if="reply.isReplying">
-            <!-- <input ng-model="reply.replyusername" type="text" id="replyUsernameInput" placeholder="enter username" /> -->
-            <input ng-model="reply.replytext" ng-keydown="reply.addReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
-          </div>
-        </li>
-      </ul>
-    </div>
+        <!-- reply input box, shown when clicked 'reply' -->
+       <!--  <button ng-click="reply.toggleReplying()">reply</button> -->
+        <div class="replyBox" ng-if="reply.isReplying">
+          <!-- <input ng-model="reply.replyusername" type="text" id="replyUsernameInput" placeholder="enter username" /> -->
+          <input ng-model="reply.replytext" ng-keydown="reply.addReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
+        </div>
+      </li>
+    </ol>
   </div>
+
 
 
 <!-- input area -->

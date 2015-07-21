@@ -25,6 +25,7 @@ a, a:visited, a:active {
     color: #FFFFFF;
     &:hover, &:focus {
       background-color: lighten(@darkpurple, 5%);
+      color: #FFFFFF;
     }
   }
 }
@@ -85,7 +86,7 @@ footer {
   height: 650px;
 }
 
-ul {
+ol {
   list-style-type: none;
 }
 
@@ -94,37 +95,90 @@ ul {
 }
 
 .time {
-  font-color: lighten(black, 50%);
+  color: gray;
 }
 
+// Main Styles
+.userImg {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+}
 
+.main-menu li a {
+  padding: 0;
+}
 
-// .main {
+// Chatroom Styles
 
-// }
+.chats {
+  display: block;
+}
 
-// // main menu styles
-// div.main-menu {
-//   overflow: scroll;
-//   background-color: @darkpurple;
-//   border: 1px solid;
-//   height: 550px;
-//   padding-left: 30px;
-// }
+.chats .cmmnt, ol .cmmnt, ol ol .cmmnt {
+  display: block;
+  position: relative;
+  padding-left: 20px;
+}
 
-// // chatroom styles
+.profileImg {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  float: left;
+  margin-right: 20px;
+  border: 1px solid;
+  height: 50px;
+  width: 50px;
+}
 
-// .chatRoomView {
-//   color: black;
-//   border: 1px solid;
-//   height: 550px;
-//   background-color: #ffffff;
-//   border-color: #cccccc; 
-// }
+// Main Styles
+.userImg {
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+}
+
+.main-menu a {
+  padding: 0;
+}
+
+// Chatroom Styles
+
+.chats {
+  display: block;
+}
+
+.chats .cmmnt, ol .cmmnt, ol ol .cmmnt {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+}
+
+.profileImg {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  float: left;
+  margin-right: 20px;
+  border: 1px solid;
+  height: 50px;
+  width: 50px;
+}
+
+.chats .cmmnt .cmmntBox {
+  padding: 0 30px;
+  padding-bottom: 10px; 
+  padding-top: 8px;
+}
+
+.chats .cmmnt .replies {
+  margin-bottom: 0px;
+}
 
 .chatMessages {
   position: absolute;
-  bottom: 6%;
+  bottom: 7%;
   top: 0%;
   width: 100%;
   overflow: scroll;
@@ -143,3 +197,11 @@ ul {
   top: 90%;
   left: 0%;
 }
+
+// visualChatroom Styles
+// .visualChatroom {
+//   color: black;
+//   background-color: white;
+//   border: 1px solid @darkpurple;
+//   height: 650px;
+// }
