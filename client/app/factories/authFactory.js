@@ -6,11 +6,12 @@ angular.module('authFactory', ['firebase'])
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
 
 	var authObj = $firebaseAuth(ref);
-  authFactory.getAuth= function(callback){
-    var authData = authObj.$getAuth();
-    console.log(authData);
-    callback(authData);
-  };
+
+    authFactory.getAuth = function (callback){
+        var authData = authObj.$getAuth();
+        console.log(authData);
+        callback(authData);
+    };
 
   authFactory.signin = function(email,password,callback){
     authObj.$authWithPassword({
