@@ -3,8 +3,8 @@ var passport = require('passport');
 var QuickBooks = require('../../node_modules/node-quickbooks/index.js');
 var Firebase = require("firebase");
 var myFirebaseRef = new Firebase("https://bizgramer.firebaseio.com/hr/BizData");
-var AccountsRef = myFirebaseRef.child("Accounts");
-var ProfitLossRef = myFirebaseRef.child("ProfitLoss");
+// var AccountsRef = myFirebaseRef.child("Accounts");
+// var ProfitLossRef = myFirebaseRef.child("ProfitLoss");
 
 module.exports = function(app) {
 
@@ -31,12 +31,11 @@ module.exports = function(app) {
   );
 
 
-  app.get('/receivable', oAuthController.ensureAuthenticated, function(req, res) {
+  app.get('/receivable', oAuthController.ensureAuthenticated, function(req) {
      var qbo = req.user.qbo;
 
      var myObjectArray = [];
 
-     var myReport;
      var qboFunc = new QuickBooks(qbo.consumerKey,
                             qbo.consumerSecret,
                             qbo.token,
@@ -70,14 +69,13 @@ module.exports = function(app) {
      });
    });
 
-app.get('/payable', oAuthController.ensureAuthenticated, function(req, res) {
+app.get('/payable', oAuthController.ensureAuthenticated, function(req) {
    var qbo = req.user.qbo;
-   var date = new Date();
-   var currentDate = dateFunc(date);
+ //  var date = new Date();
+  // var currentDate = dateFunc(date);
 
    var myObjectArray = [];
 
-   var myReport;
    var qboFunc = new QuickBooks(qbo.consumerKey,
                           qbo.consumerSecret,
                           qbo.token,
