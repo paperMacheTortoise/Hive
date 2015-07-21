@@ -3,7 +3,9 @@
 		<div class="col-sm-3 col-md-3 main-menu">			
 			<h5>Reports</h5>
 				<ul class="nav nav-sidebar visualizations">
-					<li ng-repeat="visual in main.visuals track by $index"><a ui-sref="visual({org: main.org, visualId: visual})">{{ visual }}</a></li>
+					<!-- <li ng-repeat="visual in main.visuals track by $index"><a ui-sref="visual({org: main.org, visualId: visual})">{{ visual }}</a></li> -->
+					<li><a ui-sref="visual.APVisual({ org: main.org })">Account Payable</a></li>
+					<li><a ui-sref="visual.ARVisual({ org: main.org })">Account Receivable<a/></li>
 				</ul>
 				<br>
 			<h5>Rooms</h5>

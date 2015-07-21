@@ -1,43 +1,14 @@
 
 
-<div class="container">
-  <div class="row visualization">
-    <header>
+<div class="container" ng-controller="aPVisualController as visual">
+  <header>
     <h1>Accounts Payables</h1>
-    </header>
-    <div id="main" role="main">
-      <div id="view_selection" class="btn-group">
-        <a id="all" class="btn active">All Accounts</a>
-        <a id="seperate" class="btn">Seperate by Due Dates</a>
-      </div>
+  </header>
+  <div id="main" role="main">
+    <div id="view_selection" class="btn-group">
+      <a id="all" class="btn active">All Accounts</a>
+      <a id="seperate" class="btn">Seperate by Due Dates</a>
     </div>
-    <!-- Visualization will be appended to the "vis" div-->
-    <div id="vis"></div>
-    <!--  -->
   </div>
-
-	<div class="row chatroom" ng-controller="aPVisualController as visual">
-		<h1>Chat View</h1>
-		<ul>
-      <li ng-repeat="msg in visual.messages track by $index"ng-controller="visualReplyController as rep">
-        <strong>{{ msg.username }}:</strong>
-        {{ msg.text }} <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
-
-        <!-- showing all replies for this message -->
-        <ul class="replies">
-          <li ng-repeat="reply in msg.replies">{{reply.username}} : {{reply.text}} <span am-time-ago="reply.createdAt">{{ reply.createdAt }}</span></li>
-        </ul>
-
-        <!-- reply input box, shown when clicked 'reply' -->
-        <button ng-click="rep.toggleReplying()">reply</button>
-        <div class="replyBox" ng-if="rep.isReplying">
-          <input ng-model="rep.replyText" ng-keydown="rep.addVisualReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
-        </div>
-      </li>
-    </ul>
-
-    <div class="submitText">
-	    <input ng-model="visual.text" ng-keydown="visual.addMessage($event)" type="text" id="textInput" placeholder="type a text">
-    </div>
-	</div>
+  <div id="vis"></div>
 </div>

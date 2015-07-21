@@ -1,61 +1,14 @@
 
 
-<div class="container">
-  <div class="row visualization">
-
-    <div class="col-sm-8 col-md-8">
-    <header>
-      <h1>Accounts Receivables</h1>
-      </header>
-      <div id="main" role="main">
-        <div id="view_selection" class="btn-group">
-          <a id="all" class="btn active">All Accounts</a>
-          <a id="seperate" class="btn">Seperate by Due Dates</a>
-        </div>
-      </div>
-      <!-- Visualization will be appended to the "vis" div-->
-      <div id="vis"></div>
-    <!--  -->
-  </div>
-
-    <div class="col-sm-4 col-md-4 chatRoomView">
-      <div class="chatMessages" ng-controller="aRVisualController as visual">
-    		<ol class="chats">
-          <li class="cmmnt" ng-repeat="msg in visual.messages track by $index"ng-controller="visualReplyController as rep">
-            <div class="profileImg"></div>
-            <div class="cmmntBox">
-              <div class="username">{{ msg.username }}</div>
-              <div class="message">{{ msg.text }}</div>
-              <div class="time">
-                <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot; 
-                <a ng-click="reply.toggleReplying()">Reply</a>
-              </div>
-            </div>
-            <!-- showing all replies for this message -->
-            <ol class="replies">
-              <li class="cmmnt" ng-repeat="reply in msg.replies">
-                <div class="profileImg"></div>
-                <div class="cmmntBox">
-                  <div class="username">{{reply.username}}</div> 
-                  <div class="message">{{reply.text}}</div>
-                  <div class="time">
-                    <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot; 
-                    <a ng-click="reply.toggleReplying()">Reply</a>
-                  </div>
-                </div>
-              </li>
-            </ol>
-
-            <!-- reply input box, shown when clicked 'reply' -->
-            <div class="replyBox" ng-if="rep.isReplying">
-              <input ng-model="rep.replyText" ng-keydown="rep.addVisualReply($event, msg.$id)" type="text" id="replyTextInput" placeholder="write a reply" />
-            </div>
-          </li>
-        </ol>
-      </div>
-      <div class="textBox">
-  	    <input class="form-control submitText" ng-model="visual.text" ng-keydown="visual.addMessage($event)" type="text" id="textInput" placeholder="add a message">
-      </div>     
+<div class="container" ng-controller="aRVisualController as visual">
+  <header>
+    <h1>Accounts Receivables</h1>
+  </header>
+  <div id="main" role="main">
+    <div id="view_selection" class="btn-group">
+      <a id="all" class="btn active">All Accounts</a>
+      <a id="seperate" class="btn">Seperate by Due Dates</a>
     </div>
   </div>
+  <div id="vis"></div>
 </div>

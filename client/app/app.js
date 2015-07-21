@@ -72,12 +72,12 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			requireLogin: true
 		}
 	})
-	.state('ARVisual', {
+	.state('visual.ARVisual', {
 		url:'/ARVisual',
 		parent:'visual',
 		templateUrl: 'app/templates/aRVisualization.html',
 	})
-	.state('APVisual', {
+	.state('visual.APVisual', {
 		url:'/APVisual',
 		parent:'visual',
 		templateUrl: 'app/templates/aPVisualization.html',
