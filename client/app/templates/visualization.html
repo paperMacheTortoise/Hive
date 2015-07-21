@@ -17,6 +17,7 @@
       <div id="vis"></div>
     <!--  -->
   </div>
+
     <div class="col-sm-4 col-md-4 chatRoomView">
       <div class="chatMessages" ng-controller="aRVisualController as visual">
     		<ol class="chats">
@@ -30,7 +31,6 @@
                 <a ng-click="reply.toggleReplying()">Reply</a>
               </div>
             </div>
-
             <!-- showing all replies for this message -->
             <ol class="replies">
               <li class="cmmnt" ng-repeat="reply in msg.replies">
