@@ -66,11 +66,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/templates/directmessage.html'
 	})
 	.state('visual', {
-		url:'/:org/visual/:visualId',
-		templateUrl: 'app/templates/visualization.html',
-		// data: {
-		// 	requireLogin: true
-		// }
+		url:'/:org/visual',
+		templateUrl: 'app/templates/Visualization.html',
+		data: {
+			requireLogin: true
+		}
+	})
+	.state('visual.ARVisual', {
+		url:'/ARVisual',
+		parent:'visual',
+		templateUrl: 'app/templates/aRVisualization.html',
+	})
+	.state('visual.APVisual', {
+		url:'/APVisual',
+		parent:'visual',
+		templateUrl: 'app/templates/aPVisualization.html',
 	})
 	.state('signin',{
 		url: '/:org/signin',
