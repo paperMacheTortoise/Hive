@@ -1,1 +1,7 @@
-<div><h1>page not found: you may not have permission for this page</h1></div>
+<div class="row" ng-controller="404Controller as error404">
+    <div class="col-md-6 col-md-offset-3">
+        <h1>page not found</h1>
+        <p>you may not have permission for this page</p>
+        <button><a ng-click="error404.goToLanding()">Go to main page</a></button>
+    </div>
+</div>
