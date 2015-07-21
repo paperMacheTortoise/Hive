@@ -1,5 +1,6 @@
 var app = angular.module('bizGramApp', [
 	'indexCtrl',
+	'404Ctrl',
 	'orgsignupCtrl',
 	'orgsignupFactory',
 	'authFactory',
@@ -26,7 +27,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	// need to dynamically create routes based on the rooms available
 
-	$urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/404');
 
 	$stateProvider
 
@@ -49,6 +50,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/room/:roomName',
 		parent: 'main',
 		templateUrl: 'app/templates/room.html'
+	})
+	.state('404', {
+		url: '404',
+		templateUrl: 'app/templates/404.html'
 	})
 	.state('oAuth', {
 		url: '/oAuth',
@@ -143,9 +148,16 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 		} else {
 			$rootScope.shouldShow = true;
 		}
+		// if the user is logged in to one org but tries to navigate to another org
 		if ($rootScope.logInfo && $rootScope.logInfo.org !== $stateParams.org) {
-			event.preventDefault();
-			$state.go('landing');
+			// redirect to 404
+			//console.log($rootScope.logInfo.org);
+			//console.log($stateParams.org);
+			if(toState.name === 'main') {
+				//$stateParams.org = 'main';
+				$state.go('main');
+			}
+			$state.go('404');
 		}
 		console.log('going to state ', toState.name);
 		// console.log($rootScope.logInfo);
