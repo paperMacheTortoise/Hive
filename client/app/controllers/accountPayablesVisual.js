@@ -1,6 +1,6 @@
-angular.module('visualCtrl', [])
+angular.module('accountPayablesVisualCtrl', [])
 
-.controller('visualController', function (Visualization, $rootScope, $stateParams){
+.controller('accountPayableVisualController', function (Visualization, $rootScope, $stateParams){
 
 	var vm = this;
 
@@ -24,7 +24,7 @@ angular.module('visualCtrl', [])
 
   //Instantiates a bubblechart with data.
   var chart = null;
-  var visual_data = Visualization.getVisualData(vm.org, "Receivables");
+  var visual_data = Visualization.getVisualData(vm.org, "Payables");
   chart = visual_data.$loaded(function(){
     var chart = new Visualization.BubbleChart(visual_data);
     chart.start();
