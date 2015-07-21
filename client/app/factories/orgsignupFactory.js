@@ -64,7 +64,7 @@ angular.module('orgsignupFactory', ['firebase'])
       angular.forEach(organizations, function (org) {
         orgNames.push(org.$id);
       });
-      console.log(orgNames);
+      // console.log(orgNames);
     });
 
     orgsignupFactory.getOrgs = function () {

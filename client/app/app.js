@@ -134,7 +134,7 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 	// at each state chage, check if the user belongs to the organization it is navigating to
 	$rootScope.$on('$stateChangeSuccess', function (event, toState, $stateParams) {
 		// if the user doesnt belong to this organization, redirect to landing page
-		console.log($stateParams);
+		// console.log($stateParams);
 		if ($stateParams.org === '') {
 			$state.go('landing');
 		}
@@ -148,7 +148,7 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 			$state.go('landing');
 		}
 		console.log('going to state ', toState.name);
-		console.log($rootScope.logInfo);
+		// console.log($rootScope.logInfo);
 		if (toState.name === 'main' && !$rootScope.logInfo) {
 			$state.go('landing');
 		}

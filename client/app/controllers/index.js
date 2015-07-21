@@ -12,9 +12,9 @@ angular.module('indexCtrl', ['firebase', ])
     // when user click on bizGram logo on top left corner
     vm.logo = function() {
       // if the user is logged in, redirect to the org main page
-      console.log('rootScope.lofInfo ', $rootScope.logInfo);
+      // console.log('rootScope.logInfo ', $rootScope.logInfo);
       if ($rootScope.logInfo && $rootScope.logInfo.org) {
-        console.log('redirect to main');
+        // console.log('redirect to main');
         $state.go('main', {org: vm.org});
       // otherwise redirect to landing page
       } else {
