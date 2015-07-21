@@ -5,7 +5,10 @@ angular.module('mainCtrl', [])
 	var vm = this;
 
   vm.org = $stateParams.org;
-  vm.currentUser = $rootScope.logInfo;
+  if ($rootScope && $rootScope.logInfo) {
+    vm.currentUser = $rootScope.logInfo;
+  }
+
   // Get the rooms from the roomFactory.
   vm.rooms = Rooms.getRooms(vm.org);
   // Get all users except for the current user from the userFactory.
