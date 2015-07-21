@@ -1,7 +1,6 @@
 <div class="container" ng-controller="mainController as main">
 	<div class="row">
-		<div class="col-sm-3 col-md-3 main-menu">
-			
+		<div class="col-sm-3 col-md-3 main-menu">			
 			<h5>Reports</h5>
 				<ul class="nav nav-sidebar visualizations">
 					<li ng-repeat="visual in main.visuals track by $index"><a ui-sref="visual({org: main.org, visualId: visual})">{{ visual }}</a></li>
