@@ -25,6 +25,7 @@ a, a:visited, a:active {
     color: #FFFFFF;
     &:hover, &:focus {
       background-color: lighten(@darkpurple, 5%);
+      color: #FFFFFF;
     }
   }
 }
@@ -97,8 +98,6 @@ ol {
   color: gray;
 }
 
-
-
 // Main Styles
 .userImg {
   width: 50px;
@@ -106,7 +105,7 @@ ol {
   border: 1px solid;
 }
 
-.main-menu a {
+.main-menu li a {
   padding: 0;
 }
 
@@ -119,7 +118,7 @@ ol {
 .chats .cmmnt, ol .cmmnt, ol ol .cmmnt {
   display: block;
   position: relative;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 .profileImg {
@@ -140,12 +139,12 @@ ol {
 }
 
 .chats .cmmnt .replies {
-  margin-bottom: 7px;
+  margin-bottom: 0px;
 }
 
 .chatMessages {
   position: absolute;
-  bottom: 6%;
+  bottom: 7%;
   top: 0%;
   width: 100%;
   overflow: scroll;
