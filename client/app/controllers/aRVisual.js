@@ -11,16 +11,6 @@ angular.module('aRVisualCtrl', [])
 	vm.username = $rootScope.logInfo.username;
   // TO DO, set the visualization identifier
 	vm.visualId = 'Account Receivables';
-  Visualization.setName(vm.visualId);
-  // Gets the messages for the visualization.
-	vm.messages = Visualization.getMessages(vm.visualId, vm.org);
-
-  vm.addMessage = function (e) {
-    if(e.keyCode === 13){
-      Visualization.addMessage(vm.username, vm.visualId, vm.text, vm.org);
-      vm.text = '';
-    }
-  };
 
   var ARBubbleChart = function(data){
     Visualization.BubbleChart.call(this);

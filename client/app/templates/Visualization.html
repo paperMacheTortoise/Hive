@@ -1,22 +1,22 @@
 
 
-<div class="container">
-  <div class="row visualization">
+<div class="visualization">
+  <div class="row">
     <div class="col-sm-8 col-md-8">
       <div ui-view></div>
     </div>
 
-    <div class="col-sm-4 col-md-4 chatRoomView">
-      <div class="chatMessages">
+    <div class="col-sm-4 col-md-4 chatRoomView" ng-controller="visualController as vis">
+      <div class="chatMessages" scroll-glue>
         <ol class="chats">
-          <li class="cmmnt" ng-repeat="msg in visual.messages track by $index"ng-controller="visualReplyController as rep">
+          <li class="cmmnt" ng-repeat="msg in vis.messages track by $index" ng-controller="visualReplyController as rep">
             <div class="profileImg"></div>
             <div class="cmmntBox">
               <div class="username">{{ msg.username }}</div>
               <div class="message">{{ msg.text }}</div>
               <div class="time">
                 <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot; 
-                <a ng-click="reply.toggleReplying()">Reply</a>
+                <a ng-click="rep.toggleReplying()">Reply</a>
               </div>
             </div>
             <!-- showing all replies for this message -->
@@ -28,7 +28,7 @@
                   <div class="message">{{reply.text}}</div>
                   <div class="time">
                     <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot; 
-                    <a ng-click="reply.toggleReplying()">Reply</a>
+                    <a ng-click="rep.toggleReplying()">Reply</a>
                   </div>
                 </div>
               </li>
@@ -41,9 +41,11 @@
           </li>
         </ol>
       </div>
+
       <div class="textBox">
-        <input class="form-control submitText" ng-model="visual.text" ng-keydown="visual.addMessage($event)" type="text" id="textInput" placeholder="add a message">
+        <input class="form-control submitText" ng-model="vis.text" ng-keydown="vis.addMessage($event)" type="text" id="textInput" placeholder="add a message">
       </div>     
     </div>
+    
   </div>
 </div>

@@ -16,17 +16,17 @@ angular.module('visualFactory', ['firebase'])
 	};
 
 	// Returns the messages from the db for the current visuatlization.
-	visualFactory.getMessages = function(name, org){
+	visualFactory.getMessages = function(org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
-		var messageRef = ref.child(name).child('messages');
+		var messageRef = ref.child('messages');
 		messages = $firebaseArray(messageRef);
 		return messages;
 	};
 
 	// Adds a message to the db about the current visualization.
-	visualFactory.addMessage = function(user, name, text, org){
+	visualFactory.addMessage = function(user, text, org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
-		var messageRef = ref.child(name).child('messages');
+		var messageRef = ref.child('messages');
 		messages = $firebaseArray(messageRef);
 		messages.$add({
 			username: user,
@@ -35,18 +35,18 @@ angular.module('visualFactory', ['firebase'])
 		});
 	};
 
-	visualFactory.getVisualNames = function(org){
-		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
-		var visuals = $firebaseArray(ref);
-		var visualNames = [];
-		visuals.$loaded()
-			.then(function(){
-				angular.forEach(visuals, function(visual){
-					visualNames.push(visual.$id);
-				});
-			});
-		return visualNames;
-	};
+	// visualFactory.getVisualNames = function(org){
+	// 	var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
+	// 	var visuals = $firebaseArray(ref);
+	// 	var visualNames = [];
+	// 	visuals.$loaded()
+	// 		.then(function(){
+	// 			angular.forEach(visuals, function(visual){
+	// 				visualNames.push(visual.$id);
+	// 			});
+	// 		});
+	// 	return visualNames;
+	// };
 
 	// Returns data array of account information
 	visualFactory.getVisualData = function(org, account){
