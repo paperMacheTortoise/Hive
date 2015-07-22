@@ -72,20 +72,20 @@ angular.module('visualFactory', ['firebase'])
 
 	  var updatePosition = function(event) {
 	    var ttid = "#"+tooltipId;
-	    var xOffset = 20;
-	    var yOffset = 10;
+	    var xOffset = 10;
+	    var yOffset = 5;
 
 	     var ttw = $(ttid).width();
 	     var tth = $(ttid).height();
-	     var wscrY = $(window).scrollTop();
-	     var wscrX = $(window).scrollLeft();
+	     var wscrY = $('#svg_vis').scrollTop();
+	     var wscrX = $('#svg_vis').scrollLeft();
 	     var curX = (document.all) ? event.clientX + wscrX : event.pageX;
 	     var curY = (document.all) ? event.clientY + wscrY : event.pageY;
-	     var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $(window).width()) ? curX - ttw - xOffset*2 : curX + xOffset;
+	     var ttleft = ((curX - wscrX + xOffset*2 + ttw) > $('#svg_vis').width()) ? curX - ttw - xOffset*2 : curX + xOffset;
 	     if (ttleft < wscrX + xOffset){
 	      ttleft = wscrX + xOffset;
 	     }
-	     var tttop = ((curY - wscrY + yOffset*2 + tth) > $(window).height()) ? curY - tth - yOffset*2 : curY + yOffset;
+	     var tttop = ((curY - wscrY + yOffset*2 + tth) > $('#svg_vis').height()) ? curY - tth - yOffset*2 : curY + yOffset;
 	     if (tttop < wscrY + yOffset){
 	      tttop = curY + yOffset;
 	     }
@@ -109,7 +109,7 @@ angular.module('visualFactory', ['firebase'])
 
 	//Class definition for the bubble chart.
 	visualFactory.BubbleChart = function() {
-	  this.width = 940;
+	  this.width = 740;
 	  this.height = 600;
 	  this.tooltip = new CustomTooltip("toolTipID", 240);
 	  this.center = {
@@ -193,8 +193,8 @@ angular.module('visualFactory', ['firebase'])
 	//BubbleChart function that shows the titles in the seperated node display
 	visualFactory.BubbleChart.prototype.display_seperated = function() {
 	  var past_due_x = {
-	    "Less Than 30 Days": 240,
-	    "30 to 60 Days": this.width / 2 + 100,
+	    "Less Than 30 Days": 140,
+	    "30 to 60 Days": this.width / 2 ,
 	    "60 Days or Older": this.width - 160
 	  };
 
