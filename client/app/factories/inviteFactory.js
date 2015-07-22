@@ -33,10 +33,10 @@ angular.module('inviteFactory', ['firebase'])
         }; // end params
 
         $http.post('https://mandrillapp.com/api/1.0/messages/send.json', params)
-          .success(function(data, status, headers, config) {
+          .success(function() {
             console.log('email invite sent successfully');
           })
-          .error(function(data, status, headers, config) {
+          .error(function() {
             console.log('error sending email invite');
           });
       })
@@ -44,7 +44,7 @@ angular.module('inviteFactory', ['firebase'])
         console.log('error', error);
       });
 
-  } //end .sendEmailInvitation
+  }; //end .sendEmailInvitation
 
   return inviteFactory;
 
