@@ -6893,7 +6893,7 @@ ol ol .cmmnt {
 }
 .profileImg {
   position: absolute;
-  top: 8px;
+  top: 10px;
   left: 0;
   float: left;
   margin-right: 20px;
@@ -6904,14 +6904,14 @@ ol ol .cmmnt {
 .chats .cmmnt .cmmntBox {
   padding: 0 30px;
   padding-bottom: 10px;
-  padding-top: 8px;
+  padding-top: 10px;
 }
 .chats .cmmnt .replies {
   margin-bottom: 0px;
 }
 .chatMessages {
   position: absolute;
-  bottom: 7%;
+  bottom: 12%;
   top: 0%;
   width: 100%;
   overflow: scroll;
