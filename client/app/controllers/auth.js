@@ -3,6 +3,7 @@ angular.module('authCtrl',['firebase'])
   .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams){
     var vm = this;
     vm.org = $stateParams.org;
+    vm.orgKey =
 
     vm.setupUser = function(name, email, uid, pictureUrl){
       vm.users = Users.getUsers(vm.org);
