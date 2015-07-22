@@ -6,7 +6,7 @@
   <div class="chatMessages" scroll-glue>
     <ol class="chats">
       <li class="cmmnt" ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
-        <img class="profileImg" src="{{ msg.img }}"></img>
+        <img class="profileImg" ng-src="{{ msg.img }}"></img>
         <div class="cmmntBox">
           <div class="username">{{ msg.username }}</div>
           <div class="message">{{ msg.text }}</div>
