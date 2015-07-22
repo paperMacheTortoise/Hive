@@ -22,6 +22,8 @@ angular.module('mainCtrl', [])
         console.log('Adding room ', nameOfRoomToAdd);
         Rooms.addRoom(nameOfRoomToAdd, vm.org);
         vm.nameOfRoomToAdd = '';
+        // update the list of chatrooms
+        vm.rooms = Rooms.getRooms(vm.org);
       } else {
         console.log('this room already exists');
       }
