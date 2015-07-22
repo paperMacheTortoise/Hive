@@ -6928,3 +6928,10 @@ ol ol .cmmnt {
   top: 90%;
   left: 0%;
 }
+.message{
+  position: absolute;
+  bottom: 7%;
+  top: 0%;
+  width: 100%;
+  overflow: scroll;
+}

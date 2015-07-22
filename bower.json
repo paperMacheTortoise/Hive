@@ -18,6 +18,7 @@
     "bootstrap": "~3.3.5",
     "angular-bootstrap": "~0.13.0",
     "angular-mocks": "~1.4.3",
-    "angular-moment": "~0.10.1"
+    "angular-moment": "~0.10.1",
+    "angular-scroll-glue": "~2.0.6"
   }
 }
