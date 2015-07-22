@@ -21,7 +21,8 @@ var app = angular.module('bizGramApp', [
 	'profileCtrl',
 	'uploadCtrl',
 	'ui.router',
-	'angularMoment'
+	'angularMoment',
+	'luegg.directives'
 	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
