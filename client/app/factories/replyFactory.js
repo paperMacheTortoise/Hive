@@ -13,13 +13,14 @@ angular.module('replyFactory', ['firebase'])
   };
 
   // Adds the reply message to replies of the current message in the db. 
-  repliesFactory.addReply = function (username, text, index, roomname, org) {
+  repliesFactory.addReply = function (username, profileImg, text, index, roomname, org) {
     var url = 'https://bizgramer.firebaseio.com/'+org+'/rooms/' + roomname + '/' + index + '/replies';
     console.log('url ', url);
     var ref = new Firebase(url);
     var replies = $firebaseArray(ref);
     replies.$add({
       username: username,
+      img: profileImg,
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
     });
@@ -34,12 +35,13 @@ angular.module('replyFactory', ['firebase'])
   };
 
   // Adds a reply to the current message in the db.
-  repliesFactory.addVisualReply = function (username, text, index, org) {
+  repliesFactory.addVisualReply = function (username, profileImg, text, index, org) {
     var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations/messages/' + index);
     var replyRef = ref.child('replies');
     var replies = $firebaseArray(replyRef);
     replies.$add({
       username: username,
+      img: profileImg,
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
     });

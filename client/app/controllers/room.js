@@ -11,16 +11,17 @@ angular.module('roomCtrl', [])
   vm.messages = Rooms.getRoomMessages(vm.org);
   // console.log(vm.messages);
   // Gets the current user.
-  vm.username = $rootScope.logInfo.username;
+  vm.user = $rootScope.logInfo;
+  vm.username = vm.user.username;
+  vm.profileImg = vm.user.pictureUrl;
 
   // Adds a message to the room and sends to the roomFactory.
   this.addMessage = function (e) {
     if (e.keyCode === 13) {
       var userName = vm.username || 'anon';
       var roomName = vm.roomname || 'general';
-      console.log(userName, roomName, vm.text);
 
-      Rooms.addMessage(userName, vm.text, vm.org);
+      Rooms.addMessage(userName, vm.profileImg, vm.text, vm.org);
       vm.text = '';
     }
   };

@@ -8,7 +8,9 @@ angular.module('replyCtrl', [])
   // Value for toggling the reply option.
   vm.isReplying = false;
   // Gets the current user's username.
-  vm.replyusername = $rootScope.logInfo.username;
+  vm.user = $rootScope.logInfo;
+  vm.replyusername = vm.user.username;
+  vm.profileImg = vm.user.pictureUrl;
 
   // Toggle to show the reply input box
   vm.toggleReplying = function() {
@@ -20,8 +22,7 @@ angular.module('replyCtrl', [])
     if (e.keyCode === 13) {
       var roomName = Rooms.getCurrentName(vm.org);
       var userName = vm.replyusername || 'anon';
-      console.log(userName, vm.replytext, index, roomName);
-      Replies.addReply(userName, vm.replytext, index, roomName, vm.org);
+      Replies.addReply(userName, vm.profileImg, vm.replytext, index, roomName, vm.org);
       vm.replytext = '';
     }
   };

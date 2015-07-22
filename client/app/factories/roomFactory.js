@@ -51,12 +51,13 @@ angular.module('roomFactory', ['firebase'])
   };
 
   // Adds a message in the room to the db.
-  roomsFactory.addMessage = function(username, text, org){
+  roomsFactory.addMessage = function(username, profileImg, text, org){
     var obj = getRef(org);
     var roomRef = roomName ? obj.ref.child(roomName) : null;
     var messages = roomRef ? $firebaseArray(roomRef) : null;
     messages.$add({
       username: username,
+      img: profileImg,
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
     }).then(function(roomRef) {

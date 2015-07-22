@@ -10,7 +10,7 @@
       <div class="chatMessages" scroll-glue>
         <ol class="chats">
           <li class="cmmnt" ng-repeat="msg in vis.messages track by $index" ng-controller="visualReplyController as rep">
-            <div class="profileImg"></div>
+            <img class="profileImg" src="{{ msg.img }}"></img>
             <div class="cmmntBox">
               <div class="username">{{ msg.username }}</div>
               <div class="message">{{ msg.text }}</div>
@@ -22,7 +22,7 @@
             <!-- showing all replies for this message -->
             <ol class="replies">
               <li class="cmmnt" ng-repeat="reply in msg.replies">
-                <div class="profileImg"></div>
+                <img class="profileImg" src="{{ reply.img }}"></img>
                 <div class="cmmntBox">
                   <div class="username">{{reply.username}}</div> 
                   <div class="message">{{reply.text}}</div>
