@@ -3,4 +3,4 @@ node_modules
 .idea
 client/lib
 bower_components
-
+config.js
