@@ -10,6 +10,8 @@ angular.module('inviteFactory', ['firebase'])
 
   inviteFactory.sendEmailInvitation = function (sender, orgName, recipient, recipientEmail) {
 
+    // in production: use localhost for testing
+    // change link when deployed
     var link = 'http://localhost:3000/#/'+orgName+'/signup';
 
     var orgId;
@@ -17,6 +19,7 @@ angular.module('inviteFactory', ['firebase'])
     var orgObj = $firebaseObject(orgRef);
     orgObj.$loaded()
       .then(function() {
+        // query firebase db to get the orgId for the logged in user's org
         orgId = orgObj.orgKey;
         var params = {
           "key": mandrillKey,
@@ -31,7 +34,7 @@ angular.module('inviteFactory', ['firebase'])
                 "track_clicks": true
           }
         }; // end params
-
+        // send ajax request to Mandrill api for email invite
         $http.post('https://mandrillapp.com/api/1.0/messages/send.json', params)
           .success(function() {
             console.log('email invite sent successfully');
