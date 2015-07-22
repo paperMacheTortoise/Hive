@@ -7,7 +7,7 @@
     </div>
 
     <div class="col-sm-4 col-md-4 chatRoomView" ng-controller="visualController as vis">
-      <div class="chatMessages">
+      <div class="chatMessages" scroll-glue>
         <ol class="chats">
           <li class="cmmnt" ng-repeat="msg in vis.messages track by $index" ng-controller="visualReplyController as rep">
             <div class="profileImg"></div>

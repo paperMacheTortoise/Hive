@@ -2,13 +2,18 @@
 
 	<div class="message" scroll-glue>
 		<header><h3>{{dm.recipient}}</h3></header>
-		<ul class="list-group">
-			<li class="list-group-item" ng-repeat="msg in dm.messages">
-				<span class="username">{{ msg.username }}: </span>
-				<span class="time" am-time-ago="msg.createdAt"> {{ msg.createdAt }}</span>
-				<div> {{ msg.text }} </div>
+		<ol class="chats">
+			<li class="cmmnt" ng-repeat="msg in dm.messages">
+				<div class="profileImg"></div>
+				<div class="cmmntBox">
+					<div class="username">{{ msg.username }}</div>
+				    <div class="message">{{ msg.text }}</div>
+				    <div class="time">
+				        <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
+			        </div>
+		        </div>
 			</li>
-		</ul>
+		</ol>
 	</div>
 
 	<div class="textBox">
