@@ -1,6 +1,6 @@
 angular.module('replyFactory', ['firebase'])
 
-.factory('Replies', ['$firebaseArray', function ($firebaseArray) {
+.factory('Replies', ['$firebaseArray', function ($firebaseArray, $stateParams) {
 
   var repliesFactory = {};
 
@@ -12,18 +12,24 @@ angular.module('replyFactory', ['firebase'])
     return replies;
   };
 
-  // Adds the reply message to replies of the current message in the db. 
+  // Adds the reply message to replies of the current message in the db.
   repliesFactory.addReply = function (username, profileImg, text, index, roomname, org) {
     var url = 'https://bizgramer.firebaseio.com/'+org+'/rooms/' + roomname + '/' + index + '/replies';
+    console.log($stateParams)
+    // console.log(roomname);
     console.log('url ', url);
-    var ref = new Firebase(url);
-    var replies = $firebaseArray(ref);
-    replies.$add({
-      username: username,
-      img: profileImg,
-      text: text,
-      createdAt: Firebase.ServerValue.TIMESTAMP
-    });
+    if (org && roomname && index) {
+      var ref = new Firebase(url);
+      var replies = $firebaseArray(ref);
+      replies.$add({
+        username: username,
+        img: profileImg,
+        text: text,
+        createdAt: Firebase.ServerValue.TIMESTAMP
+      });
+    } else {
+      console.log('not posting a reply because mising parameter(s)');
+    }
   };
 
   // Gets the reply messages for the current message from the db.
