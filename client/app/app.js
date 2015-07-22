@@ -62,7 +62,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		templateUrl: 'app/templates/oAuth.html'
 	})
 	.state('main.invite', {
-		url: '/:org/invite'.
+		url: '/invite',
+		parent: 'main',
 		templateUrl: 'app/templates/invite.html'
 	})
 	.state('main.direct', {
