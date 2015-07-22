@@ -24,12 +24,13 @@ angular.module('visualFactory', ['firebase'])
 	};
 
 	// Adds a message to the db about the current visualization.
-	visualFactory.addMessage = function(user, text, org){
+	visualFactory.addMessage = function(user, profileImg, text, org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
 		var messageRef = ref.child('messages');
 		messages = $firebaseArray(messageRef);
 		messages.$add({
 			username: user,
+			img: profileImg,
 			text: text,
 			createdAt: Firebase.ServerValue.TIMESTAMP
 		});

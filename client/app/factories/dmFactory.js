@@ -5,7 +5,7 @@ angular.module('dmFactory', ['firebase'])
 
 	// Adds the message to both users' info in database.
 	// This allows both users to have a history of the messages when they log in.
-	dmFactory.addMessage = function(user1, user2, text, org){
+	dmFactory.addMessage = function(user1, user2, profileImg, text, org){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/directmessages');
 		var user1ref = ref.child(user1).child(user2);
 		var user2ref = ref.child(user2).child(user1);
@@ -13,11 +13,13 @@ angular.module('dmFactory', ['firebase'])
 		var user2Messages = $firebaseArray(user2ref);
 		user1Messages.$add({
 			username: user1,
+			img: profileImg,
 			text: text,
 			createdAt: Firebase.ServerValue.TIMESTAMP
 		});
 		user2Messages.$add({
 			username: user1,
+			img: profileImg,
 			text: text,
 			createdAt: Firebase.ServerValue.TIMESTAMP
 		});

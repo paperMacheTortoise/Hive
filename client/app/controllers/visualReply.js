@@ -7,7 +7,9 @@ angular.module('visualReplyCtrl', [])
 	// Retrieve the current organization.
 	vm.org = $stateParams.org;
 	// Get the current user.
-	vm.username = $rootScope.logInfo.username;
+	vm.user = $rootScope.logInfo;
+	vm.username = vm.user.username;
+	vm.profileImg = vm.user.pictureUrl;
 	// The value for toggling the reply option.
 	vm.isReplying = false;
 
@@ -19,7 +21,7 @@ angular.module('visualReplyCtrl', [])
 	// Add the reply to the current message on the visualization.
 	vm.addVisualReply = function (e, index) {
 		if(e.keyCode === 13) {
-			Replies.addVisualReply(vm.username, vm.replyText, index, vm.org);
+			Replies.addVisualReply(vm.username, vm.profileImg, vm.replyText, index, vm.org);
 			vm.replyText = '';
 		}
 	};

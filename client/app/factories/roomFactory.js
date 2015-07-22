@@ -43,20 +43,21 @@ angular.module('roomFactory', ['firebase'])
   };
 
   // Returns the messages for the current room from the db.
-  roomsFactory.getRoomMessages = function(org) {
+  roomsFactory.getRoomMessages = function(roomname, org) {
     var obj = getRef(org);
-    var roomRef = roomName ? obj.ref.child(roomName) : null;
-    var messages =  roomRef ? $firebaseArray(roomRef) : null;
+    var roomRef = obj.ref.child(roomname);
+    var messages =  $firebaseArray(roomRef);
       return messages;
   };
 
   // Adds a message in the room to the db.
-  roomsFactory.addMessage = function(username, text, org){
+  roomsFactory.addMessage = function(username, profileImg, text, roomname, org){
     var obj = getRef(org);
-    var roomRef = roomName ? obj.ref.child(roomName) : null;
-    var messages = roomRef ? $firebaseArray(roomRef) : null;
+    var roomRef = obj.ref.child(roomname);
+    var messages = $firebaseArray(roomRef);
     messages.$add({
       username: username,
+      img: profileImg,
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
     }).then(function(roomRef) {
