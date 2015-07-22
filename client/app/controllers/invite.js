@@ -1,16 +1,17 @@
 angular.module('inviteCtrl', ['firebase'])
 
-  .controller('InviteController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams) {
+  .controller('InviteController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, invite) {
 
     var vm = this;
-
-    // when the state changes, set the org property to the current location for routing purpose
-    $rootScope.$on('$stateChangeSuccess', function() {
-      vm.org = $stateParams.org;
-    });
-
+    // get the org name to pass to emailInvite function
+    vm.org = $stateParams.org;
+    vm.thisUser = $rootScope.logInfo.username;
     vm.emailInvite = function () {
-
+      // call the factory function to make ajax call to Mandrill API
+      invite.sendEmailInvitation(vm.thisUser, vm.org, vm.inviteeName, vm.inviteeEmail);
+      // empty the input fields
+      vm.inviteeEmail = '';
+      vm.inviteeName = '';
     };
 
   });
