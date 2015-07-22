@@ -13,6 +13,7 @@ var app = angular.module('bizGramApp', [
 	'mainCtrl',
 	'aRVisualCtrl',
 	'aPVisualCtrl',
+	'visualCtrl',
 	'visualReplyCtrl',
 	'authCtrl',
 	'directMessageCtrl',
@@ -68,7 +69,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 	.state('visual', {
 		url:'/:org/visual',
-		templateUrl: 'app/templates/Visualization.html',
+		templateUrl: 'app/templates/visualization.html',
 		data: {
 			requireLogin: true
 		}

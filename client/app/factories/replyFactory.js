@@ -26,16 +26,16 @@ angular.module('replyFactory', ['firebase'])
   };
 
   // Gets the reply messages for the current message from the db.
-  repliesFactory.getVisualReplies = function (index, visualId, org) {
-    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations/' + visualId + '/messages/' + index);
+  repliesFactory.getVisualReplies = function (index, org) {
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations/messages/' + index);
     var replyRef = ref.child('replies');
     var replies = $firebaseArray(replyRef);
     return replies;
   };
 
   // Adds a reply to the current message in the db.
-  repliesFactory.addVisualReply = function (username, text, index, visualId, org) {
-    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations/' + visualId + '/messages/' + index);
+  repliesFactory.addVisualReply = function (username, text, index, org) {
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations/messages/' + index);
     var replyRef = ref.child('replies');
     var replies = $firebaseArray(replyRef);
     replies.$add({
