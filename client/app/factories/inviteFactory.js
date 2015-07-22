@@ -1,6 +1,6 @@
 angular.module('inviteFactory', ['firebase'])
 
-.factory('invite', ['$firebaseArray', function ($firebaseArray) {
+.factory('invite', function () {
 
   var inviteFactory = {};
 
@@ -10,4 +10,4 @@ angular.module('inviteFactory', ['firebase'])
 
   return orgsignupFactory;
 
-}]);
+});
