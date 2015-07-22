@@ -5,9 +5,8 @@
       <form name="orgEmailInvite" ng-submit="invite.emailInvite()">
         <div class="form-group">
         <input class="form-control" name="name" type="name" ng-model="invite.inviteeName" placeholder="Your friend's name" required />
-        <input class="form-control" name="name" type="email" ng-model="invite.inviteeName" placeholder="Your friend's email" required />
+        <input class="form-control" name="email" type="email" ng-model="invite.inviteeEmail" placeholder="Your friend's email" required />
         </div>
-        <!-- <button class="btn btn-info"><a ui-sref="orgsignup"></a></button> -->
         <button class="btn btn-success" type="submit">Send Email Invitation!</button>
       </form>
   </div>

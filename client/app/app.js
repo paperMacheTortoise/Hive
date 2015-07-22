@@ -3,6 +3,8 @@ var app = angular.module('bizGramApp', [
 	'404Ctrl',
 	'orgsignupCtrl',
 	'orgsignupFactory',
+	'inviteCtrl',
+	'inviteFactory',
 	'authFactory',
 	'dmFactory',
 	'roomFactory',
