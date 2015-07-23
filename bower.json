@@ -20,6 +20,9 @@
     "angular-mocks": "~1.4.3",
     "angular-moment": "~0.10.1",
     "angular-scroll-glue": "~2.0.6",
-    "datamaps": "~0.4.0"
+    "datamaps": "git://github.com/liamgallivan/datamaps.git#~0.4.0"
+  },
+  "resolutions": {
+    "d3": "~3.5.6"
   }
 }
