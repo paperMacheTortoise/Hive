@@ -62,12 +62,25 @@
 	<script src="app/factories/userFactory.js"></script>
 	<script src="app/factories/uploadFactory.js"></script>
 	<script src="app/factories/visualFactory.js"></script>
+	<script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere-1.3.2.js">
+	   </script>
+	   <script type="text/javascript">
+	       intuit.ipp.anywhere.setup({
+	               grantUrl: 'http://default-environment-ij6ymjbizw.elasticbeanstalk.com/',
+	               datasources: {
+	                    quickbooks : true
+	              },
+	               paymentOptions:{
+	                     intuitReferred : true
+	              }
+	       });
+	   </script>
 </head>
-
 <body ng-app="bizGramApp">
 <div >
 <nav class="row navbar navbar-default navbar-static-top" ng-controller="IndexController as index">
 	<div class="container">
+	<ipp:connectToIntuit></ipp:connectToIntuit>
 		<div class="navbar-header">
 			<a class="navbar-brand" ng-click="index.logo()">bizGram</a>
 		</div>
