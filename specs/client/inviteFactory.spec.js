@@ -7,4 +7,10 @@ describe('inviteFactory', function(){
     $firebaseObject = _$firebaseObject_;
   }));
 
+  describe('sendEmailInvitation', function () {
+    it('should have a sendEmailInvitation function', function() {
+      expect(invite.sendEmailInvitation).to.be.a('function');
+    });
+  });
+
 });
