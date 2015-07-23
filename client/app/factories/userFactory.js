@@ -40,6 +40,19 @@ angular.module('userFactory', ['firebase'])
     var pictures = $firebaseArray(pictureRef);
     return pictures;
   };
+  userFactory.updateProfile = function(username, picture, id, org){
+    var users = fire(org);
+    users.users.$loaded(function(){
+      var index = users.users.$indexFor(id);
+      console.log(id);
+      console.log(index);
+      users.users[index].username = username;
+      users.users[index].pictureUrl = picture;
+      users.users.$save(index);
+    });
+
+
+  };
 
   // CHECK IF NECESSARY
   // These methods allow the user to select a username from the main menu

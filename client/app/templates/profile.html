@@ -1,7 +1,8 @@
 <div class='container' ng-controller='ProfileController as prof'>
-	<img ng-src='{{prof.pictureUrl}}'></img>
+	<img class='prof-img' ng-src='{{prof.pictureUrl}}'></img>
 	<h4>{{prof.username}}</h4>
 	<h4>{{prof.email}}</h4>
+	<button class ='btn btn-default'ui-sref='edit({org:prof.org})'>Edit Profile</button>
 	<button class="btn btn-default" ng-click="prof.open()">Upload Images</button>
 	<h3>Image Gallery</h3>
 	<ul class='list-group'>

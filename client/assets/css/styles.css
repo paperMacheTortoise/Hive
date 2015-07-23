@@ -6936,3 +6936,7 @@ ol ol .cmmnt {
   top: 0;
   left: 0;
 }
+.prof-img{
+  max-height: 300px;
+  max-width: 200px;
+}
