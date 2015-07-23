@@ -213,7 +213,6 @@ angular.module('mapCtrl', ['firebase'])
 	        };
 	vm.getCustomers = function(){
 		Visualization.getCustomers(function(customerData){
-			console.log(customerData);
 		    for (var i in customerData) {
 		    	if(customerData[i] && customerData[i].BillAddr){
 		    		states[customerData[i].BillAddr.CountrySubDivisionCode].numCo++;
@@ -263,7 +262,7 @@ angular.module('mapCtrl', ['firebase'])
 		        geographyConfig: {
 		            highlightBorderColor: '#bada55',
 		            popupTemplate: function(geography, data) {
-		                return '<div class="tooltip">' + geography.properties.name + ' Number of Customers: ' +  data.numCo + '';
+		                return '<div class="maptip tooltip">' + geography.properties.name + '<br> Number of Customers: ' +  data.numCo + '';
 		            },
 		            highlightBorderWidth: 1
 		        },
