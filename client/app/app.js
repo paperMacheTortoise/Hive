@@ -26,7 +26,8 @@ var app = angular.module('bizGramApp', [
 	'ui.router',
 	'angularMoment',
 	'luegg.directives',
-	'mapCtrl'
+	'mapCtrl',
+	'EditCtrl'
 	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -123,6 +124,14 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/:org/profile',
 		templateUrl: 'app/templates/profile.html',
 		controller: 'ProfileController',
+		data: {
+			requireLogin: true
+		}
+	})
+	.state('edit',{
+		url: '/:org/edit',
+		templateUrl: 'app/templates/profile-edit.html',
+		controller: 'EditController',
 		data: {
 			requireLogin: true
 		}

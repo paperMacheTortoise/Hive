@@ -1,0 +1,14 @@
+<div class= 'container' ng-controller='EditController as edit'>
+	<form>
+		<h2>Edit Profile</h2>
+		<div class='form-group'>
+			<label for='usernameinput'>Username: </label>
+			<input id='usernameinput' class="form-control" type='text' ng-model='edit.username'>
+		</div>
+		<div class='form-group'>
+			<label for='pictureinput'>Picture URL: </label>
+			<input id='pictureinput' class="form-control" type='text' ng-model='edit.pictureUrl'>
+		</div>
+		<button class='btn btn-default' ng-click='edit.update()'>Save</button>
+	</form>
+</div>
