@@ -1,6 +1,6 @@
 angular.module('visualFactory', ['firebase'])
 
-.factory('Visualization', ['$firebaseArray', function ($firebaseArray) {
+.factory('Visualization', ['$firebaseArray', '$firebaseObject',function ($firebaseArray, $firebaseObject) {
 
 	var visualFactory = {};
 
@@ -34,6 +34,14 @@ angular.module('visualFactory', ['firebase'])
 			text: text,
 			createdAt: Firebase.ServerValue.TIMESTAMP
 		});
+	};
+
+	visualFactory.getCustomers = function(callback){
+		var ref = new Firebase('https://bizgramer.firebaseio.com/hr/BizData/Customers/0/QueryResponse/Customer');
+    	var array = $firebaseObject(ref);
+    	array.$loaded().then(function(){
+    		callback(array);
+    	});
 	};
 
 	// visualFactory.getVisualNames = function(org){

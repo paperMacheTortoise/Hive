@@ -25,7 +25,8 @@ var app = angular.module('bizGramApp', [
 	'uploadCtrl',
 	'ui.router',
 	'angularMoment',
-	'luegg.directives'
+	'luegg.directives',
+	'mapCtrl'
 	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -90,6 +91,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url:'/APVisual',
 		parent:'visual',
 		templateUrl: 'app/templates/aPVisualization.html',
+	})
+	.state('visual.CustomerMap', {
+		url:'/customerMap',
+		parent:'visual',
+		templateUrl: 'app/templates/map.html',
 	})
 	.state('signin',{
 		url: '/:org/signin',
