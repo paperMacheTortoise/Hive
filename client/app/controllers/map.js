@@ -1,5 +1,5 @@
 angular.module('mapCtrl', ['firebase'])
-.controller('MapController', function (Visualization, $rootScope, $stateParams,$firebaseObject) {
+.controller('MapController', function (Visualization, $rootScope, $stateParams) {
 	var vm = this;
 
 	// CHAT FUNCTIONS
@@ -48,7 +48,7 @@ angular.module('mapCtrl', ['firebase'])
 	            },
 	            "IA": {
 	                "fillKey": "",
-	                "numCo": 00
+	                "numCo": 0
 	            },
 	            "KS": {
 	                "fillKey": "",
@@ -221,9 +221,9 @@ angular.module('mapCtrl', ['firebase'])
 		    	}
 		    }
 		    var max = 0;
-		    for(var key in states){
-		    	if(states[key].numCo>max){
-		    		max =states[key].numCo;
+		    for(var key1 in states){
+		    	if(states[key1].numCo>max){
+		    		max =states[key1].numCo;
 		    	}
 		    }
 		    var veryhigh = max-Math.floor(max/6);
