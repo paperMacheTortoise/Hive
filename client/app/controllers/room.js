@@ -14,9 +14,10 @@ angular.module('roomCtrl', [])
   vm.profileImg = vm.user.pictureUrl;
 
   // Adds a message to the room and sends to the roomFactory.
-  this.addMessage = function (e) {
+  vm.addMessage = function (e) {
     if (e.keyCode === 13) {
-      Rooms.addMessage(userName, vm.profileImg, vm.text, vm.roomname, vm.org);
+      Rooms.addMessage(vm.username, vm.profileImg, vm.text, vm.roomname, vm.org);
+      // empty the input field
       vm.text = '';
     }
   };

@@ -5,6 +5,7 @@ angular.module('replyCtrl', [])
 
   var vm = this;
   vm.org = $stateParams.org;
+  vm.roomname = $stateParams.roomName;
   // Value for toggling the reply option.
   vm.isReplying = false;
   // Gets the current user's username.
@@ -20,9 +21,7 @@ angular.module('replyCtrl', [])
   // Add reply to the current message
   vm.addReply = function (e, index) {
     if (e.keyCode === 13) {
-      var roomName = Rooms.getCurrentName(vm.org);
-      var userName = vm.replyusername || 'anon';
-      Replies.addReply(userName, vm.profileImg, vm.replytext, index, roomName, vm.org);
+      Replies.addReply(vm.replyusername, vm.profileImg, vm.replytext, index, vm.roomname, vm.org);
       vm.replytext = '';
     }
   };
