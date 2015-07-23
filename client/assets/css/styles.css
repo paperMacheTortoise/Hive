@@ -6932,3 +6932,7 @@ ol ol .cmmnt {
   margin-left: 30px;
   margin-right: 30px;
 }
+.maptip{
+  top: 0;
+  left: 0;
+}
