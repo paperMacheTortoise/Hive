@@ -1,9 +1,9 @@
 <!-- angular room ui template -->
 <div class="chatroom" ng-controller="roomController as room">
 
+  <div><header><h3>{{ room.roomname }}</h3></header></div>
 <!-- displaying all messages for this room -->
   <div class="chatMessages" scroll-glue>
-    <header><h3>{{ room.roomname }}</h3></header>
     <ol class="chats">
       <li class="cmmnt" ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
         <img class="profileImg" src="{{ msg.img }}"></img>
@@ -11,7 +11,7 @@
           <div class="username">{{ msg.username }}</div>
           <div class="message">{{ msg.text }}</div>
           <div class="time">
-            <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot; 
+            <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot;
             <a ng-click="reply.toggleReplying()">Reply</a>
           </div>
         </div>
@@ -21,10 +21,10 @@
           <li class="cmmnt" ng-repeat="reply in msg.replies">
             <img class="profileImg" src="{{ reply.img }}"></img>
             <div class="cmmntBox">
-              <div class="username">{{reply.username}}</div> 
+              <div class="username">{{reply.username}}</div>
               <div class="message">{{reply.text}}</div>
               <div class="time">
-                <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot; 
+                <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot;
                 <a ng-click="reply.toggleReplying()">Reply</a>
               </div>
             </div>
