@@ -20,7 +20,6 @@
 	<script src="lib/topojson/topojson.js"></script>
 	<script src="lib/datamaps/dist/datamaps.usa.min.js"></script>
 
-
 	<!-- Angular Files -->
 	<script src="lib/angular/angular.min.js"></script>
 	<script src="lib/firebase/firebase.js"></script>
@@ -28,8 +27,6 @@
 	<script src="lib/ui-router/release/angular-ui-router.min.js"></script>
 	<script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 	<script src="lib/angular-scroll-glue/src/scrollglue.js"></script>
-
-	<script src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere-1.3.1.js"></script>
 	<script src="lib/moment/moment.js"></script>
 	<script src="lib/angular-moment/angular-moment.js"></script>
 
@@ -62,11 +59,11 @@
 	<script src="app/factories/userFactory.js"></script>
 	<script src="app/factories/uploadFactory.js"></script>
 	<script src="app/factories/visualFactory.js"></script>
-	<script type="text/javascript" src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere-1.3.2.js">
-	   </script>
+	<!-- Quickbooks Library and script -->
+	<script src="https://appcenter.intuit.com/Content/IA/intuit.ipp.anywhere-1.3.2.js"></script>
 	   <script type="text/javascript">
 	       intuit.ipp.anywhere.setup({
-	               grantUrl: 'http://default-environment-ij6ymjbizw.elasticbeanstalk.com/',
+	               grantUrl: 'http://127.0.0.1:3000/auth/intuit/callback',
 	               datasources: {
 	                    quickbooks : true
 	              },
