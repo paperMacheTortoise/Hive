@@ -1,6 +1,6 @@
 angular.module('linkedinFactory', ['firebase'])
 
-.factory('linkedinAuth', ['$firebaseAuth', '$firebaseArray', function ($http, $firebaseAuth, $firebaseArray){
+.factory('LinkedinAuth', ['$firebaseAuth', '$firebaseArray', '$http', function ($http, $firebaseAuth, $firebaseArray){
 	
 	var linkedinFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
@@ -10,31 +10,31 @@ angular.module('linkedinFactory', ['firebase'])
 		action = act;
 	};
 
-	linkedinFactory.signin = function(callback){
-		// linkedinFactory.getToken()
-		// 	.then(function(token){
-		// 		ref.authWithCustomToken('token', function(err, authData){
-		// 		var data = authData;
-		// 		console.log('logged in as' + authData.uid);
-		// 		callback(data);
-		// 	}).catch(function(error){
-		// 	console.log('Error: ', error);
-		// 	});
-		// });
-		linkedinFactory.getAuth()
-			.then(function(data){
-				console.log(data);
-				callback(data);
-			})
-	};
+	// linkedinFactory.signin = function(callback){
+	// 	// linkedinFactory.getToken()
+	// 	// 	.then(function(token){
+	// 	// 		ref.authWithCustomToken('token', function(err, authData){
+	// 	// 		var data = authData;
+	// 	// 		console.log('logged in as' + authData.uid);
+	// 	// 		callback(data);
+	// 	// 	}).catch(function(error){
+	// 	// 	console.log('Error: ', error);
+	// 	// 	});
+	// 	// });
+	// 	linkedinFactory.getAuth()
+	// 		.then(function(data){
+	// 			callback(data);
+	// 		})
+	// };
 
-	linkedinFactory.getAuth = function(){
+	linkedinFactory.getAuthObj = function(){
 		return $http({
 			method: 'GET',
 			url: '/linkedin',
 		})
-		.then(function(resp){
-			return resp.data;
+		.then(function (resp) {
+			console.log('getAuth called');
+			return resp;
 		});
 	};
 

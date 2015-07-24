@@ -18,12 +18,12 @@ module.exports = function(app) {
  app.get('/auth/linkedin/callback',
    passport.authenticate('linkedin', { failureRedirect: '/' }),
    function(req, res) {
-    res.redirect('/linkedin');
+    res.redirect('/#/hr/linkedin');
     // res.send(token);
   });
 
  app.get('/linkedin', function(req, res){
-    console.log(req.user);
+  console.log('server /linkedin', req.user);
     var token = tokGen.createToken({uid: 'linkedin:' + id, linkedin: req.user});
     ref.authWithCustomToken(token, function(err, authData){
       var data = authData;

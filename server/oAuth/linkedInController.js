@@ -32,7 +32,7 @@ passport.use(new LinkedInStrategy({
 	    		thirdPartyUserData: profile._json
 	    	};
 
-	     	return done(0, profile);
+	     	return done(0, user);
     	});
     }
 ));
