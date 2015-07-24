@@ -22,7 +22,9 @@ angular.module('visualFactory', ['firebase'])
 		messages = $firebaseArray(messageRef);
 		messages.$loaded(
 			function()
-			{return messages});
+			{
+				return messages;
+			});
 		return messages;
 	};
 
