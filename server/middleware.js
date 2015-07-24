@@ -4,7 +4,7 @@ var methodOverride = require('method-override');
 var passport = require('passport');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-// var keys = require('../config.js');
+//var keys = require('../config.js');
 
 module.exports = function(app, express) {
 
@@ -22,7 +22,7 @@ module.exports = function(app, express) {
     cookie: { maxAge: null }
   };
   app.use(cookieParser());
-  // app.use(cookieParser(keys.session.secret));
+  //app.use(cookieParser(keys.session.secret));
 
   app.use(session(sessionOpts));
 
