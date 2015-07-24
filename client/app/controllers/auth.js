@@ -40,7 +40,7 @@ angular.module('authCtrl',['firebase'])
     };
   })
 
-  .controller('SigninController',function ($state,$firebaseAuth, Auth, $rootScope, Users, $stateParams){
+  .controller('SigninController',function ($state,$firebaseAuth, Auth, linkedinAuth, $rootScope, Users, $stateParams){
     var vm = this;
     vm.org = $stateParams.org;
     vm.email = null;
@@ -61,6 +61,14 @@ angular.module('authCtrl',['firebase'])
       $state.go('main', {org: vm.org});
     });
     };
+
+    vm.linkedSignin = function() {
+      linkedinAuth.signin(function(data){
+        console.log(data);
+        vm.authData = data;
+        vm.getSignIn(data);
+      }, vm)
+    }
 
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){

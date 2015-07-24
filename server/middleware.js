@@ -9,6 +9,7 @@ var bodyParser = require('body-parser');
 module.exports = function(app, express) {
 
   var authRouter = express.Router();
+  var linkedinRouter = express.Router();
 
   app.use(morgan('dev'));
   app.use(methodOverride('X-HTTP-Method-Override'));
@@ -33,8 +34,8 @@ module.exports = function(app, express) {
   app.use(passport.session());
 
   app.use(authRouter);
+  app.use(linkedinRouter);
 
   require('./oAuth/oAuthRoutes.js')(authRouter);
-
-
+  require('./oAuth/linkedInRoutes.js')(linkedinRouter);
 };

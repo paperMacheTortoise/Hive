@@ -39,12 +39,14 @@
     "express": "^4.13.1",
     "express-session": "^1.11.3",
     "firebase": "^2.2.7",
+    "firebase-token-generator": "^2.0.0",
     "method-override": "^2.3.3",
     "mocha": "^2.2.5",
     "morgan": "^1.6.1",
     "node-quickbooks": "^1.0.18",
     "passport": "^0.2.2",
     "passport-intuit-oauth": "^0.1.0",
-    "phantomjs": "^1.9.17"
+    "phantomjs": "^1.9.17",
+    "passport-linkedin": "^0.1.3"
   }
 }

@@ -6790,6 +6790,10 @@ a:active {
   background-color: #595c69;
   color: #FFFFFF;
 }
+.navbar-brand img {
+  height: 30px;
+  width: 70px;
+}
 button a {
   color: #FFFFFF;
 }
