@@ -23,12 +23,10 @@ module.exports = function(app) {
   });
 
  app.get('/linkedin', function(req, res){
-  console.log('server /linkedin', req.user);
-    var token = tokGen.createToken({uid: 'linkedin:' + id, linkedin: req.user});
-    ref.authWithCustomToken(token, function(err, authData){
-      var data = authData;
-      res.json(data);
-    })
+  // console.log('server /linkedin', req.user);
+    // var token = tokGen.createToken({uid: req.user.uid, linkedin: req.user.thirdPartyUserData});
+    // ref.authWithCustomToken(token, function(err, authData){
+    res.json(req.user);
  });
 
 };

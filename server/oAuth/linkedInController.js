@@ -23,8 +23,6 @@ passport.use(new LinkedInStrategy({
 	function(token, refreshToken, profile, done){
 	    process.nextTick(function () {
 	    	var user = {
-	    		refreshToken: refreshToken || "",
-	    		accessToken: token,
 	    		provider: profile.provider,
 	    		id: profile.id,
 	    		uid: profile.provider + ':' + profile.id,

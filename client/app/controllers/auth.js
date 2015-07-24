@@ -1,8 +1,9 @@
 angular.module('authCtrl',['firebase'])
 
-  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams){
+  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, LinkedinAuth){
     var vm = this;
     vm.org = $stateParams.org;
+    console.log('auth', $stateParams);
     vm.orgKey =
 
     vm.setupUser = function(name, email, uid, pictureUrl){
@@ -31,6 +32,30 @@ angular.module('authCtrl',['firebase'])
         vm.setupUser(vm.name,vm.email,data.uid,data.password.profileImageURL);
         $state.go('main', {org: vm.org});
       },vm);
+    };
+
+    vm.linkedinSignup = function(){
+      vm.users = Users.getUsers(vm.org);
+      LinkedinAuth.getAuthObj()
+        .then(function(data){
+          vm.authData = data;
+          // Users.addLinkedInUser(vm.org, data);
+          vm.users.$add({
+            username: data.thirdPartyUserData.firstName + ' ' + data.thirdPartyUserData.lastName,
+            org: vm.org,
+            uid: data.uid,
+            email: data.thirdPartyUserData.emailAddress,
+            pictureUrl: null,
+            pictureCollection: null,
+            profile: data.thirdPartyUserData
+          })
+          .then(function(ref){
+            var logInfo = vm.users.$getRecord(ref.key());
+            $rootScope.logInfo = logInfo;
+            $state.go('main', {org: vm.org});
+            debugger;
+          });
+        });
     };
 
     vm.checkLogin = function(){
@@ -62,16 +87,12 @@ angular.module('authCtrl',['firebase'])
     });
     };
 
-    vm.linkedSignin = function() {
-      var data = LinkedinAuth.getAuthObj();
-
-    };
-      // linkedinAuth.signin(function(data){
-      //   console.log(data);
-      //   vm.authData = data;
-      //   vm.getSignIn(data);
-      // }, vm)
-      // };
+    // vm.linkedSignin = function() {
+    //  LinkedinAuth.getAuthObj()
+    //   .then(function(data){
+    //     vm.getSignIn(data);
+    //   });
+    // };
 
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){

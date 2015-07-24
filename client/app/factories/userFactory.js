@@ -1,6 +1,6 @@
 angular.module('userFactory', ['firebase'])
 
-.factory('Users', ['$firebaseArray', function ($firebaseArray){
+.factory('Users', ['$firebaseArray', '$rootScope', function ($firebaseArray, $rootScope){
 
 	var userFactory = {};
   var fire = function(org){
@@ -16,6 +16,25 @@ angular.module('userFactory', ['firebase'])
 	// parse the usernames from the database
   userFactory.getUsers = function(org){
     return fire(org).users;
+  };
+
+  userFactory.addLinkedInUser = function(org, data){
+    var userRef = fire(org).ref.child(data.uid);
+    debugger;
+    // var userInfo = $firebaseArray(userRef);
+    userRef.set({
+      username: data.thirdPartyUserData.firstName + ' ' + data.thirdPartyUserData.lastName,
+      org: org,
+      uid: data.uid,
+      email: data.thirdPartyUserData.emailAddress,
+      pictureUrl: data.thirdPartyUserData.publicProfileUrl,
+      pictureCollection: null,
+      profile: data.thirdPartyUserData
+    }).then(function(){
+      var logInfo = userFactory.getUsers(org).$getRecord(data.uid);
+      $rootScope.logInfo = logInfo;
+    });
+    debugger;
   };
 
 	// display all the usernames in the main menu except for the current user,

@@ -1,6 +1,6 @@
 angular.module('linkedinFactory', ['firebase'])
 
-.factory('LinkedinAuth', ['$firebaseAuth', '$firebaseArray', '$http', function ($http, $firebaseAuth, $firebaseArray){
+.factory('LinkedinAuth', ['$firebaseAuth', '$firebaseArray', '$http', function ($firebaseAuth, $firebaseArray, $http, Users){
 	
 	var linkedinFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
@@ -30,11 +30,10 @@ angular.module('linkedinFactory', ['firebase'])
 	linkedinFactory.getAuthObj = function(){
 		return $http({
 			method: 'GET',
-			url: '/linkedin',
-		})
-		.then(function (resp) {
+			url: '/linkedin'
+		}).then(function(resp){
 			console.log('getAuth called');
-			return resp;
+			return resp.data;
 		});
 	};
 

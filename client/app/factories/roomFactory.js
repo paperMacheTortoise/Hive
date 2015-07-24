@@ -57,7 +57,7 @@ angular.module('roomFactory', ['firebase'])
     var messages = $firebaseArray(roomRef);
     messages.$add({
       username: username,
-      img: profileImg,
+      img: profileImg || null,
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
     }).then(function(roomRef) {

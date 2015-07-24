@@ -3,7 +3,8 @@ angular.module('mainCtrl', [])
 .controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams) {
 
 	var vm = this;
-
+  console.log('main', $stateParams);
+  console.log('rootScope', $rootScope.logInfo);
   vm.org = $stateParams.org;
   if ($rootScope && $rootScope.logInfo) {
     vm.currentUser = $rootScope.logInfo;

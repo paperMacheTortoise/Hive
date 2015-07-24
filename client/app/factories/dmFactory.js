@@ -13,13 +13,13 @@ angular.module('dmFactory', ['firebase'])
 		var user2Messages = $firebaseArray(user2ref);
 		user1Messages.$add({
 			username: user1,
-			img: profileImg,
+			img: profileImg || null,
 			text: text,
 			createdAt: Firebase.ServerValue.TIMESTAMP
 		});
 		user2Messages.$add({
 			username: user1,
-			img: profileImg,
+			img: profileImg || null,
 			text: text,
 			createdAt: Firebase.ServerValue.TIMESTAMP
 		});
