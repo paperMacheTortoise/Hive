@@ -10,7 +10,7 @@ angular.module('connectIntuitAngular',[])
            scope.$emit('intuitjs:loaded');
         };
         $window.document.body.appendChild(script);
-        scope.$on('intuitjs:loaded', function (evt) {
+        scope.$on('intuitjs:loaded', function () {
           $window.intuit.ipp.anywhere.setup({ 
           	grantUrl: 'http://127.0.0.1:3000/auth/intuit/callback',
           	datasources: {
@@ -21,5 +21,5 @@ angular.module('connectIntuitAngular',[])
           scope.$apply();
         });
     }
-  }
+  };
 });
