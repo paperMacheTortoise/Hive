@@ -10,24 +10,21 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(user, done){
-	done(null, user);
+	// done(null, user);
 });
 
 passport.use(new LinkedInStrategy({
 	consumerKey: LINKED_IN_KEY,
 	consumerSecret: LINKED_IN_SECRET,
 	callbackURL: "http://localhost:3000/auth/linkedin/callback",
-	profileFields: ['id', 'first-name', 'last-name', 'email-address','public-profile-url', 'headline']
+	profileFields: ['id', 'formatted-name','first-name', 'last-name', 'email-address','public-profile-url', 'picture-url', 'headline']
 	},
 
 	function(token, refreshToken, profile, done){
 	    process.nextTick(function () {
-	    	var user = {
-	    		provider: profile.provider,
-	    		id: profile.id,
+	    	var user = { 
 	    		uid: profile.provider + ':' + profile.id,
-	    		displayName: profile.name,
-	    		thirdPartyUserData: profile._json
+	    		linkedin: profile._json
 	    	};
 
 	     	return done(0, user);

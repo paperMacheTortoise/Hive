@@ -41,19 +41,18 @@ angular.module('authCtrl',['firebase'])
           vm.authData = data;
           // Users.addLinkedInUser(vm.org, data);
           vm.users.$add({
-            username: data.thirdPartyUserData.firstName + ' ' + data.thirdPartyUserData.lastName,
+            username: data.linkedin.formattedName,
             org: vm.org,
             uid: data.uid,
-            email: data.thirdPartyUserData.emailAddress,
-            pictureUrl: null,
+            email: data.linkedin.emailAddress,
+            pictureUrl: data.linkedin.pictureUrl,
             pictureCollection: null,
-            profile: data.thirdPartyUserData
+            linkedin: data.linkedin
           })
           .then(function(ref){
             var logInfo = vm.users.$getRecord(ref.key());
             $rootScope.logInfo = logInfo;
             $state.go('main', {org: vm.org});
-            debugger;
           });
         });
     };
