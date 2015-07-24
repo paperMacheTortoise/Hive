@@ -6909,7 +6909,7 @@ ol ol .cmmnt {
 .chats .cmmnt .replies {
   margin-bottom: 0px;
 }
-.chatMessages {
+.chatMessages .dmChatMessages {
   position: absolute;
   bottom: 12%;
   top: 0%;
@@ -6917,6 +6917,11 @@ ol ol .cmmnt {
   overflow: scroll;
   margin-top: 70px;
 }
+
+.dmChatMessages{
+  margin-top: 0px;
+}
+
 .submitText {
   position: static;
 }
