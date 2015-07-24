@@ -1,8 +1,8 @@
 var passport = require('passport');
 var IntuitStrategy = require('passport-intuit-oauth').Strategy;
 
-var INTUIT_CONSUMER_KEY = process.env.INTUITKEY;
-var INTUIT_CONSUMER_SECRET = process.env.INTUITSECRET;
+var INTUIT_CONSUMER_KEY = 'qyprdns8EP57q1ffSi1EqWyK4q47qm';
+var INTUIT_CONSUMER_SECRET = 'izBgcI_ONbmMOsePPh18AA8glJ04Or0HMkMDK2a4a';
 var QuickBooks = require('node-quickbooks');
 
 // Passport session setup.
