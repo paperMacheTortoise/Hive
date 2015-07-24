@@ -6940,3 +6940,10 @@ ol ol .cmmnt {
   max-height: 300px;
   max-width: 200px;
 }
+.imggal{
+  max-height: 500px;
+  max-width: 500px;
+}
+.imglist{
+  background-color: #999ca8;
+}

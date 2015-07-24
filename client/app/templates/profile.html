@@ -5,7 +5,7 @@
 	<button class ='btn btn-default'ui-sref='edit({org:prof.org})'>Edit Profile</button>
 	<button class="btn btn-default" ng-click="prof.open()">Upload Images</button>
 	<h3>Image Gallery</h3>
-	<ul class='list-group'>
-		<li class='list-group-item' ng-repeat='picture in prof.pictures'><img ng-src='{{picture.url}}'></img></li>
+	<ul class='imglist jumbotron list-group'>
+		<li class='list-group-item' ng-repeat='picture in prof.pictures'><img class = 'imggal .img-thumbnail' ng-src='{{picture.url}}'></img></li>
 	</ul>
 </div>
