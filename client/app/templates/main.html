@@ -2,6 +2,14 @@
 <div class="container" ng-controller="mainController as main">
 	<div class="row">
 		<div class="col-sm-3 col-md-3 main-menu">
+			<div class="control-group">
+			    <div class="controls" ng-show="!connected">
+			      Loading QuickBooks Connect button
+			    </div>
+			    <div class="controls" ng-show="connected">
+			      <connect-to-quickbooks />
+			  </div>
+			</div>
 			<h5>Reports</h5>
 				<ul class="nav nav-sidebar visualizations">
 					<!-- <li ng-repeat="visual in main.visuals track by $index"><a ui-sref="visual({org: main.org, visualId: visual})">{{ visual }}</a></li> -->
@@ -29,4 +37,5 @@
 				<div ui-view></div>
 		</div>
 	</div>
+
 </div>

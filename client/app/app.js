@@ -27,7 +27,8 @@ var app = angular.module('bizGramApp', [
 	'angularMoment',
 	'luegg.directives',
 	'mapCtrl',
-	'EditCtrl'
+	'EditCtrl',
+	'connectIntuitAngular'
 	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {

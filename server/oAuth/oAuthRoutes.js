@@ -12,11 +12,11 @@ module.exports = function(app) {
     // console.log("login req.user ", req.user);
     // console.log("login req.session.passport.user", req.session.passport.user);
 
-    myFirebaseRef.on("value", function(snapshot) {
-      console.log(snapshot.val());
-    }, function (errorObject) {
-      console.log("The read failed: " + errorObject.code);
-    });
+    // myFirebaseRef.on("value", function(snapshot) {
+    //   console.log(snapshot.val());
+    // }, function (errorObject) {
+    //   console.log("The read failed: " + errorObject.code);
+    // });
 
     res.redirect('/');
     //res.render('login', { user: req.user });
