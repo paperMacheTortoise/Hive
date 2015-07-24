@@ -1,12 +1,14 @@
-<div class="modal-header">
-    <h3 class="modal-title">Upload an Image</h3>
-</div>
-<div class="modal-body" ng-controller='UploadController as upload'>
-    <form name='upload form'>
-		<input id='file' name='file' type='file' ng-model='upload.file' custom-on-change='change'/>
-		<input type='submit'/>
-	</form>
-</div>
-<div class="modal-footer" ng-controller='UploadController as upload'>
-    <button class="btn btn-primary" ui-sref="profile">OK</button>
+<div ng-controller='UploadController'>
+	<div class="modal-header">
+	    <h3 class="modal-title">Upload an Image</h3>
+	</div>
+	<div class="modal-body">
+	    <form name='upload form'>
+			<input id='file' name='file' type='file' ng-model='file' custom-on-change='change'/>
+			<input type='submit'/>
+		</form>
+	</div>
+	<div class="modal-footer" >
+	    <button class="btn btn-primary" ng-click='ok()'>OK</button>
+	</div>
 </div>
