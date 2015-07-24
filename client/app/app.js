@@ -22,13 +22,13 @@ var app = angular.module('bizGramApp', [
 	'roomCtrl',
 	'replyCtrl',
 	'profileCtrl',
-	'uploadCtrl',
 	'ui.router',
 	'angularMoment',
 	'luegg.directives',
 	'mapCtrl',
 	'EditCtrl',
-	'connectIntuitAngular'
+	'connectIntuitAngular',
+	'ngImgur'
 	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -133,13 +133,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/:org/edit',
 		templateUrl: 'app/templates/profile-edit.html',
 		controller: 'EditController',
-		data: {
-			requireLogin: true
-		}
-	})
-	.state('upload',{
-		url: '/:org/upload',
-		templateUrl: 'app/templates/upload.html',
 		data: {
 			requireLogin: true
 		}
