@@ -2,28 +2,37 @@ var oAuthController = require('./oAuthController.js');
 var passport = require('passport');
 var QuickBooks = require('../../node_modules/node-quickbooks/index.js');
 var Firebase = require("firebase");
-var myFirebaseRef = new Firebase("https://bizgramer.firebaseio.com/hr/BizData");
+var myFirebaseRef = new Firebase("https://bizgramer.firebaseio.com/hr/qbo/qbokey");
 
 module.exports = function(app) {
 
 
   app.get('/login', function(req, res){
-    console.log("login req.session ", req.session);
-    console.log("login req.user ", req.user);
-    console.log("login req.session.passport.user", req.session.passport.user);
-    res.render('login', { user: req.user });
+    // console.log("login req.session ", req.session);
+    // console.log("login req.user ", req.user);
+    // console.log("login req.session.passport.user", req.session.passport.user);
+
+    myFirebaseRef.on("value", function(snapshot) {
+      console.log(snapshot.val());
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
+
+    res.redirect('/');
+    //res.render('login', { user: req.user });
   });
 
   app.get('/auth/intuit/callback',
     passport.authenticate('intuit', { failureRedirect: '/login' }),
      function(req, res) {
         console.log("Successful LOGIN YAY!");
-        res.redirect('/');
+        //window.close();
+        res.redirect('/after-auth.html');
     }
   );
 
 
-  app.get('/receivable', oAuthController.ensureAuthenticated, function(req) {
+  app.get('/receivable', oAuthController.ensureAuthenticated, function() {
      var qbo = req.user.qbo;
 
      var myObjectArray = [];

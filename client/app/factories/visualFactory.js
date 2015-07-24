@@ -20,6 +20,11 @@ angular.module('visualFactory', ['firebase'])
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
 		var messageRef = ref.child('messages');
 		messages = $firebaseArray(messageRef);
+		messages.$loaded(
+			function()
+			{
+				return messages;
+			});
 		return messages;
 	};
 

@@ -5,6 +5,9 @@ var INTUIT_CONSUMER_KEY = 'qyprdns8EP57q1ffSi1EqWyK4q47qm';
 var INTUIT_CONSUMER_SECRET = 'izBgcI_ONbmMOsePPh18AA8glJ04Or0HMkMDK2a4a';
 var QuickBooks = require('node-quickbooks');
 
+var Firebase = require("firebase");
+var myFirebaseRef = new Firebase("https://bizgramer.firebaseio.com/hr/qbo");
+
 // Passport session setup.
 //   To support persistent login sessions, Passport needs to be able to
 //   serialize users into and deserialize users out of the session.  Typically,
@@ -60,10 +63,21 @@ passport.use(new IntuitStrategy({
       // })
       profile.qbo = qbo;
 
+      myFirebaseRef.update(
+          {
+            qbokey: qbo,
+            token: token,
+            tokenSecret: tokenSecret,
+            profile: profile
+          }
+        );
+
       // To keep the example simple, the user's Intuit profile is returned to
       // represent the logged-in user.  In a typical application, you would want
       // to associate the Intuit account with a user record in your database,
       // and return that user instead.
+
+
       return done(null, profile);
     });
   }
