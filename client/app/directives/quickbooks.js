@@ -1,5 +1,5 @@
 angular.module('connectIntuitAngular',[])
-.directive('connectToQuickbooks', function($window){
+.directive('connectToQuickbooks', function($window, $rootScope){
   return {
     restrict: 'E',    template: "<ipp:connectToIntuit></ipp:connectToIntuit>",
     link: function(scope) {
@@ -12,7 +12,7 @@ angular.module('connectIntuitAngular',[])
         $window.document.body.appendChild(script);
         scope.$on('intuitjs:loaded', function () {
           $window.intuit.ipp.anywhere.setup({ 
-          	grantUrl: 'http://127.0.0.1:3000/auth/intuit/callback',
+          	grantUrl: 'http://127.0.0.1:3000/auth/intuit/callback/'+$rootScope.logInfo.org,
           	datasources: {
 	            quickbooks : true
 	        } 

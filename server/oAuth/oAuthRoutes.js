@@ -22,7 +22,7 @@ module.exports = function(app) {
     //res.render('login', { user: req.user });
   });
 
-  app.get('/auth/intuit/callback',
+  app.get('/auth/intuit/callback/:org',
     passport.authenticate('intuit', { failureRedirect: '/login' }),
      function(req, res) {
         console.log("Successful LOGIN YAY!");
