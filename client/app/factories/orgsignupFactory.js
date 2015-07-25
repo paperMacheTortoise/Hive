@@ -1,8 +1,9 @@
 angular.module('orgsignupFactory', ['firebase'])
 
-.factory('OrgSignup', ['$firebaseArray', function ($firebaseArray) {
+.factory('OrgSignup', ['$firebaseArray', '$firebaseObject', '$http', function ($firebaseArray, $firebaseObject, $http) {
 
   var orgsignupFactory = {};
+  var mandrillKey = 'ul35c_Y39BxIZUIUa_HIog';
   var ref = new Firebase('https://bizgramer.firebaseio.com/');
   var organizations = $firebaseArray(ref);
   var orgNames = [];
@@ -71,11 +72,48 @@ angular.module('orgsignupFactory', ['firebase'])
       return orgNames;
     };
 
-    orgsignupFactory.signupOrg = function (orgname) {
+    orgsignupFactory.signupOrg = function (orgname, creator, email) {
       ref.child(orgname).set('new organization');
-      ref.child(orgname+'/orgKey').set(generatePushID());
-    };
+      var orgId = generatePushID();
+      ref.child(orgname+'/orgKey').set(orgId);
 
+      var link = 'http://localhost:3000/#/'+orgname+'/signup';
+
+      var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgname);
+      var orgObj = $firebaseObject(orgRef);
+      orgObj.$loaded()
+        .then(function() {
+          var params = {
+            "key": mandrillKey,
+            "message": {
+                  "from_email": "welcome@BizGram.com",
+                  "to":[{"email":email}],
+                  "subject": "Hey "+creator+" here's your secret org key!",
+                  "html":
+                    "<h1> Hi "+creator+"! Thanks for signing up "+orgname+" at BizGram</h1>
+                    <h2>Your Organization name is"+orgname+"(case sensitive)<h2>
+                    <h2>Your OrgID is "+orgId+"</h2>
+                    <h3>
+                      <a href='"+link+"'>Sign up user account here</a>
+                    </h3>",
+                  "autotext": true,
+                  "track_opens": true,
+                  "track_clicks": true
+            }
+          }; // end params
+          // send ajax request to Mandrill api for email invite
+          $http.post('https://mandrillapp.com/api/1.0/messages/send.json', params)
+            .success(function() {
+              console.log('email invite sent successfully');
+            })
+            .error(function() {
+              console.log('error sending email invite');
+            });
+        })
+        .catch(function (error) {
+          console.log('error', error);
+        });
+    };
 
     return orgsignupFactory;
 }]);
