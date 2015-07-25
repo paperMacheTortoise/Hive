@@ -8,7 +8,7 @@ angular.module('orgsignupCtrl', ['firebase'])
     vm.signupOrg = function () {
       if (vm.orgnames.indexOf(vm.nameOfOrgToAdd) === -1) {
         console.log('adding new room :', vm.nameOfOrgToAdd);
-        OrgSignup.signupOrg(vm.nameOfOrgToAdd);
+        OrgSignup.signupOrg(vm.nameOfOrgToAdd, vm.nameOfCreator, vm.emailOfCreator);
         console.log(vm.nameOfOrgToAdd);
         $state.go('signin', {org: vm.nameOfOrgToAdd});
         vm.nameOfOrgToAdd = '';
