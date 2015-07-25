@@ -90,12 +90,7 @@ angular.module('orgsignupFactory', ['firebase'])
                   "to":[{"email":email}],
                   "subject": "Hey "+creator+" here's your secret org key!",
                   "html":
-                    "<h1> Hi "+creator+"! Thanks for signing up "+orgname+" at BizGram</h1>
-                    <h2>Your Organization name is"+orgname+"(case sensitive)<h2>
-                    <h2>Your OrgID is "+orgId+"</h2>
-                    <h3>
-                      <a href='"+link+"'>Sign up user account here</a>
-                    </h3>",
+                    "<h1> Hi "+creator+" </h1><h2>Thanks for signing up "+orgname+" at BizGram</h2><h2>Your Organization name is "+orgname+"</h2><h2>Your OrgID is "+orgId+"</h2><a href='"+link+"'>Sign up user account here</a>",
                   "autotext": true,
                   "track_opens": true,
                   "track_clicks": true
