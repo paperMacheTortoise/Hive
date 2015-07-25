@@ -8,6 +8,7 @@ angular.module('orgsignupFactory', ['firebase'])
   var organizations = $firebaseArray(ref);
   var orgNames = [];
 
+  // function to generate orgId
   var generatePushID = (function() {
     // Modeled after base64 web-safe chars, but ordered by ASCII.
     var PUSH_CHARS = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
@@ -60,12 +61,12 @@ angular.module('orgsignupFactory', ['firebase'])
     };
   })(); //end generate ID function
 
+  // async function to get all the org names
   organizations.$loaded()
     .then(function () {
       angular.forEach(organizations, function (org) {
         orgNames.push(org.$id);
       });
-      // console.log(orgNames);
     });
 
     orgsignupFactory.getOrgs = function () {
@@ -73,12 +74,13 @@ angular.module('orgsignupFactory', ['firebase'])
     };
 
     orgsignupFactory.signupOrg = function (orgname, creator, email) {
+      // create new branch for this organization on firebase db
       ref.child(orgname).set('new organization');
       var orgId = generatePushID();
       ref.child(orgname+'/orgKey').set(orgId);
 
+      // send out email to creator of the org with orgId
       var link = 'http://localhost:3000/#/'+orgname+'/signup';
-
       var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgname);
       var orgObj = $firebaseObject(orgRef);
       orgObj.$loaded()
