@@ -12,6 +12,7 @@ var app = angular.module('bizGramApp', [
 	'replyFactory',
 	'uploadFactory',
 	'visualFactory',
+	'linkedinFactory',
 	'mainCtrl',
 	'aRVisualCtrl',
 	'aPVisualCtrl',
@@ -121,6 +122,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			requireLogin: true
 		}
 	})
+	.state('linkedin',{
+		url: '/:org/linkedinsuccess',
+		templateUrl: 'app/templates/linkedinsuccess.html',
+		data: {
+			requireLogin: false
+		}
+	})
 	.state('profile',{
 		url: '/:org/profile',
 		templateUrl: 'app/templates/profile.html',
@@ -140,7 +148,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 app.run(function ($rootScope, $window, $location, $state, $stateParams){
-
+	console.log('apprun', $stateParams);
 	// Value for ng-hide and ng-show on index. It displays the login and signup buttons when user is logged out.
 	// When user is logged in, displays profile and logout.
 	$rootScope.shouldShow = true;

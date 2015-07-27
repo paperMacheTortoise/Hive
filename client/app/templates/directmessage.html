@@ -4,7 +4,7 @@
 		<header><h3>{{dm.recipient}}</h3></header>
 		<ol class="chats">
 			<li class="cmmnt" ng-repeat="msg in dm.messages">
-				<img class="profileImg" src="{{ msg.img }}"></img>
+				<img class="profileImg" ng-src="{{ msg.img }}"></img>
 				<div class="cmmntBox">
 					<div class="username">{{ msg.username }}</div>
 				    <div class="message">{{ msg.text }}</div>
