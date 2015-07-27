@@ -6,7 +6,7 @@ angular.module('authFactory', ['firebase'])
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
 
 	var authObj = $firebaseAuth(ref);
-  var action = '';
+  // var action = '';
 
   authFactory.getAuth = function (callback){
         var authData = authObj.$getAuth();

@@ -1,6 +1,6 @@
-var LinkedInOAuth = require('./linkedInController.js');
-var serverConfig = require('../server-config.js');
-var controller = require('../controller.js');
+// var LinkedInOAuth = require('./linkedInController.js');
+// var serverConfig = require('../server-config.js');
+// var controller = require('../controller.js');
 var passport = require('passport');
 // var TokenGenerator = require('firebase-token-generator');
 // var Firebase = require('firebase');
@@ -37,7 +37,7 @@ module.exports = function(app) {
  app.post('/setOrg', function(req, res){
   org = req.body.org;
   res.send('Org set!');
- })
+ });
 
 };
 

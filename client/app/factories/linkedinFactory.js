@@ -1,9 +1,9 @@
 angular.module('linkedinFactory', ['firebase'])
 
-.factory('LinkedinAuth', ['$firebaseAuth', '$firebaseArray', '$http', function ($firebaseAuth, $firebaseArray, $http, Users){
+.factory('LinkedinAuth', ['$firebaseAuth', '$firebaseArray', '$http', function ($firebaseAuth, $firebaseArray, $http){
 	
 	var linkedinFactory = {};
-	var ref = new Firebase('https://bizgramer.firebaseio.com/');
+	// var ref = new Firebase('https://bizgramer.firebaseio.com/');
 
 	linkedinFactory.setAction = function(act){
 		return $http({
