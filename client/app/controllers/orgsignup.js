@@ -1,6 +1,6 @@
 angular.module('orgsignupCtrl', ['firebase'])
 
-  .controller('OrgsignupController', function (OrgSignup, $state) {
+  .controller('OrgsignupController', function (OrgSignup, $state, LinkedinAuth) {
 
     var vm = this;
     vm.orgnames = OrgSignup.getOrgs();
@@ -23,9 +23,12 @@ angular.module('orgsignupCtrl', ['firebase'])
         console.log('go sign up for new org');
         vm.nameOfOrgToGo = '';
       } else {
+        vm.setOrg(vm.nameOfOrgToGo);
         $state.go('signin', {org: vm.nameOfOrgToGo});
       }
     };
 
-
+    vm.setOrg = function(org){
+      LinkedinAuth.setOrg(org);
+    };
   });
