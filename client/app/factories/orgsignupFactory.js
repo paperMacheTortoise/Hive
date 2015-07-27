@@ -1,12 +1,14 @@
 angular.module('orgsignupFactory', ['firebase'])
 
-.factory('OrgSignup', ['$firebaseArray', function ($firebaseArray) {
+.factory('OrgSignup', ['$firebaseArray', '$firebaseObject', '$http', function ($firebaseArray, $firebaseObject, $http) {
 
   var orgsignupFactory = {};
+  var mandrillKey = 'ul35c_Y39BxIZUIUa_HIog';
   var ref = new Firebase('https://bizgramer.firebaseio.com/');
   var organizations = $firebaseArray(ref);
   var orgNames = [];
 
+  // function to generate orgId
   var generatePushID = (function() {
     // Modeled after base64 web-safe chars, but ordered by ASCII.
     var PUSH_CHARS = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
@@ -59,23 +61,56 @@ angular.module('orgsignupFactory', ['firebase'])
     };
   })(); //end generate ID function
 
+  // async function to get all the org names
   organizations.$loaded()
     .then(function () {
       angular.forEach(organizations, function (org) {
         orgNames.push(org.$id);
       });
-      // console.log(orgNames);
     });
 
     orgsignupFactory.getOrgs = function () {
       return orgNames;
     };
 
-    orgsignupFactory.signupOrg = function (orgname) {
+    orgsignupFactory.signupOrg = function (orgname, creator, email) {
+      // create new branch for this organization on firebase db
       ref.child(orgname).set('new organization');
-      ref.child(orgname+'/orgKey').set(generatePushID());
-    };
+      var orgId = generatePushID();
+      ref.child(orgname+'/orgKey').set(orgId);
 
+      // send out email to creator of the org with orgId
+      var link = 'http://localhost:3000/#/'+orgname+'/signup';
+      var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgname);
+      var orgObj = $firebaseObject(orgRef);
+      orgObj.$loaded()
+        .then(function() {
+          var params = {
+            "key": mandrillKey,
+            "message": {
+                  "from_email": "welcome@BizGram.com",
+                  "to":[{"email":email}],
+                  "subject": "Hey "+creator+" here's your secret org key!",
+                  "html":
+                    "<h1> Hi "+creator+" </h1><h2>Thanks for signing up "+orgname+" at BizGram</h2><h2>Your Organization name is "+orgname+"</h2><h2>Your OrgID is "+orgId+"</h2><a href='"+link+"'>Sign up user account here</a>",
+                  "autotext": true,
+                  "track_opens": true,
+                  "track_clicks": true
+            }
+          }; // end params
+          // send ajax request to Mandrill api for email invite
+          $http.post('https://mandrillapp.com/api/1.0/messages/send.json', params)
+            .success(function() {
+              console.log('email invite sent successfully');
+            })
+            .error(function() {
+              console.log('error sending email invite');
+            });
+        })
+        .catch(function (error) {
+          console.log('error', error);
+        });
+    };
 
     return orgsignupFactory;
 }]);
