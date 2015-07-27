@@ -10,7 +10,7 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(user, done){
-	// done(null, user);
+	done(null, user);
 });
 
 passport.use(new LinkedInStrategy({

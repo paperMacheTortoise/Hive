@@ -122,9 +122,16 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			requireLogin: true
 		}
 	})
-	.state('linkedin',{
-		url: '/:org/linkedin',
-		templateUrl: 'app/templates/linkedinSuccess.html',
+	.state('linkedinSignup',{
+		url: '/:org/linkedin-signup',
+		templateUrl: 'app/templates/linkedinSignup.html',
+		data: {
+			requireLogin: false
+		}
+	})
+	.state('linkedinSignin', {
+		url: '/:org/linkedin-signin',
+		templateUrl: 'app/templates/linkedinSignin.html',
 		data: {
 			requireLogin: false
 		}

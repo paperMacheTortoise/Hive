@@ -34,6 +34,10 @@ angular.module('authCtrl',['firebase'])
       },vm);
     };
 
+    vm.setOrgAction = function(){
+      LinkedinAuth.setOrgAction('signup', vm.org);
+    };
+
     vm.linkedinSignup = function(){
       vm.users = Users.getUsers(vm.org);
       LinkedinAuth.getAuthObj()
@@ -86,12 +90,16 @@ angular.module('authCtrl',['firebase'])
     });
     };
 
-    // vm.linkedSignin = function() {
-    //  LinkedinAuth.getAuthObj()
-    //   .then(function(data){
-    //     vm.getSignIn(data);
-    //   });
-    // };
+    vm.setOrgAction = function(){
+      LinkedinAuth.setOrgAction('signin', vm.org);
+    };
+
+    vm.linkedinSignin = function() {
+     LinkedinAuth.getAuthObj()
+      .then(function(data){
+        vm.getSignIn(data);
+      });
+    };
 
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){
