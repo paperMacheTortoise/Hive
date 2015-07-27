@@ -17,10 +17,11 @@ angular.module('linkedinFactory', ['firebase'])
 	};
 
 	linkedinFactory.setOrg = function(org){
-		return $http({
+		$http({
 			method: 'POST',
 			url: '/setOrg',
-			data: {org: org}
+			data: {'org' : org}
+			// headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
 		  .then(function(resp){
 		  	return resp;

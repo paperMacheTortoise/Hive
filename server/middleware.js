@@ -14,6 +14,7 @@ module.exports = function(app, express) {
   app.use(morgan('dev'));
   app.use(methodOverride('X-HTTP-Method-Override'));
 
+  app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({extended: true}));
 
   sessionOpts = {

@@ -28,6 +28,8 @@ angular.module('orgsignupCtrl', ['firebase'])
       }
     };
 
+
+    // Sends org as POST request to server for oAuth 
     vm.setOrg = function(org){
       LinkedinAuth.setOrg(org);
     };

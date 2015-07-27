@@ -8,10 +8,9 @@ var passport = require('passport');
 
 // var tokGen = new TokenGenerator(serverConfig.FIREBASE_SECRET);
 // var id = Math.floor(Math.random() * 50000);
-
+var org = '';
 module.exports = function(app) {
-  var action = '';
-  var org = '';
+  // var action = '';
 
   app.get('/auth/linkedin',
   	passport.authenticate('linkedin', { scope: ['r_basicprofile', 'r_emailaddress'] }));
@@ -19,7 +18,7 @@ module.exports = function(app) {
  app.get('/auth/linkedin/callback',
    passport.authenticate('linkedin', { failureRedirect: '/' }),
    function(req, res) {
-    res.redirect('/#/')
+    res.redirect('/#/' + org + '/linkedinsuccess');
     // res.send(token);
   });
 
@@ -30,10 +29,10 @@ module.exports = function(app) {
     res.json(req.user);
  });
 
- app.post('/setAction', function(req, res){
-  action = req.body.action;
-  res.send('Org and Action set!');
- });
+ // app.post('/setAction', function(req, res){
+ //  action = req.body.action;
+ //  res.send('Org and Action set!');
+ // });
 
  app.post('/setOrg', function(req, res){
   org = req.body.org;
@@ -41,3 +40,5 @@ module.exports = function(app) {
  })
 
 };
+
+ 

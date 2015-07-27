@@ -34,10 +34,6 @@ angular.module('authCtrl',['firebase'])
       },vm);
     };
 
-    vm.setOrgAction = function(){
-      LinkedinAuth.setOrgAction('signup', vm.org);
-    };
-
     vm.linkedinSignup = function(){
       vm.users = Users.getUsers(vm.org);
       LinkedinAuth.getAuthObj()
