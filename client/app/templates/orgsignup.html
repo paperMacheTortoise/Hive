@@ -4,13 +4,16 @@
 	  <header><h3>Organization Signup</h3></header>
 		  <form name="orgSignupForm" ng-submit="org.signupOrg()">
 		  	<div class="form-group">
-			    <input class="form-control" name="name" type="name" ng-model="org.nameOfOrgToAdd" placeholder="Organization name" required />
+			    <input class="form-control" name="orgName" type="name" ng-model="org.nameOfOrgToAdd" placeholder="Organization name" required />
 		    </div>
 		    <div class="form-group">
-			    <input class="form-control" name="name" type="name" ng-model="org.nameOfCreator" placeholder="Your name" required />
+			    <input class="form-control" name="creatorName" type="name" ng-model="org.nameOfCreator" placeholder="Your name" required />
 		    </div>
 		    <div class="form-group">
-			    <input class="form-control" name="name" type="name" ng-model="org.emailOfCreator" placeholder="Your email" required />
+			    <input class="form-control" name="email" type="email" ng-model="org.emailOfCreator" placeholder="Your email" required />
+		    </div>
+		    <div class="form-group">
+			    <input class="form-control" name="password" type="password" ng-model="org.emailOfCreator" placeholder="Your email" required />
 		    </div>
 		    <div class="form-group">
 			    <button class="btn btn-info form-control" type="submit">Submit</button>

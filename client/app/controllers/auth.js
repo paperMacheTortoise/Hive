@@ -22,6 +22,7 @@ angular.module('authCtrl',['firebase'])
       Auth.signup(vm.email, vm.password, vm.orgId, vm.org, function(data){
         vm.authData = data;
         vm.setupUser(vm.name, vm.email, data.uid, data.password.profileImageURL);
+        $state.go('main', {org: vm.org});
       },vm);
     };
 
