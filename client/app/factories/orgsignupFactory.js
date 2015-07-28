@@ -77,6 +77,7 @@ angular.module('orgsignupFactory', ['firebase'])
       // create new branch for this organization on firebase db
       ref.child(orgname).set('new organization');
       var orgId = generatePushID();
+      orgId = orgId.substr(-5);
       ref.child(orgname + '/orgKey').set(orgId);
       ref.child(orgname + '/rooms/general').set('this room is empty');
 
