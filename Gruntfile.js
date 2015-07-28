@@ -1,6 +1,10 @@
 module.exports = function(grunt) {
 
- 
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+
   grunt.initConfig({
     jshint: {
       options: {
@@ -10,9 +14,21 @@ module.exports = function(grunt) {
     },
 
     karma: {
-    	unit: {
-    		configFile: 'karma.conf.js',
-    	}
+      unit: {
+        configFile: 'specs/karma-unit.config.js',
+        autoWatch: false,
+        singleRun: true
+      },
+      midway: {
+        configFile: 'specs/karma-midway.config.js',
+        autoWatch: false,
+        singleRun: true
+      },
+      e2e: {
+        configFile: 'specs/karma-e2e.config.js',
+        autoWatch: false,
+        singleRun: true
+      }
     },
 
     watch: {
@@ -42,17 +58,15 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-watch');
- 
+
 
   grunt.registerTask('test', [
   	'jshint',
   	'karma'
   	]);
+  // grunt.registerTask('unit', [
+  //   'karma:'])
 
   grunt.registerTask('default', 'test');
- 
+
 };
