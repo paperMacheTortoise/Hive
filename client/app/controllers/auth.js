@@ -1,10 +1,8 @@
 angular.module('authCtrl',['firebase'])
 
-  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, LinkedinAuth){
+  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams){
     var vm = this;
     vm.org = $stateParams.org;
-    console.log('auth', $stateParams);
-    vm.orgKey =
 
     vm.setupUser = function(name, email, uid, pictureUrl){
       vm.users = Users.getUsers(vm.org);
@@ -34,28 +32,28 @@ angular.module('authCtrl',['firebase'])
       },vm);
     };
 
-    vm.linkedinSignup = function(){
-      vm.users = Users.getUsers(vm.org);
-      LinkedinAuth.getAuthObj()
-        .then(function(data){
-          vm.authData = data;
-          // Users.addLinkedInUser(vm.org, data);
-          vm.users.$add({
-            username: data.linkedin.formattedName,
-            org: vm.org,
-            uid: data.uid,
-            email: data.linkedin.emailAddress,
-            pictureUrl: data.linkedin.pictureUrl,
-            pictureCollection: null,
-            linkedin: data.linkedin
-          })
-          .then(function(ref){
-            var logInfo = vm.users.$getRecord(ref.key());
-            $rootScope.logInfo = logInfo;
-            $state.go('main', {org: vm.org});
-          });
-        });
-    };
+    // vm.linkedinSignup = function(){
+    //   vm.users = Users.getUsers(vm.org);
+    //   LinkedinAuth.getAuthObj()
+    //     .then(function(data){
+    //       vm.authData = data;
+    //       // Users.addLinkedInUser(vm.org, data);
+    //       vm.users.$add({
+    //         username: data.linkedin.formattedName,
+    //         org: vm.org,
+    //         uid: data.uid,
+    //         email: data.linkedin.emailAddress,
+    //         pictureUrl: data.linkedin.pictureUrl,
+    //         pictureCollection: null,
+    //         linkedin: data.linkedin
+    //       })
+    //       .then(function(ref){
+    //         var logInfo = vm.users.$getRecord(ref.key());
+    //         $rootScope.logInfo = logInfo;
+    //         $state.go('main', {org: vm.org});
+    //       });
+    //     });
+    // };
 
     vm.checkLogin = function(){
       Auth.getAuth(function(data){
@@ -86,16 +84,16 @@ angular.module('authCtrl',['firebase'])
     });
     };
 
-    vm.setOrgAction = function(){
-      LinkedinAuth.setOrgAction('signin', vm.org);
-    };
+    // vm.setOrgAction = function(){
+    //   LinkedinAuth.setOrgAction('signin', vm.org);
+    // };
 
-    vm.linkedinSignin = function() {
-     LinkedinAuth.getAuthObj()
-      .then(function(data){
-        vm.getSignIn(data);
-      });
-    };
+    // vm.linkedinSignin = function() {
+    //  LinkedinAuth.getAuthObj()
+    //   .then(function(data){
+    //     vm.getSignIn(data);
+    //   });
+    // };
 
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){

@@ -5,11 +5,23 @@ angular.module('linkedinFactory', ['firebase'])
 	var linkedinFactory = {};
 	// var ref = new Firebase('https://bizgramer.firebaseio.com/');
 
-	linkedinFactory.setAction = function(act){
+	// linkedinFactory.setAction = function(act){
+	// 	return $http({
+	// 		method: 'POST',
+	// 		url: '/setAction',
+	// 		data: {action: act}
+	// 	})
+	// 	  .then(function(resp){
+	// 	  	return resp;
+	// 	  });
+	// };
+
+	linkedinFactory.setFBInfo = function(org, uid){
+		console.log('SetFBInfo', uid);
 		return $http({
 			method: 'POST',
-			url: '/setAction',
-			data: {action: act}
+			url: '/setFBInfo',
+			data: {'org' : org, 'user': uid}
 		})
 		  .then(function(resp){
 		  	return resp;
@@ -17,11 +29,10 @@ angular.module('linkedinFactory', ['firebase'])
 	};
 
 	linkedinFactory.setOrg = function(org){
-		$http({
+		return $http({
 			method: 'POST',
 			url: '/setOrg',
 			data: {'org' : org}
-			// headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		})
 		  .then(function(resp){
 		  	return resp;
@@ -45,15 +56,14 @@ angular.module('linkedinFactory', ['firebase'])
 	// 		})
 	// };
 
-	linkedinFactory.getAuthObj = function(){
-		return $http({
-			method: 'GET',
-			url: '/linkedin'
-		}).then(function(resp){
-			console.log('getAuth called');
-			return resp.data;
-		});
-	};
+	// linkedinFactory.updateProfile = function(){
+	// 	return $http({
+	// 		method: 'GET',
+	// 		url: '/linkedin'
+	// 	}).then(function(resp){
+	// 		return resp.data;
+	// 	});
+	// };
 
 	return linkedinFactory;
 }]);
