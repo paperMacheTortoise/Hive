@@ -49,19 +49,6 @@ angular.module('visualFactory', ['firebase'])
     	});
 	};
 
-	// visualFactory.getVisualNames = function(org){
-	// 	var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
-	// 	var visuals = $firebaseArray(ref);
-	// 	var visualNames = [];
-	// 	visuals.$loaded()
-	// 		.then(function(){
-	// 			angular.forEach(visuals, function(visual){
-	// 				visualNames.push(visual.$id);
-	// 			});
-	// 		});
-	// 	return visualNames;
-	// };
-
 	// Returns data array of account information
 	visualFactory.getVisualData = function(org, account){
 		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/'+account+'/');

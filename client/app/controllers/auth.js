@@ -30,32 +30,9 @@ angular.module('authCtrl',['firebase'])
       Auth.signup(vm.email, vm.password, vm.orgId, vm.org, function(data){
         vm.authData = data;
         vm.setupUser(vm.name,vm.email,data.uid,data.password.profileImageURL);
-        $state.go('main', {org: vm.org});
+        $state.go('main.room', {org: vm.org, roomName: 'general'});
       },vm);
     };
-
-    // vm.linkedinSignup = function(){
-    //   vm.users = Users.getUsers(vm.org);
-    //   LinkedinAuth.getAuthObj()
-    //     .then(function(data){
-    //       vm.authData = data;
-    //       // Users.addLinkedInUser(vm.org, data);
-    //       vm.users.$add({
-    //         username: data.linkedin.formattedName,
-    //         org: vm.org,
-    //         uid: data.uid,
-    //         email: data.linkedin.emailAddress,
-    //         pictureUrl: data.linkedin.pictureUrl,
-    //         pictureCollection: null,
-    //         linkedin: data.linkedin
-    //       })
-    //       .then(function(ref){
-    //         var logInfo = vm.users.$getRecord(ref.key());
-    //         $rootScope.logInfo = logInfo;
-    //         $state.go('main', {org: vm.org});
-    //       });
-    //     });
-    // };
 
     vm.checkLogin = function(){
       Auth.getAuth(function(data){
@@ -83,21 +60,10 @@ angular.module('authCtrl',['firebase'])
       var logInfo = vm.users.$getRecord(key);
       $rootScope.logInfo = logInfo;
       LinkedinAuth.setOrg(logInfo.org);
-      $state.go('main', {org: vm.org});
+      $state.go('main.room', {org: vm.org, roomName: 'general'});
     });
     };
-
-    // vm.setOrgAction = function(){
-    //   LinkedinAuth.setOrgAction('signin', vm.org);
-    // };
-
-    // vm.linkedinSignin = function() {
-    //  LinkedinAuth.getAuthObj()
-    //   .then(function(data){
-    //     vm.getSignIn(data);
-    //   });
-    // };
-
+    
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){
         vm.authData = data;

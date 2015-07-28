@@ -1,20 +1,13 @@
 require('./linkedInController.js');
-// var serverConfig = require('../server-config.js');
-// var controller = require('../controller.js');
+
 var passport = require('passport');
-// var TokenGenerator = require('firebase-token-generator');
 var Firebase = require('firebase');
 
-// var tokGen = new TokenGenerator(serverConfig.FIREBASE_SECRET);
-// var id = Math.floor(Math.random() * 50000);
-var user = '';
-var org = '';
-
+global.user = '';
 global.org = '';
 module.exports = function(app) {
-  // var action = '';
 
-  app.get('/auth/linkedin',
+ app.get('/auth/linkedin',
   	passport.authenticate('linkedin'));
 
  app.get('/auth/linkedin/callback',
@@ -28,25 +21,12 @@ module.exports = function(app) {
       linkedin: data.linkedin
     });
     res.redirect('/#/' + org + '/linkedinsuccess');
-    // res.send(token);
   });
 
- // app.get('/linkedin', function(req, res){
-  // console.log('server /linkedin', req.user);
-    // var token = tokGen.createToken({uid: req.user.uid, linkedin: req.user.thirdPartyUserData});
-    // ref.authWithCustomToken(token, function(err, authData){
- //    res.json(req.user);
- // });
-
- // app.post('/setAction', function(req, res){
- //  action = req.body.action;
- //  res.send('Org and Action set!');
- // });
-
  app.post('/setFBInfo', function(req, res){
-  console.log(req.body);
-  org = req.body.org;
-  user = req.body.user;
+  global.org = req.body.org;
+  req.session.org = req.body.org;
+  global.user = req.body.user;
   res.send('Firebase Info set!');
  });
 

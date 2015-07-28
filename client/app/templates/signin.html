@@ -1,6 +1,6 @@
 <div class='signin-div container text-center' ng-controller='SigninController as auth'>
 	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
+		<div class="col-md-4 col-md-offset-4">
 		<header><h3>Signin</h3></header>
 		<form name='signinForm' ng-submit='auth.signin()'>
 			<div class="form-group">
@@ -9,8 +9,10 @@
 			<div class="form-group">
 				<input class="form-control" name='password' type='password' ng-model='auth.password' placeholder='Password' required>
 			</div>
-			<button class="btn btn-info" ng-click='auth.checkLogin()'>Auth Status</button>
-			<button class="btn btn-success" type="submit">Submit</button>
+			<!-- <button class="btn btn-info" ng-click='auth.checkLogin()'>Auth Status</button> -->
+			<div class="form-group">
+				<button class="btn btn-info form-control" type="submit">Submit</button>
+			</div>
 		</form>	
 		</div>
 	</div>

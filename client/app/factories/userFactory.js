@@ -18,22 +18,6 @@ angular.module('userFactory', ['firebase'])
     return fire(org).users;
   };
 
-  // userFactory.addLinkedInUser = function(org, data){
-  //   var userRef = fire(org).ref.child(data.uid);
-  //   // var userInfo = $firebaseArray(userRef);
-  //   userRef.set({
-  //     username: data.thirdPartyUserData.firstName + ' ' + data.thirdPartyUserData.lastName,
-  //     org: org,
-  //     uid: data.uid,
-  //     email: data.thirdPartyUserData.emailAddress,
-  //     pictureUrl: data.thirdPartyUserData.publicProfileUrl,
-  //     pictureCollection: null,
-  //     profile: data.thirdPartyUserData
-  //   }).then(function(){
-  //     var logInfo = userFactory.getUsers(org).$getRecord(data.uid);
-  //     $rootScope.logInfo = logInfo;
-  //   });
-  // };
 
 	// display all the usernames in the main menu except for the current user,
   // so that the user cannot dm themselves
@@ -57,6 +41,7 @@ angular.module('userFactory', ['firebase'])
     var pictures = $firebaseArray(pictureRef);
     return pictures;
   };
+  
   userFactory.updateProfile = function(username, picture, id, org){
     var users = fire(org);
     users.users.$loaded(function(){
@@ -67,7 +52,6 @@ angular.module('userFactory', ['firebase'])
       users.users[index].pictureUrl = picture;
       users.users.$save(index);
     });
-
 
   };
 

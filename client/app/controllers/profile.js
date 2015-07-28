@@ -24,6 +24,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
     });
   };
 
+  // Sends the org and user uid to the server for linkedin oAuth
   vm.setFBInfo = function(){
     LinkedinAuth.setFBInfo(vm.org, $rootScope.logInfo.$id);
   };

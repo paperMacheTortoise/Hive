@@ -24,11 +24,11 @@ angular.module('inviteFactory', ['firebase'])
         var params = {
           "key": mandrillKey,
           "message": {
-                "from_email": sender+"."+orgName+"@BizGram.com",
+                "from_email": sender+"."+orgName+"@Hiver.com",
                 "to":[{"email":recipientEmail}],
-                "subject": "Hey "+recipient+" go signup at BizGram!",
+                "subject": "Hey "+recipient+" go signup at Hive!",
                 "html":
-                  "<h1>"+sender+" invited you to sign up for "+orgName+" at BizGram</h1><h2>Your OrgID is "+orgId+"</h2><h3><a href='"+link+"''>"+link+"</a></h3>",
+                  "<h1>"+sender+" invited you to sign up for "+orgName+" at Hive</h1><h2>Your OrgID is "+orgId+"</h2><h3><a href='"+link+"''>"+link+"</a></h3>",
                 "autotext": true,
                 "track_opens": true,
                 "track_clicks": true

@@ -3,8 +3,10 @@
 	<h4>{{prof.username}}</h4>
   <h4>{{prof.jobtitle}}</h4>
 	<h4>{{prof.email}}</h4>
-	<button class='btn btn-default'ui-sref='edit({org:prof.org})'>Edit Profile</button>
-	<button class="btn btn-default" ng-click="prof.open()">Upload Images</button>
+  <div>
+  	<button class='btn btn-info'ui-sref='edit({org:prof.org})'>Edit Profile</button>
+  </div>
+  <br>
   <div>
       <a class="linkedinlink" href="http://localhost:3000/auth/linkedin/callback" target="_blank" ng-click="prof.setFBInfo()" ng-init="imgsrc='assets/linkedIn-Default.png'" ng-mouseover="imgsrc='assets/linkedIn-Hover.png'" ng-mouseout="imgsrc='assets/linkedIn-Default.png'">
         <img ng-src="{{imgsrc}}"/>
@@ -12,6 +14,7 @@
   </div>
   <div class="text-left">
   	<h3>Image Gallery</h3>
+    <button class="btn btn-success" ng-click="prof.open()">Upload Images</button>
   	<ul class='imglist jumbotron list-group'>
   		<li class='list-group-item' ng-repeat='picture in prof.pictures'><img class = 'imggal .img-thumbnail' ng-src='{{picture.url}}'></img></li>
   	</ul>
