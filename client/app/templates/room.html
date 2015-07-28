@@ -9,7 +9,7 @@
         <img class="profileImg" ng-src="{{ msg.img }}"></img>
         <div class="cmmntBox">
           <div class="username">{{ msg.username }}</div>
-          <div class="message">{{ msg.text }}</div>
+          <div ng-bind-html='msg.text | linky' class="message"></div>
           <div class="time">
             <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot;
             <a ng-click="reply.toggleReplying()">Reply</a>
@@ -22,7 +22,7 @@
             <img class="profileImg" src="{{ reply.img }}"></img>
             <div class="cmmntBox">
               <div class="username">{{reply.username}}</div>
-              <div class="message">{{reply.text}}</div>
+              <div ng-bind-html="reply.text | linky" class="message"></div>
               <div class="time">
                 <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot;
               </div>

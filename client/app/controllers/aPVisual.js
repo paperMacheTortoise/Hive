@@ -11,7 +11,7 @@ angular.module('aPVisualCtrl', [])
 	vm.username = $rootScope.logInfo.username;
   // TO DO, set the visualization identifier
 	vm.visualId = 'visual1';
-
+  //Accounts Payable constructor and methods
   var APBubbleChart = function(data){
     Visualization.BubbleChart.call(this);
     var max_amount;

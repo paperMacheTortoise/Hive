@@ -7,7 +7,7 @@
 				<img class="profileImg" ng-src="{{ msg.img }}"></img>
 				<div class="cmmntBox">
 					<div class="username">{{ msg.username }}</div>
-				    <div class="message">{{ msg.text }}</div>
+				    <div ng-bind-html='msg.text | linky' class="message"></div>
 				    <div class="time">
 				        <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span>
 			        </div>

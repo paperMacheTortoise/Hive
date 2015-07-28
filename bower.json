@@ -21,7 +21,8 @@
     "angular-moment": "~0.10.1",
     "angular-scroll-glue": "~2.0.6",
     "datamaps": "git://github.com/liamgallivan/datamaps.git#~0.4.0",
-    "ng-imgur": "~0.1.5"
+    "ng-imgur": "~0.1.5",
+    "angular-sanitize": "~1.4.3"
   },
   "resolutions": {
     "d3": "~3.5.6",
