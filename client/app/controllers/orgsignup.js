@@ -6,10 +6,9 @@ angular.module('orgsignupCtrl', ['firebase'])
     vm.orgnames = OrgSignup.getOrgs();
 
     vm.signupOrg = function () {
+      vm.nameOfOrgToAdd = vm.nameOfOrgToAdd.toLowerCase();
       if (vm.orgnames.indexOf(vm.nameOfOrgToAdd) === -1) {
-        // console.log('adding new room :', vm.nameOfOrgToAdd);
         OrgSignup.signupOrg(vm.nameOfOrgToAdd, vm.nameOfCreator, vm.emailOfCreator);
-        // console.log(vm.nameOfOrgToAdd);
         $state.go('signup', {org: vm.nameOfOrgToAdd});
         vm.nameOfOrgToAdd = '';
       } else {
@@ -29,7 +28,7 @@ angular.module('orgsignupCtrl', ['firebase'])
     };
 
 
-    // Sends org as POST request to server for oAuth 
+    // Sends org as POST request to server for oAuth
     vm.setOrg = function(org){
       LinkedinAuth.setOrg(org);
     };
