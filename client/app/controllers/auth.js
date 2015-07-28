@@ -1,6 +1,6 @@
 angular.module('authCtrl',['firebase'])
 
-  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, LinkedinAuth){
+  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams){
     var vm = this;
     vm.org = $stateParams.org;
 
@@ -84,16 +84,16 @@ angular.module('authCtrl',['firebase'])
     });
     };
 
-    vm.setOrgAction = function(){
-      LinkedinAuth.setOrgAction('signin', vm.org);
-    };
+    // vm.setOrgAction = function(){
+    //   LinkedinAuth.setOrgAction('signin', vm.org);
+    // };
 
-    vm.linkedinSignin = function() {
-     LinkedinAuth.getAuthObj()
-      .then(function(data){
-        vm.getSignIn(data);
-      });
-    };
+    // vm.linkedinSignin = function() {
+    //  LinkedinAuth.getAuthObj()
+    //   .then(function(data){
+    //     vm.getSignIn(data);
+    //   });
+    // };
 
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(data){

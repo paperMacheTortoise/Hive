@@ -1,4 +1,4 @@
-var LinkedInOAuth = require('./linkedInController.js');
+require('./linkedInController.js');
 // var serverConfig = require('../server-config.js');
 // var controller = require('../controller.js');
 var passport = require('passport');
