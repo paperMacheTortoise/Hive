@@ -30,7 +30,8 @@ var app = angular.module('bizGramApp', [
 	'EditCtrl',
 	'connectIntuitAngular',
 	'ngImgur',
-	'oAuthFactories'
+	'oAuthFactories',
+	'ngSanitize'
 	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {

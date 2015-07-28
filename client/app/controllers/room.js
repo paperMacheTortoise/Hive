@@ -1,5 +1,5 @@
 // Angular controller for room.html
-angular.module('roomCtrl', [])
+angular.module('roomCtrl', ['ngSanitize'])
 
 .controller('roomController', function (Rooms, $rootScope,$stateParams) {
   var vm = this;
