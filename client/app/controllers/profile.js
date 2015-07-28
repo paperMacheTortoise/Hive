@@ -9,6 +9,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   vm.username = vm.userInfo.username;
   vm.email = vm.userInfo.email;
   vm.pictureUrl = vm.userInfo.pictureUrl;
+  vm.host = window.host;
 
   vm.open = function () {
   //Opens modal for uploading

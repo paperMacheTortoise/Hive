@@ -1,14 +1,14 @@
 <div class='container text-center' ng-controller='ProfileController as prof'>
 	<img ng-src='{{prof.pictureUrl}}'></img>
 	<h4>{{prof.username}}</h4>
-  <h4>{{prof.jobtitle}}</h4>
+  <h4>{{prof.jobtitle}}</h4> 
 	<h4>{{prof.email}}</h4>
   <div>
   	<button class='btn btn-info'ui-sref='edit({org:prof.org})'>Edit Profile</button>
   </div>
   <br>
   <div>
-      <a class="linkedinlink" href="http://localhost:3000/auth/linkedin/callback" target="_blank" ng-click="prof.setFBInfo()" ng-init="imgsrc='assets/linkedIn-Default.png'" ng-mouseover="imgsrc='assets/linkedIn-Hover.png'" ng-mouseout="imgsrc='assets/linkedIn-Default.png'">
+      <a class="linkedinlink" ng-href="http://{{prof.host}}:3000/auth/linkedin/callback" target="_blank" ng-click="prof.setFBInfo()" ng-init="imgsrc='assets/linkedIn-Default.png'" ng-mouseover="imgsrc='assets/linkedIn-Hover.png'" ng-mouseout="imgsrc='assets/linkedIn-Default.png'">
         <img ng-src="{{imgsrc}}"/>
       </a>
   </div>

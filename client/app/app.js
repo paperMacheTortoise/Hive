@@ -1,3 +1,5 @@
+window.host = 'localhost';
+
 var app = angular.module('bizGramApp', [
 	'indexCtrl',
 	'404Ctrl',
