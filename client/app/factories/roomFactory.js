@@ -60,11 +60,11 @@ angular.module('roomFactory', ['firebase'])
       img: profileImg || null,
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
-    }).then(function(roomRef) {
-      var id = roomRef.key();
+    });
+      // var id = roomRef.key();
       // console.log('added a message with id ', id); // eg. -JuDu4oKDL_nl3hBPaOP
       // console.log('location in the array ', messages.$indexFor(id)); // eg. 3
-    });
+    // });
   };
 
   // Adds a new room to the db.

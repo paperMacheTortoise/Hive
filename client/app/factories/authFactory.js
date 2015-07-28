@@ -34,7 +34,7 @@ angular.module('authFactory', ['firebase'])
           authObj.$createUser({
             email: email,
             password: password
-          }).then(function(userData){
+          }).then(function(){
             // console.log("User " + userData.uid + " created successfully!");
             authFactory.signin(email,password,callback,vm);
           }).catch(function(error){
