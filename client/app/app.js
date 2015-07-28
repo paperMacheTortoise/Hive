@@ -1,4 +1,4 @@
-var app = angular.module('bizGramApp', [
+var app = window.bizGramApp = angular.module('bizGramApp', [
 	'indexCtrl',
 	'404Ctrl',
 	'orgsignupCtrl',
