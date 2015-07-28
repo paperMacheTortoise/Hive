@@ -8,7 +8,7 @@ angular.module('orgsignupFactory', ['firebase'])
   var organizations = $firebaseArray(ref);
   var orgNames = [];
 
-  // function to generate orgId
+  // firebase function to generate index, use this for generating random orgId
   var generatePushID = (function() {
     // Modeled after base64 web-safe chars, but ordered by ASCII.
     var PUSH_CHARS = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
@@ -77,6 +77,8 @@ angular.module('orgsignupFactory', ['firebase'])
       // create new branch for this organization on firebase db
       ref.child(orgname).set('new organization');
       var orgId = generatePushID();
+      // simplify the orgId to only 5 letters for demo simplicity
+      orgId = orgId.substr(-5);
       ref.child(orgname + '/orgKey').set(orgId);
       ref.child(orgname + '/rooms/general').set('this room is empty');
 
@@ -99,6 +101,7 @@ angular.module('orgsignupFactory', ['firebase'])
                   "track_clicks": true
             }
           }; // end params
+
           // send ajax request to Mandrill api for email invite
           $http.post('https://mandrillapp.com/api/1.0/messages/send.json', params)
             .success(function() {
