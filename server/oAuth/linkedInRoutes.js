@@ -22,7 +22,6 @@ module.exports = function(app) {
     var userRef = new Firebase('https://bizgramer.firebaseio.com/' + org + '/users');
     userRef.child(user).update({
       username: data.linkedin.formattedName,
-      uid: data.uid,
       pictureUrl: data.linkedin.pictureUrl,
       linkedin: data.linkedin
     });
