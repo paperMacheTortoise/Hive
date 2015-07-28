@@ -56,14 +56,14 @@ angular.module('linkedinFactory', ['firebase'])
 	// 		})
 	// };
 
-	linkedinFactory.updateProfile = function(){
-		return $http({
-			method: 'GET',
-			url: '/linkedin'
-		}).then(function(resp){
-			return resp.data;
-		});
-	};
+	// linkedinFactory.updateProfile = function(){
+	// 	return $http({
+	// 		method: 'GET',
+	// 		url: '/linkedin'
+	// 	}).then(function(resp){
+	// 		return resp.data;
+	// 	});
+	// };
 
 	return linkedinFactory;
 }]);

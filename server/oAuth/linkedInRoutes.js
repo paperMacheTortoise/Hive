@@ -30,12 +30,12 @@ module.exports = function(app) {
     // res.send(token);
   });
 
- app.get('/linkedin', function(req, res){
+ // app.get('/linkedin', function(req, res){
   // console.log('server /linkedin', req.user);
     // var token = tokGen.createToken({uid: req.user.uid, linkedin: req.user.thirdPartyUserData});
     // ref.authWithCustomToken(token, function(err, authData){
-    res.json(req.user);
- });
+ //    res.json(req.user);
+ // });
 
  // app.post('/setAction', function(req, res){
  //  action = req.body.action;

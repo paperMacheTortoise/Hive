@@ -1,18 +1,19 @@
-angular.module('linkedinCtrl', [])
+// angular.module('linkedinCtrl', [])
 
-.controller('linkedInController', function (LinkedinAuth, Users, $state, $stateParams, $rootScope){
-	var vm = this;
-	vm.org = $stateParams.org;
+// .controller('linkedInController', function (LinkedinAuth, Users, $state, $stateParams, $rootScope){
+// 	var vm = this;
+// 	vm.org = $stateParams.org;
+// 	conso
 
-	vm.redirectToProfile = function(){
-		$state.go('profile', {org: vm.org});
-	};
+// 	vm.redirectToProfile = function(){
+// 		$state.go('profile', {org: vm.org});
+// 	};
 
-	vm.updateProfile = function(){
-		LinkedinAuth.updateProfile()
-			.then(function(){
-				console.log('profile updated with linkedin');
-			});
+// 	vm.updateProfile = function(){
+// 		LinkedinAuth.updateProfile()
+// 			.then(function(){
+// 				console.log('profile updated with linkedin');
+// 			});
 
-	};
-});
+// 	};
+// });

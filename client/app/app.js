@@ -13,7 +13,6 @@ var app = angular.module('bizGramApp', [
 	'uploadFactory',
 	'visualFactory',
 	'linkedinFactory',
-	'linkedinCtrl',
 	'mainCtrl',
 	'aRVisualCtrl',
 	'aPVisualCtrl',
