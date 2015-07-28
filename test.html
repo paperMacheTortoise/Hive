@@ -1,0 +1,26 @@
+<html>
+	<head>
+
+		<script type="text/javascript">
+			function linkify(text) {  
+			    var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;  
+                return text.replace(urlRegex, function(url) {  
+                        return '<a href="' + url + '">' + url + '</a>';  
+                    });
+            };
+            var submit = function(){
+            	var text = document.getElementById('link').value;
+            	console.log(text);
+            	document.getElementById('label').innerHTML = linkify(text);
+            };
+		</script>
+	</head>
+	<body>
+			<input id='link' type = 'text'>
+			<button type="button" onclick="submit()">Click Me!</button>
+		<p id='label'></p>
+
+
+
+	</body>
+</html>

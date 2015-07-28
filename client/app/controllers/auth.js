@@ -16,6 +16,8 @@ angular.module('authCtrl',['firebase'])
       }).then(function(ref){
         var logInfo = vm.users.$getRecord(ref.key());
         $rootScope.logInfo = logInfo;
+        LinkedinAuth.setOrg(logInfo.org);
+
       });
     };
 
@@ -80,6 +82,7 @@ angular.module('authCtrl',['firebase'])
       }
       var logInfo = vm.users.$getRecord(key);
       $rootScope.logInfo = logInfo;
+      LinkedinAuth.setOrg(logInfo.org);
       $state.go('main', {org: vm.org});
     });
     };

@@ -37,6 +37,8 @@ passport.use(new IntuitStrategy({
   },
   function(token, tokenSecret, profile, done) {
     // asynchronous verification, for effect...
+    myFirebaseRef = new Firebase("https://bizgramer.firebaseio.com/"+global.org+"/qbo");
+
     process.nextTick(function () {
       console.log("profile in Controller", profile);
 

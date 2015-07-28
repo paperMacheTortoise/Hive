@@ -7,8 +7,10 @@ var Firebase = require('firebase');
 
 // var tokGen = new TokenGenerator(serverConfig.FIREBASE_SECRET);
 // var id = Math.floor(Math.random() * 50000);
-var org = '';
 var user = '';
+var org = '';
+
+global.org = '';
 module.exports = function(app) {
   // var action = '';
 
@@ -48,8 +50,9 @@ module.exports = function(app) {
   res.send('Firebase Info set!');
  });
 
-  app.post('/setOrg', function(req, res){
-  org = req.body.org;
+ app.post('/setOrg', function(req, res){
+  global.org = req.body.org;
+  req.session.org = req.body.org;
   res.send('Org set!');
  });
 

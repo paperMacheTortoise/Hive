@@ -1,6 +1,6 @@
 angular.module('oAuthFactories', ['firebase'])
 
-.factory('oAuth',['$firebaseAuth', 'Users', function ($firebaseAuth, $firebaseArray, Users){
+.factory('oAuth',['$http', '$firebaseAuth', 'Users', function ($http, $firebaseAuth, $firebaseArray, Users){
 
   var oauthFactory = {};
   // var ref = new Firebase('https://bizgramer.firebaseio.com/');
@@ -15,6 +15,17 @@ angular.module('oAuthFactories', ['firebase'])
     // users[index].tokenSecret;
     // users[index].realmId;
     users.$save(index);
+  };
+  oauthFactory.getData = function(org){
+    $http.get('/payable',{org:org}).success(function(){
+      console.log('success');
+    });
+    $http.get('/receivable',{org:org}).success(function(){
+      console.log('success');
+    });
+    $http.get('/receivable',{org:org}).success(function(){
+      console.log('success');
+    });
   };
   return oauthFactory;
 

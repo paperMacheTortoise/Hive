@@ -212,7 +212,7 @@ angular.module('mapCtrl', ['firebase'])
 	            }
 	        };
 	vm.getCustomers = function(){
-		Visualization.getCustomers(function(customerData){
+		Visualization.getCustomers(vm.org, function(customerData){
 		    for (var i in customerData) {
 		    	if(customerData[i] && customerData[i].BillAddr){
 		    		states[customerData[i].BillAddr.CountrySubDivisionCode].numCo++;
