@@ -31,6 +31,7 @@ angular.module('authCtrl',['firebase'])
       Auth.signup(vm.email, vm.password, vm.orgId, vm.org, function(data){
         vm.authData = data;
         vm.setupUser(vm.name,vm.email,data.uid,data.password.profileImageURL);
+        $state.go('main', {org: vm.org});
       },vm);
     };
 
@@ -60,7 +61,7 @@ angular.module('authCtrl',['firebase'])
       var logInfo = vm.users.$getRecord(key);
       $rootScope.logInfo = logInfo;
       LinkedinAuth.setOrg(logInfo.org);
-      $state.go('main.room', {org: vm.org, roomName: 'general'});
+      $state.go('main', {org: vm.org});
     });
     };
 
