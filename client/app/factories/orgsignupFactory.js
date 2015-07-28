@@ -83,7 +83,7 @@ angular.module('orgsignupFactory', ['firebase'])
       ref.child(orgname + '/rooms/general').set('this room is empty');
 
       // send out email to creator of the org with orgId
-      var link = 'http://localhost:3000/#/'+orgname+'/signup';
+      var link = 'http://'+window.host+':3000/#/'+orgname+'/signup';
       var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgname);
       var orgObj = $firebaseObject(orgRef);
       orgObj.$loaded()

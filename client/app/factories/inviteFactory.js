@@ -12,7 +12,7 @@ angular.module('inviteFactory', ['firebase'])
 
     // in production: use localhost for testing
     // change link when deployed
-    var link = 'http://localhost:3000/#/'+orgName+'/signup';
+    var link = 'http://'+window.host+':3000/#/'+orgName+'/signup';
 
     var orgId;
     var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgName);
