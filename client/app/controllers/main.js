@@ -1,6 +1,6 @@
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams) {
+.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth) {
 
 	var vm = this;
   console.log('main', $stateParams);
@@ -29,6 +29,9 @@ angular.module('mainCtrl', [])
         console.log('this room already exists');
       }
     }
+  };
+  vm.getQBO = function(){
+    oAuth.getData(vm.org);
   };
 });
 

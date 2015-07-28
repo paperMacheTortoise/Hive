@@ -41,8 +41,8 @@ angular.module('visualFactory', ['firebase'])
 		});
 	};
 
-	visualFactory.getCustomers = function(callback){
-		var ref = new Firebase('https://bizgramer.firebaseio.com/hr/BizData/Customers/0/QueryResponse/Customer');
+	visualFactory.getCustomers = function(org, callback){
+		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/Customers/0/QueryResponse/Customer');
     	var array = $firebaseObject(ref);
     	array.$loaded().then(function(){
     		callback(array);
