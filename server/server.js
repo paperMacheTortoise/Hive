@@ -12,4 +12,4 @@ app.use(bodyParser.json())
   .use(express.static(__dirname + './../client'));
 
 app.listen(port);
-console.log('BizGram magic being delivered on', port);
+console.log('Hive magic being delivered on', port);

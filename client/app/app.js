@@ -43,11 +43,17 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	.state('orgsignup', {
 		url: '/orgsignup',
-		templateUrl: 'app/templates/orgsignup.html'
+		templateUrl: 'app/templates/orgsignup.html',
+		data: {
+			requireLogin: false
+		}
 	})
 	.state('landing', {
 		url: '',
-		templateUrl: 'app/templates/landing.html'
+		templateUrl: 'app/templates/landing.html',
+		data: {
+			requireLogin: false
+		}
 	})
 	.state('main', {
 		url: '/:org',
@@ -60,14 +66,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/room/:roomName',
 		parent: 'main',
 		templateUrl: 'app/templates/room.html'
-	})
-	.state('404', {
-		url: '404',
-		templateUrl: 'app/templates/404.html'
-	})
-	.state('oAuth', {
-		url: '/oAuth',
-		templateUrl: 'app/templates/oAuth.html'
 	})
 	.state('main.invite', {
 		url: '/invite',
@@ -83,7 +81,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url:'/:org/visual',
 		templateUrl: 'app/templates/visualization.html',
 		data: {
-			requireLogin: true
+			requireLogin: true // applies to all children
 		}
 	})
 	.state('visual.ARVisual', {
@@ -104,12 +102,18 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('signin',{
 		url: '/:org/signin',
 		templateUrl: 'app/templates/signin.html',
-		controller:'SigninController'
+		controller:'SigninController',
+		data: {
+			requireLogin: false
+		}
 	})
 	.state('signup',{
 		url: '/:org/signup',
 		templateUrl:'app/templates/signup.html',
-		controller:'SignupController'
+		controller:'SignupController',
+		data: {
+			requireLogin: false
+		}
 	})
 	// Unathenticates the user and deletes the user information from the $rootScope on logout.
 	.state('logout',{
@@ -142,6 +146,20 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/:org/edit',
 		templateUrl: 'app/templates/profile-edit.html',
 		controller: 'EditController',
+		data: {
+			requireLogin: true
+		}
+	})
+	.state('404', {
+		url: '404',
+		templateUrl: 'app/templates/404.html',
+		data: {
+			requireLogin: false
+		}
+	})
+	.state('oAuth', {
+		url: '/oAuth',
+		templateUrl: 'app/templates/oAuth.html',
 		data: {
 			requireLogin: true
 		}

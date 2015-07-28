@@ -4,9 +4,7 @@ angular.module('authFactory', ['firebase'])
 
 	var authFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
-
 	var authObj = $firebaseAuth(ref);
-  // var action = '';
 
   authFactory.getAuth = function (callback){
         var authData = authObj.$getAuth();
@@ -20,7 +18,7 @@ angular.module('authFactory', ['firebase'])
         password: password
       }).then(function(authData){
       data = authData;
-      console.log('logged in as '+authData.uid);
+      // console.log('logged in as '+authData.uid);
       callback(data);
     }).catch(function(error){
       console.log('Error:',error);
@@ -37,7 +35,7 @@ angular.module('authFactory', ['firebase'])
             email: email,
             password: password
           }).then(function(userData){
-            console.log("User " + userData.uid + " created successfully!");
+            // console.log("User " + userData.uid + " created successfully!");
             authFactory.signin(email,password,callback,vm);
           }).catch(function(error){
             console.log('Error:',error);

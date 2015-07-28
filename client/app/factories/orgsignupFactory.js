@@ -77,7 +77,7 @@ angular.module('orgsignupFactory', ['firebase'])
       // create new branch for this organization on firebase db
       ref.child(orgname).set('new organization');
       var orgId = generatePushID();
-      ref.child(orgname+'/orgKey').set(orgId);
+      ref.child(orgname + '/orgKey').set(orgId);
 
       // send out email to creator of the org with orgId
       var link = 'http://localhost:3000/#/'+orgname+'/signup';

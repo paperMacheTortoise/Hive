@@ -3,8 +3,8 @@ angular.module('mainCtrl', [])
 .controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth) {
 
 	var vm = this;
-  console.log('main', $stateParams);
-  console.log('rootScope', $rootScope.logInfo);
+  // console.log('main', $stateParams);
+  // console.log('rootScope', $rootScope.logInfo);
   vm.org = $stateParams.org;
   if ($rootScope && $rootScope.logInfo) {
     vm.currentUser = $rootScope.logInfo;
@@ -20,7 +20,7 @@ angular.module('mainCtrl', [])
     if (e.keyCode === 13) {
       var nameOfRoomToAdd = vm.nameOfRoomToAdd || 'new room';
       if (vm.rooms.indexOf(nameOfRoomToAdd) === -1) {
-        console.log('Adding room ', nameOfRoomToAdd);
+        // console.log('Adding room ', nameOfRoomToAdd);
         Rooms.addRoom(nameOfRoomToAdd, vm.org);
         vm.nameOfRoomToAdd = '';
         // update the list of chatrooms

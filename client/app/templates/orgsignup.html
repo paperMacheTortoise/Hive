@@ -1,9 +1,21 @@
-<div class="signup-div container" ng-controller="OrgsignupController as org">
-  <header><h3>Organization Signup</h3></header>
-  <form name="orgSignupForm" ng-submit="org.signupOrg()">
-    <input name="name" type="name" ng-model="org.nameOfOrgToAdd" placeholder="Organization name" required />
-    <input name="name" type="name" ng-model="org.nameOfCreator" placeholder="Your name" required />
-    <input name="name" type="name" ng-model="org.emailOfCreator" placeholder="Your email" required />
-    <input type="submit">
-  </form>
+<div class="signup-div container text-center" ng-controller="OrgsignupController as org">
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+	  <header><h3>Organization Signup</h3></header>
+		  <form name="orgSignupForm" ng-submit="org.signupOrg()">
+		  	<div class="form-group">
+			    <input class="form-control" name="name" type="name" ng-model="org.nameOfOrgToAdd" placeholder="Organization name" required />
+		    </div>
+		    <div class="form-group">
+			    <input class="form-control" name="name" type="name" ng-model="org.nameOfCreator" placeholder="Your name" required />
+		    </div>
+		    <div class="form-group">
+			    <input class="form-control" name="name" type="name" ng-model="org.emailOfCreator" placeholder="Your email" required />
+		    </div>
+		    <div class="form-group">
+			    <button class="btn btn-info form-control" type="submit">Submit</button>
+		    </div>
+		  </form>
+	  </div>
+  </div>
 </div>
