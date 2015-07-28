@@ -78,6 +78,7 @@ angular.module('orgsignupFactory', ['firebase'])
       ref.child(orgname).set('new organization');
       var orgId = generatePushID();
       ref.child(orgname + '/orgKey').set(orgId);
+      ref.child(orgname + '/rooms/general').set('this room is empty');
 
       // send out email to creator of the org with orgId
       var link = 'http://localhost:3000/#/'+orgname+'/signup';
