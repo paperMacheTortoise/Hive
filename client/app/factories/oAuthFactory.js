@@ -17,13 +17,13 @@ angular.module('oAuthFactories', ['firebase'])
     users.$save(index);
   };
   oauthFactory.getData = function(org){
-    $http.get('/payable',{org:org}).success(function(data){
+    $http.get('/payable',{org:org}).success(function(){
       console.log('success');
     });
-    $http.get('/receivable',{org:org}).success(function(data){
+    $http.get('/receivable',{org:org}).success(function(){
       console.log('success');
     });
-    $http.get('/receivable',{org:org}).success(function(data){
+    $http.get('/receivable',{org:org}).success(function(){
       console.log('success');
     });
   };

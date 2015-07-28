@@ -1,4 +1,4 @@
-var oAuthController = require('./oAuthController.js');
+require('./oAuthController.js');
 var passport = require('passport');
 var QuickBooks = require('../../node_modules/node-quickbooks/index.js');
 var Firebase = require("firebase");
