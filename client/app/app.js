@@ -13,6 +13,7 @@ var app = angular.module('bizGramApp', [
 	'uploadFactory',
 	'visualFactory',
 	'linkedinFactory',
+	'linkedinCtrl',
 	'mainCtrl',
 	'aRVisualCtrl',
 	'aPVisualCtrl',
@@ -126,7 +127,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url: '/:org/linkedinsuccess',
 		templateUrl: 'app/templates/linkedinsuccess.html',
 		data: {
-			requireLogin: false
+			requireLogin: true
 		}
 	})
 	.state('profile',{

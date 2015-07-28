@@ -6,18 +6,20 @@ var LINKED_IN_KEY = keys.LINKED_IN_KEY;
 var LINKED_IN_SECRET = keys.LINKED_IN_SECRET;
 
 passport.serializeUser(function(user, done){
-	done(null, user);
+	// done(null, user);
 });
 
 passport.deserializeUser(function(user, done){
-	done(null, user);
+	// done(null, user);
 });
 
 passport.use(new LinkedInStrategy({
 	consumerKey: LINKED_IN_KEY,
 	consumerSecret: LINKED_IN_SECRET,
 	callbackURL: "http://localhost:3000/auth/linkedin/callback",
-	profileFields: ['id', 'formatted-name','first-name', 'last-name', 'email-address','public-profile-url', 'picture-url', 'headline']
+	scope: ['r_basicprofile', 'r_emailaddress'],
+	profileFields: ['id', 'formatted-name','first-name', 'last-name', 'email-address','public-profile-url', 'picture-url', 'headline'],
+	state: true
 	},
 
 	function(token, refreshToken, profile, done){
