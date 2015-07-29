@@ -178,7 +178,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	});
 });
 
-app.run(function ($rootScope, $window, $location, $state, $stateParams){
+app.run(function ($rootScope, $window, $location, $state, $stateParams, Auth){
 	console.log('apprun', $stateParams);
 	// Value for ng-hide and ng-show on index. It displays the login and signup buttons when user is logged out.
 	// When user is logged in, displays profile and logout.
@@ -194,7 +194,7 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 			} else {
 				requireLogin = false;
 			}
-			if(requireLogin && !$rootScope.logInfo && toState.name!=='signup'){
+			if(requireLogin && !$rootScope.logInfo){
 				event.preventDefault();
 				console.log('User must be logged in to access page');
 				// console.log($location.$$path.slice(1));
@@ -218,6 +218,13 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 		}
 		// if the user is logged in to one org but tries to navigate to another org
 		if ($rootScope.logInfo && $rootScope.logInfo.org !== $stateParams.org) {
+
+			if(Auth.getAuth(function(data){ return data; })){
+				Auth.getAuth(function(data){
+					Auth.refreshUser(data);
+					$state.go(toState);
+				});
+			}
 			// redirect to 404
 			//console.log($rootScope.logInfo.org);
 			//console.log($stateParams.org);
@@ -230,6 +237,12 @@ app.run(function ($rootScope, $window, $location, $state, $stateParams){
 		console.log('going to state ', toState.name);
 		// console.log($rootScope.logInfo);
 		if (toState.name === 'main' && !$rootScope.logInfo) {
+			if(Auth.getAuth(function(data){ return data; })){
+				Auth.getAuth(function(data){
+					Auth.refreshUser(data);
+					$state.go(toState);
+				});
+			}
 			$state.go('landing');
 		}
 	});
