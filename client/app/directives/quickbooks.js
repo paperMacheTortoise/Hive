@@ -13,7 +13,7 @@ angular.module('connectIntuitAngular',[])
         scope.$on('intuitjs:loaded', function () {
         LinkedinAuth.setOrg($rootScope.logInfo.org);
           $window.intuit.ipp.anywhere.setup({ 
-          	grantUrl: 'http://127.0.0.1:3000/auth/intuit/callback',
+          	grantUrl: 'http://hiver.elasticbeanstalk.com/auth/intuit/callback',
           	datasources: {
 	            quickbooks : true
 	        } 
