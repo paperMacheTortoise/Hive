@@ -33,7 +33,7 @@ passport.deserializeUser(function(user, done) {
 passport.use(new IntuitStrategy({
     consumerKey: INTUIT_CONSUMER_KEY,
     consumerSecret: INTUIT_CONSUMER_SECRET,
-    callbackURL: "http://127.0.0.1:3000/auth/intuit/callback"
+    callbackURL: "http://hiver.elasticbeanstalk.com/auth/intuit/callback"
   },
   function(token, tokenSecret, profile, done) {
     // asynchronous verification, for effect...
