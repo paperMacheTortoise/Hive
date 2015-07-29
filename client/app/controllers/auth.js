@@ -21,7 +21,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
         $rootScope.logInfo = logInfo;
         LinkedinAuth.setOrg(logInfo.org);
         // redirect to main page in the organization after setting  logInfo on the rootscope of  signed-up user
-        $state.go('main', {org: vm.org});
+        $state.go('main.room', {org: vm.org, roomName:'General'});
       });
     };
 
@@ -79,7 +79,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
       var logInfo = vm.users.$getRecord(key);
       $rootScope.logInfo = logInfo;
       LinkedinAuth.setOrg(logInfo.org);
-      $state.go('main', {org: vm.org});
+      $state.go('main.room', {org: vm.org, roomName:'General'});
     });
     };
 
