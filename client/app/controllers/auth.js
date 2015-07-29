@@ -1,20 +1,11 @@
 angular.module('authCtrl',['firebase'])
 
-  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams){
+  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, LinkedinAuth){
     var vm = this;
     vm.org = $stateParams.org;
 
     vm.setupUser = function(name, email, uid, pictureUrl){
-      vm.users = Users.getUsers(vm.org);
-      vm.users.$add({
-        username: name,
-        org: vm.org,
-        email: email,
-        uid: uid,
-        pictureUrl: pictureUrl || null,
-        pictureCollection: null
-      }).then(function(ref){
-        var logInfo = vm.users.$getRecord(ref.key());
+      Auth.setupUser(name, vm.org, email, uid, pictureUrl, function(logInfo){
         $rootScope.logInfo = logInfo;
         LinkedinAuth.setOrg(logInfo.org);
         // redirect to main page in the organization after setting  logInfo on the rootscope of  signed-up user
@@ -30,8 +21,7 @@ angular.module('authCtrl',['firebase'])
     vm.signup = function(){
       Auth.signup(vm.email, vm.password, vm.orgId, vm.org, function(data){
         vm.authData = data;
-        vm.setupUser(vm.name,vm.email,data.uid,data.password.profileImageURL);
-        $state.go('main', {org: vm.org});
+        vm.setupUser(vm.name, vm.email, data.uid, data.password.profileImageURL);
       },vm);
     };
 

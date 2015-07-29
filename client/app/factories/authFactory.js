@@ -1,6 +1,6 @@
 angular.module('authFactory', ['firebase'])
 
-.factory('Auth', ['$firebaseAuth', '$firebaseArray', '$state', function ($firebaseAuth, $firebaseArray, $state){
+.factory('Auth', ['$firebaseAuth', '$firebaseArray', '$state','Users', function ($firebaseAuth, $firebaseArray, $state, Users){
 
 	var authFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
@@ -24,7 +24,20 @@ angular.module('authFactory', ['firebase'])
       console.log('Error:',error);
     });
   };
-
+  authFactory.setupUser = function(username, org, email, uid, pictureUrl, callback){
+    var users = Users.getUsers(org);
+    users.$add({
+      username: username,
+      org: org,
+      email: email,
+      uid: uid,
+      pictureUrl: pictureUrl || null,
+      pictureCollection: null
+    }).then(function(ref){
+      var logInfo = users.$getRecord(ref.key());
+      callback(logInfo);
+    });
+  };
   authFactory.signup = function(email, password, orgId, orgName, callback, vm){
     var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgName);
     var orgArr = $firebaseArray(orgRef);
