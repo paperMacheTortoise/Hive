@@ -5,7 +5,7 @@ module.exports = function(config) {
 
   conf.files = conf.files.concat([
     //test files
-    './e2e/**/*.js'
+    // './e2e/**/*.js'
   ]);
 
   // conf.proxies = {
@@ -14,7 +14,7 @@ module.exports = function(config) {
 
   // conf.urlRoot = '/__karma__/';
 
-  conf.frameworks = ['ng-scenario'];
+  // conf.frameworks = ['ng-scenario'];
 
   config.set(conf);
 };

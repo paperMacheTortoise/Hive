@@ -23,12 +23,13 @@ module.exports = function(grunt) {
         configFile: 'specs/karma-midway.config.js',
         autoWatch: false,
         singleRun: true
-      },
-      e2e: {
-        configFile: 'specs/karma-e2e.config.js',
-        autoWatch: false,
-        singleRun: true
       }
+
+      // e2e: {
+      //   configFile: 'specs/karma-e2e.config.js',
+      //   autoWatch: false,
+      //   singleRun: true
+      // }
     },
 
     watch: {
