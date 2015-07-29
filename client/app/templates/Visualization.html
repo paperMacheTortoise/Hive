@@ -14,7 +14,7 @@
               <div class="username">{{ msg.username }}</div>
               <div ng-bind-html='msg.text | linky' class="message"></div>
               <div class="time">
-                <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot; 
+                <span am-time-ago="msg.createdAt">{{ msg.createdAt }}</span> &middot;
                 <a ng-click="rep.toggleReplying()">Reply</a>
               </div>
             </div>
@@ -23,10 +23,10 @@
               <li class="cmmnt" ng-repeat="reply in msg.replies">
                 <img class="profileImg" src="{{ reply.img }}"></img>
                 <div class="cmmntBox">
-                  <div class="username">{{reply.username}}</div> 
+                  <div class="username">{{reply.username}}</div>
                   <div ng-bind-html='reply.text | linky' class="message"></div>
                   <div class="time">
-                    <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot; 
+                    <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot;
                     <a ng-click="rep.toggleReplying()">Reply</a>
                   </div>
                 </div>
@@ -43,8 +43,8 @@
 
       <div class="textBox">
         <input class="form-control submitText" ng-model="vis.text" ng-keydown="vis.addMessage($event)" type="text" id="textInput" placeholder="add a message">
-      </div>     
+      </div>
     </div>
-    
+
   </div>
 </div>
