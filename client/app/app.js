@@ -1,6 +1,8 @@
+
 window.host = 'localhost';
 
-var app = angular.module('bizGramApp', [
+var app = window.bizGramApp = angular.module('bizGramApp', [
+
 	'indexCtrl',
 	'404Ctrl',
 	'orgsignupCtrl',
@@ -33,7 +35,9 @@ var app = angular.module('bizGramApp', [
 	'connectIntuitAngular',
 	'ngImgur',
 	'oAuthFactories',
-	'ngSanitize'
+	'ngSanitize',
+	'profitFactory',
+	'profitCtrl'
 	]);
 
 app.config(function ($stateProvider, $urlRouterProvider) {
@@ -101,6 +105,11 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		url:'/customerMap',
 		parent:'visual',
 		templateUrl: 'app/templates/map.html',
+	})
+	.state('visual.profit', {
+		url: '/profit',
+		parent: 'visual',
+		templateUrl: 'app/templates/profitviz.html',
 	})
 	.state('signin',{
 		url: '/:org/signin',
