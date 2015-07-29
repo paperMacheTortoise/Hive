@@ -10,7 +10,7 @@ angular.module('profitFactory', ['firebase'])
   };
 
   profitFactory.ProfitChart = function(dates) {
-    var layers = function (dates) {
+    var createLayers = function (dates) {
       console.log("dates length ", dates.length);
       //layer 1 is total cost of sales and total expenses
       layerone = [];
@@ -35,23 +35,22 @@ angular.module('profitFactory', ['firebase'])
       var layers = stack(threelayers);
       return layers;
     };
-    var layers = layers(dates);
+    var layers = createLayers(dates);
   console.log("layers ", layers);
 
-  var profit = function(dates) {
+  var createProfit = function(dates) {
     var profit = [];
     for(var i = 0; i < dates.length; i++){
       profit.push(parseInt(dates[i]["Net Earnings"]));
     }
     profit = profit.map(function(d, i) { return {x: i, y: d}; });
     return profit;
-  }
-  var profit = profit(dates);
+  };
+  var profit = createProfit(dates);
   console.log("profit ", profit);
   var n = 3, // number of layers
       m = 11;
-  var border = 1;
-  var borderColor = 'black';
+
   //set svg measurements
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"];
   var margin = {top: 40, right: 10, bottom: 20, left: 50},
@@ -74,24 +73,24 @@ angular.module('profitFactory', ['firebase'])
   //for data less than zero.
   var y0 = function() {
     //console.log("Y scale value ", yScale(0))
-    return yScale(0)
-  }
+    return yScale(0);
+  };
   var yAxis = d3.svg.axis().scale(yScale).tickSize(1)
     .tickPadding(0).orient("left");
 
-  var xScale = d3.scale.ordinal().domain(d3.range(m)).rangeRoundBands([0, width], .08);
-  var xordinal = d3.scale.ordinal().domain(months).rangeRoundBands([0, width], .08);
+  var xScale = d3.scale.ordinal().domain(d3.range(m)).rangeRoundBands([0, width], 0.08);
+  var xordinal = d3.scale.ordinal().domain(months).rangeRoundBands([0, width], 0.08);
   var xAxis = d3.svg.axis()
     .scale(xordinal)
     .tickSize(1)
     .tickPadding(3)
     .orient("bottom");
-  var zeroAxis = d3.svg.axis()
-    .scale(xordinal)
-    .tickValues(null)
-    .tickSize(1)
-    .tickPadding(3)
-    .orient("bottom");
+  // var zeroAxis = d3.svg.axis()
+  //   .scale(xordinal)
+  //   .tickValues(null)
+  //   .tickSize(1)
+  //   .tickPadding(3)
+  //   .orient("bottom");
 
   var color = d3.scale.linear()
     .domain([0, n - 1])
@@ -115,7 +114,7 @@ angular.module('profitFactory', ['firebase'])
         .attr('y1', y0())
         .attr('y2', y0())
         .attr("stroke", "black")
-        .attr("stroke-width", 1)
+        .attr("stroke-width", 1);
         // .attr("transform", "translate(0," + y0() + ")")
         // .call(zeroAxis);
     //yAxis
@@ -125,7 +124,7 @@ angular.module('profitFactory', ['firebase'])
 
   function transition(data) {
     var layer = svg.selectAll(".layer")
-                .data(data)
+                .data(data);
     //
       layer.exit().remove();
 
@@ -134,7 +133,7 @@ angular.module('profitFactory', ['firebase'])
         .style("fill", function(d, i) { return color(i); });
 
     var rect = layer.selectAll("rect")
-        .data(function(d) { console.log(d); return d; })
+        .data(function(d) { return d; });
         //update the old elements as needed
         rect.attr("x", function(d, i, j) { return xScale(d.x) + xScale.rangeBand() / n * j; })
         .attr("y",  y0(0))
@@ -163,27 +162,27 @@ angular.module('profitFactory', ['firebase'])
 
   var change = function() {
 
-    console.log("registered change")
-    console.log(this.value);
+    // console.log("registered change")
+    // console.log(this.value);
 
     if(this.value === "grouped") {
-      console.log(layers)
+
       transition(layers);
     }
     else {
-      console.log("Entering ELse")
+
       //console.log(profit)
       transition([profit]);
-      console.log("here")
+
     }
-  }
+  };
 // var timeout = setTimeout(function() {
 //   d3.select("input[value=\"stacked\"]").property("checked", true).each(change);
 // }, 2000);
 
   d3.selectAll("input").on("change", change );
 
-  }
+  };
 
   return profitFactory;
 }]);

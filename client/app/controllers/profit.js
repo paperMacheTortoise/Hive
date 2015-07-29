@@ -1,6 +1,6 @@
 angular.module('profitCtrl', [])
 
-.controller('profitController', function (profitFactory, $rootScope, $stateParams){
+.controller('profitController', function (profitFactory){
 
     var dates = [
   { 'Total Income': '10000.00',
@@ -47,8 +47,8 @@ angular.module('profitCtrl', [])
     'Total Cost of Sales': '-1000.00',
     'Total Expenses': '-5000.00',
     'Net Earnings': '-500.00' }
-  ]
+  ];
 
-  var graph = new profitFactory.ProfitChart(dates);
+  new profitFactory.ProfitChart(dates);
 
 });
