@@ -18,6 +18,7 @@
 		    <div class="form-group">
 			    <button class="btn btn-info form-control" type="submit">Submit</button>
 		    </div>
+		    <alert ng-repeat="alert in org.alerts" type="{{alert.type}}" close="org.closeAlert($index)">{{alert.msg}}</alert>
 		  </form>
 	  </div>
   </div>
