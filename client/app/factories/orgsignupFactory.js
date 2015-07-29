@@ -110,6 +110,10 @@ angular.module('orgsignupFactory', ['firebase'])
             .error(function() {
               console.log('error sending email invite');
             });
+          var fireArr = $firebaseArray(new Firebase('https://bizgramer.firebaseio.com/'+orgname+'/rooms/General'));
+          fireArr.$add({username:'Hive Helper', text:'Start typing below to begin chatting',img:'assets/hive.jpg', createdAt: Firebase.ServerValue.TIMESTAMP}).then(function(){
+            console.log('set up general');
+          });
         })
         .catch(function (error) {
           console.log('error', error);
