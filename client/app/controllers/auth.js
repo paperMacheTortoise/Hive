@@ -21,7 +21,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
         $rootScope.logInfo = logInfo;
         LinkedinAuth.setOrg(logInfo.org);
         // redirect to main page in the organization after setting  logInfo on the rootscope of  signed-up user
-        $state.go('main.room', {org: vm.org, roomname:'general'});
+        $state.go('main.room', {org: vm.org, roomname:'General'});
       });
     };
 
