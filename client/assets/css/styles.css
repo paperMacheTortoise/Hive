@@ -7005,3 +7005,7 @@ input, select, textarea{
 .signup-div {
   width: 100%;
 }
+
+#textInput{
+  resize: none;
+}
