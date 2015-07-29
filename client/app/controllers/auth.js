@@ -1,4 +1,4 @@
-angular.module('authCtrl',['firebase'])
+angular.module('authCtrl',['firebase','ui.bootstrap'])
 
   .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, LinkedinAuth){
     var vm = this;

@@ -9,7 +9,8 @@
 		    <div class="form-group">
 			  	<button class="btn btn-info form-control"type="submit">Submit</button>
 		  	</div>
-		  	<div c;ass="form-group">
+		  	<alert ng-repeat="alert in org.alerts" type="{{alert.type}}" close="org.closeAlert($index)">{{alert.msg}}</alert>
+		  	<div class="form-group">
 			    <a ui-sref="orgsignup">Sign up a new organization</a>
 		    </div>
 		  </form>
