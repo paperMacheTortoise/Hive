@@ -9,7 +9,7 @@ angular.module('authFactory', ['firebase'])
   authFactory.getAuth = function (callback){
         var authData = authObj.$getAuth();
         console.log(authData);
-        callback(authData);
+        callback(null, authData);
   };
 
   authFactory.signin = function(email,password,callback){
@@ -19,9 +19,10 @@ angular.module('authFactory', ['firebase'])
       }).then(function(authData){
       data = authData;
       // console.log('logged in as '+authData.uid);
-      callback(data);
+      callback(null, data);
     }).catch(function(error){
       console.log('Error:',error);
+      callback(error.code);
     });
   };
   authFactory.setupUser = function(username, org, email, uid, pictureUrl, callback){
@@ -35,7 +36,7 @@ angular.module('authFactory', ['firebase'])
       pictureCollection: null
     }).then(function(ref){
       var logInfo = users.$getRecord(ref.key());
-      callback(logInfo);
+      callback(null, logInfo);
     });
   };
   authFactory.signup = function(email, password, orgId, orgName, callback, vm){
@@ -52,13 +53,18 @@ angular.module('authFactory', ['firebase'])
             authFactory.signin(email,password,callback,vm);
           }).catch(function(error){
             console.log('Error:',error);
+            callback(error.code);
           });
         } else {
           console.log('incorrect Id for ', orgName);
+            callback("Incorrect Org Code");
+
         }
       })
       .catch(function (error) {
         console.log('error', error);
+        callback(error.code);
+
       });
 	};
 

@@ -13,6 +13,8 @@
 			<div class="form-group">
 				<button class="btn btn-info form-control" type="submit">Submit</button>
 			</div>
+		  	<alert ng-repeat="alert in auth.alerts" type="{{alert.type}}" close="auth.closeAlert($index)">{{alert.msg}}</alert>
+
 		</form>	
 		</div>
 	</div>
