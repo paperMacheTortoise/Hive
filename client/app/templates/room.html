@@ -44,9 +44,7 @@
 
 <!-- input area -->
   <div class="textBox">
-  <!--   <input ng-model="room.username" type="text" id="usernameInput" placeholder="enter username" /> -->
-    <!-- <input ng-model="room.roomname" type="text" id="roomnameInput" placeholder="enter roomname" /> -->
-      <input class="form-control submitText" ng-model="room.text" ng-keydown="room.addMessage($event)" type="text" id="textInput" placeholder="add a message" />
+      <textarea class="form-control submitText" ng-model="room.text" ng-keydown="room.addMessage($event)" rows="1" cols="26" name="text" id="textInput" placeholder="add a message" />
   </div>
 </div>
 
