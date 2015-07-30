@@ -13,7 +13,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
       vm.username = vm.userInfo.username;
       vm.email = vm.userInfo.email;
       vm.pictureUrl = vm.userInfo.pictureUrl;
-    })
+    });
   } else {
       vm.pictures = Users.getUserPictures($rootScope.logInfo.$id, vm.org);
       vm.userInfo = $rootScope.logInfo;

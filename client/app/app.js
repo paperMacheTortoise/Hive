@@ -179,7 +179,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	});
 });
 
-app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeout){
+app.run(function ($rootScope, $location, $state, $stateParams, Auth){
 	// Value for ng-hide and ng-show on index. It displays the login and signup buttons when user is logged out.
 	// When user is logged in, displays profile and logout.
 	$rootScope.shouldShow = true;
@@ -201,7 +201,7 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 				});
 			} else {
 				console.log('User must log in');
-				$state.go('signin', {org: $location.$$path.slice(1)})	
+				$state.go('signin', {org: $location.$$path.slice(1)});	
 			}
 		}
 	});

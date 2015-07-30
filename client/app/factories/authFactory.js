@@ -16,7 +16,7 @@ angular.module('authFactory', ['firebase'])
     authFactory.getAuth(function(data){
       return data;
     });
-  }
+  };
 
   authFactory.refreshUser = function(cb){
     var data = window.localStorage.uid;
@@ -29,8 +29,8 @@ angular.module('authFactory', ['firebase'])
         }
       }
       cb(users.$getRecord(key));
-    })
-  }
+    });
+  };
 
   authFactory.signin = function(email,password,callback){
     authObj.$authWithPassword({
