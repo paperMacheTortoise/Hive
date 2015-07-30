@@ -85,11 +85,13 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
 
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(error, data){
-        if(error){
-          vm.addAlert(error.replace('_',' '));
-          return;
-        }
+        // if(error){
+        //   vm.addAlert(error.replace('_',' '));
+        //   return;
+        // }
         vm.authData = data;
+        console.log(data);
+        console.log(error);
         vm.getSignIn(data);
       },vm);
     };

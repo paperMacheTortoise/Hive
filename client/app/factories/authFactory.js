@@ -38,7 +38,7 @@ angular.module('authFactory', ['firebase'])
         password: password
       }).then(function(authData){
         window.localStorage['uid'] = authData.uid;
-        callback(authData);
+        callback(null, authData);
     }).catch(function(error){
       console.log('Error:',error);
       callback(error.code);
