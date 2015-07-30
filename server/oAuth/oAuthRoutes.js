@@ -5,10 +5,14 @@ var Firebase = require("firebase");
 
 module.exports = function(app) {
 
+// Login page that redirects to the index page
 app.get('/login', function(req, res){
   res.redirect('/');
 });
 
+// Quickbooks/intuit authentication callback page.  It redirects to a html page
+// that does nothing but close the window since the quickbooks button opens up 
+// a popup window when clicked.
 app.get('/auth/intuit/callback',
   passport.authenticate('intuit', { failureRedirect: '/login' }),
    function(req, res) {
@@ -16,6 +20,7 @@ app.get('/auth/intuit/callback',
   }
 );
 
+// Route for pulling quickbooks data and populating the firebase DB with Receivables data.
 app.get('/receivable', function(req, res) {
    var qbRef = new Firebase('https://bizgramer.firebaseio.com/'+req.session.org+'/qbo/qbokey');
 
@@ -57,6 +62,7 @@ app.get('/receivable', function(req, res) {
   });
  });
 
+// Route for pulling quickbooks data and populating the firebase DB with Customer data.
 app.get('/customers', function(req, res){
   var qbRef = new Firebase('https://bizgramer.firebaseio.com/'+req.session.org+'/qbo/qbokey');
 
@@ -80,6 +86,7 @@ app.get('/customers', function(req, res){
 
 });
 
+// Route for pulling quickbooks data and populating the firebase DB with Payables data.
 app.get('/payable', function(req, res) {
   var qbRef = new Firebase('https://bizgramer.firebaseio.com/'+req.session.org+'/qbo/qbokey');
   qbRef.on('value', function(data){
