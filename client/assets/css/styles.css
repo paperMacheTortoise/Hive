@@ -6838,6 +6838,12 @@ footer {
 .tooltip .name {
   font-weight: bold;
 }
+.profileView {
+  color: black;
+}
+.profileImage {
+  height: 150px;
+}
 .chatRoomView {
   color: black;
   background-color: white;

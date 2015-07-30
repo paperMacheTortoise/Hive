@@ -4,6 +4,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   var vm = this;
   vm.org = $stateParams.org;
   $rootScope.org = vm.org;
+  vm.hasLinkedin = false;
   
   if(!$rootScope.logInfo){
     Auth.refreshUser(function(logInfo){
@@ -13,6 +14,9 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
       vm.username = vm.userInfo.username;
       vm.email = vm.userInfo.email;
       vm.pictureUrl = vm.userInfo.pictureUrl;
+      if($rootScope.logInfo.linkedin){
+        vm.hasLinkedin = true;
+      }
     });
   } else {
       vm.pictures = Users.getUserPictures($rootScope.logInfo.$id, vm.org);
@@ -20,7 +24,11 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
       vm.username = vm.userInfo.username;
       vm.email = vm.userInfo.email;
       vm.pictureUrl = vm.userInfo.pictureUrl;
+      if($rootScope.logInfo.linkedin){
+        vm.hasLinkedin = true;
+      }
   }
+
 
     vm.host = window.host;
 
