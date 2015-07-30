@@ -9,11 +9,12 @@ angular.module('404Ctrl', ['firebase'])
             vm.org = $stateParams.org;
         });
 
-        // logout and redirect to landing page
+        //logout and redirect to landing page
         vm.goToLanding = function() {
+            $state.go('landing');
+            $rootScope.shouldShow = true;
             $rootScope.logInfo = null;
             Auth.signout();
-            $state.go('landing');
         };
 
     });

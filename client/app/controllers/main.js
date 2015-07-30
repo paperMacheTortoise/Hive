@@ -5,15 +5,16 @@ angular.module('mainCtrl', [])
 	var vm = this;
   // console.log('main', $stateParams);
   // console.log('rootScope', $rootScope.logInfo);
+  vm.currentUser = null;
   vm.org = $stateParams.org;
   if ($rootScope && $rootScope.logInfo) {
-    vm.currentUser = $rootScope.logInfo;
+    vm.currentUser = $rootScope.logInfo.username;
   }
 
   // Get the rooms from the roomFactory.
   vm.rooms = Rooms.getRooms(vm.org);
   // Get all users except for the current user from the userFactory.
-  vm.users = Users.getDisplayUsers(vm.currentUser.username, vm.org);
+  vm.users = Users.getDisplayUsers(vm.currentUser, vm.org);
 
   // Send new room to the roomFactory.
   vm.addRoom = function(e) {

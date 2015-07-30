@@ -1,15 +1,25 @@
 angular.module('directMessageCtrl', [])
 
-.controller('directMessageController', function (DirectMessage, Users, $rootScope, $stateParams){
+.controller('directMessageController', function (DirectMessage, Users, $rootScope, $stateParams, Auth){
 
 	var vm = this;
 	// Passes the user from the main view to the directmessage view.
 	vm.org = $stateParams.org;
 	vm.recipient = $stateParams.user;
+	
 	// Tracks the user currently logged-in.
-	vm.currentUser = $rootScope.logInfo;
+	if(!$rootScope.logInfo){
+		Auth.refreshUser(function(logInfo){
+			$rootScope.logInfo = logInfo;
+			vm.currentUser = $rootScope.logInfo;
+			vm.messages = DirectMessage.getDirectMessages(vm.currentUser.username, vm.recipient, vm.org);
+		});
+	} else {
+		vm.currentUser = $rootScope.logInfo;
+		vm.messages = DirectMessage.getDirectMessages(vm.currentUser.username, vm.recipient, vm.org);
+	}
+
 	// Retrieves the messages for this user from the db.
-	vm.messages = DirectMessage.getDirectMessages(vm.currentUser.username, vm.recipient, vm.org);
 	Users.setUsername(vm.recipient); // CHECK IF NECESSARY
 
 	// Sends the message from the current user to the dmFactory.

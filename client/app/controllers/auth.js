@@ -72,7 +72,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
 
       var key;
       for (var i = 0; i < vm.users.length; i++) {
-        if(vm.users[i].uid===data.uid){
+        if(vm.users[i].uid === data.uid){
           key = vm.users.$keyAt(i);
         }
       }

@@ -51,7 +51,7 @@
 	<script src="app/controllers/map.js"></script>
 	<script src="app/controllers/profit.js"></script>
 	<script src="app/app.js"></script>
-
+	
 	<!-- Factories -->
 	<script src="app/factories/orgsignupFactory.js"></script>
 	<script src="app/factories/inviteFactory.js"></script>
@@ -83,7 +83,7 @@
 			<li><a ui-sref="signup({org: index.org})" ng-show="shouldShow">SignUp</a></li>
 			<!-- Should show if users is logged in -->
 			<li><a ui-sref="profile({org: index.org})" ng-hide="shouldShow">Profile</a></li>
-			<li><a ui-sref="logout" ng-hide="shouldShow" ng-click="index.logout()">Logout</a></li>
+			<li><a ui-sref="logout({org: index.org})" ng-hide="shouldShow">Logout</a></li>
 		</ul>
 	</div>
 </nav>

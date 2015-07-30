@@ -6828,6 +6828,10 @@ footer {
   font-size: 12px;
   z-index: 10;
 }
+.maptip {
+  top: 0;
+  left: 0;
+}
 .tooltip .title {
   font-size: 13px;
 }
@@ -6838,10 +6842,7 @@ footer {
   color: black;
   background-color: white;
   border: 1px solid #4d505b;
-  border-radius: 25px;
-  /*border-top-left-radius: 25px;*/
-  /*border-top-right-radius: 25px;*/
-  height: 700px;
+  height: 650px;
 }
 ol {
   list-style-type: none;
@@ -6856,7 +6857,6 @@ ol {
   width: 50px;
   height: 50px;
   border: 1px solid;
-  border-radius: 5px;
 }
 .main-menu li a {
   padding: 0;
@@ -6878,7 +6878,6 @@ ol ol .cmmnt {
   float: left;
   margin-right: 20px;
   border: 1px solid;
-  border-radius: 10px;
   height: 50px;
   width: 50px;
 }
@@ -6924,23 +6923,13 @@ ol ol .cmmnt {
   top: 0%;
   width: 100%;
   overflow: scroll;
-  margin-top: 70px;
-}
-.dmChatMessages {
-  position: absolute;
-  bottom: 12%;
-  top: 0%;
-  width: 100%;
-  overflow: scroll;
 }
 .submitText {
   position: static;
-  border-radius: 10px;
 }
 .textBox {
   position: absolute;
-  /*background-color: #16a79d;*/
-  border-radius: 35px;
+  background-color: #16a79d;
   width: 100%;
   height: 10%;
   padding: 16px;
@@ -6951,62 +6940,3 @@ ol ol .cmmnt {
   margin-left: 30px;
   margin-right: 30px;
 }
-.maptip{
-  top: 0;
-  left: 0;
-}
-.prof-img{
-  max-height: 300px;
-  max-width: 200px;
-}
-.imggal{
-  max-height: 500px;
-  max-width: 500px;
-}
-.imglist{
-  background-color: #999ca8;
-}
-body{
-  font-family: monaco;
-}
-
-a{
-  border-radius: 5px;
-  padding-left: 15px;
-}
-
-a:hover{
- border-radius: 5px ;
-}
-
-.nav-sidebar > li {
-  margin-left: 10px;
-  width: 200px;
-}
-
-.nav-sidebar > li >a {
-  padding-left: 15px;
-  padding-right: 15px;
-}
-
-.addRoomBox{
-  border: grey;
-  width: 200px;
-  margin-left: 10px;
-  margin-top: 5px;
-  border-radius: 10px;
-  padding-left: 7px;
-}
-
-input, select, textarea{
-  color: black;
-}
-
-.signup-div {
-  width: 100%;
-}
-
-#textInput{
-  resize: none;
-}
-

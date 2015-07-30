@@ -1,5 +1,6 @@
 angular.module('connectIntuitAngular',[])
-.directive('connectToQuickbooks', function($window, $rootScope, LinkedinAuth){
+
+.directive('connectToQuickbooks', function ($window, $rootScope, LinkedinAuth){
   return {
     restrict: 'E',    template: "<ipp:connectToIntuit></ipp:connectToIntuit>",
     link: function(scope) {
@@ -9,6 +10,7 @@ angular.module('connectIntuitAngular',[])
         script.onload = function () {
            scope.$emit('intuitjs:loaded');
         };
+        
         $window.document.body.appendChild(script);
         scope.$on('intuitjs:loaded', function () {
         LinkedinAuth.setOrg($rootScope.logInfo.org);
