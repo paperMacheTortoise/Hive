@@ -2,16 +2,18 @@ angular.module('aRVisualCtrl', [])
 
 .controller('aRVisualController', function (Visualization, $rootScope, $stateParams) {
 
-	var vm = this;
+  var vm = this;
 
-	// CHAT FUNCTIONS
+  // CHAT FUNCTIONS
   // Get ther current user;
-	vm.org = $stateParams.org;
-	//chat functions
-	vm.username = $rootScope.logInfo.username;
+  vm.org = $stateParams.org;
+  // chat functions
+  vm.username = $rootScope.logInfo.username;
   // TO DO, set the visualization identifier
-	vm.visualId = 'Account Receivables';
+  vm.visualId = 'Account Receivables';
 
+  // This ARBubbleChart class function inherits the prototypes from the BubbleChart class
+  // that is located in the visualFactory file.
   var ARBubbleChart = function(data){
     Visualization.BubbleChart.call(this);
     var max_amount;
@@ -40,11 +42,10 @@ angular.module('aRVisualCtrl', [])
     this.start();
     this.display_group_all();
   };
-
   ARBubbleChart.prototype = Object.create(Visualization.BubbleChart.prototype);
   ARBubbleChart.prototype.constructor = ARBubbleChart;
 
-  //BubbleChart function to create nodes from data.
+  // BubbleChart function to create nodes from Receivables data.
   ARBubbleChart.prototype.create_nodes = function() {
     this.data.forEach((function(_this) {
       return function(d) {
@@ -70,8 +71,9 @@ angular.module('aRVisualCtrl', [])
     });
   };
 
-  //BubbleChart function to create D3 visualization of each created node.  It
-  //also gives it the scroll over functions of displaying tooltips.
+  // BubbleChart function to create D3 visualization of each created node.  It
+  // also gives it the scroll over functions of displaying tooltips.  The data 
+  // bound to the "circle" svg visual is the data AR client.
   ARBubbleChart.prototype.create_vis = function() {
     var that;
     this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
@@ -99,7 +101,8 @@ angular.module('aRVisualCtrl', [])
     });
   };
 
-  //BubbleChart function that displays the tooltip and highlights the bubble when mouseover.
+  // BubbleChart function that displays the tooltip and highlights the bubble when mouseover.
+  // This method was created to match expected Recievables data.
   ARBubbleChart.prototype.show_details = function(data, i, element) {
     var content;
     d3.select(element).attr("stroke", "black");
@@ -112,13 +115,13 @@ angular.module('aRVisualCtrl', [])
     return this.tooltip.showTooltip(content, d3.event);
   };
 
-  //Instantiates a bubblechart with data.
+  // Instantiates a AR chart with DB data.
   var chart = null;
   var visual_data = Visualization.getVisualData(vm.org, "Receivables");
   chart = visual_data.$loaded(function(){
     var chart = new ARBubbleChart(visual_data);
 
-    //Adds functionality to the view_selection buttons to seperate and unseperate bubbles
+    // Adds functionality to the view_selection buttons to seperate and unseperate bubbles.
     $('#view_selection a').click(function() {
       var view_type = $(this).attr('id');
       $('#view_selection a').removeClass('active');
@@ -130,6 +133,7 @@ angular.module('aRVisualCtrl', [])
         chart.display_group_all();
       }
     });
+
     return chart;
   });
 

@@ -2,16 +2,18 @@ angular.module('aPVisualCtrl', [])
 
 .controller('aPVisualController', function (Visualization, $rootScope, $stateParams) {
 
-	var vm = this;
+  var vm = this;
 
-	// CHAT FUNCTIONS
+  // CHAT FUNCTIONS
   // Get ther current user;
-	vm.org = $stateParams.org;
-	//chat functions
-	vm.username = $rootScope.logInfo.username;
+  vm.org = $stateParams.org;
+  //chat functions
+  vm.username = $rootScope.logInfo.username;
   // TO DO, set the visualization identifier
-	vm.visualId = 'visual1';
-  //Accounts Payable constructor and methods
+  vm.visualId = 'visual1';
+
+  // This APBubbleChart class function inherits the prototypes from the BubbleChart class
+  // that is located in the visualFactory file.
   var APBubbleChart = function(data){
     Visualization.BubbleChart.call(this);
     var max_amount;
@@ -41,11 +43,10 @@ angular.module('aPVisualCtrl', [])
     this.start();
     this.display_group_all();
   };
-
   APBubbleChart.prototype = Object.create(Visualization.BubbleChart.prototype);
   APBubbleChart.prototype.constructor = APBubbleChart;
 
-  //BubbleChart function to create nodes from data.
+  //BubbleChart function to create nodes from Payables data.
   APBubbleChart.prototype.create_nodes = function() {
     this.data.forEach((function(_this) {
       return function(d) {
@@ -64,7 +65,6 @@ angular.module('aPVisualCtrl', [])
           x: Math.random() * 900,
           y: Math.random() * 800
         };
-        //console.log(node);
         return _this.nodes.push(node);
       };
     })(this));
@@ -73,8 +73,9 @@ angular.module('aPVisualCtrl', [])
     });
   };
 
-  //BubbleChart function to create D3 visualization of each created node.  It
-  //also gives it the scroll over functions of displaying tooltips.
+  // BubbleChart function to create D3 visualization of each created node.  It
+  // also gives it the scroll over functions of displaying tooltips.  The data 
+  // bound to the "circle" svg visual is the data AP vendor.
   APBubbleChart.prototype.create_vis = function() {
     var that;
     this.vis = d3.select("#vis").append("svg").attr("width", this.width).attr("height", this.height).attr("id", "svg_vis");
@@ -103,6 +104,7 @@ angular.module('aPVisualCtrl', [])
   };
 
   //BubbleChart function that displays the tooltip and highlights the bubble when mouseover.
+  // This method was created to match expected Payables data.
   APBubbleChart.prototype.show_details = function(data, i, element) {
     var content;
     d3.select(element).attr("stroke", "black");
@@ -110,12 +112,11 @@ angular.module('aPVisualCtrl', [])
     content += "<span class=\"name\">Vendor ID:</span><span class=\"value\"> " + data.vendor_id + "</span><br/>";
     content += "<span class=\"name\">Amount:</span><span class=\"value\"> $" + (this.addCommas(data.amount)) + "</span><br/>";
     content += "<span class=\"name\">Due Date:</span><span class=\"value\"> " + data.due_date + "</span><br/>";
-    //content += "<span class=\"name\">Bill Number:</span><span class=\"value\"> " + data.bill_num + "</span><br/>";
     content += "<span class=\"name\">Bill Date:</span><span class=\"value\"> " + data.billed_date + "</span><br/>";
     return this.tooltip.showTooltip(content, d3.event);
   };
 
-  //Instantiates a bubblechart with data.
+  //Instantiates a  AP chart with DB data.
   var chart = null;
   var visual_data = Visualization.getVisualData(vm.org, "Payables");
   chart = visual_data.$loaded(function(){
