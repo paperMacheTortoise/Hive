@@ -44,7 +44,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	// need to dynamically create routes based on the rooms available
 
-	$urlRouterProvider.otherwise('/404');
+	$urlRouterProvider.otherwise('');
 
 	$stateProvider
 
@@ -129,14 +129,15 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 	// Unathenticates the user and deletes the user information from the $rootScope on logout.
 	.state('logout',{
-		url: '/logout',
-		controller: function(Auth, $location, $rootScope){
+		url: ':org/logout',
+		controller: function(Auth, $state, $rootScope, $stateParams){
+			$state.go('signin', {org: $stateParams.org});
+			$rootScope.shouldShow = true;
+			$rootScope.logInfo = null;
 			Auth.signout();
-			delete $rootScope.logInfo;
-			$location.path('/signin');
 		},
 		data: {
-			requireLogin: true
+			requireLogin: false
 		}
 	})
 	.state('linkedin',{
@@ -162,13 +163,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			requireLogin: true
 		}
 	})
-	.state('404', {
-		url: '404',
-		templateUrl: 'app/templates/404.html',
-		data: {
-			requireLogin: false
-		}
-	})
+	// .state('404', {
+	// 	url: '404',
+	// 	templateUrl: 'app/templates/404.html',
+	// 	data: {
+	// 		requireLogin: false
+	// 	}
+	// })
 	.state('oAuth', {
 		url: '/oAuth',
 		templateUrl: 'app/templates/oAuth.html',
@@ -176,75 +177,117 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			requireLogin: true
 		}
 	});
+
+	// function authenticate ($q, $rootScope, $state, $timeout, $stateParams, Auth){
+	// 	if(window.localStorage.uid){
+	// 		$rootScope.shouldShow = false;
+	// 		if(!rootScope.logInfo){
+	// 			Auth.refereshUser(function(logInfo){
+	// 				debugger;
+	// 				$rootScope.logInfo = logInfo;
+	// 				return $q.when();
+	// 			})
+	// 		}
+	// 		return $q.when()
+	// 	} else if (!requireLogin){
+	// 		return $q.when();
+	// 	} else {
+	// 		$timeout(function(){
+	// 			$rootScope.shouldShow = true;
+	// 			$state.go('signin', {org: $stateParams.org});
+	// 		})
+
+	// 		return $q.reject();
+	// 	}
+	// }
 });
 
-app.run(function ($rootScope, $window, $location, $state, $stateParams, Auth){
+app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeout){
 	console.log('apprun', $stateParams);
 	// Value for ng-hide and ng-show on index. It displays the login and signup buttons when user is logged out.
 	// When user is logged in, displays profile and logout.
 	$rootScope.shouldShow = true;
 
-	// Checks that the user has been authenticated on each page. If not, the user is redirected to the signin page.
 	$rootScope.$on('$stateChangeStart', function (event, toState){
-		// landing page doesn't require logging in
-		if (toState.name === 'landing') {
-			var requireLogin;
-			if (toState && toState.data && toState.data.requireLogin) {
-				requireLogin = toState.data.requireLogin;
+		var requireLogin = toState.data.requireLogin;
+		if(toState === 'landing'){
+			$state.go(toState);
+		}
+
+		if(requireLogin && !$rootScope.logInfo){
+			if(window.localStorage.uid){
+				Auth.refreshUser(function(){
+					$rootScope.shouldShow = false;
+					// $rootScope.logInfo = logInfo;
+					// console.dir($stateParams);
+					$state.go(toState, {org: $stateParams.org});	
+				});
 			} else {
-				requireLogin = false;
-			}
-			if(requireLogin && !$rootScope.logInfo){
-				event.preventDefault();
-				console.log('User must be logged in to access page');
-				// console.log($location.$$path.slice(1));
-				console.dir($stateParams);
-				$state.go('signin', {org: $location.$$path.slice(1)});
+				$timeout(function(){
+					console.log('User must log in');
+					$state.go('signin', {org: $location.$$path.slice(1)})	
+				});
+
+				return $q.reject();
 			}
 		}
 	});
+});
+
+	// // Checks that the user has been authenticated on each page. If not, the user is redirected to the signin page.
+	// $rootScope.$on('$stateChangeStart', function (event, toState){
+		
+	// 	// Changes navigation menu to profile and logout when user is logged in.
+	// 	var requireLogin = toState.data.requireLogin;
+	// 	if(requireLogin){
+	// 		$rootScope.shouldShow = false;
+
+	// 		if(!$rootScope.logInfo){
+	// 		// if users refreshses page without logging out check if user is still authenticated.
+	// 		// and add their information back to the rootScope.
+	// 			if(window.localStorage.uid){
+	// 				console.log('has Auth');
+	// 				Auth.refreshUser(function(logInfo){
+	// 					console.log(logInfo);
+	// 					debugger;
+	// 					$rootScope.logInfo = logInfo;
+	// 					$rootScope.shouldShow = false;
+	// 					$state.go(toState, {org: $stateParams.org});
+	// 				});
+	// 			} else {
+	// 				event.preventDefault();
+	// 				console.log('User must be logged in to access page');
+	// 				console.dir($stateParams);
+	// 				$rootScope.shouldShow = true;
+	// 					// redirect user to sign back in
+	// 				$state.go('signin', {org: $location.$$path.slice(1)});
+	// 			}
+	// 		}
+	// 	}
+	// });
 
 	// at each state chage, check if the user belongs to the organization it is navigating to
-	$rootScope.$on('$stateChangeSuccess', function (event, toState, $stateParams) {
-		// if the user doesnt belong to this organization, redirect to landing page
-		// console.log($stateParams);
-		if ($stateParams.org === '') {
-			$state.go('landing');
-		}
-		if ($rootScope.logInfo) {
-			$rootScope.shouldShow = false;
-		} else {
-			$rootScope.shouldShow = true;
-		}
-		// if the user is logged in to one org but tries to navigate to another org
-		if ($rootScope.logInfo && $rootScope.logInfo.org !== $stateParams.org) {
+	// $rootScope.$on('$stateChangeSuccess', function (event, toState, $stateParams) {
+	// // 	// if the user doesnt belong to this organization, redirect to landing page
+	// // 	// console.log($stateParams);
+	// // 	var requireLogin = toState.data.requireLogin;
 
-			if(Auth.getAuth(function(data){ return data; })){
-				Auth.getAuth(function(data){
-					Auth.refreshUser(data);
-					$state.go(toState);
-				});
-			}
-			// redirect to 404
-			//console.log($rootScope.logInfo.org);
-			//console.log($stateParams.org);
-			if(toState.name === 'main') {
-				//$stateParams.org = 'main';
-				$state.go('main');
-			}
-			$state.go('404');
-		}
-		console.log('going to state ', toState.name);
-		// console.log($rootScope.logInfo);
-		if (toState.name === 'main' && !$rootScope.logInfo) {
-			if(Auth.getAuth(function(data){ return data; })){
-				Auth.getAuth(function(data){
-					Auth.refreshUser(data);
-					$state.go(toState);
-				});
-			}
-			$state.go('landing');
-		}
-	});
+	// 	if($rootScope.logInfo.org !== $stateParams.org){
+	// 		$state.go('404');
+	// 	}
+	// });
+	// 	// if the user is logged in to one org but tries to navigate to another org
+	// 	if (requireLogin && $rootScope.logInfo.org !== $stateParams.org) {
+	// 			$state.go('404');
+	// 		// redirect to 404
+	// 		//console.log($rootScope.logInfo.org);
+	// 		//console.log($stateParams.org);
+	// 		// if(toState.name === 'main') {
+	// 		// 	//$stateParams.org = 'main';
+	// 		// 	$state.go('main');
+	// 		// }
+	// 	}
 
-});
+	// 	console.log('going to state ', toState.name);
+	// });
+

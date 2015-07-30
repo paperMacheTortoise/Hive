@@ -12,17 +12,24 @@ angular.module('authFactory', ['firebase'])
         callback(null, authData);
   };
 
-  authFactory.refreshUser = function(data){
+  authFactory.checkLogin = function(){
+    authFactory.getAuth(function(data){
+      return data;
+    });
+  }
+
+  authFactory.refreshUser = function(cb){
+    var data = window.localStorage.uid;
     var users = Users.getUsers($stateParams.org);
     users.$loaded(function(){
       var key;
       for (var i = 0; i < users.length; i++) {
-        if(users[i].uid===data.uid){
+        if(users[i].uid === data){
           key = users.$keyAt(i);
         }
       }
-      var logInfo = users.$getRecord(key);
-      $rootScope.logInfo = logInfo;
+      $rootScope.logInfo = users.$getRecord(key);
+      cb();
     })
   }
 
@@ -31,9 +38,8 @@ angular.module('authFactory', ['firebase'])
         email: email,
         password: password
       }).then(function(authData){
-      data = authData;
-      // console.log('logged in as '+authData.uid);
-      callback(null, data);
+        window.localStorage['uid'] = authData.uid;
+        callback(authData);
     }).catch(function(error){
       console.log('Error:',error);
       callback(error.code);
@@ -54,7 +60,7 @@ angular.module('authFactory', ['firebase'])
       callback(null, logInfo);
     });
   };
-  
+
   authFactory.signup = function(email, password, orgId, orgName, callback, vm){
     var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgName);
     var orgArr = $firebaseArray(orgRef);
@@ -86,7 +92,7 @@ angular.module('authFactory', ['firebase'])
 
 	authFactory.signout = function(){
 		authObj.$unauth();
-    $state.go('landing');
+    delete window.localStorage.uid;
 	};
 
 	return authFactory;

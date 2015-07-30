@@ -11,9 +11,9 @@ angular.module('404Ctrl', ['firebase'])
 
         // logout and redirect to landing page
         vm.goToLanding = function() {
+            $state.go('landing');
             $rootScope.logInfo = null;
             Auth.signout();
-            $state.go('landing');
         };
 
     });

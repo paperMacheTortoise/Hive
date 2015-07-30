@@ -5,7 +5,7 @@ angular.module('indexCtrl', ['firebase', ])
     var vm = this;
 
     // when the state changes, set the org property to the current location for routing purpose
-    $rootScope.$on('$stateChangeSuccess', function() {
+    $rootScope.$on('$stateChangeStart', function() {
       vm.org = $stateParams.org;
     });
 
@@ -13,7 +13,7 @@ angular.module('indexCtrl', ['firebase', ])
     vm.logo = function() {
       // if the user is logged in, redirect to the org main page
       // console.log('rootScope.logInfo ', $rootScope.logInfo);
-      if ($rootScope.logInfo && $rootScope.logInfo.org) {
+      if ($rootScope.logInfo) {
         $state.go('main', {org: vm.org});
       // otherwise redirect to landing page
       } else {
@@ -22,8 +22,7 @@ angular.module('indexCtrl', ['firebase', ])
     };
 
     vm.logout = function () {
-      $rootScope.logInfo = null;
-      Auth.signout();
+      $state.go('logout');
     };
 
   });
