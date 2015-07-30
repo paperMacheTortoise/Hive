@@ -14,8 +14,10 @@ angular.module('orgsignupCtrl', ['firebase','ui.bootstrap'])
     vm.signupOrg = function () {
       vm.nameOfOrgToAdd = vm.nameOfOrgToAdd.toLowerCase();
       if (vm.orgnames.indexOf(vm.nameOfOrgToAdd) === -1) {
-        OrgSignup.signupOrg(vm.nameOfOrgToAdd, vm.nameOfCreator, vm.emailOfCreator);
-        $state.go('signup', {org: vm.nameOfOrgToAdd});
+        OrgSignup.signupOrg(vm.nameOfOrgToAdd, vm.nameOfCreator, vm.emailOfCreator, vm.passwordOfCreator, function(){
+          $state.go('main', {org: vm.nameOfOrgToAdd});
+          
+        });
         vm.nameOfOrgToAdd = '';
       } else {
         vm.addAlert('Organization with this name already exists!');
