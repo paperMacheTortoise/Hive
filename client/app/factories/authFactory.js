@@ -28,8 +28,7 @@ angular.module('authFactory', ['firebase'])
           key = users.$keyAt(i);
         }
       }
-      $rootScope.logInfo = users.$getRecord(key);
-      cb();
+      cb(users.$getRecord(key));
     })
   }
 

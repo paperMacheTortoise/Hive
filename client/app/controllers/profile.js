@@ -4,12 +4,25 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   var vm = this;
   vm.org = $stateParams.org;
   $rootScope.org = vm.org;
-  vm.pictures = Users.getUserPictures($rootScope.logInfo.$id, vm.org);
-  vm.userInfo = $rootScope.logInfo;
-  vm.username = vm.userInfo.username;
-  vm.email = vm.userInfo.email;
-  vm.pictureUrl = vm.userInfo.pictureUrl;
-  vm.host = window.host;
+  
+  if(!$rootScope.logInfo){
+    Auth.refreshUser(function(logInfo){
+      $rootScope.logInfo = logInfo;
+      vm.pictures = Users.getUserPictures($rootScope.logInfo.$id, vm.org);
+      vm.userInfo = $rootScope.logInfo;
+      vm.username = vm.userInfo.username;
+      vm.email = vm.userInfo.email;
+      vm.pictureUrl = vm.userInfo.pictureUrl;
+    })
+  } else {
+      vm.pictures = Users.getUserPictures($rootScope.logInfo.$id, vm.org);
+      vm.userInfo = $rootScope.logInfo;
+      vm.username = vm.userInfo.username;
+      vm.email = vm.userInfo.email;
+      vm.pictureUrl = vm.userInfo.pictureUrl;
+  }
+
+    vm.host = window.host;
 
   vm.open = function () {
   //Opens modal for uploading

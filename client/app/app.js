@@ -44,7 +44,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	// need to dynamically create routes based on the rooms available
 
-	$urlRouterProvider.otherwise('/404');
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 
@@ -56,7 +56,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		}
 	})
 	.state('landing', {
-		url: '',
+		url: '/',
 		templateUrl: 'app/templates/landing.html',
 		data: {
 			requireLogin: false
@@ -177,29 +177,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			requireLogin: true
 		}
 	});
-
-	// function authenticate ($q, $rootScope, $state, $timeout, $stateParams, Auth){
-	// 	if(window.localStorage.uid){
-	// 		$rootScope.shouldShow = false;
-	// 		if(!rootScope.logInfo){
-	// 			Auth.refereshUser(function(logInfo){
-	// 				debugger;
-	// 				$rootScope.logInfo = logInfo;
-	// 				return $q.when();
-	// 			})
-	// 		}
-	// 		return $q.when()
-	// 	} else if (!requireLogin){
-	// 		return $q.when();
-	// 	} else {
-	// 		$timeout(function(){
-	// 			$rootScope.shouldShow = true;
-	// 			$state.go('signin', {org: $stateParams.org});
-	// 		})
-
-	// 		return $q.reject();
-	// 	}
-	// }
 });
 
 app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeout){
@@ -210,17 +187,14 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 
 	$rootScope.$on('$stateChangeStart', function (event, toState){
 		var requireLogin = toState.data.requireLogin;
-		// if(toState.name === 'landing'){
-		// 	$state.go(toState);
-		// }
 
 		if(requireLogin && !$rootScope.logInfo){
 			console.log('rootScope deleted');
 			if(window.localStorage.uid){
 				console.log('user refreshed');
-				Auth.refreshUser(function(){
+				Auth.refreshUser(function(logInfo){
 					$rootScope.shouldShow = false;
-					// $rootScope.logInfo = logInfo;
+					$rootScope.logInfo = logInfo;
 					// console.dir($stateParams);
 					$state.go(toState, {org: $stateParams.org});	
 				});
@@ -229,12 +203,17 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 				$state.go('signin', {org: $location.$$path.slice(1)})	
 			}
 		}
+	});
+
+	$rootScope.$on('$stateChangeSuccess', function (event, toState){
+		var requireLogin = toState.data.requireLogin;
 
 		if(requireLogin && $rootScope.logInfo){
 			$rootScope.shouldShow = false;
 			console.log('user logged in $stateP: ', $stateParams.org);
 			console.log('user logged in rootScope: ', $rootScope.logInfo.org);
 			if($rootScope.logInfo.org !== $stateParams.org){
+				$rootScope.shouldShow = true;
 				$state.go('404');
 			}
 		}
