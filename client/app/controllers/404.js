@@ -5,15 +5,15 @@ angular.module('404Ctrl', ['firebase'])
         var vm = this;
 
         // when the state changes, set the org property to the current location for routing purpose
-        $rootScope.$on('$stateChangeSuccess', function() {
+        $rootScope.$on('$stateChangeStart', function() {
             vm.org = $stateParams.org;
         });
 
         // logout and redirect to landing page
-        vm.goToLanding = function() {
-            $state.go('landing');
-            $rootScope.logInfo = null;
-            Auth.signout();
-        };
+        // vm.goToLanding = function() {
+        //     $state.go('landing');
+        //     $rootScope.logInfo = null;
+        //     Auth.signout();
+        // };
 
     });

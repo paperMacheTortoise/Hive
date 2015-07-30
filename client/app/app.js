@@ -44,7 +44,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	// need to dynamically create routes based on the rooms available
 
-	$urlRouterProvider.otherwise('');
+	$urlRouterProvider.otherwise('/404');
 
 	$stateProvider
 
@@ -163,13 +163,13 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 			requireLogin: true
 		}
 	})
-	// .state('404', {
-	// 	url: '404',
-	// 	templateUrl: 'app/templates/404.html',
-	// 	data: {
-	// 		requireLogin: false
-	// 	}
-	// })
+	.state('404', {
+		url: '404',
+		templateUrl: 'app/templates/404.html',
+		data: {
+			requireLogin: true
+		}
+	})
 	.state('oAuth', {
 		url: '/oAuth',
 		templateUrl: 'app/templates/oAuth.html',
@@ -210,12 +210,14 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 
 	$rootScope.$on('$stateChangeStart', function (event, toState){
 		var requireLogin = toState.data.requireLogin;
-		if(toState === 'landing'){
-			$state.go(toState);
-		}
+		// if(toState.name === 'landing'){
+		// 	$state.go(toState);
+		// }
 
 		if(requireLogin && !$rootScope.logInfo){
+			console.log('rootScope deleted');
 			if(window.localStorage.uid){
+				console.log('user refreshed');
 				Auth.refreshUser(function(){
 					$rootScope.shouldShow = false;
 					// $rootScope.logInfo = logInfo;
@@ -223,14 +225,21 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 					$state.go(toState, {org: $stateParams.org});	
 				});
 			} else {
-				$timeout(function(){
-					console.log('User must log in');
-					$state.go('signin', {org: $location.$$path.slice(1)})	
-				});
-
-				return $q.reject();
+				console.log('User must log in');
+				$state.go('signin', {org: $location.$$path.slice(1)})	
 			}
 		}
+
+		if(requireLogin && $rootScope.logInfo){
+			$rootScope.shouldShow = false;
+			console.log('user logged in $stateP: ', $stateParams.org);
+			console.log('user logged in rootScope: ', $rootScope.logInfo.org);
+			if($rootScope.logInfo.org !== $stateParams.org){
+				$state.go('404');
+			}
+		}
+
+		console.log('going to state: ', toState.name);
 	});
 });
 
