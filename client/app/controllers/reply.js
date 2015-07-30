@@ -1,4 +1,4 @@
-// Angular controller for room.html
+// Angular controller for chat text reply functionality (comment threading)
 angular.module('replyCtrl', [])
 
 .controller('replyController', function (Replies, Rooms, $rootScope, $stateParams, Auth) {
