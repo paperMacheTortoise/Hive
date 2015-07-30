@@ -31,12 +31,12 @@
     </div>
   </div>
 
-
-  <div class="row">
-    <div class="col-md-6 col-md-offset-3 gallery text-center">
-      <ul class='imglist list-group'>
-        <li class='list-group-item' ng-repeat='picture in prof.pictures'><img class = 'imggal .img-thumbnail' ng-src='{{picture.url}}'></img></li>
-      </ul>
+<br>
+  <div class="row ">
+    <div class="col-sm-6 col-md-4" ng-repeat='picture in prof.pictures'>
+      <a class="thumbnail">
+        <img ng-src='{{picture.url}}'></img>
+      </a>
     </div>
   </div>
 
