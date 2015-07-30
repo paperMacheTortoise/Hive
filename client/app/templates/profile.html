@@ -1,22 +1,43 @@
-<div class='container text-center' ng-controller='ProfileController as prof'>
-	<img ng-src='{{prof.pictureUrl}}'></img>
-	<h4>{{prof.username}}</h4>
-  <h4>{{prof.jobtitle}}</h4> 
-	<h4>{{prof.email}}</h4>
-  <div>
-  	<button class='btn btn-info'ui-sref='edit({org:prof.org})'>Edit Profile</button>
+<div class='profileView container text-center' ng-controller='ProfileController as prof'>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="profile media jumbotron">
+        <div class="media-left">
+        	<img class="media-object profileImage" ng-src='{{prof.pictureUrl}}'></img>
+        </div>
+        <div class="profileInfo media-body media-middle">
+        	<div class="username media-heading"><h4>{{prof.username}}</h4></div>
+          <!-- <div class="jobtitle"><h4>{{prof.jobtitle}}</h4></div> -->
+        	<div class="email"><h4>e-mail: {{prof.email}}</h4></div>
+          <div>
+
+              <a class="linkedinlink" ng-href="http://{{prof.host}}:3000/auth/linkedin/callback" target="_blank" ng-click="prof.setFBInfo()">
+                <img ng-src="assets/linkedin-default.png"/>
+              </a>
+              <input type="checkbox" ng-checked="prof.hasLinkedin">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <br>
-  <div>
-      <a class="linkedinlink" ng-href="http://{{prof.host}}:3000/auth/linkedin/callback" target="_blank" ng-click="prof.setFBInfo()" ng-init="imgsrc='assets/linkedIn-Default.png'" ng-mouseover="imgsrc='assets/linkedIn-Hover.png'" ng-mouseout="imgsrc='assets/linkedIn-Default.png'">
-        <img ng-src="{{imgsrc}}"/>
+
+  <div class="row container">
+    <div class="col-md-6 col-md-offset-3">
+      <div class="editButtons">
+        <button class="btn btn-success" ng-click="prof.open()">Upload Images</button>
+        <button class='btn btn-info'ui-sref='edit({org:prof.org})'>Edit Profile</button>
+      </div>
+    </div>
+  </div>
+
+<br>
+  <div class="row ">
+    <div class="col-sm-6 col-md-4" ng-repeat='picture in prof.pictures'>
+      <a class="thumbnail">
+        <img ng-src='{{picture.url}}'></img>
       </a>
+    </div>
   </div>
-  <div class="text-left">
-  	<h3>Image Gallery</h3>
-    <button class="btn btn-success" ng-click="prof.open()">Upload Images</button>
-  	<ul class='imglist jumbotron list-group'>
-  		<li class='list-group-item' ng-repeat='picture in prof.pictures'><img class = 'imggal .img-thumbnail' ng-src='{{picture.url}}'></img></li>
-  	</ul>
-  </div>
+
 </div>
