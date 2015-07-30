@@ -1,10 +1,10 @@
+// angular controller for app main view
 angular.module('mainCtrl', [])
 
 .controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth) {
 
 	var vm = this;
-  // console.log('main', $stateParams);
-  // console.log('rootScope', $rootScope.logInfo);
+  // make sure the currentUser is the logged in user
   vm.currentUser = null;
   vm.org = $stateParams.org;
   if ($rootScope && $rootScope.logInfo) {
@@ -16,13 +16,16 @@ angular.module('mainCtrl', [])
   // Get all users except for the current user from the userFactory.
   vm.users = Users.getDisplayUsers(vm.currentUser, vm.org);
 
-  // Send new room to the roomFactory.
+  // Adding a new chat room to the organization
   vm.addRoom = function(e) {
+    // check for enter key-up
     if (e.keyCode === 13) {
-      var nameOfRoomToAdd = vm.nameOfRoomToAdd || 'new room';
+      var nameOfRoomToAdd = vm.nameOfRoomToAdd;
+      // if the room doesn't already exist
       if (vm.rooms.indexOf(nameOfRoomToAdd) === -1) {
-        // console.log('Adding room ', nameOfRoomToAdd);
+        // call the main factory function to add room
         Rooms.addRoom(nameOfRoomToAdd, vm.org);
+        // empty the input field
         vm.nameOfRoomToAdd = '';
         // update the list of chatrooms
         vm.rooms = Rooms.getRooms(vm.org);
