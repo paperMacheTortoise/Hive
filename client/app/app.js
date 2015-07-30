@@ -216,9 +216,6 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth){
 			// if user tries to navigate to another organization, user is redirected
 			// to 404 page
 			if($rootScope.logInfo.org !== $stateParams.org){
-				console.log('404');
-				console.log('state', $stateParams);
-				console.log('root', $rootScope.logInfo.org);
 				$rootScope.shouldShow = true;
 				$state.go('404');
 			}

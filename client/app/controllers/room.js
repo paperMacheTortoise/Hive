@@ -6,7 +6,6 @@ angular.module('roomCtrl', ['ngSanitize'])
   // Passes the roomName from the main view.
   vm.roomname = $stateParams.roomName;
   vm.org = $stateParams.org;
-  console.log('Room', vm.org);
   // Gets the messages from the roomFactory.
   vm.messages = Rooms.getRoomMessages(vm.roomname, vm.org);
   // Gets the current user.
