@@ -2,59 +2,59 @@ angular.module('visualFactory', ['firebase'])
 
 .factory('Visualization', ['$firebaseArray', '$firebaseObject',function ($firebaseArray, $firebaseObject) {
 
-	var visualFactory = {};
+  var visualFactory = {};
 
-	// Sets the current visualization ID.
-	var visualId = '';
-	visualFactory.setName = function(name){
-		visualId = name;
-	};
+  // Sets the current visualization ID.
+  var visualId = '';
+  visualFactory.setName = function(name){
+    visualId = name;
+  };
 
-	// Returns the current visualization ID. 
-	visualFactory.getName = function(){
-		return visualId;
-	};
+  // Returns the current visualization ID. 
+  visualFactory.getName = function(){
+   return visualId;
+  };
 
-	// Returns the messages from the db for the current visuatlization.
-	visualFactory.getMessages = function(org){
-		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
-		var messageRef = ref.child('messages');
-		messages = $firebaseArray(messageRef);
-		messages.$loaded(
-			function()
-			{
-				return messages;
-			});
-		return messages;
-	};
+  // Returns the messages from the db for the current visuatlization.
+  visualFactory.getMessages = function(org){
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
+    var messageRef = ref.child('messages');
+    messages = $firebaseArray(messageRef);
+    messages.$loaded(
+      function()
+      {
+        return messages;
+      });
+    return messages;
+  };
 
 	// Adds a message to the db about the current visualization.
-	visualFactory.addMessage = function(user, profileImg, text, org){
-		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
-		var messageRef = ref.child('messages');
-		messages = $firebaseArray(messageRef);
-		messages.$add({
-			username: user,
-			img: profileImg || null,
-			text: text,
-			createdAt: Firebase.ServerValue.TIMESTAMP
-		});
-	};
+  visualFactory.addMessage = function(user, profileImg, text, org){
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/visualizations');
+    var messageRef = ref.child('messages');
+    messages = $firebaseArray(messageRef);
+    messages.$add({
+      username: user,
+      img: profileImg || null,
+      text: text,
+      createdAt: Firebase.ServerValue.TIMESTAMP
+    });
+  };
 
-	visualFactory.getCustomers = function(org, callback){
-		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/Customers/0/QueryResponse/Customer');
-    	var array = $firebaseObject(ref);
-    	array.$loaded().then(function(){
-    		callback(array);
-    	});
-	};
+  visualFactory.getCustomers = function(org, callback){
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/Customers/0/QueryResponse/Customer');
+      var array = $firebaseObject(ref);
+      array.$loaded().then(function(){
+        callback(array);
+      });
+  };
 
-	// Returns data array of account information
-	visualFactory.getVisualData = function(org, account){
-		var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/'+account+'/');
-		data_array = $firebaseArray(ref);
-		return data_array;
-	};
+  // Returns data array of account information
+  visualFactory.getVisualData = function(org, account){
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/'+account+'/');
+    data_array = $firebaseArray(ref);
+    return data_array;
+  };
 
 	//Function used by the bubble chart to produce and display the tooltip to display
 	//account data when user scrolls over the chart bubbles.
@@ -244,10 +244,10 @@ angular.module('visualFactory', ['firebase'])
 
 	  while (rgx.test(x1)) {
 	    x1 = x1.replace(rgx, '$1' + ',' + '$2');
-	  }
+    }
 
-	  return x1 + x2;
-	};
+    return x1 + x2;
+  };
 
-	return visualFactory;
+  return visualFactory;
 }]);
