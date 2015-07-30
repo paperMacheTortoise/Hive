@@ -180,7 +180,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 });
 
 app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeout){
-	console.log('apprun', $stateParams);
 	// Value for ng-hide and ng-show on index. It displays the login and signup buttons when user is logged out.
 	// When user is logged in, displays profile and logout.
 	$rootScope.shouldShow = true;
@@ -188,14 +187,16 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 	$rootScope.$on('$stateChangeStart', function (event, toState){
 		var requireLogin = toState.data.requireLogin;
 
+		// checks if page requires authentication and if user is not logged in.
 		if(requireLogin && !$rootScope.logInfo){
-			console.log('rootScope deleted');
+			
+			// checks if user is still authenticated
 			if(window.localStorage.uid){
-				console.log('user refreshed');
+				// refreshes the user on the rootScope
 				Auth.refreshUser(function(logInfo){
 					$rootScope.shouldShow = false;
 					$rootScope.logInfo = logInfo;
-					// console.dir($stateParams);
+					// redirects to the page the user is reloading
 					$state.go(toState, {org: $stateParams.org});	
 				});
 			} else {
@@ -208,10 +209,12 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 	$rootScope.$on('$stateChangeSuccess', function (event, toState){
 		var requireLogin = toState.data.requireLogin;
 
+		// checks if page requires authentication and if user is signed in.
 		if(requireLogin && $rootScope.logInfo){
+			// shows the profile and logout options
 			$rootScope.shouldShow = false;
-			console.log('user logged in $stateP: ', $stateParams.org);
-			console.log('user logged in rootScope: ', $rootScope.logInfo.org);
+			// if user tries to navigate to another organization, user is redirected
+			// to 404 page
 			if($rootScope.logInfo.org !== $stateParams.org){
 				$rootScope.shouldShow = true;
 				$state.go('404');
@@ -222,60 +225,4 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth, $q, $timeou
 	});
 });
 
-	// // Checks that the user has been authenticated on each page. If not, the user is redirected to the signin page.
-	// $rootScope.$on('$stateChangeStart', function (event, toState){
-		
-	// 	// Changes navigation menu to profile and logout when user is logged in.
-	// 	var requireLogin = toState.data.requireLogin;
-	// 	if(requireLogin){
-	// 		$rootScope.shouldShow = false;
-
-	// 		if(!$rootScope.logInfo){
-	// 		// if users refreshses page without logging out check if user is still authenticated.
-	// 		// and add their information back to the rootScope.
-	// 			if(window.localStorage.uid){
-	// 				console.log('has Auth');
-	// 				Auth.refreshUser(function(logInfo){
-	// 					console.log(logInfo);
-	// 					debugger;
-	// 					$rootScope.logInfo = logInfo;
-	// 					$rootScope.shouldShow = false;
-	// 					$state.go(toState, {org: $stateParams.org});
-	// 				});
-	// 			} else {
-	// 				event.preventDefault();
-	// 				console.log('User must be logged in to access page');
-	// 				console.dir($stateParams);
-	// 				$rootScope.shouldShow = true;
-	// 					// redirect user to sign back in
-	// 				$state.go('signin', {org: $location.$$path.slice(1)});
-	// 			}
-	// 		}
-	// 	}
-	// });
-
-	// at each state chage, check if the user belongs to the organization it is navigating to
-	// $rootScope.$on('$stateChangeSuccess', function (event, toState, $stateParams) {
-	// // 	// if the user doesnt belong to this organization, redirect to landing page
-	// // 	// console.log($stateParams);
-	// // 	var requireLogin = toState.data.requireLogin;
-
-	// 	if($rootScope.logInfo.org !== $stateParams.org){
-	// 		$state.go('404');
-	// 	}
-	// });
-	// 	// if the user is logged in to one org but tries to navigate to another org
-	// 	if (requireLogin && $rootScope.logInfo.org !== $stateParams.org) {
-	// 			$state.go('404');
-	// 		// redirect to 404
-	// 		//console.log($rootScope.logInfo.org);
-	// 		//console.log($stateParams.org);
-	// 		// if(toState.name === 'main') {
-	// 		// 	//$stateParams.org = 'main';
-	// 		// 	$state.go('main');
-	// 		// }
-	// 	}
-
-	// 	console.log('going to state ', toState.name);
-	// });
 
