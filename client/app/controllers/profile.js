@@ -4,6 +4,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   var vm = this;
   vm.org = $stateParams.org;
   $rootScope.org = vm.org;
+  console.log('Profile', $stateParams);
   
   if(!$rootScope.logInfo){
     Auth.refreshUser(function(logInfo){
