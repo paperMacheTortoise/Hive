@@ -80,7 +80,9 @@ angular.module('orgsignupFactory', ['firebase'])
       // simplify the orgId to only 5 letters for demo simplicity
       orgId = orgId.substr(-5);
       ref.child(orgname + '/orgKey').set(orgId);
-      ref.child(orgname + '/rooms/general').set('this room is empty');
+
+      // create a default 'General' chat room for each org created
+      ref.child(orgname + '/rooms/General').set('this room is empty');
 
       // send out email to creator of the org with orgId
       var link = 'http://'+window.host+':3000/#/'+orgname+'/signup';
@@ -111,6 +113,7 @@ angular.module('orgsignupFactory', ['firebase'])
               console.log('error sending email invite');
             });
           var fireArr = $firebaseArray(new Firebase('https://bizgramer.firebaseio.com/'+orgname+'/rooms/General'));
+          // initial default chat message for General chat room
           fireArr.$add({username:'Hive Helper', text:'Start typing below to begin chatting',img:'assets/hive.jpg', createdAt: Firebase.ServerValue.TIMESTAMP}).then(function(){
             console.log('set up general');
           });
