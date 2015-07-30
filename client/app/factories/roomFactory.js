@@ -67,6 +67,7 @@ angular.module('roomFactory', ['firebase'])
   roomsFactory.addRoom = function (roomname, org) {
     var url = "https://bizgramer.firebaseio.com/"+org+"/rooms/";
     var addRoomRef = new Firebase(url);
+    // set the room child node on fb to hold a temporary string since firebase wont save an empty node
     addRoomRef.child(roomname).set('this room is empty');
   };
 
