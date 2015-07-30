@@ -1,7 +1,7 @@
 // Angular controller for room.html
 angular.module('replyCtrl', [])
 
-.controller('replyController', function (Replies, Rooms, $rootScope, $stateParams) {
+.controller('replyController', function (Replies, Rooms, $rootScope, $stateParams, Auth) {
 
   var vm = this;
   vm.org = $stateParams.org;
@@ -9,9 +9,18 @@ angular.module('replyCtrl', [])
   // Value for toggling the reply option.
   vm.isReplying = false;
   // Gets the current user's username.
-  vm.user = $rootScope.logInfo;
-  vm.replyusername = vm.user.username;
-  vm.profileImg = vm.user.pictureUrl;
+  if(!$rootScope.logInfo){
+    Auth.refreshUser(function(logInfo){
+      $rootScope.logInfo = logInfo;
+      vm.user = $rootScope.logInfo;
+      vm.replyusername = vm.user.username;
+      vm.profileImg = vm.user.pictureUrl;
+    });
+  } else {
+    vm.user = $rootScope.logInfo;
+    vm.replyusername = vm.user.username;
+    vm.profileImg = vm.user.pictureUrl;
+  }
 
   // Toggle to show the reply input box
   vm.toggleReplying = function() {
