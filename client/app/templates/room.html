@@ -1,11 +1,14 @@
 <!-- angular room ui template -->
 <div class="chatroom" ng-controller="roomController as room">
 
-  <div><header><h3>{{ room.roomname }}</h3></header></div>
-<!-- displaying all messages for this room -->
+  <div>
+    <header><h3>{{ room.roomname }}</h3></header>
+    <input class="form-control" text="text" ng-model="searchTxt" placeholder="seach chat" />
+  </div>
+  <!-- displaying all messages for this room -->
   <div class="chatMessages" scroll-glue>
     <ol class="chats">
-      <li class="cmmnt" ng-repeat="msg in room.messages track by $index" ng-controller="replyController as reply">
+      <li class="cmmnt" ng-repeat="msg in room.messages | filter:searchTxt" ng-controller="replyController as reply">
         <img class="profileImg" ng-src="{{ msg.img }}"></img>
         <div class="cmmntBox">
           <div class="username">{{ msg.username }}</div>
