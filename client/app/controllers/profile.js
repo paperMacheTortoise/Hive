@@ -82,5 +82,5 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
 
   $scope.cancel = function() {
     $modalInstance.dismiss('cancel');
-  }
+  };
 });
