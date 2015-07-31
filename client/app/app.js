@@ -37,7 +37,6 @@ var app = window.bizGramApp = angular.module('bizGramApp', [
   'ngImgur',
   'oAuthFactories',
   'ngSanitize',
-  'profitFactory',
   'profitCtrl'
   ]);
 
