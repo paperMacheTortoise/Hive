@@ -4,18 +4,8 @@ angular.module('profitCtrl', [])
 
   var ProfitChart = function(dates) {
 
-    var layers = this.createLayers(dates);
-
-  var createProfit = function(dates) {
-    var profit = [];
-    for(var i = 0; i < dates.length; i++){
-      profit.push(parseInt(dates[i]["Net Earnings"],10));
-    }
-    profit = profit.map(function(d, i) { return {x: i, y: d}; });
-    return profit;
-  };
-
-  var profit = createProfit(dates);
+  this.layers = this.createLayers(dates);
+  this.profit = this.createProfit(dates);
 
   var n = 3, // number of layers
       m = 11;
@@ -26,9 +16,10 @@ angular.module('profitCtrl', [])
     height = 400 - margin.top - margin.bottom;
 
   var extents = [];
-  extents = extents.concat(d3.extent(layers[0].map(function(d) {return d.y; })));
-  extents = extents.concat(d3.extent(layers[1].map(function(d) {return d.y; })));
-  extents = extents.concat(d3.extent(layers[2].map(function(d) {return d.y; })));
+
+  extents = extents.concat(d3.extent(this.layers[0].map(function(d) {return d.y; })));
+  extents = extents.concat(d3.extent(this.layers[1].map(function(d) {return d.y; })));
+  extents = extents.concat(d3.extent(this.layers[2].map(function(d) {return d.y; })));
   var yGroupExtents = d3.extent(extents);
 
   var yScale = d3.scale.linear()
@@ -118,17 +109,16 @@ angular.module('profitCtrl', [])
         .attr("height", function(d) { return Math.abs( yScale(d.y) - y0() ); });
     };
 
-  var change = function() {
-    if(this.value === "grouped") {
-      this.changeDisplay(layers);
+  this.change = function(view) {
+    if(view === "revenueButton") {
+      this.changeDisplay(this.layers);
     }
     else {
-      this.changeDisplay([profit]);
+      this.changeDisplay([this.profit]);
     }
   };
-
-  d3.selectAll("input").on("change", change );
-  this.changeDisplay(layers);
+  
+    this.changeDisplay(this.layers);
   };
 
   ProfitChart.prototype.createLayers = function (dates) {
@@ -152,6 +142,15 @@ angular.module('profitCtrl', [])
     return layers;
   };
 
+  ProfitChart.prototype.createProfit = function(dates) {
+    var profit = [];
+    for(var i = 0; i < dates.length; i++){
+      profit.push(parseInt(dates[i]["Net Earnings"],10));
+    }
+    profit = profit.map(function(d, i) { return {x: i, y: d}; });
+    return profit;
+  };
+
   var profit_data = Visualization.getProfitData();
 
   profit_data.$loaded(function(){
@@ -161,7 +160,7 @@ angular.module('profitCtrl', [])
           var view_type = $(this).attr('id');
           $('#view_selection a').removeClass('active');
           $(this).toggleClass('active');
-
+          chart.change(view_type);
       })
   });
 
