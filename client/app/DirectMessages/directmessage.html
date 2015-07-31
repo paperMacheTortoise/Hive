@@ -1,7 +1,7 @@
 <div class="directmessage" ng-controller="directMessageController as dm">
 
 	<div class="dmChatMessages" scroll-glue>
-		<header><h3>{{dm.recipient}}</h3></header>
+		<div><header><h3>{{dm.recipient}}</h3></header><div>
     <input class="form-control" text="text" ng-model="searchTxt" placeholder="seach chat" />
 		<ol class="chats">
 			<li class="cmmnt" ng-repeat="msg in dm.messages | filter:searchTxt">
