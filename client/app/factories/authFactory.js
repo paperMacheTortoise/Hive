@@ -95,11 +95,8 @@ angular.module('authFactory', ['firebase'])
 
 	authFactory.signout = function(){
 		authObj.$unauth();
-<<<<<<< HEAD
     delete window.localStorage.uid;
-=======
-    // $state.go('landing');
->>>>>>> kari changes
+
 	};
 
 	return authFactory;

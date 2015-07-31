@@ -14,11 +14,11 @@ module.exports = function(grunt) {
     },
 
     karma: {
-      unit: {
-        configFile: 'specs/karma-unit.config.js',
-        autoWatch: false,
-        singleRun: true
-      },
+      // unit: {
+      //   configFile: 'specs/karma-unit.config.js',
+      //   autoWatch: false,
+      //   singleRun: true
+      // },
       midway: {
         configFile: 'specs/karma-midway.config.js',
         autoWatch: false,

@@ -2,7 +2,7 @@ angular.module('visualFactory', ['firebase'])
 
 .factory('Visualization', ['$firebaseArray', '$firebaseObject',function ($firebaseArray, $firebaseObject) {
 
-<<<<<<< HEAD
+
   var visualFactory = {};
 
   // Sets the current visualization ID.
