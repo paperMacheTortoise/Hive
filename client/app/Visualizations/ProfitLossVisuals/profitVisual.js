@@ -117,7 +117,7 @@ angular.module('profitCtrl', [])
       this.changeDisplay([this.profit]);
     }
   };
-  
+
     this.changeDisplay(this.layers);
   };
 
@@ -161,7 +161,7 @@ angular.module('profitCtrl', [])
           $('#view_selection a').removeClass('active');
           $(this).toggleClass('active');
           chart.change(view_type);
-      })
+      });
   });
 
 }]);
