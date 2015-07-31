@@ -8,141 +8,112 @@
 @cream: #EBE3E0;
 
 body {
-  background-color: lighten(@darkpurple, 30%);
+  background-color: #999ca8;
   color: #FFFFFF;
 }
-
 h1 {
   text-align: left;
 }
-a, a:visited, a:active {
+a,
+a:visited,
+a:active {
   color: #444;
 }
-
 .navbar {
-  background-color: @darkpurple;
-  .container li a, .navbar-brand {
-    color: #FFFFFF;
-    &:hover, &:focus {
-      background-color: lighten(@darkpurple, 5%);
-      color: #FFFFFF;
-    }
-  }
+  background-color: #4d505b;
 }
-
+.navbar .container li a,
+.navbar .navbar-brand {
+  color: #FFFFFF;
+}
+.navbar .container li a:hover,
+.navbar .navbar-brand:hover,
+.navbar .container li a:focus,
+.navbar .navbar-brand:focus {
+  background-color: #595c69;
+  color: #FFFFFF;
+}
 .navbar-brand img {
   height: 30px;
   width: 70px;
 }
-
-button a{
+button a {
   color: #FFFFFF;
 }
-
 #vis {
   width: 740px;
   height: 600px;
   clear: both;
   margin-bottom: 10px;
 }
-
 footer {
   text-align: center;
 }
-
 #view_selection {
   margin-top: 10px;
 }
-
 .past_due {
   font-size: 21px;
   fill: #444;
 }
-
 .tooltip {
   position: absolute;
   top: 100px;
   left: 100px;
-    -moz-border-radius:5px;
+  -moz-border-radius: 5px;
   border-radius: 5px;
-    border: 2px solid #000;
-    background: #fff;
+  border: 2px solid #000;
+  background: #fff;
   opacity: .9;
-    color: black;
+  color: black;
   padding: 10px;
   width: 300px;
   font-size: 12px;
   z-index: 10;
 }
-.maptip{
+.maptip {
   top: 0;
   left: 0;
 }
-
 .tooltip .title {
   font-size: 13px;
 }
-
 .tooltip .name {
-  font-weight:bold;
+  font-weight: bold;
 }
-
-// Profile Styles
-.profileView {
-  color: black;
-}
-.profileImage {
-  height: 150px;
-}
-
-//modal
-.modal-title {
-  color: black;
-}
-
-// Chatroom styles
 .chatRoomView {
   color: black;
   background-color: white;
-  border: 1px solid @darkpurple;
+  border: 1px solid #4d505b;
   height: 650px;
 }
-
 ol {
   list-style-type: none;
 }
-
 .username {
   font-weight: bold;
 }
-
 .time {
   color: gray;
 }
-
-// Main Styles
 .userImg {
   width: 50px;
   height: 50px;
   border: 1px solid;
 }
-
 .main-menu li a {
   padding: 0;
 }
-
-// Chatroom Styles
-
 .chats {
   display: block;
 }
-
-.chats .cmmnt, ol .cmmnt, ol ol .cmmnt {
+.chats .cmmnt,
+ol .cmmnt,
+ol ol .cmmnt {
   display: block;
   position: relative;
   padding-left: 20px;
 }
-
 .profileImg {
   position: absolute;
   top: 8px;
@@ -153,36 +124,24 @@ ol {
   height: 50px;
   width: 50px;
 }
-
-// Main Styles
 .userImg {
   width: 50px;
   height: 50px;
   border: 1px solid;
 }
-
 .main-menu a {
   padding: 0;
 }
-
-// Chatroom Styles
-
-.thumbnail {
-  height: 200px;
-  width: 200px;
-  margin: 10px;
-}
-
 .chats {
   display: block;
 }
-
-.chats .cmmnt, ol .cmmnt, ol ol .cmmnt {
+.chats .cmmnt,
+ol .cmmnt,
+ol ol .cmmnt {
   display: block;
   position: relative;
   padding-left: 30px;
 }
-
 .profileImg {
   position: absolute;
   top: 10px;
@@ -193,18 +152,31 @@ ol {
   height: 50px;
   width: 50px;
 }
-
 .chats .cmmnt .cmmntBox {
   padding: 0 30px;
-  padding-bottom: 10px; 
+  padding-bottom: 10px;
   padding-top: 10px;
 }
-
 .chats .cmmnt .replies {
   margin-bottom: 0px;
 }
-
 .chatMessages {
+  position: absolute;
+  bottom: 8%;
+  top: 2%;
+  width: 100%;
+  overflow: scroll;
+  margin-top: 100px;
+  padding-top: 15px;
+}
+.chats {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.dmChatMessages {
   position: absolute;
   bottom: 12%;
   top: 0%;
@@ -212,22 +184,41 @@ ol {
   overflow: scroll;
 }
 
+// Profile Changes
+.thumbnail {
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+}
+
+.profileView {
+ color: black;
+}
+
+.profileImage {
+  height: 150px;
+}
+
+.modal-title {
+  color: black;
+}
+
 .submitText {
   position: static;
 }
-
 .textBox {
   position: absolute;
-  background-color: @teal;
-  width: 100%;
+  border-radius: 35px;
+  width: 95%;
   height: 10%;
-  padding: 16px;
+  margin: 16px;
   top: 90%;
   left: 0%;
 }
-
-// Visualization Styles
 .visualization {
   margin-left: 30px;
   margin-right: 30px;
+}
+#textInput {
+  resize: none;
 }
