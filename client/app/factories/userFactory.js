@@ -36,6 +36,7 @@ angular.module('userFactory', ['firebase'])
 		return updatedUsers;
 	};
 
+
   //Fetches the user picture from the database
   userFactory.getUserPictures = function(key, org){
     console.log('User factory', key);
