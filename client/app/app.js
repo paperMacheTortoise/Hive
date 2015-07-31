@@ -217,6 +217,9 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth){
 			// to 404 page
 			if($rootScope.logInfo.org !== $stateParams.org){
 				$rootScope.shouldShow = true;
+				if(toState.name === '404'){
+					$state.go('landing');
+				}
 				$state.go('404');
 			}
 		}
