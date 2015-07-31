@@ -22,7 +22,9 @@ angular.module('indexCtrl', ['firebase', ])
     };
 
     vm.logout = function () {
-      $state.go('logout');
+      $rootScope.logInfo = null;
+      Auth.signout();
+      $state.go('landing');
     };
 
   });
