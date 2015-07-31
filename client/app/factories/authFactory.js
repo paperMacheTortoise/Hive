@@ -1,7 +1,7 @@
 angular.module('authFactory', ['firebase'])
 
 
-.factory('Auth', ['$firebaseAuth', '$firebaseArray', 'Users', function ($firebaseAuth, $firebaseArray, Users){
+.factory('Auth', ['$firebaseAuth', '$firebaseArray', 'Users', '$stateParams', function ($firebaseAuth, $firebaseArray, Users, $stateParams){
 
 
 	var authFactory = {};

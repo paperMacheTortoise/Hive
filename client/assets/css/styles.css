@@ -6898,6 +6898,11 @@ ol ol .cmmnt {
 .main-menu a {
   padding: 0;
 }
+.thumbnail {
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+}
 .chats {
   display: block;
 }

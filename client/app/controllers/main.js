@@ -6,9 +6,11 @@ angular.module('mainCtrl', [])
 	var vm = this;
   // make sure the currentUser is the logged in user
   vm.currentUser = null;
+  vm.profileUrl = null;
   vm.org = $stateParams.org;
   if ($rootScope && $rootScope.logInfo) {
     vm.currentUser = $rootScope.logInfo.username;
+    vm.profileUrl = $rootScope.logInfo.pictureUrl;
   }
 
   // Get the rooms from the roomFactory.
