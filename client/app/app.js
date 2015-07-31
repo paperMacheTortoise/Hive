@@ -2,7 +2,6 @@
 window.host = 'localhost';
 
 var app = window.bizGramApp = angular.module('bizGramApp', [
-
 	'indexCtrl',
 	'404Ctrl',
 	'orgsignupCtrl',
@@ -33,6 +32,8 @@ var app = window.bizGramApp = angular.module('bizGramApp', [
 	'mapCtrl',
 	'EditCtrl',
 	'connectIntuitAngular',
+	'uploadAngular',
+	'uploadCtrl',
 	'ngImgur',
 	'oAuthFactories',
 	'ngSanitize',
@@ -50,21 +51,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 	.state('orgsignup', {
 		url: '/orgsignup',
-		templateUrl: 'app/templates/orgsignup.html',
+		templateUrl: 'app/Authentication/orgsignup.html',
 		data: {
 			requireLogin: false
 		}
 	})
 	.state('landing', {
 		url: '/',
-		templateUrl: 'app/templates/landing.html',
+		templateUrl: 'app/Authentication/landing.html',
 		data: {
 			requireLogin: false
 		}
 	})
 	.state('main', {
 		url: '/:org',
-		templateUrl: 'app/templates/main.html',
+		templateUrl: 'app/MainMenu/main.html',
 		data: {
 			requireLogin: true // applies to all children.
 		}
@@ -72,21 +73,21 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('main.room', {
 		url: '/room/:roomName',
 		parent: 'main',
-		templateUrl: 'app/templates/room.html'
+		templateUrl: 'app/Chatroom/room.html'
 	})
 	.state('main.invite', {
 		url: '/invite',
 		parent: 'main',
-		templateUrl: 'app/templates/invite.html'
+		templateUrl: 'app/Invites/invite.html'
 	})
 	.state('main.direct', {
 		url: '/dm/:user',
 		parent: 'main',
-		templateUrl: 'app/templates/directmessage.html'
+		templateUrl: 'app/DirectMessages/directmessage.html'
 	})
 	.state('visual', {
 		url:'/:org/visual',
-		templateUrl: 'app/templates/visualization.html',
+		templateUrl: 'app/Visualizations/visualization.html',
 		data: {
 			requireLogin: true // applies to all children
 		}
@@ -94,35 +95,33 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('visual.ARVisual', {
 		url:'/ARVisual',
 		parent:'visual',
-		templateUrl: 'app/templates/aRVisualization.html',
+		templateUrl: 'app/Visualizations/aRVisualization.html',
 	})
 	.state('visual.APVisual', {
 		url:'/APVisual',
 		parent:'visual',
-		templateUrl: 'app/templates/aPVisualization.html',
+		templateUrl: 'app/Visualizations/aPVisualization.html',
 	})
 	.state('visual.CustomerMap', {
 		url:'/customerMap',
 		parent:'visual',
-		templateUrl: 'app/templates/map.html',
+		templateUrl: 'app/Visualizations/map.html',
 	})
 	.state('visual.profit', {
 		url: '/profit',
 		parent: 'visual',
-		templateUrl: 'app/templates/profitviz.html',
+		templateUrl: 'app/Visualizations/profitviz.html',
 	})
 	.state('signin',{
 		url: '/:org/signin',
-		templateUrl: 'app/templates/signin.html',
-		controller:'SigninController',
+		templateUrl: 'app/Authentication/signin.html',
 		data: {
 			requireLogin: false
 		}
 	})
 	.state('signup',{
 		url: '/:org/signup',
-		templateUrl:'app/templates/signup.html',
-		controller:'SignupController',
+		templateUrl:'app/Authentication/signup.html',
 		data: {
 			requireLogin: false
 		}
@@ -142,30 +141,35 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	})
 	.state('linkedin',{
 		url: '/:org/linkedinsuccess',
-		templateUrl: 'app/templates/linkedinsuccess.html',
+		templateUrl: 'app/LinkedIn/linkedinsuccess.html',
 		data: {
 			requireLogin: true
 		}
 	})
 	.state('profile',{
 		url: '/:org/profile',
-		templateUrl: 'app/templates/profile.html',
-		controller: 'ProfileController',
+		templateUrl: 'app/Profile/profile.html',
 		data: {
 			requireLogin: true
 		}
 	})
 	.state('edit',{
 		url: '/:org/edit',
-		templateUrl: 'app/templates/profile-edit.html',
-		controller: 'EditController',
+		templateUrl: 'app/Profile/Edit/profile-edit.html',
 		data: {
 			requireLogin: true
 		}
 	})
 	.state('404', {
 		url: '404',
-		templateUrl: 'app/templates/404.html',
+		templateUrl: 'app/Errors/404.html',
+		data: {
+			requireLogin: true
+		}
+	})
+	.state('oAuth', {
+		url: '/oAuth',
+		templateUrl: 'app/Quickbooks/oAuth.html',
 		data: {
 			requireLogin: true
 		}

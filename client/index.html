@@ -34,41 +34,43 @@
 	<script src="lib/angular-moment/angular-moment.js"></script>
 
 	<!-- Controllers -->
-	<script src='app/controllers/index.js'></script>
-	<script src='app/controllers/orgsignup.js'></script>
-	<script src='app/controllers/invite.js'></script>
-	<script src='app/controllers/404.js'></script>
-	<script src='app/controllers/profile.js'></script>
-	<script src='app/controllers/edit.js'></script>
-	<script src='app/controllers/auth.js'></script>
-	<script src="app/controllers/directmessage.js"></script>
-	<script src="app/controllers/main.js"></script>
-	<script src="app/controllers/room.js"></script>
-	<script src="app/controllers/reply.js"></script>
-	<script src="app/controllers/aRVisual.js"></script>
-	<script src="app/controllers/aPVisual.js"></script>
-	<script src="app/controllers/visual.js"></script>
-	<script src="app/controllers/visualReply.js"></script>
-	<script src="app/controllers/map.js"></script>
-	<script src="app/controllers/profit.js"></script>
+	<script src='./indexCtrl.js'></script>
+	<script src='app/Authentication/authCtrl.js'></script>
+	<script src='app/Authentication/orgsignupCtrl.js'></script>
+	<script src="app/Chatroom/roomCtrl.js"></script>
+	<script src="app/Chatroom/visualRoomCtrl.js"></script>
+	<script src="app/Chatroom/Replies/replyCtrl.js"></script>
+	<script src="app/Chatroom/Replies/visualReplyCtrl.js"></script>
+	<script src="app/DirectMessages/directmessageCtrl.js"></script>
+	<script src='app/Errors/404Ctrl.js'></script>
+	<script src='app/Invites/inviteCtrl.js'></script>
+	<script src="app/MainMenu/mainCtrl.js"></script>
+	<script src='app/Profile/profileCtrl.js'></script>
+	<script src='app/Profile/Edit/profileEditCtrl.js'></script>
+	<script src='app/Profile/Upload/uploadCtrl.js'></script>
+	<script src="app/Visualizations/aRVisual.js"></script>
+	<script src="app/Visualizations/aPVisual.js"></script>
+	<script src="app/Visualizations/map.js"></script>
+	<script src="app/Visualizations/profit.js"></script>
 	<script src="app/app.js"></script>
 	
 	<!-- Factories -->
-	<script src="app/factories/orgsignupFactory.js"></script>
-	<script src="app/factories/inviteFactory.js"></script>
-	<script src="app/factories/replyFactory.js"></script>
-	<script src="app/factories/authFactory.js"></script>
-	<script src="app/factories/dmFactory.js"></script>
-	<script src="app/factories/roomFactory.js"></script>
-	<script src="app/factories/userFactory.js"></script>
-	<script src="app/factories/uploadFactory.js"></script>
-	<script src="app/factories/linkedinFactory.js"></script>
-	<script src="app/factories/visualFactory.js"></script>
-	<script src="app/factories/oAuthFactory.js"></script>
-	<script src="app/factories/profitFactory.js"></script>
+	<script src="app/Authentication/authFactory.js"></script>
+	<script src="app/Authentication/orgsignupFactory.js"></script>
+	<script src="app/Authentication/userFactory.js"></script>
+	<script src="app/Chatroom/roomFactory.js"></script>
+	<script src="app/Chatroom/Replies/replyFactory.js"></script>
+	<script src="app/DirectMessages/dmFactory.js"></script>
+	<script src="app/Invites/inviteFactory.js"></script>
+	<script src="app/LinkedIn/linkedinFactory.js"></script>
+	<script src="app/Profile/Upload/uploadFactory.js"></script>
+	<script src="app/Quickbooks/oAuthFactory.js"></script>
+	<script src="app/Visualizations/visualFactory.js"></script>
+	<script src="app/Visualizations/profitFactory.js"></script>
 
 	<!-- Custom Directives -->
-	<script src="app/directives/quickbooks.js"></script>
+	<script src="app/Directives/quickbooks.js"></script>
+	<script src="app/Directives/upload.js"></script>
 
 </head>
 <body ng-app="bizGramApp">

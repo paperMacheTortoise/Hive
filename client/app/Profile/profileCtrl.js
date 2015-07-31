@@ -36,7 +36,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   //Opens modal for uploading
     var modalInstance = $modal.open({
       animation: true,
-      templateUrl: 'app/templates/upload.html',
+      templateUrl: 'app/Profile/Upload/upload.html',
       controller: 'UploadController',
       size: 'sm'
     });
@@ -50,37 +50,5 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   vm.setFBInfo = function(){
     LinkedinAuth.setFBInfo(vm.org, $rootScope.logInfo.$id);
   };
-})
-
-.directive('customOnChange', function () {
-  return {
-    restrict: 'A',
-    link: function (scope, element, attrs) {
-      var onChangeHandler = scope.$eval(attrs.customOnChange);
-      element.bind('change', onChangeHandler);
-    }
-  };
-})
-
-.controller('UploadController', function ($modalInstance, $scope, Upload, Users, $rootScope){
-  $scope.file = null;
-
-  $scope.change= function(evt){
-    $scope.file = evt.target.files[0];
-    Upload.putFile($scope.file,$scope.file.name,function(imgUrl){
-      // var users = Users.getUsers();
-      console.log(imgUrl);
-      var key = $rootScope.logInfo.$id;
-      var pictures = Users.getUserPictures(key, $rootScope.org);
-      pictures.$add({url:imgUrl});
-    });
-  };
-
-  $scope.ok = function () {
-    $modalInstance.close('ok');
-  };
-
-  $scope.cancel = function() {
-    $modalInstance.dismiss('cancel');
-  };
 });
+
