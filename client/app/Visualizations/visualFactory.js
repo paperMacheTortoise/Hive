@@ -44,7 +44,7 @@ angular.module('visualFactory', ['firebase'])
 
   // Fetches customer information that was populated from Quickbooks in the DB.
   visualFactory.getCustomers = function(org, callback){
-    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/Customers/0/QueryResponse/Customer');
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/BizData/Customers/QueryResponse/Customer');
       var array = $firebaseObject(ref);
       array.$loaded().then(function(){
         callback(array);
