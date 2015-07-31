@@ -1,8 +1,13 @@
 <div class="directmessage" ng-controller="directMessageController as dm">
 
-	<div class="dmChatMessages" scroll-glue>
-		<div><header><h3>{{dm.recipient}}</h3></header><div>
-    <input class="form-control" text="text" ng-model="searchTxt" placeholder="seach chat" />
+	<div class="chatroom" scroll-glue>
+		<div>
+			<header><h3>{{dm.recipient}}</h3></header>
+		    <div class="form-group has-feedback">
+		      <input class="searchBox form-control" text="text" ng-model="searchTxt" placeholder="Search">
+		      <i class="glyphicon glyphicon-search form-control-feedback"></i>
+		    </div>
+    	</div>
 		<ol class="chats">
 			<li class="cmmnt" ng-repeat="msg in dm.messages | filter:searchTxt">
 				<img class="profileImg" ng-src="{{ msg.img }}"></img>
@@ -18,7 +23,7 @@
 	</div>
 
 	<div class="textBox">
-		<input class="form-control submitText" ng-model="dm.text" ng-keydown="dm.addMessage($event)" type="text" placeholder="add a message" />
+		<input class="form-control submitText textInput" ng-model="dm.text" ng-keydown="dm.addMessage($event)" type="text" placeholder="add a message" />
 	</div>
 
 </div>

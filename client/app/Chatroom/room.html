@@ -3,7 +3,10 @@
 
   <div>
     <header><h3>{{ room.roomname }}</h3></header>
-    <input class="form-control" text="text" ng-model="searchTxt" placeholder="seach chat" />
+    <div class="form-group has-feedback">
+      <input class="searchBox form-control" text="text" ng-model="searchTxt" placeholder="Search">
+      <i class="glyphicon glyphicon-search form-control-feedback"></i>
+    </div>
   </div>
   <!-- displaying all messages for this room -->
   <div class="chatMessages" scroll-glue>
@@ -47,6 +50,6 @@
 
 <!-- input area -->
   <div class="textBox">
-      <textarea class="form-control submitText" ng-model="room.text" ng-keydown="room.addMessage($event)" rows="1" cols="26" name="text" id="textInput" placeholder="add a message" />
+      <textarea class="form-control submitText textInput" ng-model="room.text" ng-keydown="room.addMessage($event)" rows="1" cols="26" name="text" placeholder="add a message" />
   </div>
 </div>

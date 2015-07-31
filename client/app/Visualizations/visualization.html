@@ -1,14 +1,21 @@
 
-<div class="visualization">
+<div class="visualization container">
   <div class="row">
     <div class="col-sm-8 col-md-8">
       <div ui-view></div>
     </div>
 
     <div class="col-sm-4 col-md-4 chatRoomView" ng-controller="visualController as vis">
+      <div>
+        <header><h3>Reports</h3></header>
+        <div class="form-group has-feedback">
+          <input class="searchBox form-control" text="text" ng-model="searchTxt" placeholder="Search">
+          <i class="glyphicon glyphicon-search form-control-feedback"></i>
+        </div>
+      </div>
       <div class="chatMessages" scroll-glue>
         <ol class="chats">
-          <li class="cmmnt" ng-repeat="msg in vis.messages track by $index" ng-controller="visualReplyController as rep">
+          <li class="cmmnt" ng-repeat="msg in vis.messages | filter:searchTxt" ng-controller="visualReplyController as rep">
             <img class="profileImg" ng-src="{{ msg.img }}"></img>
             <div class="cmmntBox">
               <div class="username">{{ msg.username }}</div>
@@ -26,7 +33,7 @@
                   <div class="username">{{reply.username}}</div>
                   <div ng-bind-html='reply.text | linky' class="message"></div>
                   <div class="time">
-                    <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span> &middot;
+                    <span class="time" am-time-ago="reply.createdAt">{{ reply.createdAt }}</span>
                   </div>
                 </div>
               </li>
@@ -41,7 +48,7 @@
       </div>
 
       <div class="textBox">
-        <input class="form-control submitText" ng-model="vis.text" ng-keydown="vis.addMessage($event)" type="text" id="textInput" placeholder="add a message">
+        <input class="form-control submitText textInput" ng-model="vis.text" ng-keydown="vis.addMessage($event)" type="text" placeholder="add a message">
       </div>
     </div>
 
