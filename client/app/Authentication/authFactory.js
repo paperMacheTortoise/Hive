@@ -15,7 +15,7 @@ angular.module('authFactory', ['firebase'])
   };
 
   authFactory.checkLogin = function(){
-    authFactory.getAuth(function(data){
+    authFactory.getAuth(function(err, data){
       return data;
     });
   };

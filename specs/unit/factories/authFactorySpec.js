@@ -1,4 +1,3 @@
-MockFirebase.override();
 describe('authFactory tests', function() {
   var Auth, $firebaseAuth, $firebaseArray, Users;
 
@@ -6,6 +5,7 @@ describe('authFactory tests', function() {
   beforeEach(module('userFactory'));
 
   beforeEach(inject(function(_Auth_, _$firebaseAuth_, $injector, _$firebaseArray_, _Users_){
+    MockFirebase.override();
     Auth = _Auth_;
     $firebaseAuth = _$firebaseAuth_;
     $firebaseArray = _$firebaseArray_;
@@ -13,17 +13,14 @@ describe('authFactory tests', function() {
   }));
 
   describe('Signup user ', function() {
+
     it('should have a signup function', function(){
         expect(Auth.signup).to.be.a('function');
       });
-    // it('should signup a user', function(){
 
-        
+    // it('should signup a user', function(){
     //     Auth.signup("kay@gmail.com", 'tiger', 'test', 'hr', null);
-    //     Auth.getAuth(function(data) {
-    //       expect(data).to.be.a('object');
-    //       expect(data.password.email).to.be.a('kay@gmail.com');
-    //     });
+    //     expect(Auth.checkLogin()).to.be.a('object');
     //   });
   });
 
