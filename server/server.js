@@ -1,4 +1,3 @@
-// var Firebase = require('firebase');
 var express = require('express');
 var bodyParser = require('body-parser');
 

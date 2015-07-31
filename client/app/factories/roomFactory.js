@@ -61,17 +61,13 @@ angular.module('roomFactory', ['firebase'])
       text: text,
       createdAt: Firebase.ServerValue.TIMESTAMP
     });
-      // var id = roomRef.key();
-      // console.log('added a message with id ', id); // eg. -JuDu4oKDL_nl3hBPaOP
-      // console.log('location in the array ', messages.$indexFor(id)); // eg. 3
-    // });
   };
 
   // Adds a new room to the db.
   roomsFactory.addRoom = function (roomname, org) {
     var url = "https://bizgramer.firebaseio.com/"+org+"/rooms/";
-    // console.log(url);
     var addRoomRef = new Firebase(url);
+    // set the room child node on fb to hold a temporary string since firebase wont save an empty node
     addRoomRef.child(roomname).set('this room is empty');
   };
 
