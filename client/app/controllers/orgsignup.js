@@ -7,10 +7,11 @@ angular.module('orgsignupCtrl', ['firebase','ui.bootstrap'])
     vm.orgnames = OrgSignup.getOrgs();
     vm.alerts = [];
     vm.addAlert = function(message) {
+      vm.alerts.pop();
       vm.alerts.push({type:'danger',msg: message});
     };
-    vm.closeAlert = function(index) {
-      vm.alerts.splice(index, 1);
+    vm.closeAlert = function() {
+      vm.alerts.pop();
     };
     // sign up a new organization
     vm.signupOrg = function () {

@@ -7,10 +7,11 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
     vm.addAlert = function(message) {
       message = message.toLowerCase();
       message = message.charAt(0).toUpperCase() + message.slice(1);
+      vm.alerts.pop();
       vm.alerts.push({type:'danger',msg: message});
     };
-    vm.closeAlert = function(index) {
-      vm.alerts.splice(index, 1);
+    vm.closeAlert = function() {
+      vm.alerts.pop();
     };
     vm.setupUser = function(name, email, uid, pictureUrl){
       Auth.setupUser(name, vm.org, email, uid, pictureUrl, function(error,logInfo){
@@ -61,10 +62,11 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
     vm.addAlert = function(message) {
       message = message.toLowerCase();
       message = message.charAt(0).toUpperCase() + message.slice(1);
+      vm.alerts.pop();
       vm.alerts.push({type:'danger',msg: message});
     };
-    vm.closeAlert = function(index) {
-      vm.alerts.splice(index, 1);
+    vm.closeAlert = function() {
+      vm.alerts.pop();
     };
     vm.getSignIn = function(data){
       vm.users = Users.getUsers(vm.org);
