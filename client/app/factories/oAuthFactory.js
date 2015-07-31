@@ -1,6 +1,6 @@
 angular.module('oAuthFactories', ['firebase'])
 
-.factory('oAuth',['$http', '$firebaseAuth', 'Users', function ($http, $firebaseAuth, $firebaseArray, Users){
+.factory('oAuth',['$http', function ($http){
 
   var oauthFactory = {};
   
@@ -12,7 +12,7 @@ angular.module('oAuthFactories', ['firebase'])
     $http.get('/receivable',{org:org}).success(function(){
       console.log('success');
     });
-    $http.get('/receivable',{org:org}).success(function(){
+    $http.get('/customers',{org:org}).success(function(){
       console.log('success');
     });
   };
