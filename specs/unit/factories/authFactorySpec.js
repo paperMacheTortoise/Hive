@@ -18,11 +18,11 @@ describe('authFactory tests', function() {
     it('should signup a user', function(){
 
         MockFirebase.override();
-        Auth.signup("kay@gmail.com", 'tiger', 'test', 'hr', )
+        Auth.signup("kay@gmail.com", 'tiger', 'test', 'hr', null);
         Auth.getAuth(function(data) {
           expect(data).to.be.a('object');
           expect(data.password.email).to.be.a('kay@gmail.com');
-        })
+        });
       });
   });
 
