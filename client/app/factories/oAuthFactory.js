@@ -12,7 +12,7 @@ angular.module('oAuthFactories', ['firebase'])
     $http.get('/receivable',{org:org}).success(function(){
       console.log('success');
     });
-    $http.get('/receivable',{org:org}).success(function(){
+    $http.get('/customers',{org:org}).success(function(){
       console.log('success');
     });
   };
