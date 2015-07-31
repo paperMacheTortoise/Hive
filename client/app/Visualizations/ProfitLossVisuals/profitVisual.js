@@ -2,29 +2,30 @@ angular.module('profitCtrl', [])
 
 .controller('profitController', ['Visualization', function (Visualization){
 
+  ProfitChart.prototype.createLayers = function (dates) {
+    layerone = [];
+    layertwo = [];
+    layerthree = [];
+    for(var i = 0; i < dates.length; i++){
+      layerone.push(parseInt(dates[i]["Total Cost of Sales"],10));
+      layertwo.push(parseInt(dates[i]["Total Expenses"],10));
+      layerthree.push(parseInt(dates[i]["Total Income"],10));
+    }
+    var threelayers = [];
+    layerone = layerone.map(function(d, i) { return {x: i, y: d }; });
+    layertwo = layertwo.map(function(d, i) { return {x: i, y: d }; });
+    layerthree = layerthree.map(function(d, i) { return {x: i, y: d }; });
+
+    threelayers.push(layerone, layertwo, layerthree);
+
+    var stack = d3.layout.stack();
+    var layers = stack(threelayers);
+    return layers;
+  };
+
   var ProfitChart = function(dates) {
-    var createLayers = function (dates) {
-      layerone = [];
-      layertwo = [];
-      layerthree = [];
-      for(var i = 0; i < dates.length; i++){
-        layerone.push(parseInt(dates[i]["Total Cost of Sales"],10));
-        layertwo.push(parseInt(dates[i]["Total Expenses"],10));
-        layerthree.push(parseInt(dates[i]["Total Income"],10));
-      }
-      var threelayers = [];
-      layerone = layerone.map(function(d, i) { return {x: i, y: d }; });
-      layertwo = layertwo.map(function(d, i) { return {x: i, y: d }; });
-      layerthree = layerthree.map(function(d, i) { return {x: i, y: d }; });
 
-      threelayers.push(layerone, layertwo, layerthree);
-
-      var stack = d3.layout.stack();
-      var layers = stack(threelayers);
-      return layers;
-    };
-
-    var layers = createLayers(dates);
+    var layers = this.createLayers(dates);
 
   var createProfit = function(dates) {
     var profit = [];
@@ -104,7 +105,7 @@ angular.module('profitCtrl', [])
         .attr("class", "y axis")
         .call(yAxis);
 
-  function transition(data) {
+  this.changeDisplay = function(data) {
     var layer = svg.selectAll(".layer")
                 .data(data);
 
@@ -141,21 +142,21 @@ angular.module('profitCtrl', [])
 
   var change = function() {
     if(this.value === "grouped") {
-      transition(layers);
+      this.changeDisplay(layers);
     }
     else {
-      transition([profit]);
+      this.changeDisplay([profit]);
     }
   };
 
   d3.selectAll("input").on("change", change );
-
+  this.changeDisplay(layers);
   };
 
   var profit_data = Visualization.getProfitData();
-  
+
   profit_data.$loaded(function(){
-    new ProfitChart(profit_data);
+   var chart =  new ProfitChart(profit_data);
   });
 
 }]);
