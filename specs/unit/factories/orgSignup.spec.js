@@ -27,7 +27,7 @@ describe('orgSignupFactory', function(){
     });
 
     it('should return list of organizations', function(){
-      expect(OrgSignup.getOrgs()).to.be.a('object');
+      expect(OrgSignup.getOrgs()).to.be.a('array');
     });
 
   });

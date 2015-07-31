@@ -14,7 +14,7 @@ angular.module('indexCtrl', ['firebase', ])
       // if the user is logged in, redirect to the org main page
       // console.log('rootScope.logInfo ', $rootScope.logInfo);
       if ($rootScope.logInfo) {
-        $state.go('main', {org: vm.org});
+        $state.go('main.room', {org: vm.org, roomName:'General'});
       // otherwise redirect to landing page
       } else {
         $state.go('landing');

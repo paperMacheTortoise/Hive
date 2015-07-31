@@ -1,7 +1,7 @@
 angular.module('authFactory', ['firebase'])
 
 
-.factory('Auth', ['$firebaseAuth', '$firebaseArray', 'Users', '$stateParams', function ($firebaseAuth, $firebaseArray, Users, $stateParams){
+.factory('Auth', ['$firebaseAuth', '$firebaseArray', 'Users', function ($firebaseAuth, $firebaseArray, Users){
 
 
 	var authFactory = {};
@@ -20,9 +20,9 @@ angular.module('authFactory', ['firebase'])
     });
   };
 
-  authFactory.refreshUser = function(cb){
+  authFactory.refreshUser = function(cb, org){
     var data = window.localStorage.uid;
-    var users = Users.getUsers($stateParams.org);
+    var users = Users.getUsers(org);
     users.$loaded(function(){
       var key;
       for (var i = 0; i < users.length; i++) {

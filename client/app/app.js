@@ -191,7 +191,7 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth){
 					$rootScope.logInfo = logInfo;
 					// redirects to the page the user is reloading
 					$state.go(toState, {org: $stateParams.org});	
-				});
+				},$stateParams.org);
 			} else {
 				console.log('User must log in');
 				$state.go('signin', {org: $location.$$path.slice(1)});	
