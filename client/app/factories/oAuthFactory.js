@@ -1,6 +1,6 @@
 angular.module('oAuthFactories', ['firebase'])
 
-.factory('oAuth',['$http', '$firebaseAuth', 'Users', function ($http, $firebaseAuth, $firebaseArray, Users){
+.factory('oAuth',['$http', function ($http){
 
   var oauthFactory = {};
   
