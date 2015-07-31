@@ -33,7 +33,7 @@
 					<li ng-repeat='user in main.users track by $index'><a ui-sref="main.direct({org: main.org, user: user.username})">{{ user.username }}</a></li>
 				</ul>
 				<br>
-				<div><botton><a ui-sref="main.invite"({ org: main.org })>Invite Users</a></button></div>
+				<div><button><a ui-sref="main.invite"({ org: main.org })>Invite Users</a></button></div>
 				<img class="userImg text-center" src="{{main.profileUrl}}"></img>
 		</div>
 
