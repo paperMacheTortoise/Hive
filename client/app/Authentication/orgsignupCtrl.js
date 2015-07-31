@@ -1,6 +1,6 @@
 angular.module('orgsignupCtrl', ['firebase','ui.bootstrap'])
 
-  .controller('OrgsignupController', function (OrgSignup, $state, LinkedinAuth) {
+  .controller('OrgsignupController', ['OrgSignup', '$state', 'LinkedinAuth', function (OrgSignup, $state, LinkedinAuth) {
 
     var vm = this;
     // call orgsignup factory to get all the names of the organizations already signed up
@@ -50,4 +50,4 @@ angular.module('orgsignupCtrl', ['firebase','ui.bootstrap'])
     vm.setOrg = function(org){
       LinkedinAuth.setOrg(org);
     };
-  });
+  }]);

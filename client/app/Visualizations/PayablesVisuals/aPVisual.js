@@ -1,6 +1,6 @@
 angular.module('aPVisualCtrl', [])
 
-.controller('aPVisualController', function (Visualization, $rootScope, $stateParams) {
+.controller('aPVisualController',['Visualization', '$rootScope', '$stateParams', function (Visualization, $rootScope, $stateParams) {
 
   var vm = this;
 
@@ -136,4 +136,4 @@ angular.module('aPVisualCtrl', [])
     return chart;
   });
 
-});
+}]);

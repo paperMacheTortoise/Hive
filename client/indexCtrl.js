@@ -1,6 +1,6 @@
 angular.module('indexCtrl', ['firebase', ])
 
-  .controller('IndexController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams) {
+  .controller('IndexController', ['$state', '$firebaseAuth', 'Auth', 'Users', '$rootScope', '$stateParams', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams) {
 
     var vm = this;
 
@@ -12,7 +12,6 @@ angular.module('indexCtrl', ['firebase', ])
     // when user click on bizGram logo on top left corner
     vm.logo = function() {
       // if the user is logged in, redirect to the org main page
-      // console.log('rootScope.logInfo ', $rootScope.logInfo);
       if ($rootScope.logInfo) {
         $state.go('main.room', {org: vm.org, roomName:'General'});
       // otherwise redirect to landing page
@@ -27,4 +26,4 @@ angular.module('indexCtrl', ['firebase', ])
       $state.go('landing');
     };
 
-  });
+  }]);

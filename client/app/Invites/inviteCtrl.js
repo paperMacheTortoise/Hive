@@ -1,7 +1,7 @@
 // angular controller for existing users to send email invitation to join their organization
 angular.module('inviteCtrl', ['firebase'])
 
-  .controller('InviteController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, invite) {
+  .controller('InviteController', ['$state', '$firebaseAuth', 'Auth', 'Users', '$rootScope', '$stateParams', 'invite', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, invite) {
 
     var vm = this;
     // get the org name to pass to emailInvite function
@@ -16,4 +16,4 @@ angular.module('inviteCtrl', ['firebase'])
       vm.inviteeName = '';
     };
 
-  });
+  }]);
