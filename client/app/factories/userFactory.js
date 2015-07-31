@@ -36,9 +36,11 @@ angular.module('userFactory', ['firebase'])
 		return updatedUsers;
 	};
 
-  userFactory.getUserPictures = function(key,org){
+  userFactory.getUserPictures = function(key, org){
+    console.log('User factory', key);
     var pictureRef = new Firebase('https://bizgramer.firebaseio.com/'+org+'/users/'+key+'/pictureCollection');
     var pictures = $firebaseArray(pictureRef);
+    console.log('pictures', pictures);
     return pictures;
   };
 

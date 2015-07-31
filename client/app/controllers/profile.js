@@ -62,7 +62,7 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   };
 })
 
-.controller('UploadController',function ( Upload, Users, $rootScope, $scope){
+.controller('UploadController', function ($modalInstance, $scope, Upload, Users, $rootScope){
   $scope.file = null;
 
   $scope.change= function(evt){
@@ -79,4 +79,8 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   $scope.ok = function () {
     $modalInstance.close('ok');
   };
-  });
+
+  $scope.cancel = function() {
+    $modalInstance.dismiss('cancel');
+  }
+});
