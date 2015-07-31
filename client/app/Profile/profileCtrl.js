@@ -1,6 +1,6 @@
 angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
 
-.controller('ProfileController',function ($scope, $state, $firebaseAuth, Auth, $rootScope, $modal, $log, Users, $stateParams, LinkedinAuth){
+.controller('ProfileController',[ '$scope', '$state', '$firebaseAuth', 'Auth', '$rootScope', '$modal', '$log', 'Users', '$stateParams', 'LinkedinAuth', function ($scope, $state, $firebaseAuth, Auth, $rootScope, $modal, $log, Users, $stateParams, LinkedinAuth){
   var vm = this;
   vm.org = $stateParams.org;
   $rootScope.org = vm.org;
@@ -50,5 +50,5 @@ angular.module('profileCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   vm.setFBInfo = function(){
     LinkedinAuth.setFBInfo(vm.org, $rootScope.logInfo.$id);
   };
-});
+}]);
 

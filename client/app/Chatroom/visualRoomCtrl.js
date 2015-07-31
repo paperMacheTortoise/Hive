@@ -1,6 +1,6 @@
 angular.module('visualCtrl', [])
 
-.controller('visualController', function ($stateParams, $rootScope, Visualization){
+.controller('visualController', ['$stateParams', '$rootScope', 'Visualization', function ($stateParams, $rootScope, Visualization){
 	var vm = this;
 
   // Get ther current user;
@@ -18,4 +18,4 @@ angular.module('visualCtrl', [])
       vm.text = '';
     }
   };
-});
+}]);

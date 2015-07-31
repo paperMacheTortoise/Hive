@@ -1,6 +1,6 @@
 angular.module('404Ctrl', ['firebase'])
 
-    .controller('404Controller', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams) {
+    .controller('404Controller', ['$state', '$firebaseAuth', 'Auth', 'Users', '$rootScope', '$stateParams', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams) {
 
         var vm = this;
 
@@ -17,4 +17,4 @@ angular.module('404Ctrl', ['firebase'])
             Auth.signout();
         };
 
-    });
+    }]);

@@ -1,7 +1,7 @@
 // Angular controller for room.html
 angular.module('roomCtrl', ['ngSanitize'])
 
-.controller('roomController', function (Rooms, $rootScope,$stateParams, Auth) {
+.controller('roomController',['Rooms', '$rootScope', '$stateParams', 'Auth',function (Rooms, $rootScope,$stateParams, Auth) {
   var vm = this;
   // Passes the roomName from the main view.
   vm.roomname = $stateParams.roomName;
@@ -30,6 +30,6 @@ angular.module('roomCtrl', ['ngSanitize'])
       vm.text = '';
     }
   };
-});
+}]);
 
 

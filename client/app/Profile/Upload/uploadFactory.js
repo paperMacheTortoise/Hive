@@ -1,6 +1,6 @@
 angular.module('uploadFactory', ['ngImgur'])
 
-.factory('Upload', function (imgur){
+.factory('Upload', [ 'imgur', function (imgur){
   var uploadFactory={};
 
   uploadFactory.putFile = function(file, filename, callback){
@@ -11,4 +11,4 @@ angular.module('uploadFactory', ['ngImgur'])
   };
 
   return uploadFactory;
-});
+}]);

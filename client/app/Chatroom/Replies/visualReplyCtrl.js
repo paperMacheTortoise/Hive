@@ -1,6 +1,6 @@
 angular.module('visualReplyCtrl', [])
 
-.controller('visualReplyController', function (Visualization, Replies, $rootScope, $stateParams){
+.controller('visualReplyController', ['Visualization', 'Replies', '$rootScope', '$stateParams', function (Visualization, Replies, $rootScope, $stateParams){
 
 	var vm = this;
 
@@ -25,4 +25,4 @@ angular.module('visualReplyCtrl', [])
 			vm.replyText = '';
 		}
 	};
-});
+}]);

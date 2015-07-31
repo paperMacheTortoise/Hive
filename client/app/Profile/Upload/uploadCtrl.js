@@ -1,6 +1,6 @@
 angular.module('uploadCtrl',['firebase','ui.bootstrap', 'ngImgur'])
 
-.controller('UploadController', function ($modalInstance, $scope, Upload, Users, $rootScope){
+.controller('UploadController', [ '$modalInstance', '$scope', 'Upload', 'Users', '$rootScope', function ($modalInstance, $scope, Upload, Users, $rootScope){
   $scope.file = null;
 
   $scope.change= function(evt){
@@ -21,4 +21,4 @@ angular.module('uploadCtrl',['firebase','ui.bootstrap', 'ngImgur'])
   $scope.cancel = function() {
     $modalInstance.dismiss('cancel');
   };
-});
+}]);

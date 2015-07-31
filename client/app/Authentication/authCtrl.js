@@ -1,6 +1,6 @@
 angular.module('authCtrl',['firebase','ui.bootstrap'])
 
-  .controller('SignupController', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, LinkedinAuth){
+  .controller('SignupController', ['$state', '$firebaseAuth', 'Auth', 'Users', '$rootScope', '$stateParams', 'LinkedinAuth', function ($state, $firebaseAuth, Auth, Users, $rootScope, $stateParams, LinkedinAuth){
     var vm = this;
     vm.org = $stateParams.org;
     vm.alerts = [];
@@ -51,9 +51,9 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
         vm.authData = data;
       });
     };
-  })
+  }])
 
-  .controller('SigninController',function ($state,$firebaseAuth, Auth, LinkedinAuth, $rootScope, Users, $stateParams){
+  .controller('SigninController',[ '$state' ,'$firebaseAuth' ,'Auth' ,'LinkedinAuth' ,'$rootScope' ,'Users' ,'$stateParams' ,function ($state,$firebaseAuth, Auth, LinkedinAuth, $rootScope, Users, $stateParams){
     var vm = this;
     vm.org = $stateParams.org;
     vm.email = null;
@@ -105,4 +105,4 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
         vm.authData = data;
       });
   };
-});
+}]);

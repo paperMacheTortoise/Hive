@@ -1,7 +1,7 @@
 // Angular controller for chat text reply functionality (comment threading)
 angular.module('replyCtrl', [])
 
-.controller('replyController', function (Replies, Rooms, $rootScope, $stateParams, Auth) {
+.controller('replyController',['Replies', 'Rooms', '$rootScope', '$stateParams', 'Auth', function (Replies, Rooms, $rootScope, $stateParams, Auth) {
 
   var vm = this;
   vm.org = $stateParams.org;
@@ -35,6 +35,6 @@ angular.module('replyCtrl', [])
     }
   };
 
-});
+}]);
 
 

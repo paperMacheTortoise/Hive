@@ -1,6 +1,6 @@
 angular.module('directMessageCtrl', [])
 
-.controller('directMessageController', function (DirectMessage, Users, $rootScope, $stateParams, Auth){
+.controller('directMessageController',['DirectMessage', 'Users', '$rootScope', '$stateParams', 'Auth', function (DirectMessage, Users, $rootScope, $stateParams, Auth){
 
 	var vm = this;
 	// Passes the user from the main view to the directmessage view.
@@ -30,4 +30,4 @@ angular.module('directMessageCtrl', [])
 			vm.text = '';
 		}
 	};
-});
+}]);

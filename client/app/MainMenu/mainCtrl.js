@@ -1,7 +1,7 @@
 // angular controller for app main view
 angular.module('mainCtrl', [])
 
-.controller('mainController', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth) {
+.controller('mainController', ['Rooms', 'Users', 'DirectMessage', 'Visualization', '$rootScope', '$stateParams', 'oAuth', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth) {
 
 	var vm = this;
   // make sure the currentUser is the logged in user
@@ -39,5 +39,5 @@ angular.module('mainCtrl', [])
   vm.getQBO = function(){
     oAuth.getData(vm.org);
   };
-});
+}]);
 

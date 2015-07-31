@@ -3,7 +3,7 @@ angular.module('connectIntuitAngular',[])
 // This custom directive creates a quickbooks login button that can be injected
 // into one of the pages.  It has a callback page as a parameter for intuit OAuth.
 
-.directive('connectToQuickbooks', function ($window, $rootScope, LinkedinAuth){
+.directive('connectToQuickbooks', ['$window', '$rootScope', 'LinkedinAuth', function ($window, $rootScope, LinkedinAuth){
   return {
     restrict: 'E',    template: "<ipp:connectToIntuit></ipp:connectToIntuit>",
     link: function(scope) {
@@ -28,4 +28,4 @@ angular.module('connectIntuitAngular',[])
         });
     }
   };
-});
+}]);
