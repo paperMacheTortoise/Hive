@@ -41,7 +41,7 @@ angular.module('userFactory', ['firebase'])
     var pictures = $firebaseArray(pictureRef);
     return pictures;
   };
-  
+
   userFactory.updateProfile = function(username, picture, id, org){
     var users = fire(org);
     users.users.$loaded(function(){

@@ -1,6 +1,8 @@
 angular.module('authFactory', ['firebase'])
 
-.factory('Auth', ['$firebaseAuth', '$firebaseArray', '$state', '$rootScope', 'Users', '$stateParams', function ($firebaseAuth, $firebaseArray, $state, $rootScope, Users, $stateParams){
+
+.factory('Auth', ['$firebaseAuth', '$firebaseArray', 'Users', function ($firebaseAuth, $firebaseArray, Users){
+
 
 	var authFactory = {};
 	var ref = new Firebase('https://bizgramer.firebaseio.com/');
@@ -63,6 +65,8 @@ angular.module('authFactory', ['firebase'])
   authFactory.signup = function(email, password, orgId, orgName, callback, vm){
     var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgName);
     var orgArr = $firebaseArray(orgRef);
+    var ref = new Firebase('https://bizgramer.firebaseio.com/');
+    var authObj = $firebaseAuth(ref);
     orgArr.$loaded()
       .then(function() {
         if(orgArr.$getRecord('orgKey')['$value'] === orgId) {
@@ -92,6 +96,7 @@ angular.module('authFactory', ['firebase'])
 	authFactory.signout = function(){
 		authObj.$unauth();
     delete window.localStorage.uid;
+
 	};
 
 	return authFactory;

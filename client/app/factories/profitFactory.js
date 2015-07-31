@@ -10,7 +10,7 @@ angular.module('profitFactory', ['firebase'])
   };
 
   profitFactory.ProfitChart = function(dates) {
-    var layers = function (dates) {
+    var createLayers = function (dates) {
       console.log("dates length ", dates.length);
       //layer 1 is total cost of sales and total expenses
       layerone = [];
@@ -35,10 +35,12 @@ angular.module('profitFactory', ['firebase'])
       var layers = stack(threelayers);
       return layers;
     };
-    layers = layers(dates);
+
+    var layers = createLayers(dates);
+
   console.log("layers ", layers);
 
-  var profit = function(dates) {
+  var createProfit = function(dates) {
     var profit = [];
     for(var i = 0; i < dates.length; i++){
       profit.push(parseInt(dates[i]["Net Earnings"],10));
@@ -46,7 +48,9 @@ angular.module('profitFactory', ['firebase'])
     profit = profit.map(function(d, i) { return {x: i, y: d}; });
     return profit;
   };
-  profit = profit(dates);
+
+  var profit = createProfit(dates);
+
   console.log("profit ", profit);
   var n = 3, // number of layers
       m = 11;
@@ -92,6 +96,7 @@ angular.module('profitFactory', ['firebase'])
     .tickPadding(3)
     .orient("bottom");
 
+
   var color = d3.scale.linear()
     .domain([0, n - 1])
     .range(['#FF69B4', "#008000"]);
@@ -133,7 +138,8 @@ angular.module('profitFactory', ['firebase'])
         .style("fill", function(d, i) { return color(i); });
 
     var rect = layer.selectAll("rect")
-        .data(function(d) { console.log(d); return d; });
+        .data(function(d) { return d; });
+
         //update the old elements as needed
         rect.attr("x", function(d, i, j) { return xScale(d.x) + xScale.rangeBand() / n * j; })
         .attr("y",  y0(0))
@@ -162,18 +168,16 @@ angular.module('profitFactory', ['firebase'])
 
   var change = function() {
 
-    console.log("registered change");
-    console.log(this.value);
 
     if(this.value === "grouped") {
-      console.log(layers);
+
       transition(layers);
     }
     else {
-      console.log("Entering ELse");
+
       //console.log(profit)
       transition([profit]);
-      console.log("here");
+
     }
   };
 // var timeout = setTimeout(function() {

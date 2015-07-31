@@ -5,16 +5,16 @@ module.exports = function(config) {
 
   conf.files = conf.files.concat([
     //test files
-    // './e2e/**/*.js'
+    './specs/e2e/**/*.js'
   ]);
 
-  // conf.proxies = {
-  //   '/': 'http://localhost:9999/'
-  // };
+  conf.proxies = {
+    '/': 'http://localhost:9999/'
+  };
 
-  // conf.urlRoot = '/__karma__/';
+  conf.urlRoot = '/__karma__/';
 
-  // conf.frameworks = ['ng-scenario'];
+  conf.frameworks = ['ng-scenario'];
 
   config.set(conf);
 };

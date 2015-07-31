@@ -7,7 +7,9 @@ module.exports = function(config){
 		//extra testing code
 		'client/lib/angular-mocks/angular-mocks.js',
 		//test files
-    './specs/unit/factories/dmFactory.spec.js'
+    './specs/unit/factories/replyFactorySpec.js',
+    './specs/unit/factories/usersFactory.spec.js',
+    './specs/unit/factories/authFactorySpec.js',
 		// './unit/**/*.js'
 
 	]);

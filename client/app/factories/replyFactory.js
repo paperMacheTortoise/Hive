@@ -1,6 +1,6 @@
 angular.module('replyFactory', ['firebase'])
 
-.factory('Replies', ['$firebaseArray', function ($firebaseArray, $stateParams) {
+.factory('Replies', ['$firebaseArray', function ($firebaseArray) {
 
   var repliesFactory = {};
 
@@ -15,7 +15,6 @@ angular.module('replyFactory', ['firebase'])
   // Adds the reply message to replies of the current message in the db.
   repliesFactory.addReply = function (username, profileImg, text, index, roomname, org) {
     var url = 'https://bizgramer.firebaseio.com/'+org+'/rooms/' + roomname + '/' + index + '/replies';
-    console.log($stateParams);
     // console.log(roomname);
     console.log('url ', url);
     if (org && roomname && index) {
