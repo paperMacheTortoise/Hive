@@ -32,6 +32,8 @@ var app = window.bizGramApp = angular.module('bizGramApp', [
 	'mapCtrl',
 	'EditCtrl',
 	'connectIntuitAngular',
+	'uploadAngular',
+	'uploadCtrl',
 	'ngImgur',
 	'oAuthFactories',
 	'ngSanitize',
