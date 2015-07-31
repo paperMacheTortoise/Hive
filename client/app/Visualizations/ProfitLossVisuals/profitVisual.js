@@ -2,26 +2,7 @@ angular.module('profitCtrl', [])
 
 .controller('profitController', ['Visualization', function (Visualization){
 
-  ProfitChart.prototype.createLayers = function (dates) {
-    layerone = [];
-    layertwo = [];
-    layerthree = [];
-    for(var i = 0; i < dates.length; i++){
-      layerone.push(parseInt(dates[i]["Total Cost of Sales"],10));
-      layertwo.push(parseInt(dates[i]["Total Expenses"],10));
-      layerthree.push(parseInt(dates[i]["Total Income"],10));
-    }
-    var threelayers = [];
-    layerone = layerone.map(function(d, i) { return {x: i, y: d }; });
-    layertwo = layertwo.map(function(d, i) { return {x: i, y: d }; });
-    layerthree = layerthree.map(function(d, i) { return {x: i, y: d }; });
 
-    threelayers.push(layerone, layertwo, layerthree);
-
-    var stack = d3.layout.stack();
-    var layers = stack(threelayers);
-    return layers;
-  };
 
   var ProfitChart = function(dates) {
 
@@ -138,7 +119,7 @@ angular.module('profitCtrl', [])
       .transition()
         .attr("y", function(d) { return d.y < 0 ? y0() : yScale(d.y); })
         .attr("height", function(d) { return Math.abs( yScale(d.y) - y0() ); });
-    }
+    };
 
   var change = function() {
     if(this.value === "grouped") {
@@ -153,10 +134,31 @@ angular.module('profitCtrl', [])
   this.changeDisplay(layers);
   };
 
+  ProfitChart.prototype.createLayers = function (dates) {
+    layerone = [];
+    layertwo = [];
+    layerthree = [];
+    for(var i = 0; i < dates.length; i++){
+      layerone.push(parseInt(dates[i]["Total Cost of Sales"],10));
+      layertwo.push(parseInt(dates[i]["Total Expenses"],10));
+      layerthree.push(parseInt(dates[i]["Total Income"],10));
+    }
+    var threelayers = [];
+    layerone = layerone.map(function(d, i) { return {x: i, y: d }; });
+    layertwo = layertwo.map(function(d, i) { return {x: i, y: d }; });
+    layerthree = layerthree.map(function(d, i) { return {x: i, y: d }; });
+
+    threelayers.push(layerone, layertwo, layerthree);
+
+    var stack = d3.layout.stack();
+    var layers = stack(threelayers);
+    return layers;
+  };
+
   var profit_data = Visualization.getProfitData();
 
   profit_data.$loaded(function(){
-   var chart =  new ProfitChart(profit_data);
+   new ProfitChart(profit_data);
   });
 
 }]);
