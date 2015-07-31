@@ -6939,6 +6939,20 @@ ol ol .cmmnt {
   width: 100%;
   overflow: scroll;
 }
+.thumbnail {
+  height: 200px;
+  width: 200px;
+  margin: 10px;
+}
+.profileView {
+  color: black;
+}
+.profileImage {
+  height: 150px;
+}
+.modal-title {
+  color: black;
+}
 .submitText {
   position: static;
 }
