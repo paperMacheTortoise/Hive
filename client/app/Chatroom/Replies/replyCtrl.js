@@ -32,6 +32,7 @@ angular.module('replyCtrl', [])
     if (e.keyCode === 13) {
       Replies.addReply(vm.replyusername, vm.profileImg, vm.replytext, index, vm.roomname, vm.org);
       vm.replytext = '';
+      vm.toggleReplying();
     }
   };
 
