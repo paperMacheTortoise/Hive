@@ -8,4 +8,4 @@ angular.module('uploadAngular',['firebase','ui.bootstrap', 'ngImgur'])
       element.bind('change', onChangeHandler);
     }
   };
-})
+});
