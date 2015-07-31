@@ -2,7 +2,7 @@ angular.module('userFactory', ['firebase'])
 
 .factory('Users', ['$firebaseArray', function ($firebaseArray){
 
-	var userFactory = {};
+  var userFactory = {};
   var fire = function(org){
 
     var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/users');
@@ -13,13 +13,13 @@ angular.module('userFactory', ['firebase'])
     };
   };
 
-	// parse the usernames from the database
+  // parse the usernames from the database
   userFactory.getUsers = function(org){
     return fire(org).users;
   };
 
 
-	// display all the usernames in the main menu except for the current user,
+  // display all the usernames in the main menu except for the current user,
   // so that the user cannot dm themselves
   userFactory.getDisplayUsers = function(current,org){
     //firebase array object from fire()
@@ -33,8 +33,8 @@ angular.module('userFactory', ['firebase'])
         }
       });
     });
-		return updatedUsers;
-	};
+    return updatedUsers;
+  };
 
   userFactory.getUserPictures = function(key, org){
     console.log('User factory', key);
@@ -69,5 +69,5 @@ angular.module('userFactory', ['firebase'])
     return username;
   };
 
-	return userFactory;
+  return userFactory;
 }]);

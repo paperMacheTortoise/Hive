@@ -2,13 +2,13 @@ angular.module('roomFactory', ['firebase'])
 
 .factory('Rooms', ['$firebaseArray', function ($firebaseArray){
 
-	var roomsFactory = {};
+  var roomsFactory = {};
 
   var getRef = function(org){
-  	var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/rooms');
-  	var rooms = $firebaseArray(ref);
+    var ref = new Firebase('https://bizgramer.firebaseio.com/'+org+'/rooms');
+    var rooms = $firebaseArray(ref);
     var roomNames = [];
-  	// Create an array to store the room names.
+    // Create an array to store the room names.
     // Loop through the rooms, and return all the room names.
 
     //use .$loaded promise to popular roomNames array with async data from firebase
@@ -25,11 +25,11 @@ angular.module('roomFactory', ['firebase'])
     };
   };
 
-	// Returns the list of rooms available.
+  // Returns the list of rooms available.
   roomsFactory.getRooms = function(org){
     var obj = getRef(org);
-		return obj.roomNames;
-	};
+    return obj.roomNames;
+  };
 
  // Sets the selected room user clicks from Main.
   var roomName = '';
@@ -71,5 +71,5 @@ angular.module('roomFactory', ['firebase'])
     addRoomRef.child(roomname).set('this room is empty');
   };
 
-	return roomsFactory;
+  return roomsFactory;
 }]);
