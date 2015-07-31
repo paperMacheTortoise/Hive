@@ -3,7 +3,6 @@ angular.module('authFactory', ['firebase'])
 
 .factory('Auth', ['$firebaseAuth', '$firebaseArray', 'Users', function ($firebaseAuth, $firebaseArray, Users){
 
-
   var authFactory = {};
   var ref = new Firebase('https://bizgramer.firebaseio.com/');
   var authObj = $firebaseAuth(ref);

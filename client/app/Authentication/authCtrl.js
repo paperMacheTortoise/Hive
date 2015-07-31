@@ -4,15 +4,21 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
     var vm = this;
     vm.org = $stateParams.org;
     vm.alerts = [];
+
+    // This function adds a message with the first letter capitalized to alerts.
     vm.addAlert = function(message) {
       message = message.toLowerCase();
       message = message.charAt(0).toUpperCase() + message.slice(1);
       vm.alerts.pop();
       vm.alerts.push({type:'danger',msg: message});
     };
+
+    // This function pops the last message from alerts. 
     vm.closeAlert = function() {
       vm.alerts.pop();
     };
+
+    // This function setsup the user profile.
     vm.setupUser = function(name, email, uid, pictureUrl){
       Auth.setupUser(name, vm.org, email, uid, pictureUrl, function(error,logInfo){
         if(error){
@@ -31,6 +37,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
     vm.orgCode = null;
     vm.name = null;
 
+    // This is the user sign up function.
     vm.signup = function(){
       Auth.signup(vm.email, vm.password, vm.orgId, vm.org, function(error, data){
         if(error){
@@ -42,6 +49,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
       },vm);
     };
 
+    // This function checks the login of a user.
     vm.checkLogin = function(){
       Auth.getAuth(function(error, data){
         if(error){
@@ -85,6 +93,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
     });
     };
 
+    //  This 
     vm.signin = function(){
       Auth.signin(vm.email,vm.password,function(error, data){
         if(error){
@@ -96,6 +105,7 @@ angular.module('authCtrl',['firebase','ui.bootstrap'])
       },vm);
     };
 
+    //  This function checks the authorization login of the user.
     vm.checkLogin = function(){
       Auth.getAuth(function(error, data){
         if(error){

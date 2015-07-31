@@ -2,8 +2,6 @@ angular.module('profitCtrl', [])
 
 .controller('profitController', ['Visualization', function (Visualization){
 
-
-
   var ProfitChart = function(dates) {
 
     var layers = this.createLayers(dates);
@@ -24,8 +22,8 @@ angular.module('profitCtrl', [])
 
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov"];
   var margin = {top: 40, right: 10, bottom: 20, left: 50},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 740 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
 
   var extents = [];
   extents = extents.concat(d3.extent(layers[0].map(function(d) {return d.y; })));
@@ -57,7 +55,6 @@ angular.module('profitCtrl', [])
     .tickSize(1)
     .tickPadding(3)
     .orient("bottom");
-
 
   var color = d3.scale.linear()
     .domain([0, n - 1])
@@ -158,7 +155,14 @@ angular.module('profitCtrl', [])
   var profit_data = Visualization.getProfitData();
 
   profit_data.$loaded(function(){
-   new ProfitChart(profit_data);
+    var chart = new ProfitChart(profit_data);
+
+      $('#view_selection a').click(function() {
+          var view_type = $(this).attr('id');
+          $('#view_selection a').removeClass('active');
+          $(this).toggleClass('active');
+
+      })
   });
 
 }]);
