@@ -13,13 +13,13 @@ angular.module('userFactory', ['firebase'])
     };
   };
 
-	// parse the usernames from the database
+	// Parse the usernames from the database
   userFactory.getUsers = function(org){
     return fire(org).users;
   };
 
 
-	// display all the usernames in the main menu except for the current user,
+	// Display all the usernames in the main menu except for the current user,
   // so that the user cannot dm themselves
   userFactory.getDisplayUsers = function(current,org){
     //firebase array object from fire()
@@ -36,6 +36,7 @@ angular.module('userFactory', ['firebase'])
 		return updatedUsers;
 	};
 
+  //Fetches the user picture from the database
   userFactory.getUserPictures = function(key, org){
     console.log('User factory', key);
     var pictureRef = new Firebase('https://bizgramer.firebaseio.com/'+org+'/users/'+key+'/pictureCollection');
@@ -43,7 +44,8 @@ angular.module('userFactory', ['firebase'])
     console.log('pictures', pictures);
     return pictures;
   };
-
+  
+  //Updated the user profile with entered parameters
   userFactory.updateProfile = function(username, picture, id, org){
     var users = fire(org);
     users.users.$loaded(function(){

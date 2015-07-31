@@ -8,7 +8,7 @@ angular.module('orgsignupFactory', ['firebase'])
   var organizations = $firebaseArray(ref);
   var orgNames = [];
 
-  // firebase function to generate index, use this for generating random orgId
+  // Firebase function to generate index, use this for generating random orgId
   var generatePushID = (function() {
     // Modeled after base64 web-safe chars, but ordered by ASCII.
     var PUSH_CHARS = '-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz';
@@ -61,7 +61,7 @@ angular.module('orgsignupFactory', ['firebase'])
     };
   })(); //end generate ID function
 
-  // async function to get all the org names
+  // Async function to get all the org names
   organizations.$loaded()
     .then(function () {
       angular.forEach(organizations, function (org) {
@@ -74,17 +74,17 @@ angular.module('orgsignupFactory', ['firebase'])
     };
 
     orgsignupFactory.signupOrg = function (orgname, creator, email, password, cb) {
-      // create new branch for this organization on firebase db
+      // Create new branch for this organization on firebase db
       ref.child(orgname).set('new organization');
       var orgId = generatePushID();
-      // simplify the orgId to only 5 letters for demo simplicity
+      // Simplify the orgId to only 5 letters for demo simplicity
       orgId = orgId.substr(-5);
       ref.child(orgname + '/orgKey').set(orgId);
 
-      // create a default 'General' chat room for each org created
+      // Create a default 'General' chat room for each org created
       ref.child(orgname + '/rooms/General').set('this room is empty');
 
-      // send out email to creator of the org with orgId
+      // Send out email to creator of the org with orgId
       var link = 'http://'+window.host+':3000/#/'+orgname+'/signup';
       var orgRef = new Firebase('https://bizgramer.firebaseio.com/'+orgname);
       var orgObj = $firebaseObject(orgRef);

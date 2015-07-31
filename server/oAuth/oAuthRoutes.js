@@ -57,7 +57,7 @@ app.get('/receivable', function(req, res) {
         myFirebaseRef.update({
             Receivables: myObjectArray
           });
-        res.send(200);
+        res.status(200).end();
    });
   });
  });
@@ -80,7 +80,7 @@ app.get('/customers', function(req, res){
       myFirebaseRef.update({
         Customers: list
       });
-      res.send(200);
+      res.status(200).end();
      });
    });
 
@@ -124,7 +124,7 @@ app.get('/payable', function(req, res) {
         Payables: myObjectArray
       }
     );
-    res.send(200);
+    res.status(200).end();
    });
   });
  });

@@ -34,6 +34,7 @@ angular.module('mainCtrl', [])
       }
     }
   };
+  
   vm.getQBO = function(){
     oAuth.getData(vm.org);
   };

@@ -1,6 +1,6 @@
 angular.module('linkedinFactory', [])
 
-.factory('LinkedinAuth', function ($http){
+.factory('LinkedinAuth', ['$http', function ($http){
 	
 	var linkedinFactory = {};
 
@@ -28,4 +28,4 @@ angular.module('linkedinFactory', [])
 	};
 
 	return linkedinFactory;
-});
+}]);

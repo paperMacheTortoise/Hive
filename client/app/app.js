@@ -104,7 +104,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('visual.CustomerMap', {
 		url:'/customerMap',
 		parent:'visual',
-		templateUrl: 'app/templates/map.html',
+		templateUrl: 'app/templates/mapVisualization.html',
 	})
 	.state('visual.profit', {
 		url: '/profit',

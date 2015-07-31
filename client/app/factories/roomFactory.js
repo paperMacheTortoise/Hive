@@ -63,7 +63,7 @@ angular.module('roomFactory', ['firebase'])
     });
   };
 
-  // Adds a new room to the db.
+  // Adds a new room to the DB.
   roomsFactory.addRoom = function (roomname, org) {
     var url = "https://bizgramer.firebaseio.com/"+org+"/rooms/";
     var addRoomRef = new Firebase(url);
