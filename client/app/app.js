@@ -95,22 +95,22 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 	.state('visual.ARVisual', {
 		url:'/ARVisual',
 		parent:'visual',
-		templateUrl: 'app/Visualizations/aRVisualization.html',
+		templateUrl: 'app/Visualizations/ReceivablesVisuals/aRVisualization.html',
 	})
 	.state('visual.APVisual', {
 		url:'/APVisual',
 		parent:'visual',
-		templateUrl: 'app/Visualizations/aPVisualization.html',
+		templateUrl: 'app/Visualizations/PayablesVisuals/aPVisualization.html',
 	})
 	.state('visual.CustomerMap', {
 		url:'/customerMap',
 		parent:'visual',
-		templateUrl: 'app/Visualizations/map.html',
+		templateUrl: 'app/Visualizations/CustomerMapVisuals/mapVisual.html',
 	})
 	.state('visual.profit', {
 		url: '/profit',
 		parent: 'visual',
-		templateUrl: 'app/Visualizations/profitviz.html',
+		templateUrl: 'app/Visualizations/ProfitLossVisuals/profitVisual.html',
 	})
 	.state('signin',{
 		url: '/:org/signin',
