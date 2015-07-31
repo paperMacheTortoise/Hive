@@ -11,7 +11,8 @@ module.exports = function(config){
     './specs/unit/factories/usersFactory.spec.js',
     './specs/unit/factories/authFactorySpec.js',
     './specs/unit/factories/dmFactory.spec.js',
-    './specs/unit/factories/oAuthFactory.spec.js'
+    './specs/unit/factories/oAuthFactory.spec.js',
+    './specs/unit/factories/orgSignup.spec.js'
 		// './unit/**/*.js'
 
 	]);

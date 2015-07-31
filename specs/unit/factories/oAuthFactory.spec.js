@@ -2,7 +2,7 @@ describe('oAuthFactory', function(){
   var Users, $firebaseArray, $http, oAuth;
   beforeEach(module('oAuthFactories'));
   beforeEach(module('userFactory'));
-  
+
   beforeEach(inject(function(_Users_, _$firebaseArray_, $injector, _oAuth_){
     Users = _Users_;
     $firebaseArray = _$firebaseArray_;
@@ -16,21 +16,7 @@ describe('oAuthFactory', function(){
   });
 
   describe('oAuth methods', function(){
-
-    describe('oAuthIntuit method', function(){
-
-      it('should have oAuthIntuit function', function(){
-        expect(oAuth.oAuthIntuit).to.be.a('function');
-      });
-
-      // xit('should call Users methods', function(){
-      //   var spy = sinon.spy(oAuth.oAuthIntuit);
-      //   oAuth.oAuthIntuit('','hr');
-      //   assert(spy.called);
-      // });
-
-    });
-
+    
     describe('getData method', function(){
 
       it('should have get data method', function(){
