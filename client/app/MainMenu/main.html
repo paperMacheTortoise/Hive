@@ -23,10 +23,11 @@
 				<br>
 			<h5>Chatrooms</h5>
 				<ul class="nav nav-sidebar rooms">
-					<li ng-repeat='room in main.rooms track by $index' ><a ui-sref="main.room({org: main.org, roomName: room})">{{ room }}</a></li>
+					<li ng-repeat='room in main.rooms track by $index' ><a ui-sref="main.room({org: main.org, roomName: room})">{{ room }}</a>
+					</li>
 				</ul>
-				<input class="addRoomBox" ng-model="main.nameOfRoomToAdd" type="text" placeholder="add room" ng-keydown="main.addRoom($event)" />
-				<br>
+				<div class="addRoom" ng-click="main.toggleAdd()"><i class="glyphicon glyphicon-plus"></i>Add Room</div>
+				<input ng-if="main.isAdding" class="form-control" ng-model="main.nameOfRoomToAdd" type="text" placeholder="roomname" ng-keydown="main.addRoom($event)">
 				<br>
 			<h5>Direct Messages</h5>
 				<ul class="nav nav-sidebar users">
