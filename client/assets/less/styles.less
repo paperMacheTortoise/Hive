@@ -6,10 +6,10 @@
 @purple: #80628B; //warning
 @orange: #F4AC42; //danger
 @cream: #EBE3E0;
-
 body {
   background-color: #999ca8;
   color: #FFFFFF;
+  overflow: hidden;
 }
 h1 {
   text-align: left;
@@ -21,6 +21,7 @@ a:active {
 }
 .navbar {
   background-color: #4d505b;
+  margin-bottom: 10px;
 }
 .navbar .container li a,
 .navbar .navbar-brand {
@@ -103,6 +104,10 @@ ol {
 }
 .main-menu li a {
   padding: 0;
+}
+.main-menu {
+  height: 645px;
+  overflow: hidden;
 }
 .chats {
   display: block;
@@ -221,4 +226,11 @@ ol ol .cmmnt {
 }
 #textInput {
   resize: none;
+}
+.rooms, .users{
+  height:115px;
+  overflow-y: scroll;
+}
+.body{
+  overflow-y: scroll;
 }
