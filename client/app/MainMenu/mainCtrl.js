@@ -3,7 +3,7 @@ angular.module('mainCtrl', [])
 
 .controller('mainController', ['Rooms', 'Users', 'DirectMessage', 'Visualization', '$rootScope', '$stateParams', 'oAuth', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth) {
 
-	var vm = this;
+  var vm = this;
   // make sure the currentUser is the logged in user
   vm.currentUser = null;
   vm.profileUrl = null;

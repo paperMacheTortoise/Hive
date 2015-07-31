@@ -4,9 +4,9 @@ angular.module('authFactory', ['firebase'])
 .factory('Auth', ['$firebaseAuth', '$firebaseArray', 'Users', function ($firebaseAuth, $firebaseArray, Users){
 
 
-	var authFactory = {};
-	var ref = new Firebase('https://bizgramer.firebaseio.com/');
-	var authObj = $firebaseAuth(ref);
+  var authFactory = {};
+  var ref = new Firebase('https://bizgramer.firebaseio.com/');
+  var authObj = $firebaseAuth(ref);
 
   authFactory.getAuth = function (callback){
         var authData = authObj.$getAuth();
@@ -91,13 +91,13 @@ angular.module('authFactory', ['firebase'])
         callback(error.code);
 
       });
-	};
+  };
 
-	authFactory.signout = function(){
-		authObj.$unauth();
+  authFactory.signout = function(){
+    authObj.$unauth();
     delete window.localStorage.uid;
 
-	};
+  };
 
-	return authFactory;
+  return authFactory;
 }]);
