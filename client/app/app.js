@@ -169,13 +169,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 		data: {
 			requireLogin: true
 		}
-	})
-	.state('oAuth', {
-		url: '/oAuth',
-		templateUrl: 'app/templates/oAuth.html',
-		data: {
-			requireLogin: true
-		}
 	});
 });
 

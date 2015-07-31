@@ -3,19 +3,8 @@ angular.module('oAuthFactories', ['firebase'])
 .factory('oAuth',['$http', '$firebaseAuth', 'Users', function ($http, $firebaseAuth, $firebaseArray, Users){
 
   var oauthFactory = {};
-  // var ref = new Firebase('https://bizgramer.firebaseio.com/');
-
-  // var authObj = $firebaseAuth(ref);
-  oauthFactory.oAuthIntuit = function($id, org) {
-    //get $id from $rootScope, look up user
-    //put token on user entry
-    var users = Users.getUsers(org);
-    var index = users.$indexFor($id);
-    // users[index].token;
-    // users[index].tokenSecret;
-    // users[index].realmId;
-    users.$save(index);
-  };
+  
+  // This function makes a get request to the routes to gather quickbooks data and load into the DB.
   oauthFactory.getData = function(org){
     $http.get('/payable',{org:org}).success(function(){
       console.log('success');
@@ -27,6 +16,7 @@ angular.module('oAuthFactories', ['firebase'])
       console.log('success');
     });
   };
+  
   return oauthFactory;
 
 }]);
