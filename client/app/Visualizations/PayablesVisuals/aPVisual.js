@@ -38,7 +38,6 @@ angular.module('aPVisualCtrl', [])
     this.fill_color = d3.scale.ordinal().domain(["1 - 30 days past due","31 - 60 days past due","61 or more days past due"]).range(["#16A79D", "#F4AC42", "#80628B"]);
     this.radius_scale = d3.scale.pow().exponent(0.5).domain([0, max_amount]).range([2, 85]);
     this.create_nodes();
-    console.log(this.nodes);
     this.create_vis();
     this.start();
     this.display_group_all();

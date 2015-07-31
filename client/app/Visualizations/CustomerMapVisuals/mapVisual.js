@@ -1,5 +1,5 @@
 angular.module('mapCtrl', ['firebase'])
-.controller('MapController', function (Visualization, $rootScope, $stateParams) {
+.controller('MapController', ['Visualization', '$rootScope', '$stateParams',function (Visualization, $rootScope, $stateParams) {
   var vm = this;
 
   // CHAT FUNCTIONS
@@ -10,209 +10,59 @@ angular.module('mapCtrl', ['firebase'])
     // TO DO, set the visualization identifier
   vm.visualId = 'Customer Map';
   var states = {
-    "AZ": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "CO": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "DE": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "FL": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "GA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "HI": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "ID": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "IL": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "IN": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "IA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "KS": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "KY": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "LA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "MD": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "ME": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "MA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "MN": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "MI": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "MS": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "MO": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "MT": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "NC": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "NE": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "NV": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "NH": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "NJ": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "NY": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "ND": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "NM": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "OH": {
-        "fillKey": "UNDECIDED",
-        "numCo": 0
-    },
-    "OK": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "OR": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "PA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "RI": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "SC": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "SD": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "TN": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "TX": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "UT": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "WI": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "VA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "VT": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "WA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "WV": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "WY": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "CA": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "CT": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "AK": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "AR": {
-        "fillKey": "",
-        "numCo": 0
-    },
-    "AL": {
-        "fillKey": "",
-        "numCo": 0
-  }
+    "AZ": { "fillKey": "", "numCo": 0},
+    "CO": { "fillKey": "", "numCo": 0},
+    "DE": { "fillKey": "", "numCo": 0},
+    "FL": { "fillKey": "", "numCo": 0},
+    "GA": { "fillKey": "", "numCo": 0},
+    "HI": { "fillKey": "", "numCo": 0},
+    "ID": { "fillKey": "", "numCo": 0},
+    "IL": { "fillKey": "", "numCo": 0},
+    "IN": { "fillKey": "", "numCo": 0},
+    "IA": { "fillKey": "", "numCo": 0},
+    "KS": { "fillKey": "", "numCo": 0},
+    "KY": { "fillKey": "", "numCo": 0},
+    "LA": { "fillKey": "", "numCo": 0},
+    "MD": { "fillKey": "", "numCo": 0},
+    "ME": { "fillKey": "", "numCo": 0},
+    "MA": { "fillKey": "", "numCo": 0},
+    "MN": { "fillKey": "", "numCo": 0},
+    "MI": { "fillKey": "", "numCo": 0},
+    "MS": { "fillKey": "", "numCo": 0},
+    "MO": { "fillKey": "", "numCo": 0},
+    "MT": { "fillKey": "", "numCo": 0},
+    "NC": { "fillKey": "", "numCo": 0},
+    "NE": { "fillKey": "", "numCo": 0},
+    "NV": { "fillKey": "", "numCo": 0},
+    "NH": { "fillKey": "", "numCo": 0},
+    "NJ": { "fillKey": "", "numCo": 0},
+    "NY": { "fillKey": "", "numCo": 0},
+    "ND": { "fillKey": "", "numCo": 0},
+    "NM": { "fillKey": "", "numCo": 0},
+    "OH": { "fillKey": "UNDECIDED", "numCo": 0},
+    "OK": { "fillKey": "", "numCo": 0},
+    "OR": { "fillKey": "", "numCo": 0},
+    "PA": { "fillKey": "", "numCo": 0},
+    "RI": { "fillKey": "", "numCo": 0},
+    "SC": { "fillKey": "", "numCo": 0},
+    "SD": { "fillKey": "", "numCo": 0},
+    "TN": { "fillKey": "", "numCo": 0},
+    "TX": { "fillKey": "", "numCo": 0},
+    "UT": { "fillKey": "", "numCo": 0},
+    "WI": { "fillKey": "", "numCo": 0},
+    "VA": { "fillKey": "", "numCo": 0},
+    "VT": { "fillKey": "", "numCo": 0},
+    "WA": { "fillKey": "", "numCo": 0},
+    "WV": { "fillKey": "", "numCo": 0},
+    "WY": { "fillKey": "", "numCo": 0},
+    "CA": { "fillKey": "", "numCo": 0},
+    "CT": { "fillKey": "", "numCo": 0},
+    "AK": { "fillKey": "", "numCo": 0},
+    "AR": { "fillKey": "", "numCo": 0},
+    "AL": { "fillKey": "", "numCo": 0}
   };
 
-  // This function fetches customer 
+  // This function fetches customer data and maps it over to the D3 visualization.
   vm.getCustomers = function(){
     Visualization.getCustomers(vm.org, function(customerData){
       
@@ -287,4 +137,4 @@ angular.module('mapCtrl', ['firebase'])
     });
   };
   vm.getCustomers();
-});
+}]);
