@@ -6765,8 +6765,8 @@ button.close {
   }
 }
 body {
-  background-color: #999ca8;
-  color: #FFFFFF;
+  background-color: #dedede;
+  color: #b72228;
   overflow: hidden;
 }
 h1 {
@@ -6775,15 +6775,16 @@ h1 {
 a,
 a:visited,
 a:active {
-  color: #444;
+  color: #787878;
 }
 .navbar {
-  background-color: #4d505b;
+  background-color: black;
   margin-bottom: 10px;
+  color: #b72228;
 }
 .navbar .container li a,
 .navbar .navbar-brand {
-  color: #FFFFFF;
+  color: white;
 }
 .navbar .container li a:hover,
 .navbar .navbar-brand:hover,
@@ -6843,7 +6844,7 @@ footer {
 .chatRoomView {
   color: black;
   background-color: white;
-  border: 1px solid #4d505b;
+  border: 3px solid #787878;
   height: 650px;
 }
 ol {
@@ -6887,10 +6888,13 @@ ol ol .cmmnt {
   height: 50px;
   width: 50px;
 }
+.jumbotron {
+  background-color: #dedede;
+}
 .userImg {
   width: 50px;
   height: 50px;
-  border: 1px solid;
+  border: 1px solid black;
 }
 .main-menu a {
   padding: 0;
@@ -6989,4 +6993,7 @@ ol ol .cmmnt {
 .searchBox {
   width: 50%;
   float: right;
+}
+header {
+  color: #464e54;
 }

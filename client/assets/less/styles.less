@@ -6,26 +6,32 @@
 @purple: #80628B; //warning
 @orange: #F4AC42; //danger
 @cream: #EBE3E0;
+@red: #B72228;
+@grey: #787878;
+@darkgrey: #464E54;
+
 body {
-  background-color: #999ca8;
-  color: #FFFFFF;
+  background-color: lighten(@grey, 40%);
+  color: @red;
   overflow: hidden;
 }
+
 h1 {
   text-align: left;
 }
 a,
 a:visited,
 a:active {
-  color: #444;
+  color: @grey;
 }
 .navbar {
-  background-color: #4d505b;
+  background-color: black;
   margin-bottom: 10px;
+  color: @red;
 }
 .navbar .container li a,
 .navbar .navbar-brand {
-  color: #FFFFFF;
+  color: white;
 }
 .navbar .container li a:hover,
 .navbar .navbar-brand:hover,
@@ -85,7 +91,7 @@ footer {
 .chatRoomView {
   color: black;
   background-color: white;
-  border: 1px solid #4d505b;
+  border: 3px solid @grey;
   height: 650px;
 }
 ol {
@@ -129,10 +135,14 @@ ol ol .cmmnt {
   height: 50px;
   width: 50px;
 }
+
+.jumbotron {
+  background-color: lighten(@grey, 40%);
+}
 .userImg {
   width: 50px;
   height: 50px;
-  border: 1px solid;
+  border: 1px solid black;
 }
 .main-menu a {
   padding: 0;
@@ -238,4 +248,8 @@ ol ol .cmmnt {
 .searchBox {
   width: 50%;
   float: right;
+}
+
+header {
+  color: @darkgrey;
 }
