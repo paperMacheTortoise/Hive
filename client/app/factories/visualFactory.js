@@ -2,6 +2,7 @@ angular.module('visualFactory', ['firebase'])
 
 .factory('Visualization', ['$firebaseArray', '$firebaseObject',function ($firebaseArray, $firebaseObject) {
 
+<<<<<<< HEAD
   var visualFactory = {};
 
   // Sets the current visualization ID.
@@ -10,7 +11,7 @@ angular.module('visualFactory', ['firebase'])
     visualId = name;
   };
 
-  // Returns the current visualization ID. 
+  // Returns the current visualization ID.
   visualFactory.getName = function(){
    return visualId;
   };
@@ -58,6 +59,14 @@ angular.module('visualFactory', ['firebase'])
     return data_array;
   };
 
+
+	visualFactory.getProfitData = function(){
+		var ref = new Firebase('https://bizgramer.firebaseio.com/hr/ProfitData/');
+		data_array = $firebaseArray(ref);
+		return data_array;
+	};
+
+
   // Function used by the Bubblechart constructor to produce and display the tooltip to display
   // account data when user scrolls over the chart bubbles.
   var CustomTooltip = function(tooltipId, width) {
@@ -68,7 +77,7 @@ angular.module('visualFactory', ['firebase'])
 
       updatePosition(event);
     };
-    
+
     var hideTooltip = function() {
       $("#"+tooltipId).hide();
     };
@@ -94,13 +103,13 @@ angular.module('visualFactory', ['firebase'])
        }
        $(ttid).css('top', tttop + 'px').css('left', ttleft + 'px');
     };
-    
+
     $("#vis").append("<div class='tooltip' id='"+tooltipId+"'></div>");
-    
+
     if(width){
       $("#"+tooltipId).css("width", width);
     }
-    
+
     hideTooltip();
 
     return {
@@ -250,4 +259,5 @@ angular.module('visualFactory', ['firebase'])
   };
 
   return visualFactory;
+
 }]);
