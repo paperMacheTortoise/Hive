@@ -127,7 +127,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
   })
   // Unathenticates the user and deletes the user information from the $rootScope on logout.
   .state('logout',{
-    url: ':org/logout',
+    url: '/:org/logout',
     controller: function(Auth, $state, $rootScope, $stateParams){
       $state.go('signin', {org: $stateParams.org});
       $rootScope.shouldShow = true;
@@ -194,7 +194,7 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth){
           $rootScope.logInfo = logInfo;
           // redirects to the page the user is reloading
           $state.go(toState, {org: $stateParams.org});  
-        },$stateParams.org);
+        }, $stateParams.org);
       } else {
         console.log('User must log in');
         $state.go('signin', {org: $location.$$path.slice(1)});  
@@ -205,21 +205,28 @@ app.run(function ($rootScope, $location, $state, $stateParams, Auth){
   $rootScope.$on('$stateChangeSuccess', function (event, toState){
     var requireLogin = toState.data.requireLogin;
 
+    if(!requireLogin){
+      if($stateParams.org === ""){
+        $state.go('landing');
+      }
+    }
+
     // checks if page requires authentication and if user is signed in.
     if(requireLogin && $rootScope.logInfo){
       // shows the profile and logout options
       $rootScope.shouldShow = false;
+
       // if user tries to navigate to another organization, user is redirected
       // to 404 page
-      if($rootScope.logInfo.org !== $stateParams.org){
-        $rootScope.shouldShow = true;
-        if(toState.name === '404'){
-          $state.go('landing');
-        }
-        $state.go('404');
-      }
+      // if($rootScope.logInfo.org !== $stateParams.org){
+      //   $rootScope.shouldShow = true;
+      //   if(toState.name === '404'){
+      //     $state.go('landing');
+      //   }
+      //   $state.go('404');
+      // } 
     }
-
+    console.log('stateParams org ', $stateParams.org);
     console.log('going to state: ', toState.name);
   });
 });
