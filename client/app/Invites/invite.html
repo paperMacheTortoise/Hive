@@ -2,12 +2,12 @@
   <h2 class="modal-title">Invite your friend to join this organization</h2>
 </div>
 <div class="modal-body text-right">
-      <form name="orgEmailInvite" ng-submit="invite.emailInvite()">
+      <form name="orgEmailInvite" ng-submit="emailInvite()">
         <div class="form-group">
-          <input class="form-control" name="name" type="name" ng-model="invite.inviteeName" placeholder="Your friend's name" required />
+          <input class="form-control" name="name" type="name" ng-model="inviteeName" placeholder="Your friend's name" required />
         </div>
         <div class="form-group">
-          <input class="form-control" name="email" type="email" ng-model="invite.inviteeEmail" placeholder="Your friend's email" required />
+          <input class="form-control" name="email" type="email" ng-model="inviteeEmail" placeholder="Your friend's email" required />
         </div>
         <button class="btn btn-info" type="submit" ng-click="ok()">Send Email Invitation</button>
         <button class="btn btn-danger" type="submit" ng-click="cancel()">Cancel</button>
