@@ -1,7 +1,7 @@
 // angular controller for app main view
 angular.module('mainCtrl', ['ui.bootstrap'])
 
-.controller('mainController', ['Rooms', 'Users', 'DirectMessage', 'Visualization', '$rootScope', '$stateParams', 'oAuth', '$interval', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth, $interval) {
+.controller('mainController', ['Rooms', 'Users', 'DirectMessage', 'Visualization', '$rootScope', '$stateParams', 'oAuth', '$interval', '$modal', '$log', function (Rooms, Users, DirectMessage, Visualization, $rootScope, $stateParams, oAuth, $interval, $modal, $log) {
 
   var vm = this;
   // make sure the currentUser is the logged in user
@@ -58,6 +58,20 @@ angular.module('mainCtrl', ['ui.bootstrap'])
   vm.isAdding = false;
   vm.toggleAdd = function(){
     vm.isAdding = !vm.isAdding;
+  };
+
+  vm.openInvite = function() {
+    var modalInstance = $modal.open({
+      animation: true,
+      templateUrl: 'app/Invites/invite.html',
+      controller: 'InviteController',
+      size: 'lg'
+    });
+    modalInstance.result.then(function() {
+    }, function(){
+
+    $log.info('Modal dismissed at: ' + new Date());
+    });
   };
 
 }]);

@@ -5,7 +5,7 @@ angular.module('indexCtrl', ['firebase', ])
     var vm = this;
 
     // when the state changes, set the org property to the current location for routing purpose
-    $rootScope.$on('$stateChangeStart', function() {
+    $rootScope.$on('$stateChangeSuccess', function() {
       vm.org = $stateParams.org;
     });
 
