@@ -6849,7 +6849,8 @@ footer {
   border: 3px solid #787878;
   height: 650px;
 }
-ol {
+ol,
+ul {
   list-style-type: none;
 }
 .username {
@@ -7006,5 +7007,6 @@ body {
 }
 .description {
   padding-top: 25px;
-  padding-left: 50px;
+  padding-left: 0px;
+  text-align: center;
 }
