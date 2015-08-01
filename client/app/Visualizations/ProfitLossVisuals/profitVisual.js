@@ -55,7 +55,7 @@ angular.module('profitCtrl', [])
   .attr('class', 'd3-tip')
   .offset([-10, 0])
   .html(function(d) {
-    return "<strong>"+d.z+":</strong> <span style='color:red'>" + d.y + "</span>";
+    return "<strong>"+d.z+":</strong> <span style='color:red'>" + (addCommas(d.y)) + "</span>";
   });
 
   var svg = d3.select("#vis").append("svg")
@@ -161,6 +161,20 @@ angular.module('profitCtrl', [])
     }
     profit = profit.map(function(d, i) { return {x: i, y: d, z:"Net Earnings"}; });
     return profit;
+  };
+
+ var addCommas = function(nStr) {
+    nStr += '';
+    x = nStr.split('.');
+    x1 = x[0];
+    x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+
+    while (rgx.test(x1)) {
+      x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+
+    return x1 + x2;
   };
 
   var profit_data = Visualization.getProfitData();
