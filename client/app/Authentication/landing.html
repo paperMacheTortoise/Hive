@@ -23,9 +23,9 @@
 			    </div>
 			    <alert ng-repeat="alert in org.alerts" type="{{alert.type}}" close="org.closeAlert()">{{alert.msg}}</alert>
 			  </form>
+		    <a class="text-center" ui-sref='orgsignin'>Sign in to existing organization</a>
 		  </div>
   </div>
-  <a ui-sref='orgsignin'>Sign in to existing organization</a>
 
   <div class="col-md-4 reasons">
   	<h3 class="text-center">Real-time Chat</h3>
