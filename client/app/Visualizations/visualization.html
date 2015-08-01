@@ -6,12 +6,26 @@
     </div>
 
     <div class="col-sm-4 col-md-4 chatRoomView" ng-controller="visualController as vis">
-      <div>
-        <header><h3>Reports</h3></header>
+      <div class="visualButton">
+
+        <header>
+        <h3>Reports
+          <span class="btn-group pull-right">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Visual<span class="caret"></span>
+            </button>
+              <ul class="dropdown-menu">
+                  <li><a ui-sref="visual.profit({ org: main.org })">Profit Loss Report</a></li>
+                  <li><a ui-sref="visual.APVisual({ org: main.org })">Account Payable</a></li>
+                  <li><a ui-sref="visual.ARVisual({ org: main.org })">Account Receivable</a></li>
+                  <li><a ui-sref="visual.CustomerMap({ org: main.org })">Customer Map</a></li>
+              </ul>
+          </span></h3>
+        </header>
         <div class="form-group has-feedback">
           <input class="searchBox form-control" text="text" ng-model="searchTxt" placeholder="Search">
           <i class="glyphicon glyphicon-search form-control-feedback"></i>
         </div>
+
       </div>
       <div class="chatMessages" scroll-glue>
         <ol class="chats">
