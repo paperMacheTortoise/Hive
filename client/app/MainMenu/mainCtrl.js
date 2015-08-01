@@ -44,12 +44,21 @@ angular.module('mainCtrl', ['ui.bootstrap'])
       } else {
         console.log('this room already exists');
       }
+
+      vm.toggleAdd();
     }
   };
+
   vm.getQBO = function(){
     vm.progress = true;
     oAuth.getData(vm.org);
     $interval(increaseDyno, 100, 16);
   };
+
+  vm.isAdding = false;
+  vm.toggleAdd = function(){
+    vm.isAdding = !vm.isAdding;
+  };
+
 }]);
 

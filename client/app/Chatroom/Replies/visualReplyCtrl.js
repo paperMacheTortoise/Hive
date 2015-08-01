@@ -23,6 +23,7 @@ angular.module('visualReplyCtrl', [])
     if(e.keyCode === 13) {
       Replies.addVisualReply(vm.username, vm.profileImg, vm.replyText, index, vm.org);
       vm.replyText = '';
+      vm.toggleReplying();
     }
   };
 }]);
