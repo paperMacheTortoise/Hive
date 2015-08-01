@@ -56,7 +56,7 @@ angular.module('profitCtrl', [])
   .offset([-10, 0])
   .html(function(d) {
     return "<strong>"+d.z+":</strong> <span style='color:red'>" + d.y + "</span>";
-  })
+  });
 
   var svg = d3.select("#vis").append("svg")
     .attr("width", width + margin.left + margin.right)
