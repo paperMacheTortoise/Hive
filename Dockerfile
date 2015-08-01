@@ -2,7 +2,7 @@
 FROM 	ubuntu:14.04
 MAINTAINER Liam Gallivan <gallivanster@gmail.com>
 RUN 	apt-get update
-RUN   ajpt-get install -y npm git nodejs git-core
+RUN   apt-get install -y npm git nodejs git-core
 RUN		ln -s /usr/bin/nodejs /usr/bin/node
 RUN		npm install -g bower
 RUN		ls; git clone https://github.com/paperMacheTortoise/bizGram.git;
