@@ -1,5 +1,5 @@
 
-window.host = 'localhost';
+window.host = 'hiver.elasticbeanstalk.com';
 
 var app = window.bizGramApp = angular.module('bizGramApp', [
   'indexCtrl',
@@ -48,9 +48,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
   $stateProvider
 
-  .state('orgsignup', {
-    url: '/orgsignup',
-    templateUrl: 'app/Authentication/orgsignup.html',
+  .state('orgsignin', {
+    url: '/orgsignin',
+    templateUrl: 'app/Authentication/orgsignin.html',
     data: {
       requireLogin: false
     }

@@ -1,0 +1,19 @@
+<div class="signup-div container text-center" ng-controller="OrgsignupController as org">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4"
+      <header><h2>Log in to your Organization:</h2></header>
+      <form name="orgRedirect" ng-submit="org.redirect()">
+        <div class="form-group">
+          <input class="form-control" name="name" type="name" ng-model="org.nameOfOrgToGo" placeholder="Organization name" required />
+        </div>
+        <div class="form-group">
+          <button class="btn btn-info form-control"type="submit">Submit</button>
+        </div>
+        <alert ng-repeat="alert in org.alerts" type="{{alert.type}}" close="org.closeAlert($index)">{{alert.msg}}</alert>
+        <div class="form-group">
+          <a ui-sref="orgsignup">Sign up a new organization</a>
+        </div>
+      </form>
+  </div>
+  </div>
+</div>
