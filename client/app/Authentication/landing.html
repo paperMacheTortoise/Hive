@@ -7,10 +7,11 @@
 		  <h3>Sign up your team now</h3>
 			  <form name="orgSignupForm" ng-submit="org.signupOrg()">
 			  	<div class="form-group">
-				    <input class="form-control" name="orgName" type="name" ng-model="org.nameOfOrgToAdd" placeholder="Organization name" required />
+				    <input class="form-control" name="orgName" type="text" ng-model="org.nameOfOrgToAdd" ng-pattern="/^[a-zA-Z0-9]*$/" placeholder="Organization name" required />
+            <span class="help-inline" ng-show="orgSignupForm.orgName.$error.pattern">Please only use letters and numbers, no white space</span>
 			    </div>
 			    <div class="form-group">
-				    <input class="form-control" name="creatorName" type="name" ng-model="org.nameOfCreator" placeholder="Your name" required />
+				    <input class="form-control" name="creatorName" type="text" ng-model="org.nameOfCreator" placeholder="Your name" required />
 			    </div>
 			    <div class="form-group">
 				    <input class="form-control" name="email" type="email" ng-model="org.emailOfCreator" placeholder="Your email" required />
@@ -19,7 +20,7 @@
 				    <input class="form-control" name="password" type="password" ng-model="org.passwordOfCreator" placeholder="Choose your password" required />
 			    </div>
 			    <div class="form-group">
-				    <button class="btn btn-info form-control" type="submit">Submit</button>
+				    <button class="btn btn-info form-control" type="submit" ng-disabled="orgSignupForm.orgName.$error.pattern">Submit</button>
 			    </div>
 			    <alert ng-repeat="alert in org.alerts" type="{{alert.type}}" close="org.closeAlert()">{{alert.msg}}</alert>
 			  </form>
