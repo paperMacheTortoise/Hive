@@ -49,13 +49,22 @@ angular.module('profitCtrl', [])
 
   var color = d3.scale.linear()
     .domain([0, n - 1])
-    .range(['#FF69B4', "#008000"]);
+    .range(['#cc0000', "#000099"]);
+
+  var tip = d3.tip()
+  .attr('class', 'd3-tip')
+  .offset([-10, 0])
+  .html(function(d) {
+    return "<strong>"+d.z+":</strong> <span style='color:red'>" + d.y + "</span>";
+  })
 
   var svg = d3.select("#vis").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    svg.call(tip);
 
     svg.append("g")
         .attr("class", "x axis")
@@ -87,11 +96,13 @@ angular.module('profitCtrl', [])
     var rect = layer.selectAll("rect")
         .data(function(d) { return d; });
 
+
         //update the old elements as needed
         rect.attr("x", function(d, i, j) { return xScale(d.x) + xScale.rangeBand() / n * j; })
         .attr("y",  y0(0))
         .attr("width", xScale.rangeBand() / n)
         .attr("height", 0)
+        .on('mouseover', tip.show).on('mouseout', tip.hide)
       .transition()
         .attr("y", function(d) { return d.y < 0 ? y0() : yScale(d.y); })
         .attr("height", function(d) { return Math.abs( yScale(d.y) - y0() ); });
@@ -104,6 +115,7 @@ angular.module('profitCtrl', [])
         .attr("y",  y0(0))
         .attr("width", xScale.rangeBand() / n)
         .attr("height", 0)
+        .on('mouseover', tip.show).on('mouseout', tip.hide)
       .transition()
         .attr("y", function(d) { return d.y < 0 ? y0() : yScale(d.y); })
         .attr("height", function(d) { return Math.abs( yScale(d.y) - y0() ); });
@@ -114,7 +126,7 @@ angular.module('profitCtrl', [])
       this.changeDisplay(this.layers);
     }
     else {
-      this.changeDisplay([this.profit]);
+      this.changeDisplay([[],[],this.profit]);
     }
   };
 
@@ -131,9 +143,9 @@ angular.module('profitCtrl', [])
       layerthree.push(parseInt(dates[i]["Total Income"],10));
     }
     var threelayers = [];
-    layerone = layerone.map(function(d, i) { return {x: i, y: d }; });
-    layertwo = layertwo.map(function(d, i) { return {x: i, y: d }; });
-    layerthree = layerthree.map(function(d, i) { return {x: i, y: d }; });
+    layerone = layerone.map(function(d, i) { return {x: i, y: d, z: "Total Cost of Sales"}; });
+    layertwo = layertwo.map(function(d, i) { return {x: i, y: d, z:"Total Expenses" }; });
+    layerthree = layerthree.map(function(d, i) { return {x: i, y: d, z:"Total Income" }; });
 
     threelayers.push(layerone, layertwo, layerthree);
 
@@ -147,7 +159,7 @@ angular.module('profitCtrl', [])
     for(var i = 0; i < dates.length; i++){
       profit.push(parseInt(dates[i]["Net Earnings"],10));
     }
-    profit = profit.map(function(d, i) { return {x: i, y: d}; });
+    profit = profit.map(function(d, i) { return {x: i, y: d, z:"Net Earnings"}; });
     return profit;
   };
 
