@@ -16,7 +16,7 @@ passport.deserializeUser(function(user, done){
 passport.use(new LinkedInStrategy({
   consumerKey: LINKED_IN_KEY,
   consumerSecret: LINKED_IN_SECRET,
-  callbackURL: "http://hiver.elasticbeanstalk.com/auth/linkedin/callback",
+  callbackURL: "http://localhost:3000/auth/linkedin/callback",
   scope: ['r_basicprofile', 'r_emailaddress'],
   profileFields: ['id', 'formatted-name','first-name', 'last-name', 'email-address','public-profile-url', 'picture-url', 'headline'],
   state: true

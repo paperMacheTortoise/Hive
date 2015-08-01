@@ -1,5 +1,5 @@
 
-window.host = 'hiver.elasticbeanstalk.com';
+window.host = 'localhost';
 
 var app = window.bizGramApp = angular.module('bizGramApp', [
   'indexCtrl',
