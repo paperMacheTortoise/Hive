@@ -70,7 +70,7 @@ angular.module('mainCtrl', ['ui.bootstrap'])
     modalInstance.result.then(function() {
     }, function(){
 
-    $log.info('Modal dismissed at: ' + new Data());
+    $log.info('Modal dismissed at: ' + new Date());
     });
   };
 
