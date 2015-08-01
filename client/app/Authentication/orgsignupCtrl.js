@@ -20,24 +20,21 @@ angular.module('orgsignupCtrl', ['firebase','ui.bootstrap'])
       // if this org name is not already used
       if (vm.orgnames.indexOf(vm.nameOfOrgToAdd) === -1) {
         // call the orgsignup factory function to add a new org to the firebase db
-        OrgSignup.signupOrg(vm.nameOfOrgToAdd, vm.nameOfCreator, vm.emailOfCreator, vm.passwordOfCreator, function(){
+        OrgSignup.signupOrg(vm.nameOfOrgToAdd, vm.nameOfCreator, vm.emailOfCreator, vm.passwordOfCreator, function(vm, orgname){
           // redirect to user login/signup page of this new org
-          $state.go('main', {org: vm.nameOfOrgToAdd});
 
-        });
+          $state.go('main.room', {org: orgname, roomName:'General'});
+        },vm);
         // empty input field
         vm.nameOfOrgToAdd = '';
       } else {
         vm.addAlert('Organization with this name already exists!');
-        console.log('org with this name already exists');
-        // $state.go('signin', {org: vm.nameOfOrgToAdd});
       }
     };
 
     vm.redirect = function () {
       if (vm.orgnames.indexOf(vm.nameOfOrgToGo) === -1) {
         vm.addAlert('Organization does not exist!');
-        console.log('go sign up for new org');
         vm.nameOfOrgToGo = '';
       } else {
         vm.setOrg(vm.nameOfOrgToGo);

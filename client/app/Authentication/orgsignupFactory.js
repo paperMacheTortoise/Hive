@@ -1,6 +1,6 @@
 angular.module('orgsignupFactory', ['firebase'])
 
-.factory('OrgSignup', ['$firebaseArray', '$firebaseObject', '$http', 'Auth',function ($firebaseArray, $firebaseObject, $http, Auth) {
+.factory('OrgSignup', ['$firebaseArray', '$firebaseObject', '$http', 'Auth', '$rootScope', function ($firebaseArray, $firebaseObject, $http, Auth, $rootScope) {
 
   var orgsignupFactory = {};
   var mandrillKey = 'ul35c_Y39BxIZUIUa_HIog';
@@ -73,7 +73,7 @@ angular.module('orgsignupFactory', ['firebase'])
       return orgNames;
     };
 
-    orgsignupFactory.signupOrg = function (orgname, creator, email, password, cb) {
+    orgsignupFactory.signupOrg = function (orgname, creator, email, password, cb, vm) {
       // create new branch for this organization on firebase db
       ref.child(orgname).set('new organization');
       var orgId = generatePushID();
@@ -113,15 +113,16 @@ angular.module('orgsignupFactory', ['firebase'])
               console.log('error sending email invite');
             });
            Auth.signup(email, password, orgId, orgname, function(error, data){
-            Auth.setupUser(creator, orgname, email, data.uid, data.password.profileImageURL, function(){
-              cb();
-            });
-           },this);
+            vm.authData = data;
+            Auth.setupUser(creator, orgname, email, data.uid, data.password.profileImageURL, function(error, logInfo, vm){
+              $rootScope.logInfo = logInfo;
+              cb(vm, orgname);
+            }, vm);
+          },vm);
 
           var fireArr = $firebaseArray(new Firebase('https://bizgramer.firebaseio.com/'+orgname+'/rooms/General'));
           // initial default chat message for General chat room
           fireArr.$add({username:'Hive Helper', text:'Start typing below to begin chatting',img:'assets/hive.jpg', createdAt: Firebase.ServerValue.TIMESTAMP}).then(function(){
-            console.log('set up general');
           });
         })
         .catch(function (error) {
