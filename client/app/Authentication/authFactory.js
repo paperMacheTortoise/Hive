@@ -46,7 +46,7 @@ angular.module('authFactory', ['firebase'])
     });
   };
 
-  authFactory.setupUser = function(username, org, email, uid, pictureUrl, callback){
+  authFactory.setupUser = function(username, org, email, uid, pictureUrl, callback, vm){
     var users = Users.getUsers(org);
     users.$add({
       username: username,
@@ -57,7 +57,7 @@ angular.module('authFactory', ['firebase'])
       pictureCollection: null
     }).then(function(ref){
       var logInfo = users.$getRecord(ref.key());
-      callback(null, logInfo);
+      callback(null, logInfo, vm);
     });
   };
 
