@@ -24,7 +24,7 @@ angular.module('inviteFactory', ['firebase'])
         var params = {
           "key": mandrillKey,
           "message": {
-                "from_email": sender+"."+orgName+"@Hiver.com",
+                "from_email": orgName+"@Hiver.com",
                 "to":[{"email":recipientEmail}],
                 "subject": "Hey "+recipient+" go signup at Hive!",
                 "html":
