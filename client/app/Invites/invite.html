@@ -1,14 +1,14 @@
-<div class="signup-div container text-center" ng-controller="InviteController as invite">
-  <div class="row">
-    <div>
-      <header><h2>Invite your friend to join this organization:</h2></header>
+<div class="modal-header">
+  <h2 class="modal-title">Invite your friend to join this organization</h2>
+</div>
+<div class="modal-body text-right">
       <form name="orgEmailInvite" ng-submit="invite.emailInvite()">
         <form class="form-group">
           <input class="form-control" name="name" type="name" ng-model="invite.inviteeName" placeholder="Your friend's name" required />
           <input class="form-control" name="email" type="email" ng-model="invite.inviteeEmail" placeholder="Your friend's email" required />
         </form>
-        <button class="btn btn-success" type="submit">Send Email Invitation!</button>
+        <button class="btn btn-info" type="submit">Send Email Invitation</button>
+        <button class="btn btn-danger" type="submit">Cancel</button>
       </form>
-  </div>
-  </div>
 </div>
+
