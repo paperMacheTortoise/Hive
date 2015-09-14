@@ -1,4 +1,4 @@
-# BizGram
+# Hive
 
 > Collaboration and analytics platform
 
