@@ -6,7 +6,7 @@
 
 1. Fork to your github repo
 2. Clone to your local machine
-3. Set upstream master: "git remote add upstream https://github.com/paperMacheTortoise/bizGram.git"
+3. Set upstream master: "git remote add upstream https://github.com/paperMacheTortoise/Hive.git"
 
 
 ## Branch names
@@ -17,7 +17,7 @@ feat/ fix/ refactor/ cleanup/ doc/
 
 ## branching, commit, pull-request checklist
 1. Create a new branch: 'git checkout -b 'doc/readme "
-2. Review the waffle issues before making your commit: https://waffle.io/paperMacheTortoise/bizGram
+2. Review the waffle issues before making your commit: https://waffle.io/paperMacheTortoise/Hive
 3. Commit with waffle issue number (if applicable): "(doc) update readme close #8"
 4. Make sure to rebase: "git pull --rebase upstream master"
 5. Push to your fork: "git push origin doc/readme"
@@ -74,7 +74,7 @@ From within the root directory:
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/paperMacheTortoise/bizGram/issues)
+View the project roadmap [here](https://github.com/paperMacheTortoise/Hive/issues)
 
 
 ## Contributing
